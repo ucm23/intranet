@@ -3,7 +3,7 @@ import RoutesComp from './router/RoutesComp';
 
 function App() {
   return (
-    <RoutesComp/>
+    <RoutesComp />
   );
 }
 
