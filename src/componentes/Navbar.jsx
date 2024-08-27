@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Dropdown } from 'react-bootstrap';
+import logo from '../img/logo-white.png';
 
 
 const Navbar = ({ children, mobile }) => {
@@ -38,15 +39,16 @@ const Navbar = ({ children, mobile }) => {
     }
 
     const routes = [
-        { id: 1, href: "/", content: "Inicio" },
+        // { id: 1, href: "/*", content: "Inicio" },
+        { id: 1, href: "/Home", content: "Inicio" },
         { id: 2, href: "/Noticias", content: "Noticias" },
         { id: 3, href: "/colaborador", content: "Colaborador" },
         { id: 5, href: "/#", hasSubMenu: SubMenuTram },
         { id: 7, href: "/#", hasSubMenu: SubMenuGestor },
-        { id: 7, href: "/#", hasSubMenu: SubMenuIndic },
+        { id: 8, href: "/#", hasSubMenu: SubMenuIndic },
         // { id: 7, href: "https://development.victum-re.online", content: "Proveedores", onlyLink: true },
         { id: 6, href: "/Calendario", content: "Calendario de Eventos" },
-        
+               
     ]
 
     const handleCheckBoxChange = ({ target }) => setIsChecked(target.checked);
@@ -57,10 +59,10 @@ const Navbar = ({ children, mobile }) => {
     return (
         <>
             <nav className={`${showShadow ? 'shadow nav-small' : 'nav'}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : 'transparent' }}>
-                <a href="/" className={`enlace d-flex justify-content-center align-items-center ${(mobile && showShadow) && "center-logo"}`}>
-                    <img src={(showShadow || isChecked) ? "/logo-removebg.png" : "/logo-white.png"} className={showShadow ? 'logo-small' : 'logo'} />
-                    <h1 className="m-0"></h1>
-                </a>
+                {/* <a href="/" className={`enlace d-flex justify-content-center align-items-center ${(mobile && showShadow) && "center-logo"}`}> */} */}
+                    {/* <img src={(showShadow || isChecked) ? "/logo-removebg.png" : "/logo-white.png"} className={showShadow ? 'logo-small' : 'logo'} /> */}
+                    {/* <h1 className="m-0"></h1> */}
+                {/* </a> */}
                 <input type="checkbox" id="check" onChange={handleCheckBoxChange} />
                 <label htmlFor="check" className="checkbtn" >
                     <i className={`${isChecked ? "fa fa-times" : "fas fa-bars"} checkbtn-icons`}></i>
