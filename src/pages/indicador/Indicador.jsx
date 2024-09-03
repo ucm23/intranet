@@ -2,7 +2,7 @@ import React from 'react'
 
 const indicador = () => {
   return (
-    <div>Indicadores</div>
+    <div>Indicadores esta es la pagina de </div>
   )
 }
 

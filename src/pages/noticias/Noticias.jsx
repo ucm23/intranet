@@ -5,7 +5,6 @@ import logo from '../../img/logo-white.png';
 import inteligencia from '../../img/IA.png';
 import noticia from '../../img/noticia2.png';
 import noticia3 from '../../img/noticia3.png';
-// import backgroundImage from '../../img/background.jpg';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Button } from "@mui/material";
@@ -122,25 +121,16 @@ const Noticias = () => {
                         /></div>
                     <h1 style={{ fontSize: '15px', marginTop: '25px', color: '#1890ff' }}>Tren Maya, un "horror ambiental"; cadena de TV alemana critica impacto con video reportaje</h1>
                     <p style={{ fontSize: '11px', marginTop: '25px', color: '#001529' }}>Una televisora alemana publicó un video reportaje para criticar el Tren Maya por la contaminación ambiental que está provocando.
-                        “El nuevo tren de la selva de México se está convirtiendo en un horror ambiental”, se titula el reportaje difundido por la televisora n-tv, que advierte que “la nueva línea de Tren Maya está 
-                        destinada a llevar a los turistas a través de la selva mexicana. Los conservacionistas están haciendo sonar la alarma porque el mega proyecto de construcción está ejerciendo una presión 
-                        enorme sobre la vida silvestre y contaminando el agua. 
+                        “El nuevo tren de la selva de México se está convirtiendo en un horror ambiental”, se titula el reportaje difundido por la televisora n-tv, que advierte que “la nueva línea de Tren Maya está
+                        destinada a llevar a los turistas a través de la selva mexicana. Los conservacionistas están haciendo sonar la alarma porque el mega proyecto de construcción está ejerciendo una presión
+                        enorme sobre la vida silvestre y contaminando el agua.
                         Sin embargo, el gobierno de México no quiere saber nada al respecto y por decreto impide tomar contramedidas”.</p>
-                </div>
-
-
-                <div style ={{textAlign: 'center' }}>
-                    <p><br></br></p>
-                    <p><br></br></p>
-                    <p><br></br></p>
-                    <button onClick={goToHome} style={{ color: 'red', marginTop: '27%', }}>Home</button>
                 </div>
             </div>
 
         </Navbar>
     )
 }
-
 
 export default Noticias
 

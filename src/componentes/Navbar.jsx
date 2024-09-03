@@ -4,6 +4,8 @@ import { Dropdown } from 'react-bootstrap';
 import logo from '../img/logo-white.png';
 
 
+
+
 const Navbar = ({ children, mobile }) => {
     
     const location = useLocation();
@@ -42,6 +44,7 @@ const Navbar = ({ children, mobile }) => {
         // { id: 1, href: "/*", content: "Inicio" },
         { id: 1, href: "/Home", content: "Inicio" },
         { id: 2, href: "/Noticias", content: "Noticias" },
+        { id: 9, href: "/Organizacion", content: "Organizacion" },
         { id: 3, href: "/colaborador", content: "Colaborador" },
         { id: 5, href: "/#", hasSubMenu: SubMenuTram },
         { id: 7, href: "/#", hasSubMenu: SubMenuGestor },

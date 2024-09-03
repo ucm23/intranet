@@ -1,16 +1,12 @@
 import React from 'react';
-import Navbar from '../../componentes/Navbar';
-import logo from '../../img/logo-white.png'
-import backgroundImage from '../../img/background.jpg';
+// import logo from '../../img/logo-white.png'
 import { useNavigate } from 'react-router-dom';
-import '../../styles/App.css';
+// import '../../styles/App.css';
 import OrgChart from 'react-orgchart';
 import 'react-orgchart/index.css'; // Estilos por defecto de react-orgchart
 import { useResizeDetector } from 'react-resize-detector';
 
-
 import { useBreakpointValue } from '@chakra-ui/react'
-
 
 const MyNode = ({ node }) => {
     return (
@@ -21,27 +17,22 @@ const MyNode = ({ node }) => {
     );
 };
 
-const Colaborador = () => {
-    const mobile = useBreakpointValue({ base: true, md: false });
-    const navigate = useNavigate();
+const Organigrama = () => {
+    // const mobile = useBreakpointValue({ base: true, md: false });
+    // const navigate = useNavigate();
 
-    const goToHome = () => {
-        navigate('/');
-    };
+    // const goToHome = () => {
+    //     navigate('/');
+    // };
 
     return (
 
-        <Navbar mobile={mobile}>
             <div style={{ height: '100vh', overflow: 'hidden', background: '#001529' }}>
-                <div style={{ backgroundColor: '#001529', overflow: 'hidden' }}>
-                    <img src={logo} alt="Logo" style={{ width: '130px', height: 'auto', 'logo-small': 'logo', verticalAlign: 'middle' }} />
-                    <p><br></br></p>
-                </div>
-                <div style={{ background: 'blue' }}>
+                <div style={{ background: '#001529', overflow: 'hidden', overflowX: 'hidden', }}>
+                <div style={{ background: '#001529' }}>
                     {/* <Message mobile={mobile}/> */}
                     <p style={{ textAlign: 'center', color: 'white', fontSize: '25px' }}>Colaboradores de grupo CTI</p>
                 </div>
-                <div style={{ background: '#001529', overflow: 'hidden', overflowX: 'hidden', }}>
 
                     {/* funcion de organigrama */}
 
@@ -96,8 +87,7 @@ const Colaborador = () => {
                     </div>
                 </div>
             </div>
-        </Navbar>
+
     )
 }
-
-export default Colaborador
+export default Organigrama;

@@ -1,0 +1,68 @@
+.tree-node {
+  padding: 5px;
+  padding-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #f9f9f9;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  object-fit: cover;  /* width: 100px; */
+  /* min-width: 130px;  Tamaño mínimo del nodo */
+  /* min-height: 50px;  /* Tamaño mínimo del nodo */
+  max-width: 200px;  /*Tamaño máximo del nodo para evitar expansión excesiva
+  box-sizing: border-box;  /* Incluye padding y border en el tamaño total */
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  /* width: 200px; */
+  /* height: 150px; */
+}
+
+.tree-node:hover {
+  background-color: #e6e6e6;
+  flex-grow: 1;
+  display: flex;
+}
+
+.node__image {
+  /* width: 70px; /* Ajusta el tamaño de la imagen */
+  /* height: 70px; */
+  /* border-radius: 50%; Hace la imagen redonda */
+  /* object-fit: cover; Ajusta la imagen al contenedor */
+  /* margin-bottom: 8px; */
+  /* object-fit: cover;  */
+ 
+  /* Tamaño del contenedor de la imagen */
+  height: 65px;
+  width: 65px;
+  /* display: flex; */
+  justify-content: center;
+  /* Centrar horizontalmente */
+  align-items: center;
+  /* Centrar verticalmente */
+  overflow: hidden;
+  border-radius: 40%;
+  /* Forma redonda del contenedor */
+  margin-bottom: 8px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  /* background-size: cover;  */
+  /* background-color: #f0f0f0; Fondo opcional */
+}
+.org-tree-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; /*Ancho del viewport */
+  height: 100vh; /* Alto del viewport */
+  /* overflow: auto; Permitir scroll si es necesario */
+  transform: scale(0.8); /* Escala inicial del organigrama */
+  transform-origin: top center; /* Ajusta el origen del escalado */
+  padding: 10px; /* Espacio alrededor del organigrama */
+  box-sizing: border-box;
+}

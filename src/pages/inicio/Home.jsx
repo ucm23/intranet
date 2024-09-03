@@ -7,80 +7,76 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Home = () => {
-    const mobile = useBreakpointValue({ base: true, md: false });
-    const navigate = useNavigate();
+  const mobile = useBreakpointValue({ base: true, md: false });
+  const navigate = useNavigate();
 
-  const goToHome = () => {navigate('/');
+  const goToHome = () => {
+    navigate('/');
   };
 
-    return (
-        
-        <Navbar  mobile={mobile}>
-            <div style={{ height: '100vh', overflow: 'hidden' }}>
-                <div style={{ backgroundColor: '#001529', overflow: 'hidden', }}>
-                <img src={logo} alt="Logo" style={{ width: '130px', height: 'auto' ,'logo-small' : 'logo',verticalAlign: 'middle'}}  />
-                <p><br></br></p>
+  return (
 
-                </div>
-                <div
-      style={{
-        position: 'relative',
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover', 
-        backgroundPosition: 'center', // Centra la imagen
-        backgroundRepeat: 'no-repeat', // Evita que la imagen se repita
-        height: '110vh', // Altura del contenedor (100% de la ventana del navegador)
-        display: 'flex', // Flexbox para centrar contenido
-        justifyContent: 'center', // Centra horizontalmente
-        alignItems: 'center', // Centra verticalmente
-        color: 'white', // Cambia el color del texto
-      }}
+    <Navbar mobile={mobile}>
+      <div style={{ height: '100vh', overflow: 'hidden' }}>
+        <div style={{ backgroundColor: '#001529', overflow: 'hidden', }}>
+          <img src={logo} alt="Logo" style={{ width: '130px', height: 'auto', 'logo-small': 'logo', verticalAlign: 'middle' }} />
+          <p><br></br></p>
 
-    >
+        </div>
+        <div
+          style={{
+            position: 'relative',
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center', // Centra la imagen
+            backgroundRepeat: 'no-repeat', // Evita que la imagen se repita
+            height: '110vh', // Altura del contenedor (100% de la ventana del navegador)
+            display: 'flex', // Flexbox para centrar contenido
+            justifyContent: 'center', // Centra horizontalmente
+            alignItems: 'center', // Centra verticalmente
+            color: 'white', // Cambia el color del texto
+          }}
+
+        >
           <div
-        style={{
-          position: 'absolute',
-          top: '5%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'rgba(0, 0, 0, 0)', // Fondo semitransparente
-          color: 'white', // Texto blanco para contraste
-          padding: '20px',
-          borderRadius: '8px',
-          textAlign: 'center',
-        }}
-      >
-        <h1 style={{ fontSize: '50px',marginTop: '100px' }}>Grupo CTI</h1>
-        <p>Tu aliado Tecnológico</p>
-      </div>
+            style={{
+              position: 'absolute',
+              top: '5%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'rgba(0, 0, 0, 0)', // Fondo semitransparente
+              color: 'white', // Texto blanco para contraste
+              padding: '20px',
+              borderRadius: '8px',
+              textAlign: 'center',
+            }}
+          >
+            <h1 style={{ fontSize: '50px', marginTop: '105px' }}>Grupo CTI</h1>
+            <p>Tu aliado Tecnológico</p>
+          </div>
 
-      <div
-        style={{
-          position: 'absolute',
-          top: '40%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
-          color: 'white', // Texto blanco para contraste
-          padding: '20px',
-          borderRadius: '8px',
-          textAlign: 'center',
-        }}
-      >
-        {/* <h1 style={{ fontSize: '50px',marginTop: '100px' }}>Grupo CTI</h1> */}
-        <p style = {{color: 'white',fontFamily: 'Arial, sans-serif', fontSize: '20px'}}>Somos un equipo multidisciplinario con más de 20 años de experiencia en servicios de consultoría especializada, 
-            Creamos relaciones de confianza y profesionalismo que nos permite pensar como un solo equipo entre nuestros 
-            colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico</p>
+          <div
+            style={{
+              position: 'absolute',
+              top: '40%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
+              color: 'white', // Texto blanco para contraste
+              padding: '20px',
+              borderRadius: '8px',
+              textAlign: 'center',
+            }}
+          >
+            {/* <h1 style={{ fontSize: '50px',marginTop: '100px' }}>Grupo CTI</h1> */}
+            <p style={{ color: 'white', fontFamily: 'Arial, sans-serif', fontSize: '20px',textAlign:'justify' }}>Somos un equipo multidisciplinario con más de 20 años de experiencia en servicios de consultoría especializada,
+              Creamos relaciones de confianza y profesionalismo que nos permite pensar como un solo equipo entre nuestros
+              colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico</p>
+          </div>
+
+        </div>
       </div>
-      <div>
-      <p><br></br></p>
-      <p><br></br></p>
-      <p><br></br></p>
-      <button onClick={goToHome} style = {{color:'yellow'}}>Home</button>
-    </div>
-    </div>
-    </div>   
-        </Navbar>
-    )
+    </Navbar>
+  )
 }
 export default Home;
