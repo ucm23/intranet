@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import CarruselNoticias from '../components/CarruselNoticias';
 import Footer from '../components/Footer';
-import Title from '../components/Title';
 import BootstrapCard from '../components/BootstrapCard'; // Importa el componente BootstrapCard
 import data from '../assets/info_noticias.json';
 import TituloPages from '../components/TituloPages'; // Importa el nuevo componente

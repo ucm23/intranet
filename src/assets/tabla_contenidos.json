@@ -1,0 +1,138 @@
+[
+    {
+      "id": 1,
+      "departamento": "Administración",
+      "proyecto": "VICTUM INTRANET",
+      "tipoManual": "Manual de Procedimientos",
+      "titulo": "Gestión de Recursos",
+      "descripcion": "Instrucciones detalladas sobre la gestión de recursos administrativos.",
+      "fecha": "2024-09-01"
+    },
+    {
+      "id": 2,
+      "departamento": "Administración",
+      "proyecto": "VICTUM RE",
+      "tipoManual": "Manual de Políticas",
+      "titulo": "Políticas de Recursos Humanos",
+      "descripcion": "Políticas relacionadas con el manejo del personal.",
+      "fecha": "2024-08-15"
+    },
+    {
+      "id": 3,
+      "departamento": "Administración",
+      "proyecto": "TICONSA",
+      "tipoManual": "Manual de Seguridad",
+      "titulo": "Normas de Seguridad",
+      "descripcion": "Normas y procedimientos para garantizar la seguridad en el lugar de trabajo.",
+      "fecha": "2024-07-10"
+    },
+    {
+      "id": 4,
+      "departamento": "Recursos Humanos",
+      "proyecto": "VICTUM GEO",
+      "tipoManual": "Manual de Onboarding",
+      "titulo": "Proceso de Inducción",
+      "descripcion": "Guía para la inducción de nuevos empleados.",
+      "fecha": "2024-08-10"
+    },
+    {
+      "id": 5,
+      "departamento": "Recursos Humanos",
+      "proyecto": "VICTUM RE",
+      "tipoManual": "Manual de Capacitación",
+      "titulo": "Programa de Capacitación Continua",
+      "descripcion": "Plan de formación para el desarrollo de habilidades.",
+      "fecha": "2024-09-05"
+    },
+    {
+      "id": 6,
+      "departamento": "Recursos Humanos",
+      "proyecto": "VICTUM INTRANET",
+      "tipoManual": "Manual de Beneficios",
+      "titulo": "Beneficios y Compensaciones",
+      "descripcion": "Información sobre beneficios ofrecidos a los empleados.",
+      "fecha": "2024-07-15"
+    },
+    {
+      "id": 7,
+      "departamento": "Área ITS y Telepeaje",
+      "proyecto": "TICONSA",
+      "tipoManual": "Manual de Instalación",
+      "titulo": "Instalación de Peajes",
+      "descripcion": "Procedimientos para la instalación de sistemas de peaje.",
+      "fecha": "2024-09-10"
+    },
+    {
+      "id": 8,
+      "departamento": "Área ITS y Telepeaje",
+      "proyecto": "VICTUM GEO",
+      "tipoManual": "Manual Operativo",
+      "titulo": "Operación de Sistemas de Peaje",
+      "descripcion": "Instrucciones para la operación de sistemas de peaje.",
+      "fecha": "2024-08-25"
+    },
+    {
+      "id": 9,
+      "departamento": "Área ITS y Telepeaje",
+      "proyecto": "VICTUM RE",
+      "tipoManual": "Manual de Mantenimiento",
+      "titulo": "Mantenimiento de Equipos",
+      "descripcion": "Guía de mantenimiento para los equipos de peaje.",
+      "fecha": "2024-08-05"
+    },
+    {
+      "id": 10,
+      "departamento": "Desarrollo de Aplicaciones",
+      "proyecto": "VICTUM RE",
+      "tipoManual": "Manual Técnico",
+      "titulo": "Desarrollo con React",
+      "descripcion": "Guía sobre el desarrollo de aplicaciones web usando React.",
+      "fecha": "2024-06-05"
+    },
+    {
+      "id": 11,
+      "departamento": "Desarrollo de Aplicaciones",
+      "proyecto": "VICTUM INTRANET",
+      "tipoManual": "Manual de Usuario",
+      "titulo": "Uso de la Intranet",
+      "descripcion": "Manual de usuario para la plataforma interna de la empresa.",
+      "fecha": "2024-05-20"
+    },
+    {
+      "id": 12,
+      "departamento": "Desarrollo de Aplicaciones",
+      "proyecto": "VICTUM GEO",
+      "tipoManual": "Manual de Integración",
+      "titulo": "Integración Continua",
+      "descripcion": "Guía sobre la integración continua usando CI/CD.",
+      "fecha": "2024-04-30"
+    },
+    {
+      "id": 13,
+      "departamento": "Mesa de Ayuda",
+      "proyecto": "VICTUM INTRANET",
+      "tipoManual": "Manual de Soporte",
+      "titulo": "Soporte Técnico Básico",
+      "descripcion": "Instrucciones para resolver problemas comunes.",
+      "fecha": "2024-09-15"
+    },
+    {
+      "id": 14,
+      "departamento": "Mesa de Ayuda",
+      "proyecto": "TICONSA",
+      "tipoManual": "Manual de Escalamiento",
+      "titulo": "Proceso de Escalamiento de Incidencias",
+      "descripcion": "Guía para el manejo de escalamiento de problemas.",
+      "fecha": "2024-08-18"
+    },
+    {
+      "id": 15,
+      "departamento": "Mesa de Ayuda",
+      "proyecto": "VICTUM GEO",
+      "tipoManual": "Manual de Monitoreo",
+      "titulo": "Monitoreo de Servicios",
+      "descripcion": "Guía sobre la monitorización de servicios y aplicaciones.",
+      "fecha": "2024-07-22"
+    }
+  ]
+  

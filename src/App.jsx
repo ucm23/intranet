@@ -19,7 +19,7 @@ const App = () => {
             <Route path="/noticia/:id" element={<NoticiaDetalle />} /> {/* Nueva ruta para detalles de noticia */}
             <Route path="/colaboradores" element={<Colaboradores />} />
             <Route path="/tramites-servicios" element={<TramitesServicios />} />
-            <Route path="/gestor-contenidos" element={<GestorContenidos />} />
+            <Route path="/gestor-contenidos/*" element={<GestorContenidos />} />
             <Route path="/indicadores" element={<Indicadores />} />
             <Route path="/calendario" element={<Calendario />} />
             <Route path="*" element={<Index />} />
