@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Radio } from 'antd';
-import Navbar from '../../componentes/Navbar';
+import Navbar from '../../componentes/NavbarOriginal';
 import logo from '../../img/logo-white.png';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useBreakpointValue } from '@chakra-ui/react';
-import mesa1 from '../../img/MESA1.png';
+import mesa1 from '../../imgOrganigrama/MESA1.png';
 
 const Perfilmesa1 = () => {
     const mobile = useBreakpointValue({ base: true, md: false });

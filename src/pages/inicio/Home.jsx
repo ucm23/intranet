@@ -4,6 +4,7 @@ import { useBreakpointValue } from '@chakra-ui/react';
 import logo from '../../img/logo-white.png'
 import backgroundImage from '../../img/background.jpg';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../componentes/Footer';
 
 
 const Home = () => {
@@ -15,15 +16,11 @@ const Home = () => {
   };
 
   return (
-
-    <Navbar mobile={mobile}>
-      <div style={{ height: '100vh', overflow: 'hidden' }}>
-        <div style={{ backgroundColor: '#001529', overflow: 'hidden', }}>
-          <img src={logo} alt="Logo" style={{ width: '130px', height: 'auto', 'logo-small': 'logo', verticalAlign: 'middle' }} />
-          <p><br></br></p>
-
-        </div>
-        <div
+    <div>
+            <div>
+            <Navbar backgroundColor="#001529" />
+            
+            <div
           style={{
             position: 'relative',
             backgroundImage: `url(${backgroundImage})`,
@@ -59,7 +56,7 @@ const Home = () => {
             style={{
               position: 'absolute',
               top: '40%',
-              left: '50%',
+              left: '55%',
               transform: 'translate(-50%, -50%)',
               backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
               color: 'white', // Texto blanco para contraste
@@ -69,14 +66,16 @@ const Home = () => {
             }}
           >
             {/* <h1 style={{ fontSize: '50px',marginTop: '100px' }}>Grupo CTI</h1> */}
-            <p style={{ color: 'white', fontFamily: 'Arial, sans-serif', fontSize: '20px',textAlign:'justify' }}>Somos un equipo multidisciplinario con más de 20 años de experiencia en servicios de consultoría especializada,
+            <p style={{ color: 'white', fontFamily: 'Arial, sans-serif', fontSize: '18px',textAlign:'justify' }}>Somos un equipo multidisciplinario con más de 20 años de experiencia en servicios de consultoría especializada,
               Creamos relaciones de confianza y profesionalismo que nos permite pensar como un solo equipo entre nuestros
-              colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico</p>
+              colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico.</p>
           </div>
 
+           
         </div>
-      </div>
-    </Navbar>
-  )
+        {/* <Footer /> */}
+        </div>
+        </div>
+)
 }
 export default Home;

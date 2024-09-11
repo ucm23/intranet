@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../../componentes/Navbar';
+import Navbar from '../../componentes/NavbarOriginal';
 import logo from '../../img/logo-white.png'
 import backgroundImage from '../../img/background4.jpg';
 

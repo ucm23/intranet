@@ -48,27 +48,14 @@ const Calendario = () => {
         navigate('/');
     };
     return (
-        <Navbar mobile={mobile}>
-            <div style={{ height: '100vh', overflow: 'hidden' }}>
-                <div style={{ backgroundColor: '#001529', overflow: 'hidden', }}>
-                    <img src={logo} alt="Logo" style={{ width: '130px', height: 'auto', 'logo-small': 'logo', verticalAlign: 'middle' }} />
-                    {/* <p><br></br></p> */}
+        <div style={{ height: '100vh', overflow: 'hidden' }}>
+            <Navbar backgroundColor="#001529" />
 
-                </div>
-
-                <div>
-
-                </div>
-                <div style={{
-                    display: 'flex',
-                    justifyContent: 'center', // Centra horizontalmente
-                    alignItems: 'center', // Centra verticalmente
-                    minHeight: '98vh', // Ocupa toda la altura de la pantalla
-                }}>
-                    <div style={{ width: '85%', height: '85vh' }}>
-                        <h1 style={{ textAlign: 'center', color: 'black', fontSize: '25px' }}>Calendario de Eventos</h1>
-                        <br></br>
-                        <Calendar
+            {/* <div style={{ width: '85%', height: '85vh' }}> */}
+            <div>
+                <h1 style={{ textAlign: 'center', color: 'black', fontSize: '22px',fontFamily: 'copperplate gothic bold', top:'30px' }}>Calendario de Eventos</h1>
+                <br></br>
+                <Calendar
                             localizer={localizer}
                             events={events}
                             startAccessor="start"
@@ -90,9 +77,8 @@ const Calendario = () => {
                                 noEventsInRange: 'No hay eventos en este rango.',
                             }}
                         />
-                    </div>
-                </div>
-                <div className="container" style={{
+                    
+                    <div className="container" style={{
                     position: 'absolute',
                     top: '95%',
                     left: '50%',
@@ -111,8 +97,12 @@ const Calendario = () => {
                 }}>
 
                 </div>
+
+
+
+
             </div>
-        </Navbar>
+        </div>
     )
 }
 
