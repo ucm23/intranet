@@ -28,11 +28,10 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
         { id: 4, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
         { id: 5, href: "/gestor-contenidos", content: "Gestor de Contenidos", icon: "fa-cogs", subRoutes: [
             { id: 5.1, href: "/gestor-contenidos/administracion", content: "Administración" },
-            { id: 5.2, href: "/gestor-contenidos/desarrollo", content: "Desarrollo de Aplicaciones" },
-            { id: 5.3, href: "/gestor-contenidos/its", content: "ITS - Peaje y Telepeaje" },
-            { id: 5.4, href: "/gestor-contenidos/ciberseguridad", content: "CiberSeguridad" },
-            { id: 5.5, href: "/gestor-contenidos/mesa-ayuda", content: "Mesa de Ayuda" },
-            { id: 5.6, href: "/gestor-contenidos/soporte-sitio", content: "Soporte en Sitio" },
+            { id: 5.2, href: "/gestor-contenidos/recursosHumanos", content: "Recursos Humanos" },
+            { id: 5.3, href: "/gestor-contenidos/areaItsTelepeaje", content: "Área ITS y Telepeaje" },
+            { id: 5.4, href: "/gestor-contenidos/desarrolloAplicaciones", content: "Desarrollo de Aplicaciones" },
+            { id: 5.5, href: "/gestor-contenidos/mesaAyuda", content: "Mesa de Ayuda" },
         ]},
         { id: 6, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
         { id: 7, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" }
