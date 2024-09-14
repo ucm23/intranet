@@ -54,7 +54,7 @@ const Perfilconta1 = () => {
                         {/* <br></br> */}
                         <p></p>
                         <FontAwesomeIcon icon={faUser} style={{ color: 'white', marginLeft: '16px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-                        <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '16px', fontFamily: 'customFont' }}>Ashly Huerta </span><br></br>
+                        <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '13px', fontFamily: 'customFont' }}>Ashley Michell Huerta Arias </span><br></br>
                         <FontAwesomeIcon icon={faEnvelope} style={{ color: 'white', marginLeft: '16px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
                         <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '20px', fontFamily: 'customFont' }}>Email</span> {/* Texto */}
                         <p style={{ color: 'white', fontSize: '12px', marginLeft: '16px', fontFamily: 'customFont' }}>Ashly@consultores-cti.com.mx</p>

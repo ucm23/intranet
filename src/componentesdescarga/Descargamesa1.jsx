@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import '../styles/ContentWithImage.css';
 
-const Descargacalidad = () => {
+const Descargamesa1 = () => {
   return (
     <div>
-      <a href="/CV_JLRA.pdf" download className="download-button">
+      <a href="/CV_JGL.pdf" download className="download-button">
         
       <button className="download-button" style={{ marginLeft: '980px',width: '70px',height: '30px' }}>
         <FontAwesomeIcon icon={faDownload} /> {/* Ícono dentro del botón */}
@@ -20,4 +20,4 @@ const Descargacalidad = () => {
   );
 };
 
-export default Descargacalidad;
+export default Descargamesa1;

@@ -66,7 +66,7 @@ const myTreeData = {
             id: '2',
             label: <div className="tree-node" style={{ border: '2px solid #FFD700', borderRadius: '10%', fontSize: '14.5px', height: '80px', fontWeight: 'bold', transition: 'none !important', transform: 'none !important' }}>Jurídico y Seguridad</div>,
             children: [{
-                id: '3', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #FFD700', width: '160px', height: '220px', transition: 'box-shadow 0.3s ease' }}>
+                id: '3', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #FFD700', width: '160px', height: '220px', transition: 'box-shadow 0.3s ease' }}>
                     <br></br>
                     <Link to="/Perfiljuridico">
                         <img
@@ -88,7 +88,7 @@ const myTreeData = {
             id: '4',
             label: <div className="tree-node" style={{ border: '2px solid #e25a28', fontSize: '14px', height: '80px', fontWeight: 'bold' }}>Desarrollo Humano</div>,
             children: [{
-                id: '5', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #e25a28', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                id: '5', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #e25a28', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                     <br></br>
                     <Link to="/Perfilhumano">
                         <img
@@ -109,7 +109,7 @@ const myTreeData = {
             id: '6',
             label: <div className="tree-node" style={{ border: '2px solid brown', fontSize: '14px', height: '80px', fontWeight: 'bold' }}>Calidad</div>,
             children: [{
-                id: '7', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid brown', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                id: '7', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid brown', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                     <br></br>
                     <Link to="/Perfilcalidad">
                         <img
@@ -131,7 +131,7 @@ const myTreeData = {
             id: '8',
             label: <div className="tree-node" style={{ border: '2px solid green', fontSize: '14px', width: '190px', height: '80px', fontWeight: 'bold' }}>Contabilidad y Finanzas</div>,
             children: [{
-                id: '9', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid green', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                id: '9', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid green', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                     <br></br>
                     <Link to="/Perfilconta">
                         <img
@@ -151,17 +151,17 @@ const myTreeData = {
             id: '10',
             label: <div className="tree-node" style={{ border: '2px solid blue', fontSize: '14px', width: '170px', height: '80px', fontWeight: 'bold' }}>Admon y Cobranza</div>,
             children: [{
-                id: '11', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid blue', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                id: '11', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid blue', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                     <br></br>
                     <Link to="/Perfilconta1">
                         <img
                             // className='node__image'
                             src={conta1} // URL de la imagen del nodo
                             alt="CEO"
-                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
+                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '13px' }}
                         />
                     </Link>
-                    <span style={{ fontSize: '13.5px', fontWeight: 'bold' }}>Ashly Huerta
+                    <span style={{ fontSize: '13.5px', fontWeight: 'bold' }}>Ashley M. Huerta Arias
                         <br></br>
                         Lic. Admon
                     </span></div>
@@ -173,7 +173,7 @@ const myTreeData = {
             label: <div className="tree-node" style={{ border: '2px solid #FF00FF', fontSize: '18px', height: '80px', fontWeight: 'bold' }}>SAP</div>,
             children: [
                 {
-                    id: '13', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #FF00FF', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '13', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #FF00FF', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfilsap1">
                             <img
@@ -192,7 +192,7 @@ const myTreeData = {
                 },
 
                 {
-                    id: '14', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #FF00FF', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '14', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #FF00FF', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfilsap2">
                             <img
@@ -217,7 +217,7 @@ const myTreeData = {
                 <br /> Web, Móvil y C-S </div>,
             children: [
                 {
-                    id: '16', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '16', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfildev1">
                             <img
@@ -235,8 +235,8 @@ const myTreeData = {
                     children: [
 
                         {
-                            id: '17', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
-                                {/* <br></br> */}
+                            id: '17', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                                <br></br>
                                 <Link to="/Perfildev2">
                                     <img
                                         // className='node__image'
@@ -254,7 +254,7 @@ const myTreeData = {
                 },
 
                 {
-                    id: '18', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '18', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfildev2">
                             <img
@@ -264,7 +264,7 @@ const myTreeData = {
                                 style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
                             />
                         </Link>
-                        <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ulises Cano
+                        <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ulises Cano M.
                             <br></br>
                             Ing. Desarrollo
                         </span> </div>,
@@ -289,7 +289,7 @@ const myTreeData = {
                     ],
                 },
                 {
-                    id: '20', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '20', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfildev3">
                             <img
@@ -331,7 +331,7 @@ const myTreeData = {
             label: <div className="tree-node" style={{ border: '2px solid #00FF00', fontSize: '14.5px', height: '80px', width: '190px', fontWeight: 'bold' }}>Victum AI</div>,
             children: [
                 {
-                    id: '22', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '22', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfildev1">
                             <img
@@ -350,7 +350,7 @@ const myTreeData = {
                 },
 
                 {
-                    id: '23', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '23', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfildev2">
                             <img
@@ -375,7 +375,7 @@ const myTreeData = {
                 <br></br>y Mesa de Ayuda</div>,
             children: [
                 {
-                    id: '25', label: <div className="org-chart-node" style={{ borderRadius: '10%', border: '2px solid #1890ff', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
+                    id: '25', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #1890ff', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
                         <Link to="/Perfildev1">
                             <img className='node__image'
@@ -394,7 +394,7 @@ const myTreeData = {
                         {
                             id: '26', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfildev2">
+                                <Link to="/Perfilmesa1">
                                     <img className='node__image'
                                         src={mesa1} // URL de la imagen del nodo
                                         alt="DEV"

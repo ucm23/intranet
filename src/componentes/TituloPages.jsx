@@ -1,13 +1,17 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import fondo2 from '../imgNoticias/fondo2.jpg';
+import '../../src/styles/styles.css';
 
 interface TituloPagesProps {
     text: string;
     backgroundImage?: string;
+    
 }
 
-const TituloPages: React.FC<TituloPagesProps> = ({ text, backgroundImage = "/imgNoticias/fondo2.jpg" }) => {
+// const TituloPages: React.FC<TituloPagesProps> = ({ text, backgroundImage = "/imgNoticias/fondo2.jpg" }) => {
+const TituloPages: React.FC<TituloPagesProps> = ({ text}) => {
     return (
         <div style={{
             position: 'relative',
@@ -18,7 +22,7 @@ const TituloPages: React.FC<TituloPagesProps> = ({ text, backgroundImage = "/img
         }}>
             {/* Imagen de fondo dinámica */}
             <img
-                src={backgroundImage} 
+                src={fondo2} 
                 alt="Background"
                 style={{
                     width: '100%',

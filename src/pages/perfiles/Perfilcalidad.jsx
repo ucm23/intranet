@@ -65,16 +65,15 @@ const Perfilcalidad = () => {
                         <p></p>
                         <FontAwesomeIcon icon={faHome} style={{ color: 'white', marginLeft: '18px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
                         <span style={{ textAlign: 'center', color: 'white', fontSize: '14px', marginLeft: '15px', fontFamily: 'customFont' }}>Domicilio</span> {/* Texto */}
-                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '20px', fontFamily: 'customFont' }}> Av. Ejército Nacional Mexicano 769, Granada, Miguel Hidalgo, 11520, CDMX</p>
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '20px', fontFamily: 'customFont' }}> C. Paz Montes de Oca N° 138-1,Benito Juárez,CDMX</p>
 
                         <p className="coloredUnderline" style={{ textAlign: 'center', color: 'gray', fontSize: '20px', marginLeft: '30px', fontFamily: 'customFont' }}>Competencias</p>
                         <p style={{ color: 'white', fontSize: '3px', marginLeft: '5px', fontFamily: 'customFont' }}> .</p>
                         {/* <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Senior Project Manager SAP y TIC’s</p> */}
                         {/* <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Maestría en Ingeniería en Sistemas  | 2008 | UNAM</p> */}
-                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Senior Project Manager SAP, ORACLE, MICROSOFT, PEOPLESOFT </p>
-                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * PMO y Desarrollo de Negocios Consultoría ALM SAP y Solución de
-                            Industria Healthcare en América Latina (SAP)</p>
-
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Consultor en Sistemas de Gestión de Calidad, Seguridad y Medio Ambiente </p>
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Coordinador de Evaluación y Certificación</p>
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Supervisor de proyecto, construcción y puesta en operación</p>
 
                     </div>
 
@@ -86,24 +85,23 @@ const Perfilcalidad = () => {
                     {/* <br></br> */}
                     <p style={{ color: 'white', fontSize: '2px'}}></p>
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-                        Senior Project Manager SAP, ORACLE, MICROSOFT, PEOPLESOFT e Infraestructura con 30 años de experiencia en Proyectos de TI de diferentes
-                        sectores tanto en iniciativa privada como en sector público, con equipo multidisciplinarios y multiculturales.
+                    Consultor en Sistemas de Gestión de Calidad, Seguridad y Medio Ambiente en empresas de construcción en obras que serán certificadas.
                     </p>
                     {/* <br></br> */}
                     <Lineaformacion />
                     {/* <br></br> */}
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-                        * Maestría en Dirección de Hospitales | 2015 | UDEM <br></br>
-                        * Maestría en Ingeniería en Sistemas  | 2008 | UNAM <br></br>
-                        * Licenciatura en Informática | 1993  | Universidad Simón Bolívar
+                        * INGENIERO CIVIL <br></br>
+                        * Consultor en Sistemas de Gestión de Calidad, Seguridad y Medio Ambiente <br></br>
                         {/* <br></br> */}
                         <p style={{ color: 'white', fontSize: '1px', marginLeft: '5px', fontFamily: 'customFont' }}> .</p>
                         <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Cursos y Certificaciones:</p>
                         <p style={{ color: 'black', fontSize: '12px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
                             {/* * SAP Solution Manager ,SAP ADM 100, 200 <br></br> */}
-                            * Herramientas para Gestión de Ciclo de Vida (ALM SAP) Intellicorp / SmartShift / RevTrac <br></br>
-                            * Certificación ITIL V.3.0 Certificado: 882544 <br></br>
-                            * Certificación SAP Procurement ECC EHP 4.0 NO.00009778322
+                            * Curso de Actualización de la Norma ISO 9001 e ISO 14001 <br></br>
+                            * Formación de Auditor Interno ISO 9001 <br></br>
+                            * Cursos de Estadística y Probabilidad para Ingenieros<br></br>
+                            * Curso de Estadística Estadísticas como Herramienta en el Sistema de Calidad<br></br>
 
                         </p>
                     </p>
@@ -111,9 +109,9 @@ const Perfilcalidad = () => {
                     {/* <br></br> */}
                     <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Grupo CTI:</p>
                     <p style={{ color: 'black', fontSize: '12px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify',display: 'inline-block '}}>
-                        * Directora General de Grupo CTI  <br></br>
-                        * Dirección de proyectos de mantenimiento y mejora continua SAP S/4HANA TIC’s Sector Privado y Sector Público
-                        CIBERSEGURIDAD, DESARROLLO DE APLICACIONES WEB (SAP FIORI) Y MÓVILES <br></br>
+                        * Consultor en la Implantación, operación y mejora continua en Sistemas de Gestión de Calidad, Seguridad y Medio Ambiente, 
+                        basados principalmente en la Normas ISO.<br></br>
+                        * Capacitación y evaluación en Certificación de Competencias Laborales, de acuerdo con las normas emitidas por el CONOCER <br></br>
                         {/* * DATA CENTER:  Administración y mantenimiento de servidores, MICROSOFT TELCO: Internet Satelital, Redes Inalámbricas OUTLOOK, FIREWALL, SAP S/4HANA, Portales (desarrollos propios ) y aplicaciones móviles. */}
                         <Descargacalidad style={{size:'small'}} />
                     </p>

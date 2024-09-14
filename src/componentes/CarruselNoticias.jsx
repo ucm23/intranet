@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';  // Importa Link desde react-router-dom
 import Carousel from 'react-bootstrap/Carousel';
-import data from '../assets/info_noticias.json'; 
+import data from '../assets/info_noticias.json';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 const CarruselNoticias = () => {
   const [index, setIndex] = useState(0);

@@ -20,35 +20,44 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
     const [showShadow, setShowShadow] = useState(false);
     const [showSubMenu, setShowSubMenu] = useState(false);
 
+
     useEffect(() => {
-        const handleScroll = () => window.scrollY > 0 ? setShowShadow(true) : setShowShadow(false)
+        const handleScroll = () => {
+            // Cambia el estado showShadow basado en la posición del scroll
+            setShowShadow(window.scrollY > 0);
+        };
+
+        // Agrega el listener de scroll
         window.addEventListener('scroll', handleScroll);
 
+        // Limpia el listener cuando el componente se desmonta
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-  
+    useEffect(() => {
+        document.body.style.overflow = isChecked ? 'hidden' : 'auto';
+    }, [isChecked]);
+
     const routes = [
         // { id: 1, href: "/*", content: "Inicio" },
         { id: 1, href: "/Home", content: "Inicio", icon: "fa-home" },
-        { id: 2, href: "/Noticias1", content: "Noticias", icon: "fa-newspaper" },
-        // { id: 3, href: "/Noticias", content: "Noticias", icon: "fa-newspaper" },
-        { id: 4, href: "/Organizacion", content: "Organizacion", icon: "fa-users" },
-        { id: 5, href: "/colaborador", content: "Colaborador", icon: "fa-users" },
+        { id: 2, href: "/Noticias", content: "Noticias", icon: "fa-newspaper" },
+        { id: 3, href: "/Organizacion", content: "Organizacion", icon: "fa-users" },
+        { id: 4, href: "/colaborador", content: "Colaborador", icon: "fa-users" },
         {
-            id: 6, href: "/gestor-contenidos", content: "Gestor de Contenidos", icon: "fa-cogs",
-            // subRoutes: [
-            //     { id: 6.1, href: "/gestor-contenidos/administracion", content: "Administración" },
-            //     { id: 6.2, href: "/gestor-contenidos/desarrollo", content: "Desarrollo de Aplicaciones" },
-            //     { id: 6.3, href: "/gestor-contenidos/its", content: "ITS - Peaje y Telepeaje" },
-            //     { id: 6.4, href: "/gestor-contenidos/ciberseguridad", content: "CiberSeguridad" },
-            //     { id: 6.5, href: "/gestor-contenidos/mesa-ayuda", content: "Mesa de Ayuda" },
-            //     { id: 6.6, href: "/gestor-contenidos/soporte-sitio", content: "Soporte en Sitio" },
-            // ]
+            id: 5, href: "/gestor-contenidos", content: "Gestor de Contenidos", icon: "fa-cogs",
+            subRoutes: [
+                { id: 5.1, href: "/gestor-contenidos/administracion", content: "Administración" },
+                { id: 5.2, href: "/gestor-contenidos/desarrollo", content: "Desarrollo de Aplicaciones" },
+                { id: 5.3, href: "/gestor-contenidos/its", content: "ITS - Peaje y Telepeaje" },
+                { id: 5.4, href: "/gestor-contenidos/ciberseguridad", content: "CiberSeguridad" },
+                { id: 5.5, href: "/gestor-contenidos/mesa-ayuda", content: "Mesa de Ayuda" },
+                { id: 5.6, href: "/gestor-contenidos/soporte-sitio", content: "Soporte en Sitio" },
+            ]
         },
-        { id: 7, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
-        { id: 8, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
-        { id: 9, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" },
+        { id: 6, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
+        { id: 7, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
+        { id: 8, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" },
 
     ]
 
@@ -60,7 +69,7 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
 
     return (
 
-        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor }}>
+        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor,overflowx: 'auto'}}>
             <a href="/" className="navbar-brand d-flex align-items-center">
                 <img
                     // src={(showShadow || isChecked) ? "../img/logo-white.png" : "../img/LOGO-INTRANET.png"}
@@ -107,7 +116,7 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
                                 <span className="indicator"></span>
                             </a>
 
-                            
+
                             {subRoutes && showSubMenu && (
                                 <ul className="submenu">
                                     {subRoutes.map(({ id, href, content }) => (
@@ -122,6 +131,89 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
                 </ul>
             </div>
             <style>{`
+
+.navbar {
+                    padding: 0 15px;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    width: 200%;
+                }
+                .nav-link {
+                    color: white;
+                }
+                .nav-link:hover {
+                    color: orange;
+                    background-color: transparent;
+                }
+                .nav-link.active {
+                    color: orange;
+                    background-color: transparent;
+                }
+                .nav-link:hover .indicator {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 3px;
+                    background-color: orange;
+                }
+                .shadow {
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                .checkbtn {
+                    display: none;
+                }
+                .submenu {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: #001529;
+                   width: 130%;
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    border: 1px solid #ddd;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    z-index: 101; /* Asegura que el submenú esté encima de otros elementos */
+                }
+                .submenu-item {
+                    padding: 5px 20px;
+                }
+                .submenu-link {
+                    color: white;
+                    fontSize: '5px'
+                    text-decoration: none;
+                    display: block;
+                }
+                .submenu-link:hover {
+                    background-color: #1890ff;
+                    width: 100%;
+                }
+                @media (max-width: 991px) {
+                    .navbar-collapse {
+                        background-color: white;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        right: 0;
+                    }
+                    .checkbtn {
+                        display: block;
+                    }
+                    .nav-link {
+                        color: #001529;
+                    }
+                    .nav-link.active {
+                        color: #001529;
+                        background-color: transparent;
+                    }
+                    .fa {
+                        color: #001529;
+                    }
+                }
+
+
+
                
             `}</style>
         </nav>

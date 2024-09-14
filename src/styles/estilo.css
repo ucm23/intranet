@@ -5,8 +5,8 @@
   
   /* Estilo para la barra de desplazamiento en navegadores basados en WebKit */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 6px; /* Ancho de la barra de desplazamiento */
-    height: 6px; /* Altura de la barra de desplazamiento horizontal */
+    width: 4px; /* Ancho de la barra de desplazamiento */
+    height: 4px; /* Altura de la barra de desplazamiento horizontal */
   }
   
   /* Estilo del "track" (pista de fondo de la barra de desplazamiento) */

@@ -1,5 +1,6 @@
 import React from "react";
 import "../img/IA.png";
+import '../../styles/styles.css';
 
 
 
