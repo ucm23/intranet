@@ -1,17 +1,12 @@
 import { Route, Routes,BrowserRouter as Router } from "react-router-dom";
-import Index from "../pages/index/Index1";
-import '../styles/styles.css';
 import Home from "../pages/inicio/Home";
-import Noticias from "../pages/noticias/Noticias";
 import Colaborador from "../pages/colaborador/Colaborador";
 import Tramites from "../pages/tramites/Tramites"
-import Gestor from "../pages/gestor/Gestor";
 import Indicador from "../pages/indicador/Indicador";
 import Calendario from "../pages/calendario/Calendario";
 import Organizacion from "../pages/colaborador/Organizacion";
 import Perfilceo from "../pages/perfiles/Perfilceo";
 import Perfilceo1 from "../pages/perfiles/Perfilceo1";
-import { Link } from 'react-router-dom';
 import Perfildev1 from "../pages/perfiles/Perfildev1";
 import Perfildev2 from "../pages/perfiles/Perfildev2";
 import Perfildev3 from "../pages/perfiles/Perfildev3";
@@ -23,7 +18,6 @@ import Perfilcalidad from "../pages/perfiles/Perfilcalidad";
 import Perfilconta from "../pages/perfiles/Perfilconta";
 import Perfilsap1 from "../pages/perfiles/Perfilsap1";
 import Perfilsap2 from "../pages/perfiles/Perfilsap2";
-import NoticiaDetalle from '../pages/noticias/NoticiaDetalle';
 import PerfilIA1 from "../pages/perfiles/PerfilIA1";
 import PerfilIA2 from "../pages/perfiles/PerfilIA2";
 import PerfilBeca1 from "../pages/perfiles/PerfilBeca1";
@@ -34,6 +28,8 @@ import PerfilCapacitacion from "../pages/perfiles/PerfilCapacitacion";
 import Perfilits1 from "../pages/perfiles/Perfilits1";
 import Perfilits2 from "../pages/perfiles/Perfilits2";
 import Inicio from "../pages/inicio/Inicio";
+import Noticias from "../pages/noticias";
+import NoticiaDetalle from "../pages/NoticiaDetalle";
 
 // import GestorContenidos from "../pages/gestor/GestorContenidos";
 
