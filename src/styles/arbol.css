@@ -1,0 +1,133 @@
+.tree-node {
+  padding: 5px;
+  padding-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10%;
+  text-align: center;
+  background-color: #f9f9f9;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+  object-fit: cover;  /* width: 100px; */
+  box-sizing: border-box; 
+   /* Incluye padding y border en el tamaño total */
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  width: 160px; 
+  height: 220px;
+  /* transition: none !important;
+  transform: none !important; */
+  font-Size: '14px';
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2); /* Efecto sombreado */
+  transition: box-shadow 0.8s ease; /* Animación suave */
+ 
+}
+.tree-node:hover {
+  box-shadow: 0 9px 17px rgba(0, 0, 0, 0.4);
+  background-color: #e6e6e6;
+  /* flex-grow: 1; */
+  /* display: flex; */
+  /* transition: none !important; Asegurarse de que no haya transformación en hover */
+    /* transition: none !important; Desactivar transiciones en hover */
+}
+
+.org-chart-node {
+  display: inline-block;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10%;
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2); /* Efecto sombreado */
+  transition: box-shadow 0.8s ease; /* Animación suave */
+  visibility:visible;
+}
+.org-chart-node:hover {
+  box-shadow: 0 9px 17px rgba(0, 0, 0, 0.4); /* Sombra al pasar el ratón */
+  background-color: #e6e6e6;
+}
+
+
+
+
+.node__image {
+  /* width: 70px; /* Ajusta el tamaño de la imagen */
+  /* height: 70px; */
+  /* border-radius: 50%; Hace la imagen redonda */
+  /* object-fit: cover; Ajusta la imagen al contenedor */
+  /* margin-bottom: 8px; */
+  /* object-fit: cover;  */
+ 
+  /* Tamaño del contenedor de la imagen */
+  height: 65px;
+  width: 65px;
+  /* display: flex; */
+  justify-content: center;
+  /* Centrar horizontalmente */
+  align-items: center;
+  /* Centrar verticalmente */
+  overflow: hidden;
+  border-radius: 40%;
+  /* Forma redonda del contenedor */
+  margin-bottom: 8px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: none;
+  transform: none;
+  /* background-size: cover;  */
+  /* background-color: #f0f0f0; Fondo opcional */
+}
+.org-tree-container {
+  /* display: flex; */
+  /* justify-content: center; */
+  justify-content: flex-start; /* Alinea el contenedor a la izquierda */
+  /* align-items: left; */
+  width: 5vw; /*Ancho del viewport */
+  height: 10vh; /* Alto del viewport */
+  /* overflow: auto; Permitir scroll si es necesario */
+  transform: scale(0.8); 
+  /* Escala inicial del organigrama */
+  transform-origin: top center; 
+  /* Ajusta el origen del escalado */
+  /* padding: 10px; Espacio alrededor del organigrama */
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: inline-block;
+  margin: 0;      
+  padding: 0;
+ 
+  .node-images {
+    display: flex; /* Usar flexbox para colocar las imágenes una al lado de la otra */
+    justify-content: space-between; /* Espacio uniforme entre las imágenes */
+    margin-bottom: 10px;
+    width: 80px; /* Ancho de cada imagen */
+    height: 80px; /* Altura de cada imagen */
+    object-fit: cover;
+    transition: none !important; /* Asegurarse de que no haya transformación en hover */
+    transition: none !important; /* Desactivar transiciones en hover */
+
+  }
+  .container-1, .container-2 {
+    flex: 1; /* Asegura que ambos contenedores tengan el mismo tamaño */
+    background-color: #e6e6e6; /* Fondo de cada contenedor */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  /* .node-container {
+    padding: 10px;
+    background-color: #e6e6e6; /* Fondo del contenedor interno */
+    /* border-radius: 5px; */
+    /* width:100%; Ancho del viewport */
+  /* height: 60%; Alto del viewport */
+  /* } */ */
+  
+  .node-container {
+    display: flex; /* Usar Flexbox para alinear los contenedores horizontalmente */
+    justify-content: space-between; /* Espacio uniforme entre los contenedores */
+    gap: 10px; /* Espacio entre los contenedores */
+  }
+}

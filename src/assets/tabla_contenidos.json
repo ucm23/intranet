@@ -7,7 +7,7 @@
     "titulo": "Gestión de Recursos",
     "descripcion": "Instrucciones detalladas sobre la gestión de recursos administrativos.",
     "fecha": "2024-09-01",
-    "ruta": "/files/AnalisisyRequerimientosV3.pdf",
+    "ruta": "/files/AnalisisyRequerimientosV3 (1).pdf",
     "path": "/administracion"
   },
   {
@@ -18,7 +18,7 @@
     "titulo": "Políticas de Recursos Humanos",
     "descripcion": "Políticas relacionadas con el manejo del personal.",
     "fecha": "2024-08-15",
-    "ruta": "/files/CTI-DEV-001 FORMATO DE MODIFICACIONES A LA BASE DE DATOS.pdf",
+    "ruta": "/files/CTI-DEV-001 FORMATO DE MODIFICACIONES A LA BASE DE DATOS (1) (1) (1).pdf",
     "path": "/administracion"
   },
   {
@@ -29,7 +29,7 @@
     "titulo": "Normas de Seguridad",
     "descripcion": "Normas y procedimientos para garantizar la seguridad en el lugar de trabajo.",
     "fecha": "2024-07-10",
-    "ruta": "/files/CTI-DEV-002 MANUAL TÉCNICO DE APLICACIÓN.pdf",
+    "ruta": "/files/CTI-DEV-002 MANUAL TÉCNICO DE APLICACIÓN (1).pdf",
     "path": "/administracion"
   },
   {
@@ -51,7 +51,7 @@
     "titulo": "Programa de Capacitación Continua",
     "descripcion": "Plan de formación para el desarrollo de habilidades.",
     "fecha": "2024-09-05",
-    "ruta": "/files/AnalisisyRequerimientosV3.pdf",
+    "ruta": "/files/CTI-DEV-003 FORMATO DE MODIFICACIONES A LA BASE DE DATOS (2).pdf",
     "path": "/recursosHumanos"
   },
   {
@@ -62,7 +62,7 @@
     "titulo": "Políticas de Inclusión y Diversidad",
     "descripcion": "Guía para fomentar la inclusión y la diversidad en el lugar de trabajo.",
     "fecha": "2024-09-12",
-    "ruta": "/files/AnalisisyRequerimientosV3.pdf",
+    "ruta": "/files/CTI-DEV-015 MANUAL DE INCLUSION.pdf",
     "path": "/recursosHumanos"
   },
   {
@@ -73,7 +73,7 @@
     "titulo": "Instalación de Peajes",
     "descripcion": "Procedimientos para la instalación de sistemas de peaje.",
     "fecha": "2024-09-10",
-    "ruta": "/files/CTI-DEV-001 FORMATO DE MODIFICACIONES A LA BASE DE DATOS.pdf",
+    "ruta": "/files/CTI-DEV-005 MANUAL TÉCNICO DE APLICACIÓN (2).pdf",
     "path": "/areaItsTelepeaje"
   },
   {
@@ -84,7 +84,7 @@
     "titulo": "Operación de Sistemas de Peaje",
     "descripcion": "Instrucciones para la operación de sistemas de peaje.",
     "fecha": "2024-08-25",
-    "ruta": "/files/CTI-DEV-002 MANUAL TÉCNICO DE APLICACIÓN.pdf",
+    "ruta": "/files/CTI-DEV-006 ANALISIS DE REQUERIMIENTOS (1).pdf",
     "path": "/areaItsTelepeaje"
   },
   {
@@ -95,7 +95,7 @@
     "titulo": "Mantenimiento de Sistemas ITS",
     "descripcion": "Guía para el mantenimiento preventivo y correctivo de sistemas ITS.",
     "fecha": "2024-07-18",
-    "ruta": "/files/CTI-DEV-004 ANALISIS DE REQUERIMIENTOS.pdf",
+    "ruta": "/files/CTI-DEV-016 MANUAL DE MANTENIMIENTO.pdf",
     "path": "/areaItsTelepeaje"
   },
   {
@@ -106,7 +106,7 @@
     "titulo": "Desarrollo con React",
     "descripcion": "Guía sobre el desarrollo de aplicaciones web usando React.",
     "fecha": "2024-06-05",
-    "ruta": "/files/CTI-DEV-001 FORMATO DE MODIFICACIONES A LA BASE DE DATOS.pdf",
+    "ruta": "/files/CTI-DEV-007 MANUAL DE DESARROLLO (1).pdf",
     "path": "/desarrolloAplicaciones"
   },
   {
@@ -117,7 +117,7 @@
     "titulo": "Uso de la Intranet",
     "descripcion": "Manual de usuario para la plataforma interna de la empresa.",
     "fecha": "2024-05-20",
-    "ruta": "/files/AnalisisyRequerimientosV3.pdf",
+    "ruta": "/files/CTI-DEV-008 GUIA DE USO (1).pdf",
     "path": "/desarrolloAplicaciones"
   },
   {
@@ -128,7 +128,7 @@
     "titulo": "Integración de Sistemas",
     "descripcion": "Guía para la integración de diferentes módulos del sistema.",
     "fecha": "2024-08-05",
-    "ruta": "/files/CTI-DEV-001 FORMATO DE MODIFICACIONES A LA BASE DE DATOS.pdf",
+    "ruta": "/files/CTI-DEV-017 MANUAL DE INTEGRACION.pdf",
     "path": "/desarrolloAplicaciones"
   },
   {
@@ -139,7 +139,7 @@
     "titulo": "Uso Efectivo del Sistema",
     "descripcion": "Instrucciones para el uso efectivo del sistema interno.",
     "fecha": "2024-08-01",
-    "ruta": "/files/CTI-DEV-002 MANUAL TÉCNICO DE APLICACIÓN.pdf",
+    "ruta": "/files/CTI-DEV-009 INSTRUCCIONES DE USO.pdf",
     "path": "/mesaAyuda"
   },
   {
@@ -150,7 +150,7 @@
     "titulo": "Solución de Problemas Comunes",
     "descripcion": "Guía para resolver problemas comunes en el uso del sistema.",
     "fecha": "2024-04-05",
-    "ruta": "/files/CTI-DEV-004 ANALISIS DE REQUERIMIENTOS.pdf",
+    "ruta": "/files/CTI-DEV-014 SOLUCION DE PROBLEMAS.pdf",
     "path": "/mesaAyuda"
   },
   {
@@ -161,7 +161,7 @@
     "titulo": "Guía de Soporte Técnico",
     "descripcion": "Manual para el equipo de soporte técnico para la resolución de incidencias.",
     "fecha": "2024-09-03",
-    "ruta": "/files/CTI-DEV-001 FORMATO DE MODIFICACIONES A LA BASE DE DATOS.pdf",
+    "ruta": "/files/CTI-DEV-018 MANUAL DE SOPORTE.pdf",
     "path": "/mesaAyuda"
   }
 ]

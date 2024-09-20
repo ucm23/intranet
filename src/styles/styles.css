@@ -1293,7 +1293,10 @@ a.dropdown-item {
 .card {
   background: white;
   margin-bottom: 2em;
+  
+  
 }
+
 
 .card a {
   color: black;
@@ -1378,3 +1381,13 @@ a.dropdown-item {
         max-width: 52em;
     }
 }*/
+.card-container {
+  display: flex; /* Flexbox para disposición en fila */
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en múltiples líneas */
+  gap: 20px; /* Espacio entre tarjetas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  padding: 20px; /* Espacio alrededor del contenedor */
+  background-color: #f8f9fa; /* Color de fondo claro */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
