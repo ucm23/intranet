@@ -14,10 +14,6 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { ChakraProvider } from '@chakra-ui/react'
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles';
-import 'bootstrap/dist/css/bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
