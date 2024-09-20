@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import data from '../assets/tabla_contenidos.json'; // Importa los datos del archivo JSON
 import { Table, Button, Container, Form } from 'react-bootstrap'; // Importa componentes de React Bootstrap
 import { useLocation } from 'react-router-dom'; // Hook para obtener la ubicación actual en la aplicación
+import { FaEye, FaDownload } from 'react-icons/fa'; // Importa íconos de react-icons
 
 const TablaContenidos = () => {
   const location = useLocation(); // Hook para obtener la ruta actual de la URL
@@ -53,7 +54,14 @@ const TablaContenidos = () => {
   return (
     <Container className="my-4 p-3 bg-light rounded shadow-sm">
       {/* Contenedor con estilos Bootstrap */}
-      <h3 className="mb-4 text-center"> {nombreDepartamento}</h3> {/* Muestra el título dinámico con el nombre del departamento */}
+      <h3 className="mb-4 text-center" style={{ color: '#D2691E', borderBottom: '2px solid #D2691E', paddingBottom: '10px' }}>
+        {nombreDepartamento}
+      </h3> {/* Muestra el título dinámico con el nombre del departamento */}
+
+      {/* Descripción del filtro de proyectos */}
+      <p className="mb-3" style={{ fontSize: '0.9rem', color: '#666' }}>
+        Filtra por proyecto para ver solo los documentos relacionados.
+      </p>
 
       {/* Selector de filtro de proyectos */}
       <Form.Select
@@ -73,8 +81,8 @@ const TablaContenidos = () => {
       {/* Tabla de contenidos */}
       <Table responsive bordered hover className="table-striped table-sm">
         {/* Tabla con estilos de Bootstrap */}
-        <thead className="thead-dark">
-          {/* Cabecera de la tabla con fondo oscuro */}
+        <thead style={{ backgroundColor: '#001529', color: '#fff' }}>
+          {/* Cabecera de la tabla con fondo azul marino y texto blanco */}
           <tr>
             <th>ID</th>
             <th>Departamento</th>
@@ -98,14 +106,15 @@ const TablaContenidos = () => {
               <td>{item.descripcion}</td>
               <td>{item.fecha}</td>
               <td>
-                {/* Botón para abrir el archivo en una nueva pestaña */}
-                <Button variant="primary" className="mx-1 btn-sm" onClick={() => window.open(item.ruta, '_blank')}>
-                  Ver
-                </Button>
-                {/* Botón para descargar el archivo */}
-                <Button variant="success" className="mx-1 btn-sm" onClick={() => handleDownload(item.ruta)}>
-                  Descargar
-                </Button>
+                {/* Contenedor para los botones de acción con íconos */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Button variant="primary" className="btn-sm" onClick={() => window.open(item.ruta, '_blank')}>
+                    <FaEye />
+                  </Button>
+                  <Button variant="success" className="btn-sm" onClick={() => handleDownload(item.ruta)}>
+                    <FaDownload />
+                  </Button>
+                </div>
               </td>
             </tr>
           ))}

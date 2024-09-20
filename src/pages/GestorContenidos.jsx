@@ -1,8 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import NavBar from '../components/NavBar'; //
-import TablaContenidos from '../components/TablaContenidos'; // Importa la tabla
-import Footer from '../components/Footer'; // Importa el Footer
+import NavBar from '../components/NavBar';
+import TablaContenidos from '../components/TablaContenidos';
+import Footer from '../components/Footer';
+import SectionCarousel from '../components/SectionCarousel'; // Importa el componente
 
 const contenidoSecciones = {
     administracion: 'Contenido para la sección de Administración.',
@@ -12,25 +13,36 @@ const contenidoSecciones = {
     mesaAyuda: 'Contenido para la sección de Mesa de Ayuda.',
 };
 
-const GestorContenidos = () => {
+const GestorContenidos: React.FC = () => {
     const location = useLocation();
-    const path = location.pathname.split('/').pop(); // Obtiene la última parte de la ruta
-
-    console.log('Valor de path:', path); // Imprime el valor de path en la consola solo lo hice para comprobar
+    const path = location.pathname.split('/').pop();
 
     const descripcion = contenidoSecciones[path] || 'Sección para ver el contenido.';
 
+    // Array con las imágenes para el carrusel
+    const images = [
+        '/imgNoticias/proyecto3.jpg',
+        '/imgNoticias/proyecto2.jpg',
+        '/imgNoticias/proyecto1.jpg',
+    ];
+
     return (
         <div>
-            <NavBar />
+            <NavBar /> 
+            
+            <SectionCarousel 
+                images={images} 
+                sectionTitle={`Gestor de Contenidos`} 
+                sectionDescription={descripcion}
+            />
+            
             <div className="container mt-4">
-                <h1>Gestor de Contenidos</h1>
-                <p>{descripcion}</p>
-                <TablaContenidos /> {/* Pasa solo el componente TablaContenidos */}
+                <TablaContenidos />
             </div>
-            <Footer /> {/* Añade el Footer al final del contenido */}
+
+            <Footer />
         </div>
     );
-}
+};
 
 export default GestorContenidos;

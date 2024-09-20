@@ -5,7 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Footer = () => {
     return (
-        <footer style={{ backgroundColor: '#001529' }} className="text-light py-4">
+        <footer style={{ backgroundColor: '#001529', minHeight: '200px' }} className="text-light py-4">
             <Container>
                 <Row className="align-items-center">
                     {/* Logo y Redes Sociales */}
@@ -72,4 +72,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

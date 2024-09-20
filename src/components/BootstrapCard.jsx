@@ -19,9 +19,13 @@ const BootstrapCard = ({ id, imageSrc, newsTitle, date, time, description }) => 
                 <Card.Text>
                     {description}
                 </Card.Text>
-                {/* Use el componente Link para navegar a la página de detalles */}
                 <Link to={`/noticia/${id}`}>
-                    <Button variant="primary">Ver más</Button>
+                    <Button 
+                        style={{ backgroundColor: '#ef5d07', border: 'none' }} 
+                        className="text-white" 
+                    >
+                        Ver más
+                    </Button>
                 </Link>
             </Card.Body>
         </Card>

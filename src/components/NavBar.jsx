@@ -78,6 +78,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
                             >
                                 <i className={`fas ${icon}`} style={{ marginRight: '8px', color: isChecked ? '#001529' : 'white' }}></i>
                                 {content}
+                                {subRoutes && <i className="fas fa-caret-down ml-2"></i>}
                                 <span className="indicator"></span>
                             </a>
                             {subRoutes && showSubMenu && (
@@ -116,6 +117,12 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
                     height: 3px;
                     background-color: orange;
                 }
+                .fa-caret-down {
+                    transition: transform 0.3s ease;
+                }
+                .nav-item:hover .fa-caret-down {
+                    transform: rotate(180deg);
+                }
                 .shadow {
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 }
@@ -131,18 +138,21 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
                     padding: 0;
                     margin: 0;
                     border: 1px solid #ddd;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                    z-index: 9999; /* Asegura que el submenú se muestre por encima de otros elementos */
                 }
                 .submenu-item {
                     padding: 5px 20px;
                 }
                 .submenu-link {
-                    color: blue;
+                    color: #001529;
+                    font-size: 18px;
                     text-decoration: none;
                     display: block;
+                    margin: 5px 0;
                 }
                 .submenu-link:hover {
-                    background-color: #f0f0f0;
+                    background-color: #ADCEDB;
                 }
                 @media (max-width: 991px) {
                     .navbar-collapse {

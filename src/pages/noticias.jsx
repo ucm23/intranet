@@ -2,9 +2,8 @@ import React from 'react';
 import NavBar from '../components/NavBar';
 import CarruselNoticias from '../components/CarruselNoticias';
 import Footer from '../components/Footer';
-import BootstrapCard from '../components/BootstrapCard'; // Importa el componente BootstrapCard
+import BootstrapCard from '../components/BootstrapCard'; 
 import data from '../assets/info_noticias.json';
-import TituloPages from '../components/TituloPages'; // Importa el nuevo componente
 
 
 // Añadir el campo ID a las noticias
@@ -16,7 +15,6 @@ const newsDataWithId = data.map((item, index) => ({
 const Noticias = () => (
     <div>
         <NavBar backgroundColor="#001529" />
-        <TituloPages text="Noticias" />
         <CarruselNoticias />
         <div className="container mt-4">
             <div className="row">

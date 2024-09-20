@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'; // Importa Link además de u
 import data from '../assets/info_noticias.json';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import TituloPages from '../components/TituloPages'; // Importa el nuevo componente
+import SectionCarousel from '../components/SectionCarousel'; // Importa el nuevo componente
 
 // Añadir el campo ID a las noticias
 const newsDataWithId = data.map((item, index) => ({
@@ -26,20 +26,30 @@ const NoticiaDetalle = () => {
     // Filtra las últimas noticias excluyendo la actual
     const ultimasNoticias = newsDataWithId.filter(n => n.id !== noticiaId).slice(0, 5);
 
+    // Imágenes para el carrusel, puedes añadir más imágenes según sea necesario
+    const carouselImages = [
+        '/imgNoticias/proyecto4.jpg',
+        '/imgNoticias/proyecto5.jpg',
+        '/imgNoticias/proyecto2.jpg',
+    ];
+
     return (
         <div>
             <NavBar backgroundColor="#001529" />
-            <TituloPages text="Noticias" />
+            <SectionCarousel 
+                images={carouselImages} 
+                sectionTitle="Noticias Destacadas" 
+                sectionDescription="Explora las noticias más destacadas de nuestra plataforma." 
+            />
             <div className="container mt-4 mb-5">
                 <div className="row">
-                    {/* Sección de Detalle de la Noticia */}
                     <div className="col-md-8">
                         <div className="card mb-4">
                             <div className="card-body">
                                 <h1 className="card-title" style={{ 
                                     color: '#001529', 
                                     fontSize: '2.5rem',
-                                    borderBottom: '3px solid #D2691E', // Línea debajo del título
+                                    borderBottom: '3px solid #D2691E', 
                                     paddingBottom: '10px',
                                     marginBottom: '20px'
                                 }}>
@@ -67,10 +77,10 @@ const NoticiaDetalle = () => {
                         <h4 className="mb-4" style={{ 
                             fontSize: '1.75rem',
                             color: '#D2691E',
-                            borderBottom: '2px solid #001529', // Línea debajo del título
+                            borderBottom: '2px solid #001529', 
                             paddingBottom: '10px',
                             marginBottom: '20px'
-                        }}>Últimas Noticias</h4> {/* Título de la sección */}
+                        }}>Últimas Noticias</h4> 
                         <div className="list-group">
                             {ultimasNoticias.map(noticia => (
                                 <Link
@@ -92,7 +102,7 @@ const NoticiaDetalle = () => {
                                             maxWidth: '90px', 
                                             height: 'auto', 
                                             marginRight: '15px',
-                                            borderRadius: '2px' // Añadir bordes redondeados para un diseño más atractivo
+                                            borderRadius: '2px' 
                                         }}
                                     />
                                     <div>
@@ -106,7 +116,7 @@ const NoticiaDetalle = () => {
                     </div>
                 </div>
             </div>
-            <Footer style={{ marginTop: '50px' }} /> {/* Añadido margen superior */}
+            <Footer style={{ marginTop: '50px' }} /> 
         </div>
     );
 };
