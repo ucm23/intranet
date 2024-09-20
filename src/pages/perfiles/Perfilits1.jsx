@@ -6,7 +6,7 @@ import logo from '../../img/logo-white.png';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useBreakpointValue } from '@chakra-ui/react';
-import dev3x from '../../imgOrganigrama/DEV3X1.png';
+import its2 from '../../imgOrganigrama/ITS2.png';
 import '../../styles/ContentWithImage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,7 @@ import Lineaexperiencia from '../../componentes/Lineaexperiencia';
 import Descargadev3 from '../../componentesdescarga/Descargadev3';
 
 
-const Perfildev3 = () => {
+const Perfilits1 = () => {
   const mobile = useBreakpointValue({ base: true, md: false });
   const navigate = useNavigate();
   const [size, setSize] = useState('middle'); // default is 'middle'
@@ -40,7 +40,7 @@ const Perfildev3 = () => {
         <div className="leftContainer">
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}> {/* Usando Flexbox para alinear en fila */}
             <img
-              src={dev3x}
+              src={its2}
               alt="Descripción de la imagen"
               style={{ borderRadius: '0%', cursor: 'pointer', width: '50%', height: '40%', objectFit: 'cover', marginLeft: '45px', marginTop: '10px' }}
             // Estilo de la imagen
@@ -52,10 +52,10 @@ const Perfildev3 = () => {
             {/* <br></br> */}
             <p></p>
             <FontAwesomeIcon icon={faUser} style={{ color: 'white', marginLeft: '18px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-            <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '14px', fontFamily: 'customFont' }}>Luz Adriana Castillo Baeza</span>
+            <span style={{ textAlign: 'center', color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}>Victor Ricardo Mojica Leines</span><br></br>
             <FontAwesomeIcon icon={faEnvelope} style={{ color: 'white', marginLeft: '18px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
             <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '20px', fontFamily: 'customFont' }}>Email</span> {/* Texto */}
-            <p style={{ color: 'white', fontSize: '12px', marginLeft: '18px', fontFamily: 'customFont' }}>acastillo@consultores-cti.com.mx</p>
+            <p style={{ color: 'white', fontSize: '12px', marginLeft: '18px', fontFamily: 'customFont' }}>rmojica@consultores-cti.com.mx</p>
             <p></p>
             <FontAwesomeIcon icon={faPhone} style={{ color: 'white', marginLeft: '20px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
             <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '15px', fontFamily: 'customFont' }}>Telefono: 5527069660</span> {/* Texto */}
@@ -114,4 +114,4 @@ const Perfildev3 = () => {
   );
 };
 
-export default Perfildev3;
+export default Perfilits1;

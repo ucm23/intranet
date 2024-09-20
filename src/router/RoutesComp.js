@@ -24,6 +24,17 @@ import Perfilconta from "../pages/perfiles/Perfilconta";
 import Perfilsap1 from "../pages/perfiles/Perfilsap1";
 import Perfilsap2 from "../pages/perfiles/Perfilsap2";
 import NoticiaDetalle from '../pages/noticias/NoticiaDetalle';
+import PerfilIA1 from "../pages/perfiles/PerfilIA1";
+import PerfilIA2 from "../pages/perfiles/PerfilIA2";
+import PerfilBeca1 from "../pages/perfiles/PerfilBeca1";
+import PerfilBeca2 from "../pages/perfiles/PerfilBeca2";
+import PerfilBeca3 from "../pages/perfiles/PerfilBeca3";
+import PerfilInfra from "../pages/perfiles/PerfilInfra";
+import PerfilCapacitacion from "../pages/perfiles/PerfilCapacitacion";
+import Perfilits1 from "../pages/perfiles/Perfilits1";
+import Perfilits2 from "../pages/perfiles/Perfilits2";
+import Inicio from "../pages/inicio/Inicio";
+
 // import GestorContenidos from "../pages/gestor/GestorContenidos";
 
 
@@ -34,8 +45,11 @@ function RoutesComp() {
         <Routes>
             {/* <Route index element={<Index />} /> */}
             {/* <Route path="*" element={<Index />} /> */}
-            <Route path="*" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
+            {/* <Route path="*" element={<Home />} /> */}
+            {/* <Route path="*" element={<Login />} /> */}
+            <Route path="*" element={<Inicio />} />
+            <Route path="/Home" element={<Home/>} />
+            <Route path="/Inicio" element={<Inicio/>} />
             <Route path="/Noticias" element={<Noticias />} />
             <Route path="/noticia/:id" element={<NoticiaDetalle />} />
             <Route path="/Colaborador" element={<Colaborador />} />
@@ -60,7 +74,15 @@ function RoutesComp() {
             <Route path="/Perfilconta" element={<Perfilconta/>} />
             <Route path="/Perfilsap1" element={<Perfilsap1/>}/>
             <Route path="/Perfilsap2" element={<Perfilsap2/>}/>
-
+            <Route path="/PerfilIA1" element={<PerfilIA1/>}/>
+            <Route path="/PerfilIA2" element={<PerfilIA2/>}/>
+            <Route path="/PerfilBeca1" element={<PerfilBeca1/>}/>
+            <Route path="/PerfilBeca2" element={<PerfilBeca2/>}/>
+            <Route path="/PerfilBeca3" element={<PerfilBeca3/>}/>
+            <Route path="/PerfilInfra" element={<PerfilInfra/>}/>
+            <Route path="/PerfilCapacitacion" element={<PerfilCapacitacion/>}/>
+            <Route path="/Perfilits1" element={<Perfilits1/>}/>
+            <Route path="/Perfilits2" element={<Perfilits2/>}/>
             
         </Routes>
     );

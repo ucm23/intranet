@@ -16,7 +16,7 @@ import { faHome, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg
 import Linea from '../../componentes/Linea';
 import Lineaformacion from '../../componentes/Lineaformaciob';
 import Lineaexperiencia from '../../componentes/Lineaexperiencia';
-import Descargaceo from '../../componentesdescarga/Descargaceo';
+import Descargaceo2 from '../../componentesdescarga/Descargaceo2';
 
 
 const Perfilceo1 = () => {
@@ -54,7 +54,7 @@ const Perfilceo1 = () => {
                         {/* <br></br> */}
                         <p></p>
                         <FontAwesomeIcon icon={faUser} style={{ color: 'white', marginLeft: '16px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-                        <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '16px', fontFamily: 'customFont' }}>Edith Sámano Gaspar</span>
+                        <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '16px', fontFamily: 'customFont' }}>Edith Sámano Gaspar</span><br></br>
                         <FontAwesomeIcon icon={faEnvelope} style={{ color: 'white', marginLeft: '16px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
                         <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '20px', fontFamily: 'customFont' }}>Email</span> {/* Texto */}
                         <p style={{ color: 'white', fontSize: '12px', marginLeft: '16px', fontFamily: 'customFont' }}>gsamano@consultores-cti.com.mx</p>
@@ -71,51 +71,55 @@ const Perfilceo1 = () => {
                         <p style={{ color: 'white', fontSize: '3px', marginLeft: '5px', fontFamily: 'customFont' }}> .</p>
                         {/* <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Senior Project Manager SAP y TIC’s</p> */}
                         {/* <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Maestría en Ingeniería en Sistemas  | 2008 | UNAM</p> */}
-                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Senior Project Manager SAP, ORACLE, MICROSOFT, PEOPLESOFT </p>
-                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * PMO y Desarrollo de Negocios Consultoría ALM SAP y Solución de
-                            Industria Healthcare en América Latina (SAP)</p>
-
-
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * CEO DECC (Desarrollo Empresarial, Consultoría y Coaching, S.C.) </p>
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '5px', fontFamily: 'customFont' }}> * Consultoría contable, fiscal y capacitación en áreas de :Desarrollo Humano Industrial,Jurídico,Tecnologías de la Información</p>
                     </div>
 
-   {/* contenedor derecho, perfil */}
+                    {/* contenedor derecho, perfil */}
                 </div>
                 <div className="rightContainer">
                     <br></br>
                     <Linea />
                     {/* <br></br> */}
-                    <p style={{ color: 'white', fontSize: '2px'}}></p>
+                    <p style={{ color: 'white', fontSize: '2px' }}></p>
+
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-                        Senior Project Manager SAP, ORACLE, MICROSOFT, PEOPLESOFT e Infraestructura con 30 años de experiencia en Proyectos de TI de diferentes
-                        sectores tanto en iniciativa privada como en sector público, con equipo multidisciplinarios y multiculturales.
+                        Consultoría contable, fiscal y capacitación en áreas de : Desarrollo Humano Industrial, Jurídico, Tecnologías de la Información.
+                    </p>
+                    <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
+                        Gestión de Procesos de Consultoría Contable y Fiscal en Corporativos Nacionales, Personas Físicas con Actividades
+                        Empresariales y Profesionales, Profesionistas independientes.
+                    </p>
+                    <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
+                        Procesos de Licitación, Contratación y Ejecución de Proyectos de Capacitación y Certificación para Dependencias del Sector Público
+                        y Privado cumpliendo con las normativas requeridas para cada caso.
                     </p>
                     {/* <br></br> */}
+                    <p><br></br></p>
                     <Lineaformacion />
                     {/* <br></br> */}
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-                        * Maestría en Dirección de Hospitales | 2015 | UDEM <br></br>
-                        * Maestría en Ingeniería en Sistemas  | 2008 | UNAM <br></br>
-                        * Licenciatura en Informática | 1993  | Universidad Simón Bolívar
+                        * Licenciada en Contaduría Pública Posgrado en Derecho Fiscal | UNITEC <br></br>
+                    <p><br></br></p>
                         {/* <br></br> */}
                         <p style={{ color: 'white', fontSize: '1px', marginLeft: '5px', fontFamily: 'customFont' }}> .</p>
-                        <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Cursos y Certificaciones:</p>
-                        <p style={{ color: 'black', fontSize: '12px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-                            {/* * SAP Solution Manager ,SAP ADM 100, 200 <br></br> */}
-                            * Herramientas para Gestión de Ciclo de Vida (ALM SAP) Intellicorp / SmartShift / RevTrac <br></br>
+                        {/* <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Cursos y Certificaciones:</p> */}
+                        {/* <p style={{ color: 'black', fontSize: '12px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}> */}
+                        {/* * SAP Solution Manager ,SAP ADM 100, 200 <br></br> */}
+                        {/* * Herramientas para Gestión de Ciclo de Vida (ALM SAP) Intellicorp / SmartShift / RevTrac <br></br>
                             * Certificación ITIL V.3.0 Certificado: 882544 <br></br>
                             * Certificación SAP Procurement ECC EHP 4.0 NO.00009778322
 
-                        </p>
+                        </p> */}
                     </p>
                     <Lineaexperiencia />
                     {/* <br></br> */}
                     <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Grupo CTI:</p>
-                    <p style={{ color: 'black', fontSize: '12px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify',display: 'inline-block '}}>
-                        * Directora General de Grupo CTI  <br></br>
-                        * Dirección de proyectos de mantenimiento y mejora continua SAP S/4HANA TIC’s Sector Privado y Sector Público
-                        CIBERSEGURIDAD, DESARROLLO DE APLICACIONES WEB (SAP FIORI) Y MÓVILES <br></br>
+                    <p style={{ color: 'black', fontSize: '12px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify', display: 'inline-block ' }}>
+                        * Directora Suplente de GRUPO CTI  <br></br>
+                        <br></br>
                         {/* * DATA CENTER:  Administración y mantenimiento de servidores, MICROSOFT TELCO: Internet Satelital, Redes Inalámbricas OUTLOOK, FIREWALL, SAP S/4HANA, Portales (desarrollos propios ) y aplicaciones móviles. */}
-                        <Descargaceo style={{size:'small'}} />
+                        <Descargaceo2 style={{ size: 'small' }} />
                     </p>
                     {/* <Descargaceo /> */}
                 </div>

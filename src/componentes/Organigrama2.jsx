@@ -20,6 +20,7 @@ import becaria2 from '../imgOrganigrama/becaria2.png';
 import SAP1 from '../imgOrganigrama/SAP1.png';
 import SAP2 from '../imgOrganigrama/SAP2.png';
 import IA1 from '../imgOrganigrama/IA1.png';
+import IA2 from '../imgOrganigrama/IA2.png';
 import infra1 from '../imgOrganigrama/infra1.png';
 import curso1 from '../imgOrganigrama/curso1.png';
 import ITS1 from '../imgOrganigrama/ITS1.png';
@@ -73,7 +74,7 @@ const myTreeData = {
                             // className='node-images'
                             src={juridico1} // URL de la imagen del nodo
                             alt="CEO"
-                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px', transition: 'none !important', transform: 'none !important' }}
+                            style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
                         />
                     </Link>
                     <span style={{ borderRadius: '10%', fontSize: '13px', fontWeight: 'bold' }}>Luis Manuel Alfaro Rivera
@@ -95,7 +96,7 @@ const myTreeData = {
                             // className='node__image'
                             src={rh1} // URL de la imagen del nodo
                             alt="CEO"
-                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
+                            style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
                         />
                     </Link>
                     <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Marisela Ladrón de G.
@@ -116,7 +117,7 @@ const myTreeData = {
                             // className='node__image'
                             src={calidad1} // URL de la imagen del nodo
                             alt="CEO"
-                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
+                            style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
                         />
                     </Link>
                     <span style={{ fontSize: '13px', fontWeight: 'bold' }}>José Luis Rangel
@@ -138,7 +139,7 @@ const myTreeData = {
                             // className='node__image'
                             src={conta2} // URL de la imagen del nodo
                             alt="CEO"
-                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
+                            style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
                         />
                     </Link>
                     <span style={{ fontSize: '14px', fontWeight: 'bold' }}>Carlos Fco. Sainz R.
@@ -158,7 +159,7 @@ const myTreeData = {
                             // className='node__image'
                             src={conta1} // URL de la imagen del nodo
                             alt="CEO"
-                            style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '13px' }}
+                            style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
                         />
                     </Link>
                     <span style={{ fontSize: '13.5px', fontWeight: 'bold' }}>Ashley M. Huerta Arias
@@ -180,8 +181,8 @@ const myTreeData = {
                                 // className='node__image'
                                 src={SAP1} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                                />
                         </Link>
                         <span style={{ fontSize: '13.5px', fontWeight: 'bold' }}>Norma Barbosa
                             <br></br>
@@ -199,8 +200,8 @@ const myTreeData = {
                                 // className='node__image'
                                 src={SAP2} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '13.5px', fontWeight: 'bold' }}>Frank Mejía
                             <br></br>
@@ -224,8 +225,8 @@ const myTreeData = {
                                 // className='node__image'
                                 src={dev1} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Gilberto López
                             <br></br>
@@ -237,13 +238,13 @@ const myTreeData = {
                         {
                             id: '17', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfildev2">
+                                <Link to="/PerfilBeca1">
                                     <img
                                         // className='node__image'
                                         src={becaria1} // URL de la imagen del nodo
                                         alt="DEV"
-                                        style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                                    />
+                                        style={{ marginTop: '-15px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '75%', height: '70%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                                        />
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Ana Cristina Hernández B.
                                     <br></br>
@@ -261,8 +262,8 @@ const myTreeData = {
                                 // className='node__image'
                                 src={dev2} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ulises Cano M.
                             <br></br>
@@ -273,13 +274,13 @@ const myTreeData = {
                         {
                             id: '19', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfildev2">
+                                <Link to="/PerfilBeca2">
                                     <img
                                         // className='node__image'
                                         src={becario1} // URL de la imagen del nodo
                                         alt="DEV"
-                                        style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                                    />
+                                        style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Brayan Emmanuel Olmos S.
                                     <br></br>
@@ -296,8 +297,8 @@ const myTreeData = {
                                 // className='node__image'
                                 src={dev3x} // URL de la imagen del nodo
                                 alt="CEO"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Luz Adriana Castillo B.
                             <br></br>
@@ -308,13 +309,13 @@ const myTreeData = {
                         {
                             id: '21', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfildev2">
+                                <Link to="/PerfilBeca3">
                                     <img
                                         // className='node__image'
                                         src={becaria2} // URL de la imagen del nodo
                                         alt="DEV"
-                                        style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                                    />
+                                        style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Antonia Cortés Pérez
                                     <br></br>
@@ -333,13 +334,13 @@ const myTreeData = {
                 {
                     id: '22', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev1">
+                        <Link to="/PerfilIA1">
                             <img
                                 // className='node__image'
                                 src={IA1} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Pablo Tlaxcoapan
                             <br></br>
@@ -352,13 +353,13 @@ const myTreeData = {
                 {
                     id: '23', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev2">
+                        <Link to="/PerfilIA2">
                             <img
                                 // className='node__image'
-                                src={IA1} // URL de la imagen del nodo
+                                src={IA2} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                                />
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Josue Tlaxcoapan
                             <br></br>
@@ -377,12 +378,12 @@ const myTreeData = {
                 {
                     id: '25', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #1890ff', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev1">
+                        <Link to="/PerfilInfra">
                             <img className='node__image'
                                 src={infra1} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Heber Argumedo
                             <br></br>
@@ -398,8 +399,8 @@ const myTreeData = {
                                     <img className='node__image'
                                         src={mesa1} // URL de la imagen del nodo
                                         alt="DEV"
-                                        style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                                    />
+                                        style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                                        />
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Juan José Gil López
                                     <br></br>
@@ -409,13 +410,13 @@ const myTreeData = {
                         {
                             id: '27', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfildev2">
+                                <Link to="/PerfilCapacitacion">
                                     <img
                                         // className='node__image'
                                         src={curso1} // URL de la imagen del nodo
                                         alt="DEV"
-                                        style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                                    />
+                                        style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                                        />
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Luis Alberto Ruiz Aguilar
                                     <br></br>
@@ -435,13 +436,13 @@ const myTreeData = {
                 {
                     id: '29', label: <div className="tree-node" style={{ border: '2px solid #A9A9A9', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev1">
+                        <Link to="/Perfilits1">
                             <img
                                 // className='node__image'
                                 src={ITS2} // URL de la imagen del nodo
                                 alt="DEV"
-                                style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                            />
+                                style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        />
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Victor Ricardo Mojica Leines
                             <br></br>
@@ -453,13 +454,13 @@ const myTreeData = {
                         {
                             id: '30', label: <div className="tree-node" style={{ border: '2px solid #A9A9A9', borderRadius: '10%', width: '160px', height: '220px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfildev2">
+                                <Link to="/Perfilits2">
                                     <img
                                         // className='node__image'
                                         src={ITS1} // URL de la imagen del nodo
                                         alt="DEV"
-                                        style={{ borderRadius: '40%', cursor: 'pointer', width: '65%', height: '60%', objectFit: 'cover', marginLeft: '20px' }}
-                                    />
+                                        style={{ marginTop: '-30px', border: '2px solid #ccc',borderRadius: '50%', cursor: 'pointer', width: '85%', height: '80%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                                        />
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Julio César Castillo Z.
                                     <br></br>

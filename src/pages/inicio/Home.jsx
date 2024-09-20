@@ -10,15 +10,17 @@ import Footer from '../../componentes/Footer';
 const Home = () => {
   const mobile = useBreakpointValue({ base: true, md: false });
   const navigate = useNavigate();
+  
 
   const goToHome = () => {
     navigate('/');
   };
 
+  
   return (
+    <div style={{minheight: '100vh',flexdirection: 'column'}}>
+    <Navbar backgroundColor="#001529" />
     <div>
-            <div>
-            <Navbar backgroundColor="#001529" />
             
             <div
           style={{
@@ -38,7 +40,7 @@ const Home = () => {
           <div
             style={{
               position: 'absolute',
-              top: '5%',
+              top: '15%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
               backgroundColor: 'rgba(0, 0, 0, 0)', // Fondo semitransparente

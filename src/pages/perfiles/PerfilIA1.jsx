@@ -6,7 +6,7 @@ import logo from '../../img/logo-white.png';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useBreakpointValue } from '@chakra-ui/react';
-import dev3x from '../../imgOrganigrama/DEV3X1.png';
+import IA1 from '../../imgOrganigrama/IA1.png';
 import '../../styles/ContentWithImage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faHome } from '@fortawesome/free-solid-svg-icons';
@@ -15,10 +15,10 @@ import { faHome, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg
 import Linea from '../../componentes/Linea';
 import Lineaformacion from '../../componentes/Lineaformaciob';
 import Lineaexperiencia from '../../componentes/Lineaexperiencia';
-import Descargadev3 from '../../componentesdescarga/Descargadev3';
+import Descargadev1 from '../../componentesdescarga/Descargadev1';
 
 
-const Perfildev3 = () => {
+const PerfilIA1 = () => {
   const mobile = useBreakpointValue({ base: true, md: false });
   const navigate = useNavigate();
   const [size, setSize] = useState('middle'); // default is 'middle'
@@ -40,7 +40,7 @@ const Perfildev3 = () => {
         <div className="leftContainer">
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}> {/* Usando Flexbox para alinear en fila */}
             <img
-              src={dev3x}
+              src={IA1}
               alt="Descripción de la imagen"
               style={{ borderRadius: '0%', cursor: 'pointer', width: '50%', height: '40%', objectFit: 'cover', marginLeft: '45px', marginTop: '10px' }}
             // Estilo de la imagen
@@ -52,14 +52,14 @@ const Perfildev3 = () => {
             {/* <br></br> */}
             <p></p>
             <FontAwesomeIcon icon={faUser} style={{ color: 'white', marginLeft: '18px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-            <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '14px', fontFamily: 'customFont' }}>Luz Adriana Castillo Baeza</span>
+            <span style={{ textAlign: 'center', color: 'white', fontSize: '13px', marginLeft: '18px', fontFamily: 'customFont' }}>Pablo Tlaxcoapan</span><br></br>
             <FontAwesomeIcon icon={faEnvelope} style={{ color: 'white', marginLeft: '18px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
             <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '20px', fontFamily: 'customFont' }}>Email</span> {/* Texto */}
-            <p style={{ color: 'white', fontSize: '12px', marginLeft: '18px', fontFamily: 'customFont' }}>acastillo@consultores-cti.com.mx</p>
+            <p style={{ color: 'white', fontSize: '12px', marginLeft: '18px', fontFamily: 'customFont' }}>pablo.tlaxcoapan@aiformers.com</p>
             <p></p>
             <FontAwesomeIcon icon={faPhone} style={{ color: 'white', marginLeft: '20px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-            <span style={{ textAlign: 'center', color: 'white', fontSize: '12px', marginLeft: '15px', fontFamily: 'customFont' }}>Telefono: 5527069660</span> {/* Texto */}
-            {/* <p style={{ color: 'white', fontSize: '12px', marginLeft: '50px', fontFamily: 'customFont' }}>2361221762</p> */}
+            <span style={{ textAlign: 'center', color: 'white', fontSize: '14px', marginLeft: '20px', fontFamily: 'customFont' }}>Telefono</span> {/* Texto */}
+            <p style={{ color: 'white', fontSize: '12px', marginLeft: '50px', fontFamily: 'customFont' }}>7223502242</p>
             <p></p>
             <FontAwesomeIcon icon={faHome} style={{ color: 'white', marginLeft: '20px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
             <span style={{ textAlign: 'center', color: 'white', fontSize: '14px', marginLeft: '15px', fontFamily: 'customFont' }}>Domicilio</span> {/* Texto */}
@@ -67,10 +67,9 @@ const Perfildev3 = () => {
 
             <p className="coloredUnderline" style={{ textAlign: 'center', color: 'gray', fontSize: '20px', marginLeft: '30px', fontFamily: 'customFont' }}>Competencias</p>
             {/* <br></br> */}
-            <p></p>
-            <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Implementación de Aplicaciones de Escritorio, Web, .Net, C# </p>
-            <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Soporte y mantenimiento a equipo electrónico, eléctrico y telecomunicaciones</p>
-            <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Diseño de BD, explotación de información SQL Server</p>
+            <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Implementación de Aplicaciones de Escritorio, Web, .Net, C# y Sharepoint</p>
+            <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Conocimiento de  HTML5 y scripting</p>
+            <p style={{ color: 'white', fontSize: '11px', marginLeft: '5px', fontFamily: 'customFont' }}> * Conocimiento en Selenium</p>
 
           </div>
 
@@ -79,34 +78,33 @@ const Perfildev3 = () => {
         <div className="rightContainer">
           <br></br>
           <Linea />
-          
+          <br></br>
           <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-          Profesional en TI con experiencia en implementación de Aplicaciones de Escritorio, Web, .Net, C# y Sharepoint y administración, mantenimiento, 
-          diseño, configuración, seguridad, rendimiento y disponibilidad de las bases de datos SQL principalmente en Sistemas de Peaje.
-
+            Profesional en TI con experiencia en implementación de Aplicaciones de Escritorio, Web, .Net, C# y Sharepoint, trabajando desde el 2019 en autopistas de cuota, con amplia experiencia en Instalación , Mantenimiento y
+            Soporte a SISTEMAS DE ITS (SISTEMA DE GESTIÓN DE AUTOPISTAS, PMV, CCTV, CONTROL DE ACCESOS, ANPR,
+            RADARES, CCO).
           </p>
           {/* <br></br> */}
           <Lineaformacion />
           {/* <br></br> */}
           <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-            Licenciado en Ciencias de la Informática | Instituto Leonardo Bravo, A.C.
+            Licenciado en Informática en La Universidad de la Cañada
             {/* <br></br> */}
-            <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Cursos y Certificaciones:</p>
+            <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Cursos:</p>
             <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-              * Windows Communication Foundation,Visual Studio.Net <br></br>
-              * MCT:SQL Server 2008 Implementing & Maintennace| MICROSOFT CERTIFIED SQL SERVER 2008<br></br>
-              * MICROSOFT CERTIFIED PROFESIONAL DEVELOPER VISUAL STUDIO 2010
+              * Maintaining a Microsoft SQL Server 2008 Database <br></br>
+              * Microsoft Certified Professional Developer (.NetFramework 4.0 Service Communication Applications)
             </p>
           </p>
           <Lineaexperiencia />
           {/* <br></br> */}
           <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Grupo CTI:</p>
           <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-            * Desarrollo e implementación de Aplicaciones de Escritorio, Web, .Net, C#  <br></br>
-            * Soporte y mantenimiento a equipo electrónico, eléctrico y telecomunicaciones<br></br>
-            * Instalar, configurar y actualizar sistemas de gestión de bases de datos (DBMS) SQL Server 
+            * Sistema de gestión de autopistas VICTUM (MRO PAQUETE NORESTE)  <br></br>
+            * Sistema de gestión de autopistas VICTUM (MRO GUADALAJARA – COLIMA)<br></br>
+            * Sistema Tiempos de Cruce CD.VALLES – TAMUIN
           </p>
-          <Descargadev3 />
+          <Descargadev1 />
         </div>
       </div>
     </div>
@@ -114,4 +112,5 @@ const Perfildev3 = () => {
   );
 };
 
-export default Perfildev3;
+
+export default PerfilIA1;

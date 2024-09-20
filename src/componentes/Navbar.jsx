@@ -40,7 +40,8 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
 
     const routes = [
         // { id: 1, href: "/*", content: "Inicio" },
-        { id: 1, href: "/Home", content: "Inicio", icon: "fa-home" },
+        // { id: 1, href: "/Home", content: "Inicio", icon: "fa-home" },
+        { id: 1, href: "/Inicio", content: "Inicio", icon: "fa-home" },
         { id: 2, href: "/Noticias", content: "Noticias", icon: "fa-newspaper" },
         { id: 3, href: "/Organizacion", content: "Organizacion", icon: "fa-users" },
         { id: 4, href: "/colaborador", content: "Colaborador", icon: "fa-users" },
@@ -58,6 +59,7 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
         { id: 6, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
         { id: 7, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
         { id: 8, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" },
+        // { id: 9, href: "/login", content: "Iniciar Sesión", icon: "fa-user-alt" },
 
     ]
 
@@ -69,14 +71,14 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
 
     return (
 
-        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor,overflowx: 'auto'}}>
+        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor, overflowx: 'auto' }}>
             <a href="/" className="navbar-brand d-flex align-items-center">
                 <img
                     // src={(showShadow || isChecked) ? "../img/logo-white.png" : "../img/LOGO-INTRANET.png"}
                     src={logo}
                     className="logo"
                     alt="Logo"
-                    style={{ height: '70px' }}
+                    style={{ height: '69px' }}
                 />
             </a>
             {/* <input type="checkbox" id="check" onChange={handleCheckBoxChange} className="d-none" /> */}
@@ -99,7 +101,8 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
                                 href={href}
                                 className={`nav-link ${href === pathname ? "active" : ""}`}
                                 style={{
-                                    padding: '10px 15px',
+                                    // padding: '10px 15px',
+                                    padding: '10px ',
                                     color: isChecked ? '#001529' : 'white',
                                     transition: 'color 0.3s, background-color 0.3s',
                                     borderRadius: '5px',
@@ -137,10 +140,27 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
                     display: flex;
                     flex-wrap: nowrap;
                     width: 200%;
+                     height: 85px;
                 }
                 .nav-link {
                     color: white;
                 }
+
+                .nav-link::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 10px;
+                    left: 0;
+                    width: 0;
+                    height: 3px;
+                    background-color: red;
+                    transition: width 0.3s ease;
+                }
+
+                .nav-link.active::after {
+                    width: 100%; /* Esto hace que el subrayado aparezca en el elemento activo */
+                }
+
                 .nav-link:hover {
                     color: orange;
                     background-color: transparent;
@@ -151,7 +171,7 @@ const Navbar = ({ children, mobile, backgroundColor = '#001529' }) => {
                 }
                 .nav-link:hover .indicator {
                     position: absolute;
-                    bottom: 0;
+                    bottom: 10px;
                     left: 0;
                     width: 100%;
                     height: 3px;
