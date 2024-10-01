@@ -1,0 +1,43 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from 'react-router-dom';
+
+
+
+// const Verpdf = ({ puesto }) => {
+const Verpdf = () => {
+    
+    // const rutapdf = `./perfiles/${puesto}`; 
+
+    return (
+             
+            <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '700px',
+            // height:'auto',
+            width: '100%',
+            overflow: 'hidden',
+            padding: 0, // Asegúrate de que no haya relleno
+            margin: 0 // Asegúrate de que no haya margen
+        }}>
+            <iframe
+                // src={rutapdf}
+                src="./perfiles/GIntegracion.pdf"
+                width="100%" // Usar 100% para el iframe
+                height="100%"
+                style={{
+                    border: 'none', // Sin bordes
+                    padding: 0, // Sin relleno
+                    margin: 0, // Sin margen
+                    display: 'block' // Eliminar espacio extra
+                }}
+                title="PDF Viewer"
+            ></iframe>
+        </div>
+    );
+  };
+
+export default Verpdf;

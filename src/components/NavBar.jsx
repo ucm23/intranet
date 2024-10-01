@@ -24,15 +24,20 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
     const routes = [
         { id: 1, href: "/", content: "Inicio", icon: "fa-home" },
         { id: 2, href: "/noticias", content: "Noticias", icon: "fa-newspaper" },
-        { id: 3, href: "/colaboradores", content: "Colaboradores", icon: "fa-users" },
-        { id: 4, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
-        { id: 5, href: "/gestor-contenidos", content: "Gestor de Contenidos", icon: "fa-cogs", subRoutes: [
-            { id: 5.1, href: "/gestor-contenidos/administracion", content: "Administración" },
-            { id: 5.2, href: "/gestor-contenidos/recursosHumanos", content: "Recursos Humanos" },
-            { id: 5.3, href: "/gestor-contenidos/areaItsTelepeaje", content: "Área ITS y Telepeaje" },
-            { id: 5.4, href: "/gestor-contenidos/desarrolloAplicaciones", content: "Desarrollo de Aplicaciones" },
-            { id: 5.5, href: "/gestor-contenidos/mesaAyuda", content: "Mesa de Ayuda" },
-        ]},
+        // { id: 3, href: "/colaboradores", content: "Colaboradores", icon: "fa-users" },
+        { id: 3, href: "/Organizacion", content: "Organizacion", icon: "fa-users" },
+        { id: 3, href: "/colaborador", content: "Colaboradores", icon: "fa-users" },
+        // { id: 4, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
+        {
+            id: 5, href: "/gestor-contenidos", content: "Gestor de Contenidos", icon: "fa-cogs", subRoutes: [
+                { id: 5.1, href: "/gestor-contenidos/administracion", content: "Administración" },
+                { id: 5.2, href: "/gestor-contenidos/recursosHumanos", content: "Recursos Humanos" },
+                { id: 5.3, href: "/gestor-contenidos/areaItsTelepeaje", content: "Área ITS y Telepeaje" },
+                { id: 5.4, href: "/gestor-contenidos/desarrolloAplicaciones", content: "Desarrollo de Aplicaciones" },
+                { id: 5.5, href: "/gestor-contenidos/mesaAyuda", content: "Mesa de Ayuda" },
+            ]
+        },
+        { id: 8, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
         { id: 6, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
         { id: 7, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" }
     ];
@@ -40,13 +45,14 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
     const handleCheckBoxChange = ({ target }) => setIsChecked(target.checked);
 
     return (
-        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor }}>
+        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor, overflowx: 'auto'}}>
             <a href="/" className="navbar-brand d-flex align-items-center">
-                <img 
-                    src={(showShadow || isChecked) ? "/img/LOGO-INTRANET.png" : "/img/LOGO-INTRANET.png"} 
-                    className="logo" 
-                    alt="Logo" 
-                    style={{ height: '50px' }} 
+                <img
+                    src={(showShadow || isChecked) ? "/img/LOGO-INTRANET.png" : "/img/LOGO-INTRANET.png"}
+                    className="logo"
+                    alt="Logo"
+                    // style={{ height: '50px' }} 
+                    style={{ height: '69px' }}
                 />
             </a>
             <input type="checkbox" id="check" onChange={handleCheckBoxChange} className="d-none" />
@@ -56,23 +62,24 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
             <div className={`collapse navbar-collapse ${isChecked ? 'show' : ''}`} id="navbarNav">
                 <ul className="navbar-nav ml-auto">
                     {routes.map(({ id, href, content, icon, subRoutes }) => (
-                        <li 
-                            className="nav-item position-relative" 
-                            key={`routes-${id}-${href}`} 
-                            onMouseEnter={() => id === 5 && setShowSubMenu(true)} 
+                        <li
+                            className="nav-item position-relative"
+                            key={`routes-${id}-${href}`}
+                            onMouseEnter={() => id === 5 && setShowSubMenu(true)}
                             onMouseLeave={() => setShowSubMenu(false)}
                         >
-                            <a 
-                                href={href} 
-                                className={`nav-link ${href === pathname ? "active" : ""}`} 
+                            <a
+                                href={href}
+                                className={`nav-link ${href === pathname ? "active" : ""}`}
                                 style={{
-                                    padding: '10px 15px',
-                                    color: isChecked ? '#001529' : 'white', 
+                                    // padding: '10px 15px',
+                                    padding: '10px ',
+                                    color: isChecked ? '#001529' : 'white',
                                     transition: 'color 0.3s, background-color 0.3s',
                                     borderRadius: '5px',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    fontSize: '16px',
+                                    fontSize: '13px',
                                     position: 'relative'
                                 }}
                             >
@@ -97,88 +104,104 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
             <style>{`
                 .navbar {
                     padding: 0 15px;
-                }
-                .nav-link {
-                    color: white;
-                }
-                .nav-link:hover {
-                    color: orange;
-                    background-color: transparent;
-                }
-                .nav-link.active {
-                    color: orange;
-                    background-color: transparent;
-                }
-                .nav-link:hover .indicator {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 3px;
-                    background-color: orange;
-                }
-                .fa-caret-down {
-                    transition: transform 0.3s ease;
-                }
-                .nav-item:hover .fa-caret-down {
-                    transform: rotate(180deg);
-                }
-                .shadow {
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                }
-                .checkbtn {
-                    display: none;
-                }
-                .submenu {
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    background-color: white;
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                    border: 1px solid #ddd;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-                    z-index: 9999; /* Asegura que el submenú se muestre por encima de otros elementos */
-                }
-                .submenu-item {
-                    padding: 5px 20px;
-                }
-                .submenu-link {
-                    color: #001529;
-                    font-size: 18px;
-                    text-decoration: none;
-                    display: block;
-                    margin: 5px 0;
-                }
-                .submenu-link:hover {
-                    background-color: #ADCEDB;
-                }
-                @media (max-width: 991px) {
-                    .navbar-collapse {
-                        background-color: white;
-                        position: absolute;
-                        top: 100%;
-                        left: 0;
-                        right: 0;
-                    }
-                    .checkbtn {
-                        display: block;
-                    }
-                    .nav-link {
-                        color: #001529;
-                    }
-                    .nav-link.active {
-                        color: #001529;
-                        background-color: transparent;
-                    }
-                    .fa {
-                        color: #001529;
-                    }
-                }
-            `}</style>
+                    display: flex;
+                     flex-wrap: nowrap;
+                     width: 200%;
+                      height: 85px;
+                 }
+                 .nav-link {
+                     color: white;
+                 }
+
+                 .nav-link::after {
+                     content: '';
+                     position: absolute;
+                     bottom: 10px;
+                     left: 0;
+                     width: 0;
+                     height: 2px;
+                     background-color: red;
+                     transition: width 0.3s ease;
+                 }
+
+                 .nav-link.active::after {
+                    width: 95%; /* Esto hace que el subrayado aparezca en el elemento activo */
+                 }
+
+                 .nav-link:hover {
+                     color: orange;
+                     background-color: transparent;
+                 }
+                 .nav-link.active {
+                     color: orange;
+                     background-color: transparent;
+                 }
+                 .nav-link:hover .indicator {
+                     position: absolute;
+                     bottom: 10px;
+                     left: 0;
+                    width: 95%;
+                     height: 2px;
+                     background-color: orange;
+                 }
+                 .shadow {
+                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                 }
+                 .checkbtn {
+                     display: none;
+                 }
+                 .submenu {
+                     position: absolute;
+                     top: 100%;
+                     left: 0;
+                     background-color: #001529;
+                    width: 130%;
+                     list-style: none;
+                     padding: 0;
+                     margin: 0;
+                     border: 1px solid #ddd;
+                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                     z-index: 101; /* Asegura que el submenú esté encima de otros elementos */
+                 }
+                 .submenu-item {
+                     padding: 5px 20px;
+                 }
+                 .submenu-link {
+                     color: white;
+                     fontSize: '5px'
+                     text-decoration: none;
+                     display: block;
+                 }
+                 .submenu-link:hover {
+                     background-color: #1890ff;
+                     width: 100%;
+                 }
+                 @media (max-width: 991px) {
+                     .navbar-collapse {
+                         background-color: white;
+                         position: absolute;
+                         top: 100%;
+                         left: 0;
+                         right: 0;
+                     }
+                     .checkbtn {
+                         display: block;
+                     }
+                     .nav-link {
+                         color: #001529;
+                     }
+                     .nav-link.active {
+                         color: #001529;
+                         background-color: transparent;
+                     }
+                     .fa {
+                         color: #001529;
+                     }
+                 }
+
+               
+             `}</style>
         </nav>
     );
 }
-
 export default NavBar;

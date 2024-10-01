@@ -52,7 +52,7 @@ const TablaContenidos = () => {
   const proyectosUnicos = [...new Set(data.map((item) => item.proyecto))]; // Crea un array de proyectos únicos
 
   return (
-    <Container className="my-4 p-3 bg-light rounded shadow-sm">
+    <Container className="my-4 p-3 bg-light rounded shadow-sm" style={{flexDirection: 'column' }}>
       {/* Contenedor con estilos Bootstrap */}
       <h3 className="mb-4 text-center" style={{ color: '#D2691E', borderBottom: '2px solid #D2691E', paddingBottom: '10px' }}>
         {nombreDepartamento}

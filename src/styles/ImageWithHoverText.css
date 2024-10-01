@@ -1,0 +1,53 @@
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-image {
+  /* width: 130px;
+  height: 130%; */
+  width: 140px;        /* Ancho */
+  height: 150px;    
+  border-radius: 50%;
+  margin-top: -35px; 
+  border: '2px solid #ccc';
+ cursor: 'pointer';
+ object-fit: cover;   /* Asegura que la imagen se ajuste dentro del círculo */
+ overflow: hidden;
+/* marginLeft: '10px'; */
+ /* borderRadius: '50%', cursor: 'pointer', width: '90%', height: '75%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }} */
+
+
+}
+
+.hover-text {
+  visibility: hidden;
+  width: 200px;
+  /* background-color: white; */
+  /* background-color: 'rgba(0, 0, 0, 0.1)'; */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1); /* Sombra del texto */
+  font-weight: bold; /* Hace que el texto sea en negrita */
+  color: orange;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  
+  /* Posicionamiento */
+  position: absolute;
+  bottom: 110%; /* Por encima de la imagen */
+  /* left: 1%; */
+  right: 1%;
+  margin-top: 50%;
+  /* transform: translateX(-80%); */
+  transform: translatey(100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  
+  
+}
+
+.image-container:hover .hover-text {
+  visibility: visible;
+  opacity: 1;
+}
