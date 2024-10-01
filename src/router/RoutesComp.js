@@ -1,7 +1,6 @@
 import { Route, Routes,BrowserRouter as Router } from "react-router-dom";
 import Home from "../pages/inicio/Home";
 import Colaborador from "../pages/colaborador/Colaborador";
-import Tramites from "../pages/tramites/Tramites"
 import Indicador from "../pages/indicador/Indicador";
 import Calendario from "../pages/calendario/Calendario";
 import Organizacion from "../pages/colaborador/Organizacion";
@@ -28,11 +27,10 @@ import PerfilCapacitacion from "../pages/perfiles/PerfilCapacitacion";
 import Perfilits1 from "../pages/perfiles/Perfilits1";
 import Perfilits2 from "../pages/perfiles/Perfilits2";
 import Inicio from "../pages/inicio/Inicio";
-import Noticias from "../pages/noticias";
+import Noticias from "../pages/Noticias";
 import NoticiaDetalle from "../pages/NoticiaDetalle";
-
-// import GestorContenidos from "../pages/gestor/GestorContenidos";
-
+import Gestor from "../pages/gestor/Gestor"
+import Tramites from "../pages/tramites/Tramites"
 
 
 
@@ -46,7 +44,7 @@ function RoutesComp() {
             <Route path="*" element={<Inicio />} />
             <Route path="/Home" element={<Home/>} />
             <Route path="/Inicio" element={<Inicio/>} />
-            <Route path="/Noticias" element={<Noticias />} />
+            <Route path="/noticias" element={<Noticias />} />
             <Route path="/noticia/:id" element={<NoticiaDetalle />} />
             <Route path="/Colaborador" element={<Colaborador />} />
             <Route path="/Organizacion" element={<Organizacion/>} />
@@ -79,6 +77,14 @@ function RoutesComp() {
             <Route path="/PerfilCapacitacion" element={<PerfilCapacitacion/>}/>
             <Route path="/Perfilits1" element={<Perfilits1/>}/>
             <Route path="/Perfilits2" element={<Perfilits2/>}/>
+
+             {/* routers antonia */}
+            <Route path="/gestor-contenidos/*" element={<Gestor/>} /> 
+
+        
+
+
+            
             
         </Routes>
     );

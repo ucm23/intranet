@@ -15,8 +15,8 @@ const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/noticias" element={<Noticias />} />
-            <Route path="/noticia/:id" element={<NoticiaDetalle />} />
+            <Route path="/noticiasAntonia" element={<Noticias />} />
+            <Route path="/noticiasAntonia/:id" element={<NoticiaDetalle />} />
             <Route path="/colaboradores" element={<Colaboradores />} />
             <Route path="/tramites-servicios" element={<TramitesServicios />} />
             <Route path="/gestor-contenidos/*" element={<GestorContenidos />} />

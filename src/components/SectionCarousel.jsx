@@ -3,8 +3,9 @@ import { Carousel } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const CarouselContainer = styled.div`
-    width: 100vw; /* Ancho completo de la pantalla */
+    width: 100%; 
     position: relative;
+    overflow: hidden; 
 `;
 
 // Contenedor del título con fondo oscuro semitransparente
@@ -21,12 +22,14 @@ const TitleContainer = styled.div`
     align-items: center;
     color: white;
     text-align: center;
+    padding: 1rem; /* Añadir padding para mejor visualización */
 `;
 
 // Estilo de las imágenes dentro del carrusel
 const CarouselImage = styled.img`
     width: 100%; 
-    height: 30vh; 
+    height: auto; /* Cambiado a auto para mantener la proporción */
+    max-height: 30vh; /* Limitar la altura máxima */
     object-fit: cover; 
     opacity: 0.8; 
 `;
