@@ -10,11 +10,11 @@ import data from '../../assets/data.json';
 import '../../styles/perfiles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import Descargadev2 from '../../componentesdescarga/Descargadev2';
+// import Descargadev2 from '../../componentesdescarga/Descargadev2';
 import Verpdf from './Verpdf';
 
 
-const PerfilesPuesto = () => {
+const PerfilesPuesto1 = () => {
 
   const mobile = useBreakpointValue({ base: true, md: false });
   const navigate = useNavigate();
@@ -23,21 +23,26 @@ const PerfilesPuesto = () => {
     navigate('/');
   };
 
-  // const { id } = useParams(); // Obtener el id desde la URL
-  // const puestoId = parseInt(id); // Convertir el id a número, ya que useParams devuelve strings
+  const { id } = useParams(); // Obtener el id desde la URL
+  console.log("ID obtenido desde la URL:", id); // Verificar si el id es correcto
+//   const puestoId = parseInt(id); // Convertir el id a número, ya que useParams devuelve strings
+  const puestoId = parseInt(id) || 0;
 
 
   // Filtrar el puesto del archivo JSON por id
-  // const puesto = data.find((item) => item.id === puestoId);
-  // console.log("Puesto encontrado:", puesto); // Para ver el puesto que se encuentra
-
+  const puesto = data.find((item) => item.id === puestoId);
+  console.log("Puesto encontrado:", puesto); // Para ver el puesto que se encuentra
+  console.log("Puesto encontrado:", puesto);
+  
   // Si no se encuentra el puesto, muestra un mensaje
-  // if (!puesto) {
-  //   return <p>Puesto no encontrado</p>;
-  // }
+  if (!puesto) {
+    return <p>Puesto no encontrado</p>;
+  }
 
-  // const detallepuesto = puesto.detallepuesto;
-  // console.log("Puesto encontrado:", detallepuesto); 
+//   const detallepuesto = "puesto.detallepuesto";
+  const detallepuesto = puesto.detallepuesto || "GIntegracion.pdf";
+  console.log("Detalle puesto encontrado:", detallepuesto);
+  
 
   return (
     // <div style={{minheight: '100vh',flexdirection: 'column', maxWidth: '100vw',}}>
@@ -45,8 +50,9 @@ const PerfilesPuesto = () => {
       <Navbar backgroundColor="#001529" />
 
       
-          {/* <Verpdf detallepuesto={detallepuesto} style={{ marginTop: '0', paddingTop: '0' }}/> */}
-          <Verpdf  style={{ marginTop: '0', paddingTop: '0' }}/>
+          <Verpdf detallepuesto={detallepuesto} style={{ marginTop: '0', paddingTop: '0' }}/>
+         
+          {/* <Verpdf  style={{ marginTop: '0', paddingTop: '0' }}/> */}
 
         </div>
     
@@ -55,6 +61,6 @@ const PerfilesPuesto = () => {
   );
 };
 
-export default PerfilesPuesto;
+export default PerfilesPuesto1;
 
 

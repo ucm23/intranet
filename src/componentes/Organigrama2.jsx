@@ -37,6 +37,7 @@ import { Flex } from 'antd';
 import HoverText from './HoverText';
 import PerfilPuesto from '../pages/Puestos/PerfilPuesto';
 import PerfilesPuesto from '../pages/Puestos/PerfilesPuesto';
+import PerfilesPuesto1 from '../pages/Puestos/PerfilesPuesto1';
 
 import HoverText1 from './HoverText1';
 import ImageWithHoverText from '../componentes/ImageWithHoverText';
@@ -223,8 +224,9 @@ const myTreeData = {
                             <br></br>
                             {/* <Link to={`/PerfilPuesto/${7}`}> */}
                             {/* <Link to={`/PerfilesPuesto/${GIntegracion.pdf}`}> */}
-                            <Link to={"/PerfilesPuesto"}>
-                            {/* <Link to={`/PerfilPuesto/${6}`}> */}
+                            {/* <Link to={"/PerfilesPuesto"}> */}
+                           
+                            <Link to={`/PerfilesPuesto1/${7}`}>
                                 <HoverText text="Consultor SAP MM/FI/SD" />
                             </Link>
                         </span></div>

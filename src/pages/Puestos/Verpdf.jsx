@@ -5,11 +5,12 @@ import { useParams } from 'react-router-dom';
 
 
 
-// const Verpdf = ({ puesto }) => {
-const Verpdf = () => {
-    
-    // const rutapdf = `./perfiles/${puesto}`; 
+const Verpdf = ({ detallepuesto }) => {
+    console.log("Puesto encontrado:", detallepuesto); 
 
+    // Construcción correcta de la ruta del PDF usando template literals
+    const rutapdf = `/perfiles/${detallepuesto}`; 
+    console.log("detalle:", rutapdf); 
     return (
              
             <div style={{
@@ -24,8 +25,9 @@ const Verpdf = () => {
             margin: 0 // Asegúrate de que no haya margen
         }}>
             <iframe
-                // src={rutapdf}
-                src="./perfiles/GIntegracion.pdf"
+                src={rutapdf}
+               
+                // src="./perfiles/GIntegracion.pdf"
                 width="100%" // Usar 100% para el iframe
                 height="100%"
                 style={{

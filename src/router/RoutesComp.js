@@ -35,6 +35,7 @@ import PerfilPuesto from "../pages/Puestos/PerfilPuesto";
 import UserProfile from "../pages/Puestos/UserProfile"
 import PerfilGral from "../pages/perfiles/PerfilGral";
 import PerfilesPuesto from "../pages/Puestos/PerfilesPuesto";
+import PerfilesPuesto1 from "../pages/Puestos/PerfilesPuesto1";
 
 
 
@@ -85,6 +86,7 @@ function RoutesComp() {
             <Route path="/Perfilits2" element={<Perfilits2/>}/>
             <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="/PerfilPuesto/:id" element={<PerfilPuesto />} />
+            <Route path="/PerfilesPuesto1/:id" element={<PerfilesPuesto1/>} />
             <Route path="/PerfilesPuesto" element={<PerfilesPuesto/>} />
             {/* <Route path="/PerfilGral/:id" element={<PerfilGral/>}/> */}
             <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />
