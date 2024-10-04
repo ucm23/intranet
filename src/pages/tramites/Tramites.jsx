@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Dropdown, DropdownButton, Card, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Card, Button, Form } from 'react-bootstrap';
 import { FaDownload } from 'react-icons/fa'; // Ícono de descarga
 import NavBar from '../../components/NavBar';
 import SectionCarousel from '../../components/SectionCarousel';
@@ -78,10 +78,6 @@ const Tramites = () => {
         '/imgNoticias/proyecto6.jpg',
     ];
 
-    const handleSelect = (eventKey) => {
-        setSelectedForm(eventKey);
-    };
-
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <NavBar backgroundColor="#001529" />
@@ -91,24 +87,32 @@ const Tramites = () => {
                 sectionDescription="Facilita la gestión de solicitudes y trámites internos."
             />
 
-            <Container fluid className="flex-grow-1 d-flex flex-column mt-4">
-                <Row className="justify-content-center mb-4">
-                    <Col md={4} className="text-center">
-                        <DropdownButton
-                            id="dropdown-basic-button"
-                            title="Selecciona el tipo de Trámite y Servicio"
-                            onSelect={handleSelect}
-                            variant="primary"
-                            className="w-100"
-                        >
-                            <Dropdown.Item eventKey="vacaciones">Solicitudes de Vacaciones</Dropdown.Item>
-                            <Dropdown.Item eventKey="permisos">Permisos Especiales</Dropdown.Item>
-                        </DropdownButton>
+            <Container fluid className="flex-grow-1 d-flex mt-4 mb-4">
+                <Row className="w-100">
+                    <Col md={2} className="bg-light p-3">
+                        <Nav className="flex-column" variant="pills">
+                            <Nav.Item>
+                                <Nav.Link
+                                    active={selectedForm === 'vacaciones'}
+                                    onClick={() => setSelectedForm('vacaciones')}
+                                    style={{ color: selectedForm === 'vacaciones' ? 'blue' : 'inherit' }} // Cambia el color a azul cuando está seleccionado
+                                >
+                                    Solicitudes de Vacaciones
+                                </Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link
+                                    active={selectedForm === 'permisos'}
+                                    onClick={() => setSelectedForm('permisos')}
+                                    style={{ color: selectedForm === 'permisos' ? 'blue' : 'inherit' }} // Cambia el color a azul cuando está seleccionado
+                                >
+                                    Permisos Especiales
+                                </Nav.Link>
+                            </Nav.Item>
+                        </Nav>
                     </Col>
-                </Row>
 
-                <Row className="justify-content-center">
-                    <Col md={8} lg={6}>
+                    <Col md={10}>
                         <Card style={{ boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
                             <Card.Body>
                                 <h3 style={{ color: '#D2691E', textAlign: 'center' }}>
@@ -136,8 +140,6 @@ const Tramites = () => {
                     </Col>
                 </Row>
             </Container>
-
-            <div style={{ marginTop: '40px' }}></div>
 
             <Footer />
         </div>
