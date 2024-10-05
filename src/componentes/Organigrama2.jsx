@@ -73,7 +73,7 @@ const myTreeData = {
                             <HoverText1 text="Edith Sámano G." hoverText="CEO Edith Sámano G." />
                         </Link>
                     </div>
-                    <Link to={`/PerfilPuesto/${1}`}>
+                    <Link to={`/PerfilesPuesto1/${1}`}>
                         <HoverText text="Dirección General" />
                     </Link>
                 </p>
@@ -100,7 +100,7 @@ const myTreeData = {
                     </Link>
                     <span style={{ borderRadius: '10%', fontSize: '13px', fontWeight: 'bold' }}>Luis Manuel Alfaro Rivera
                         <br></br>
-                        <Link to={`/PerfilPuesto/${2}`}>
+                        <Link to={`/PerfilesPuesto1/${2}`}>
                             <HoverText text="Lic. Jurídico" />
                         </Link>
 
@@ -126,7 +126,7 @@ const myTreeData = {
                     </Link>
                     <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Marisela Ladrón de G.
                         <br></br>
-                        <Link to={`/PerfilPuesto/${3}`}>
+                        <Link to={`/PerfilesPuesto1/${3}`}>
                             <HoverText text="Lic. Recursos Humanos" />
                         </Link>
                     </span></div>
@@ -150,7 +150,7 @@ const myTreeData = {
                     </Link>
                     <span style={{ fontSize: '13px', fontWeight: 'bold' }}>José Luis Rangel
                         <br></br>
-                        <Link to={`/PerfilPuesto/${4}`}>
+                        <Link to={`/PerfilesPuesto1/${4}`}>
                             <HoverText text="Lic. Calidad" />
                         </Link>
                     </span></div>
@@ -175,7 +175,7 @@ const myTreeData = {
                     </Link>
                     <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Carlos Fco. Sainz R.
                         <br></br>
-                        <Link to={`/PerfilPuesto/${5}`}>
+                        <Link to={`/PerfilesPuesto1/${5}`}>
                             <HoverText text="Lic. Contable" />
                         </Link>
                     </span></div>
@@ -187,7 +187,8 @@ const myTreeData = {
             children: [{
                 id: '11', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid blue', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                     <br></br>
-                    <Link to="/Perfilconta1">
+                    {/* <Link to="/Perfilconta1"> */}
+                    <Link to={`/PerfilGral/${7}/${'conta1.png'}`}>
                         <div>
                             <ImageWithHoverText
                                 imgSrc={conta1}
@@ -197,7 +198,7 @@ const myTreeData = {
                     </Link>
                     <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ashley M. Huerta Arias
                         <br></br>
-                        <Link to={`/PerfilPuesto/${6}`}>
+                        <Link to={`/PerfilesPuesto1/${6}`}>
                             <HoverText text="Lic. Admon y Marketing" />
                         </Link>
                     </span></div>
@@ -211,8 +212,8 @@ const myTreeData = {
                 {
                     id: '13', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #FF00FF', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        {/* <Link to="/PerfilesPuesto"> */}
-                        <Link to="/Perfilsap1">
+                        <Link to={`/PerfilGral/${8}/${'SAP1.png'}`}>
+                        {/* <Link to="/Perfilsap1"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={SAP1}
@@ -236,7 +237,8 @@ const myTreeData = {
                 {
                     id: '14', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #FF00FF', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfilsap2">
+                        <Link to={`/PerfilGral/${9}/${'SAP2.png'}`}>
+                        {/* <Link to="/Perfilsap2"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={SAP2}
@@ -247,7 +249,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Francisco J. Mejía R.
                             <br></br>
-                            <Link to={`/PerfilPuesto/${8}`}>
+                            <Link to={`/PerfilesPuesto1/${8}`}>
                                 <HoverText text="Consultor SAP-ABAP" />
                             </Link>
                         </span></div>
@@ -264,7 +266,8 @@ const myTreeData = {
                 {
                     id: '16', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev1">
+                        <Link to={`/PerfilGral/${10}/${'DEV1.png'}`}>
+                        {/* <Link to="/Perfildev1"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={dev1}
@@ -275,7 +278,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Gilberto López A.
                             <br></br>
-                            <Link to={`/PerfilPuesto/${9}`}>
+                            <Link to={`/PerfilesPuesto1/${9}`}>
                                 <HoverText text="Ing. Dev. Web Senior" />
                             </Link>
                         </span></div>,
@@ -285,7 +288,8 @@ const myTreeData = {
                         {
                             id: '17', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/PerfilBeca1">
+                                <Link to={`/PerfilGral/${11}/${'becaria1.png'}`}>
+                                {/* <Link to="/PerfilBeca1"> */}
                                     <ImageWithHoverText
                                         imgSrc={becaria1}
                                         hoverText="Ver mi Perfil"
@@ -295,7 +299,7 @@ const myTreeData = {
                                 <br></br>
                                 <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ana Cristina Hernández B.
                                     <br></br>
-                                    <Link to={`/PerfilPuesto/${12}`}>
+                                    <Link to={`/PerfilesPuesto1/${12}`}>
                                         <HoverText text="Dev. Web Junior" />
                                     </Link>
                                 </span></div>,
@@ -306,7 +310,8 @@ const myTreeData = {
                 {
                     id: '18', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev2">
+                        <Link to={`/PerfilGral/${12}/${'DEV2.png'}`}>
+                        {/* <Link to="/Perfildev2"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={dev2}
@@ -316,36 +321,38 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ulises Cano M.
                             <br></br>
-                            <Link to={`/PerfilPuesto/${10}`}>
+                            <Link to={`/PerfilesPuesto1/${10}`}>
                                 <HoverText text="Ing. Dev. Móvil Senior" />
                             </Link>
                         </span></div>,
 
-                    children: [
+                    // children: [
 
-                        {
-                            id: '19', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
-                                <br></br>
-                                <Link to="/PerfilBeca2">
-                                    <ImageWithHoverText
-                                        imgSrc={becario1}
-                                        hoverText="Ver mi Perfil"
-                                        style={{ marginTop: '-35px', border: '2px solid #ccc', borderRadius: '50%', cursor: 'pointer', width: '90%', height: '75%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
-                                    />
-                                </Link>
-                                <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Brayan Emmanuel Olmos S.
-                                    <br></br>
-                                    <Link to={`/PerfilPuesto/${12}`}>
-                                        <HoverText text="Dev. Web Junior" />
-                                    </Link>
-                                </span></div>
-                        },
-                    ],
+                    //     {
+                    //         id: '19', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
+                    //             <br></br>
+                    //             <Link to="/PerfilBeca2">
+                    //                 <ImageWithHoverText
+                    //                     imgSrc={becario1}
+                    //                     hoverText="Ver mi Perfil"
+                    //                     style={{ marginTop: '-35px', border: '2px solid #ccc', borderRadius: '50%', cursor: 'pointer', width: '90%', height: '75%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                    //                 />
+                    //             </Link>
+                    //             <br></br>
+                    //             <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Brayan Emmanuel Olmos S.
+                    //                 <br></br>
+                    //                 <Link to={`/PerfilesPuesto1/${12}`}>
+                    //                     <HoverText text="Dev. Web Junior" />
+                    //                 </Link>
+                    //             </span></div>
+                    //     },
+                    // ],
                 },
                 {
                     id: '20', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #001529', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfildev3">
+                        <Link to={`/PerfilGral/${14}/${'DEV3X.png'}`}>
+                        {/* <Link to="/Perfildev3"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={dev3x}
@@ -356,7 +363,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Luz Adriana Castillo B.
                             <br></br>
-                            <Link to={`/PerfilPuesto/${11}`}>
+                            <Link to={`/PerfilesPuesto1/${11}`}>
                                 <HoverText text="Ing. Dev.C-S Senior" />
                             </Link>
                         </span></div>,
@@ -365,16 +372,18 @@ const myTreeData = {
                         {
                             id: '21', label: <div className="tree-node" style={{ border: '2px solid #001529', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/PerfilBeca3">
+                                <Link to={`/PerfilGral/${15}/${'DEV3X.png'}`}>
+                                {/* <Link to="/PerfilBeca3"> */}
                                     <ImageWithHoverText
                                         imgSrc={becaria2}
                                         hoverText="Ver mi Perfil"
                                         style={{ marginTop: '-35px', border: '2px solid #ccc', borderRadius: '50%', cursor: 'pointer', width: '90%', height: '75%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
                                     />
                                 </Link>
+                                <br></br>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Antonia Cortés Pérez
                                     <br></br>
-                                    <Link to={`/PerfilPuesto/${12}`}>
+                                    <Link to={`/PerfilesPuesto1/${12}`}>
                                         <HoverText text="Dev. Web Junior" />
                                     </Link>
                                 </span></div>
@@ -391,7 +400,8 @@ const myTreeData = {
                 {
                     id: '22', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/PerfilIA1">
+                        <Link to={`/PerfilGral/${16}/${'IA1.png'}`}>
+                        {/* <Link to="/PerfilIA1"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={IA1}
@@ -402,7 +412,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Pablo Tlaxcoapan
                             <br></br>
-                            <Link to={`/PerfilPuesto/${13}`}>
+                            <Link to={`/PerfilesPuesto1/${13}`}>
                                 <HoverText text="Ing. Dev. IA" />
                             </Link>
                         </span></div>
@@ -412,7 +422,8 @@ const myTreeData = {
                 {
                     id: '23', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #00FF00', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/PerfilIA2">
+                        <Link to={`/PerfilGral/${17}/${'IA2.png'}`}>
+                        {/* <Link to="/PerfilIA2"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={IA2}
@@ -423,7 +434,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Josue Tlaxcoapan
                             <br></br>
-                            <Link to={`/PerfilPuesto/${13}`}>
+                            <Link to={`/PerfilesPuesto1/${13}`}>
                                 <HoverText text="Ing. Dev. IA" />
                             </Link>
                         </span></div>
@@ -440,7 +451,8 @@ const myTreeData = {
                 {
                     id: '25', label: <div className="tree-node" style={{ borderRadius: '10%', border: '2px solid #1890ff', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/PerfilInfra">
+                        <Link to={`/PerfilGral/${18}/${'infra1.png'}`}>
+                        {/* <Link to="/PerfilInfra"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={infra1}
@@ -451,7 +463,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>Heber Argumedo
                             <br></br>
-                            <Link to={`/PerfilPuesto/${14}`}>
+                            <Link to={`/PerfilesPuesto1/${14}`}>
                                 <HoverText text="Ing. Infraestructura e ITS" />
                             </Link>
 
@@ -463,7 +475,8 @@ const myTreeData = {
                         {
                             id: '26', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfilmesa1">
+                                <Link to={`/PerfilGral/${19}/${'MESA1.png'}`}>
+                                {/* <Link to="/Perfilmesa1"> */}
                                     <div>
                                         <ImageWithHoverText
                                             imgSrc={mesa1}
@@ -474,7 +487,7 @@ const myTreeData = {
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Juan José Gil López
                                     <br></br>
-                                    <Link to={`/PerfilPuesto/${15}`}>
+                                    <Link to={`/PerfilesPuesto1/${15}`}>
                                         <HoverText text="Ing. Soporte Técnico" />
                                     </Link>
                                 </span></div>
@@ -482,7 +495,8 @@ const myTreeData = {
                         {
                             id: '27', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/PerfilCapacitacion">
+                                <Link to={`/PerfilGral/${20}/${'curso1.png'}`}>
+                                {/* <Link to="/PerfilCapacitacion"> */}
                                     <div>
                                         <ImageWithHoverText
                                             imgSrc={curso1}
@@ -493,7 +507,7 @@ const myTreeData = {
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Luis Alberto Ruiz Aguilar
                                     <br></br>
-                                    <Link to={`/PerfilPuesto/${16}`}>
+                                    <Link to={`/PerfilesPuesto1/${16}`}>
                                         <HoverText text="Ing. Capacitación" />
                                     </Link>
 
@@ -512,7 +526,8 @@ const myTreeData = {
                 {
                     id: '29', label: <div className="tree-node" style={{ border: '2px solid #A9A9A9', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                         <br></br>
-                        <Link to="/Perfilits1">
+                        <Link to={`/PerfilGral/${21}/${'ITS2.png'}`}>
+                        {/* <Link to="/Perfilits1"> */}
                             <div>
                                 <ImageWithHoverText
                                     imgSrc={ITS2}
@@ -523,7 +538,7 @@ const myTreeData = {
                         </Link>
                         <span style={{ fontSize: '12px', fontWeight: 'bold' }}> Victor Ricardo Mojica Leines
                             <br></br>
-                            <Link to={`/PerfilPuesto/${17}`}>
+                            <Link to={`/PerfilesPuesto1/${17}`}>
                                 <HoverText text="Ing. ITS y Peaje" />
                             </Link>
                         </span>
@@ -533,7 +548,8 @@ const myTreeData = {
                         {
                             id: '30', label: <div className="tree-node" style={{ border: '2px solid #A9A9A9', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
-                                <Link to="/Perfilits2">
+                                <Link to={`/PerfilGral/${22}/${'ITS1.png'}`}>
+                                {/* <Link to="/Perfilits2"> */}
                                     <div>
                                         <ImageWithHoverText
                                             imgSrc={ITS1}
@@ -544,7 +560,7 @@ const myTreeData = {
                                 </Link>
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Julio César Castillo Z.
                                     <br></br>
-                                    <Link to={`/PerfilPuesto/${18}`}>
+                                    <Link to={`/PerfilesPuesto1/${18}`}>
                                         <HoverText text="Ing. Integración" />
                                     </Link>
                                 </span></div>

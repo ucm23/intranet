@@ -81,15 +81,13 @@ const PerfilBeca1 = () => {
           <Linea />
           <br></br>
           <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-          Profesional en TI con experiencia en implementación de Aplicaciones de Escritorio, Web, .Net, C# y Sharepoint,HTML, 
-          CSS, XML, XSLT, Python, .NET Framework (VB.NET, C#, ASP.NET, ADO.NET, Entity Framework). Windows Communication Foundation (WCF), 
-          JavaScript, ajax, jQuery, JSON, Sharepoint CAML.
+          Desarrollador Junior en Desarrollo de Aplicaciones Web (Actualmente Estudiante de la carrera)
           </p>
           {/* <br></br> */}
           <Lineaformacion />
           {/* <br></br> */}
           <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
-            Licenciado en Informática en La Universidad de la Cañada
+            Licenciado en Informática en La Universidad de la Cañada (en curso)
             {/* <br></br> */}
             <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Cursos:</p>
             <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'customFont', textAlign: 'justify' }}>
