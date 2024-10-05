@@ -26,7 +26,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
         { id: 2, href: "/noticias", content: "Noticias", icon: "fa-newspaper" },
         // { id: 3, href: "/colaboradores", content: "Colaboradores", icon: "fa-users" },
         { id: 3, href: "/Organizacion", content: "Organizacion", icon: "fa-users" },
-        { id: 3, href: "/colaborador", content: "Colaboradores", icon: "fa-users" },
+        // { id: 3, href: "/colaborador", content: "Colaboradores", icon: "fa-users" },
         // { id: 4, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
         {
             id: 5, href: "/gestor-contenidos", content: "Gestor de Contenidos", icon: "fa-cogs", subRoutes: [

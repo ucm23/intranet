@@ -32,7 +32,6 @@ import { useBreakpointValue } from '@chakra-ui/react'
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Perfilceo from '../pages/perfiles/Perfilceo';
 import { Flex } from 'antd';
 import MouseOverMessage from './MouseOverMessage';
 import HoverText from './HoverText';

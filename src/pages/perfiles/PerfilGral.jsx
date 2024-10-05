@@ -15,7 +15,6 @@ import { faHome, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg
 import Linea from '../../componentes/Linea';
 import Lineaformacion from '../../componentes/Lineaformaciob';
 import Lineaexperiencia from '../../componentes/Lineaexperiencia';
-import Descargadev1 from '../../componentesdescarga/Descargadev1';
 import dato from '../../assets/dato.json';
 import '../../styles/perfil.css';
 import Descargacv from '../../componentes/Descargacv';

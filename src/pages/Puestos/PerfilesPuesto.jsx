@@ -10,7 +10,6 @@ import data from '../../assets/data.json';
 import '../../styles/perfiles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import Descargadev2 from '../../componentesdescarga/Descargadev2';
 import Verpdf from './Verpdf';
 
 
