@@ -25,7 +25,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
         { id: 1, href: "/", content: "Inicio", icon: "fa-home" },
         { id: 2, href: "/noticias", content: "Noticias", icon: "fa-newspaper" },
         // { id: 3, href: "/colaboradores", content: "Colaboradores", icon: "fa-users" },
-        { id: 3, href: "/Organizacion", content: "Organizacion", icon: "fa-users" },
+        { id: 3, href: "/Organizacion", content: "Colaboradores", icon: "fa-users" },
         // { id: 3, href: "/colaborador", content: "Colaboradores", icon: "fa-users" },
         // { id: 4, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
         {
@@ -38,8 +38,9 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
             ]
         },
         { id: 8, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
-        { id: 6, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
-        { id: 7, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" }
+        { id: 6, href: "/calendario", content: "Calendario de Eventos", icon: "fa-calendar-alt" },
+        { id: 7, href: "/indicadores", content: "Indicadores", icon: "fa-chart-line" },
+        
     ];
 
     const handleCheckBoxChange = ({ target }) => setIsChecked(target.checked);

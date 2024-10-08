@@ -7,7 +7,8 @@ import Calendario from "../pages/calendario/Calendario";
 import Organizacion from "../pages/colaborador/Organizacion";
 
 import Inicio from "../pages/inicio/Inicio";
-import Noticias from "../pages/noticias";
+// import Noticias from "../pages/noticias";
+import noticias from "../pages/noticias.jsx"
 import NoticiaDetalle from "../pages/NoticiaDetalle";
 import GestorContenidos from "../pages/GestorContenidos";
 import PerfilPuesto from "../pages/Puestos/PerfilPuesto";
@@ -15,6 +16,7 @@ import UserProfile from "../pages/Puestos/UserProfile"
 import PerfilGral from "../pages/perfiles/PerfilGral";
 import PerfilesPuesto from "../pages/Puestos/PerfilesPuesto";
 import PerfilesPuesto1 from "../pages/Puestos/PerfilesPuesto1";
+import Noticias from "../pages/noticias.jsx";
 
 
 
@@ -34,6 +36,7 @@ function RoutesComp() {
             <Route path="*" element={<Inicio />} />
             <Route path="/Home" element={<Home/>} />
             <Route path="/Inicio" element={<Inicio/>} />
+            <Route path="/Noticias" element={<Noticias/>} />
             <Route path="/Colaborador" element={<Colaborador />} />
             <Route path="/Organizacion" element={<Organizacion/>} />
             {/* <Route path="/Gestor" element={<Gestor />} /> */}

@@ -299,7 +299,7 @@ const myTreeData = {
                                 <span style={{ fontSize: '13px', fontWeight: 'bold' }}>Ana Cristina Hernández B.
                                     <br></br>
                                     <Link to={`/PerfilesPuesto1/${12}`}>
-                                        <HoverText text="Dev. Web Junior" />
+                                        <HoverText text="Becaria Dev. Web" />
                                     </Link>
                                 </span></div>,
                         },
@@ -383,7 +383,7 @@ const myTreeData = {
                                 <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Antonia Cortés Pérez
                                     <br></br>
                                     <Link to={`/PerfilesPuesto1/${12}`}>
-                                        <HoverText text="Dev. Web Junior" />
+                                        <HoverText text="Becaria Dev. Web" />
                                     </Link>
                                 </span></div>
                         },
