@@ -49,7 +49,7 @@ const Calendario = () => {
     ]);
     const [selectedEvent, setSelectedEvent] = useState(null);
 
-   
+
 
     const handleAddEvent = () => {
         console.log('Intentando agregar evento:', newEvent);
@@ -69,7 +69,7 @@ const Calendario = () => {
 
     const handleUpdateEvent = () => {
         if (newEvent.title && newEvent.start && newEvent.end && newEvent.start < newEvent.end) {
-            const updatedEvents = events.map(evt => 
+            const updatedEvents = events.map(evt =>
                 evt.start === selectedEvent.start ? { ...evt, title: newEvent.title, start: newEvent.start, end: newEvent.end } : evt
             );
             setEvents(updatedEvents);
@@ -116,7 +116,7 @@ const Calendario = () => {
                     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', // Sombra
                     marginBottom: '20px',
                     width: mobile ? '85vw' : '80vw', // Ancho del marco
-                    height:mobile ? '10vw' : '5vw', // Ancho del marco
+                    height: mobile ? '10vw' : '5vw', // Ancho del marco
                 }}>
                     <div style={{
                         marginBottom: '20px',
@@ -135,7 +135,7 @@ const Calendario = () => {
                         }}>
                             {/* <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> Icono de agregar */}
                             Nuevo Evento
-                           {/* + Nuevo Evento */}
+                            {/* + Nuevo Evento */}
                         </h2>
 
                         <input
@@ -143,9 +143,9 @@ const Calendario = () => {
                             placeholder="Título del evento"
                             value={newEvent.title}
                             onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                            style={{ 
-                                marginRight: '10px', 
-                                padding: '5px', 
+                            style={{
+                                marginRight: '10px',
+                                padding: '5px',
                                 width: '200px',
                                 border: '1px solid #ccc', // Marco del input
                                 borderRadius: '4px', // Bordes redondeados
@@ -153,7 +153,7 @@ const Calendario = () => {
                             }}
                             onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
                             onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                       
+
                         />
 
                         <DatePicker
@@ -163,14 +163,14 @@ const Calendario = () => {
                             showTimeSelect
                             dateFormat="Pp"
                             customInput={
-                                <input style={{ 
-                                    marginRight: '10px', 
+                                <input style={{
+                                    marginRight: '10px',
                                     border: '1px solid #ccc', // Marco del input
                                     borderRadius: '4px' // Bordes redondeados
-                                }} 
-                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                            />}
+                                }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                />}
                         />
 
                         <DatePicker
@@ -180,15 +180,15 @@ const Calendario = () => {
                             showTimeSelect
                             dateFormat="Pp"
                             customInput={
-                                <input style={{ 
-                                    marginRight: '10px', 
+                                <input style={{
+                                    marginRight: '10px',
                                     border: '1px solid #ccc', // Marco del input
-                                    borderRadius: '4px' ,// Bordes redondeados
+                                    borderRadius: '4px',// Bordes redondeados
                                     transition: 'box-shadow 0.3s ease' // Transición suave
-                                }} 
-                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                           
+                                }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+
                                 />}
                         />
                         {selectedEvent ? (
@@ -201,9 +201,9 @@ const Calendario = () => {
                                 </button>
                             </>
                         ) : (
-                            <button 
-                                onClick={handleAddEvent} 
-                                style={{ 
+                            <button
+                                onClick={handleAddEvent}
+                                style={{
                                     marginLeft: '10px',
                                     border: '1px solid #ccc', // Borde del botón
                                     borderRadius: '4px', // Bordes redondeados
@@ -216,7 +216,7 @@ const Calendario = () => {
                                 }}
                                 onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
                                 onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                            
+
                             >
                                 <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
                                 Agregar Evento

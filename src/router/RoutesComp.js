@@ -1,4 +1,4 @@
-import { Route, Routes,BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Home from "../pages/inicio/Home";
 import Colaborador from "../pages/colaborador/Colaborador";
 import Tramites from "../pages/tramites/Tramites"
@@ -34,27 +34,28 @@ function RoutesComp() {
             {/* <Route path="*" element={<Home />} /> */}
             {/* <Route path="*" element={<Login />} /> */}
             <Route path="*" element={<Inicio />} />
-            <Route path="/Home" element={<Home/>} />
-            <Route path="/Inicio" element={<Inicio/>} />
-            <Route path="/Noticias" element={<Noticias/>} />
+            <Route path="/Home" element={<Home />} />
+            <Route path="/Inicio" element={<Inicio />} />
+            <Route path="/Noticias" element={<Noticias />} />
             <Route path="/Colaborador" element={<Colaborador />} />
-            <Route path="/Organizacion" element={<Organizacion/>} />
+            <Route path="/Organizacion" element={<Organizacion />} />
             {/* <Route path="/Gestor" element={<Gestor />} /> */}
             {/* <Route path="/gestor-contenidos/*" element={<GestorContenidos />} /> */}
             {/* subRoutes */}
             <Route path="/Indicador" element={<Indicador />} />
+            {/* <Route path="/Indicador/:proyectos" element={<Indicador/>} /> */}
             <Route path="/Calendario" element={<Calendario />} />
-            
+
             <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="/PerfilPuesto/:id" element={<PerfilPuesto />} />
-            <Route path="/PerfilesPuesto1/:id" element={<PerfilesPuesto1/>} />
-            <Route path="/PerfilesPuesto" element={<PerfilesPuesto/>} />
+            <Route path="/PerfilesPuesto1/:id" element={<PerfilesPuesto1 />} />
+            <Route path="/PerfilesPuesto" element={<PerfilesPuesto />} />
             {/* <Route path="/PerfilGral/:id" element={<PerfilGral/>}/> */}
             <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />
 
             {/* <Route path="/Noticias" element={<Noticias />} /> */}
             {/* <Route path="/noticia/:id" element={<NoticiaDetalle />} /> */}
-            <Route path="/gestor/area/proyecto" element={<gestor />}/>
+            <Route path="/gestor/area/proyecto" element={<gestor />} />
             <Route path="/gestor-contenidos/*" element={<GestorContenidos />} />
             {/* <Route path="/Tramites" element={<Tramites />} /> */}
 

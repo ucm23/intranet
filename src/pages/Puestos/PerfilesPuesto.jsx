@@ -43,14 +43,14 @@ const PerfilesPuesto = () => {
     <div style={{ flexDirection: 'column', maxWidth: '100vw', overflow: 'hidden', maxHeight: '100vh', }}>
       <Navbar backgroundColor="#001529" />
 
-      
-          {/* <Verpdf detallepuesto={detallepuesto} style={{ marginTop: '0', paddingTop: '0' }}/> */}
-          <Verpdf  style={{ marginTop: '0', paddingTop: '0' }}/>
 
-        </div>
-    
+      {/* <Verpdf detallepuesto={detallepuesto} style={{ marginTop: '0', paddingTop: '0' }}/> */}
+      <Verpdf style={{ marginTop: '0', paddingTop: '0' }} />
 
-   
+    </div>
+
+
+
   );
 };
 
