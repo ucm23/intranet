@@ -1,0 +1,24 @@
+/* Estilo general para todo el calendario */
+.custom-calendar {
+    font-size: 11px; /* Tamaño de fuente general */
+}
+
+/* Estilo para el encabezado de la vista de mes */
+.custom-calendar .rbc-month-view .rbc-header {
+    font-size: 11px; /* Ajusta el tamaño del encabezado del mes */
+}
+
+/* Estilo para los eventos en la vista de mes */
+.custom-calendar .rbc-month-view .rbc-event {
+    font-size: 9px; /* Ajusta el tamaño de los eventos */
+}
+
+/* Estilo para el encabezado de la vista de semana o día */
+.custom-calendar .rbc-time-view .rbc-header {
+    font-size: 11px; /* Tamaño de encabezado para las vistas de semana y día */
+}
+
+/* Estilo para las horas en la vista de semana o día */
+.custom-calendar .rbc-time-view .rbc-time-slot {
+    font-size: 10px; /* Ajusta el tamaño de las horas */
+}
