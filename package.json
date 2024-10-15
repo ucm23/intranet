@@ -50,7 +50,7 @@
     "express": "^4.20.0",
     "fast-xml-parser": "^4.4.0",
     "formik": "^2.4.6",
-    "framer-motion": "^11.3.30",
+    "framer-motion": "^11.11.8",
     "google-map-react": "^2.2.1",
     "leaflet": "^1.8.0",
     "localforage": "^1.10.0",

@@ -22,25 +22,10 @@ import { Divider } from '@chakra-ui/react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Button as ButtonAntd, Drawer, Radio, Space } from 'antd';
-
-
-const ImageLoader = ({ id, picture, className }) => {
-    const [imageUrl, setImageUrl] = useState(null);
-
-    useEffect(() => {
-        loadURL();
-    }, [id]);
-
-    const loadURL = async () => {
-        const img = await indexIMGByID({ id, picture });
-        setImageUrl(img?.data);
-    };
-
-    return imageUrl ? <img src={imageUrl} alt={`img-${id}-${picture}`} className={className} loading="lazy" /> :
-        <div className={`flex items-start justify-center ${className}`}>
-            <FallingLines color="#03296a" width="100" visible={true} />
-        </div>
-};
+import { FaCheck } from 'react-icons/fa';
+import { FiUpload } from "react-icons/fi";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { motion } from "framer-motion";
 
 const modules = {
     toolbar: [
@@ -60,6 +45,53 @@ const AddNews = ({ page }) => {
     const { isOpen: isOpenBanner, onOpen: onOpenBanner, onClose: onCloseBanner } = useDisclosure();
     const [showModal, setShowModal] = useState(false);
     const [editingItem, setEditingItem] = useState({ name: "", description: "" });
+
+    const [image, setImage] = useState(null);
+    const [isUploading, setIsUploading] = useState(false);
+    const fileInputRef = useRef(null);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => setImage(e.target.result);
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const file = e.dataTransfer.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => setImage(e.target.result);
+            reader.readAsDataURL(file);
+        }
+    };
+
+    /*const validateForm = () => {
+        let formErrors = {};
+        if (!image) formErrors.image = "Image is required";
+        setErrors(formErrors);
+        return Object.keys(formErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            setIsUploading(true);
+            // Simulating upload process
+            setTimeout(() => {
+                setIsUploading(false);
+                alert("Image uploaded successfully!");
+                setImage(null);
+            }, 2000);
+        }
+    };*/
 
     const startEditing = (index) => {
         setEditingIndex(index);
@@ -113,6 +145,7 @@ const AddNews = ({ page }) => {
     const [banner, setBanner] = useState(1);
     const [summary, setSummary] = useState('');
     const [body, setBody] = useState('');
+    const [conclusion, setConclusion] = useState('');
     const test = {
         user_id: 1,
         title: "",
@@ -184,7 +217,6 @@ const AddNews = ({ page }) => {
         e.preventDefault();
         if (validateForm()) {
             console.log("Formulario enviado:", formData);
-            // Manejar el envío del formulario aquí
         }
     };
 
@@ -194,20 +226,39 @@ const AddNews = ({ page }) => {
         setEditingIndex(editingIndex === index ? null : index);
     };
 
+    const [open, setOpen] = useState(false);
+    const [placement, setPlacement] = useState('right');
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onChange = (e) => {
+        setPlacement(e.target.value);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
+
+    const [selectedBanner, setSelectedBanner] = useState(1);
+    const [selectedBody, setSelectedBody] = useState(1);
+
+    const handleBannerClick = (id) => {
+        setSelectedBanner(id);
+    };
+
     return (
         <>
             <AppBar page={page}>
                 <div className="bg-white scroll-100">
                     <div className="relative w-full">
-                        <div className="relative_ hover-border-form" onClick={onOpenBanner}>
+                        <div className="relative_ hover-border-form" onClick={showDrawer}>
                             <button
                                 type="button"
-                                onClick={onOpenBanner}
+                                onClick={showDrawer}
                                 className="text-white hover:text-blue-700 transition-colors duration-200 absolute left-5 top-5"
                             >
                                 <FiEdit2 size={20} />
                             </button>
-                            <img src={`img/news/banner/${banner}.png`} alt={`img-banner-add-news`} className={"max-h-64 h-fit w-full md:h-95 object-cover news-banner-img"} loading="lazy" />
+                            <img src={`img/news/banner/${selectedBanner}.png`} alt={`img-banner-add-news`} className={"max-h-64 h-fit w-full md:h-95 object-cover news-banner-img"} loading="lazy" />
                         </div>
                         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-4 pt-4 rounded-lg max-w-[850px] w-full position-2">
                             <input
@@ -215,6 +266,7 @@ const AddNews = ({ page }) => {
                                 name="nombre"
                                 placeholder="Agregar un título"
                                 className="w-full bg-transparent text-white text-3xl font-medium placeholder-white placeholder-opacity-90 border-none outline-none focus:ring-0 p-2"
+                                style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}
                             />
                         </div>
                     </div>
@@ -224,12 +276,6 @@ const AddNews = ({ page }) => {
                                 <h1 class="flex-auto text-lg font-semibold text-blue-100">
                                     Resumen
                                 </h1>
-                                {/*<input
-                                    type="text"
-                                    name="nombre"
-                                    placeholder="Agregar resumen"
-                                    className="w-full bg-transparent leading-relaxed mb-6 text-black placeholder-opacity-70 border-none outline-none py-2 px-0 focus:ring-0"
-                                />*/}
                                 <div className="mb-6">
                                     <ReactQuill modules={modules} formats={formats} theme="snow" value={summary} onChange={setSummary} placeholder="Agregar resumen..." />
                                     {/*<div dangerouslySetInnerHTML={{ __html: summary }} />*/}
@@ -241,16 +287,41 @@ const AddNews = ({ page }) => {
                                 <h1 class="flex-auto text-lg font-semibold text-blue-100">
                                     Cuerpo del contenido
                                 </h1>
-                                {/*<input
-                                    type="text"
-                                    name="nombre"
-                                    placeholder="Agregar resumen"
-                                    className="w-full bg-transparent leading-relaxed mb-6 text-black placeholder-opacity-70 border-none outline-none py-2 px-0 focus:ring-0"
-                                />*/}
                                 <div className="mb-6">
                                     <ReactQuill modules={modules} formats={formats} theme="snow" value={body} onChange={setBody} placeholder="Agregar contenido..." />
                                     {/*<div dangerouslySetInnerHTML={{ __html: value }} />*/}
                                 </div>
+                                <motion.div
+                                    whileHover={{ scale: 1.009 }}
+                                    whileTap={{ scale: 1 }}
+                                    className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer transition duration-300 ease-in-out hover:border-blue-500"
+                                    onDragOver={handleDragOver}
+                                    onDrop={handleDrop}
+                                    onClick={() => fileInputRef.current.click()}
+                                >
+                                    <input
+                                        type="file"
+                                        ref={fileInputRef}
+                                        onChange={handleImageChange}
+                                        accept="image/*"
+                                        className="hidden"
+                                        aria-label="Upload image"
+                                    />
+                                    {image ? (
+                                        <img
+                                            src={image}
+                                            alt="img-body-add-news"
+                                            //className="mx-auto max-h-48 rounded-md"
+                                            className="w-full mx-auto object-cover rounded-sm h-auto"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        <div className="text-gray-500">
+                                            <FiUpload className="mx-auto text-3xl mb-2" />
+                                            <p>Drag and drop an image or click to upload</p>
+                                        </div>
+                                    )}
+                                </motion.div>
                             </div>
                         </div>
 
@@ -259,12 +330,6 @@ const AddNews = ({ page }) => {
                                 <h1 class="flex-auto text-lg font-semibold text-blue-100">
                                     Añadir características
                                 </h1>
-                                {/*<input
-                                    type="text"
-                                    name="nombre"
-                                    placeholder="Agregar resumen"
-                                    className="w-full bg-transparent leading-relaxed mb-6 text-black placeholder-opacity-70 border-none outline-none py-2 px-0 focus:ring-0"
-                                />*/}
                                 <div className="space-y-6">
                                     <div>
                                         <input
@@ -272,7 +337,7 @@ const AddNews = ({ page }) => {
                                             id="title"
                                             value={formData.title}
                                             onChange={handleTitleChange}
-                                            className={`mt-1 block w-full rounded-md focus:ring-0 border-none outline-none border border-gray-300 sm:text-sm ${errors.title ? 'border-red-500' : ''} bg-white px-4 py-2 transition duration-300 ease-in-out hover:bg-purple-50 focus:bg-white`}
+                                            className={`mt-1 block w-full rounded-md focus:ring-0 border-none outline-none border border-gray-300 sm:text-sm ${errors.title ? 'border-red-500' : ''} bg-white py-2 transition duration-300 ease-in-out hover:bg-purple-50 focus:bg-white`}
                                             placeholder="Ingrese el título"
                                             aria-label="Título"
                                         />
@@ -343,58 +408,33 @@ const AddNews = ({ page }) => {
                                             </div>
                                         ))}
                                     </div>
-
                                     <div className="flex justify-between items-center">
+                                        <div></div>
                                         <button
                                             type="button"
                                             onClick={addMoreFields}
-                                            className={`w-full inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:-translate-y-1 ${isTitleEmpty ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:-translate-y-1 ${isTitleEmpty ? 'opacity-50 cursor-not-allowed' : ''}`}
                                             disabled={isTitleEmpty}
                                         >
-                                            <FiPlus className="mr-2" /> Agregar más
+                                            <FiPlus className="mr-2" /> Add More
                                         </button>
-                                        {/*<button
-                                            type="submit"
-                                            className={`px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:-translate-y-1 ${isTitleEmpty ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                            disabled={isTitleEmpty}
-                                        >
-                                            Enviar
-                                        </button>*/}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-gray-800 mb-4">Galería de imágenes</h2>
-                            <img src={''} alt={`img-body-add-news`} className={"w-full h-64 object-cover rounded-lg h-auto"} loading="lazy" />
-                        </div>
-
-                        <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-gray-800 mb-4">Noticias relacionadas</h2>
-                            <div className="space-y-4">
-                                {item?.list.map((news, index) => (
-                                    <div key={index} className="bg-gray-100 p-4 rounded-lg transition-all duration-300 hover:shadow-md">
-                                        <div href={news?.url} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600">
-                                            <div className="flex items-center mb-2">
-                                                <FaNewspaper className="mr-3 text-blue-600 flex-shrink-0" />
-                                                <span className="font-semibold">{news?.title}</span>
-                                            </div>
-                                            <p className="text-sm text-gray-600 ml-7">{news?.title}</p>
-                                            <p className="text-sm text-gray-600 ml-7">{news?.summary}</p>
-                                            <div className="flex justify-end mt-2">
-                                                <FaExternalLinkAlt className="text-blue-600" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
+                        <div className="hover-border-form">
+                            <div className="max-w-[850px] mx-auto px-4 py-6">
+                                <h1 class="flex-auto text-lg font-semibold text-blue-100">
+                                    Conclusiones
+                                </h1>
+                                <div className="mb-6">
+                                    <ReactQuill modules={modules} formats={formats} theme="snow" value={conclusion} onChange={setConclusion} placeholder="Agregar resumen..." />
+                                    {/*<div dangerouslySetInnerHTML={{ __html: summary }} />*/}
+                                </div>
                             </div>
                         </div>
 
-                        <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-gray-800 mb-4">Conclusiones</h2>
-                            <p className="text-gray-700 leading-relaxed">{item?.conclusion}</p>
-                        </div>
                         <div className="flex flex-wrap gap-4 mb-4">
                             {item?.categories.map((category, index) => (
                                 <button
@@ -461,6 +501,39 @@ const AddNews = ({ page }) => {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
+
+            <Drawer
+                title="Banco de imágenes"
+                placement={placement}
+                width={500}
+                onClose={onClose}
+                open={open}
+            /*extra={
+                <Space>
+                    <Button onClick={onClose}>Cancel</Button>
+                    <Button type="primary" onClick={onClose}>
+                        OK
+                    </Button>
+                </Space>
+            }*/
+            >
+                <div className="grid grid-cols-3 gap-4">
+                    {[1, 2, 3, 4, 5, 6, 7, 8].map((banner) => (
+                        <div key={`img-banner-select-${banner}`} className="relative" onClick={() => handleBannerClick(banner)}>
+                            <img
+                                src={`img/news/banner/${banner}.png`}
+                                alt={`img-banner-add-news-select-${banner}`}
+                                className={`w-full h-auto cursor-pointer rounded-md border-2 ${selectedBanner === banner ? 'border-blue-500' : 'border-transparent'}`}
+                            />
+                            {selectedBanner === banner && (
+                                <div className="absolute top-2 right-2 bg-blue-600 text-white rounded-full p-1">
+                                    <FaCheck />
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </Drawer>
         </>
     );
 };

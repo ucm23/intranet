@@ -1678,12 +1678,12 @@ img.w-32\.h-32\.object-cover {
 }
 
 .hover-border-form:hover {
-    border-width: 3px;
+    border-width: 0px;
     border-color: #a5a4a4;
 }
 
 .hover-border-form {
-    border-width: 3px;
+    border-width: 0px 0px;
     border-color: white;
 }
 

@@ -7,7 +7,7 @@ export const indexDocuments = async ({ }) => {
             method: 'GET',
             url: `/documents`
         })
-        response = { data: fetch?.data?.data, status: true }
+        if (fetch?.status == 200) response = { data: fetch?.data?.data, status: true }
     } catch (error) {
         console.error("🚀 ~ indeDocuments ~ error:", error)
     } finally {
