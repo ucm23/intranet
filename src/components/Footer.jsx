@@ -59,13 +59,13 @@ const Footer = () => {
           </Col>
         </Row>
 
-        {/* Derechos reservados y política de privacidad en una línea separada 
+        {/* Derechos reservados y política de privacidad */}
         <Row>
           <Col className="text-center mt-3">
             <p className="mb-0">Política de privacidad</p>
             <p className="mb-0">© 2024 Grupo CTI Tech-IN POS. Todos los derechos reservados.</p>
           </Col>
-        </Row>*/}
+        </Row>
       </Container>
     </footer>
   );

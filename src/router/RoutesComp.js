@@ -27,8 +27,8 @@ import PerfilCapacitacion from "../pages/perfiles/PerfilCapacitacion";
 import Perfilits1 from "../pages/perfiles/Perfilits1";
 import Perfilits2 from "../pages/perfiles/Perfilits2";
 import Inicio from "../pages/inicio/Inicio";
-import Noticias from "../pages/Noticias";
-import NoticiaDetalle from "../pages/NoticiaDetalle";
+import Noticias from "../pages/noticias/Noticias";
+import NoticiaDetalle from "../pages/noticias/NoticiaDetalle";
 import Gestor from "../pages/gestor/Gestor"
 import Tramites from "../pages/tramites/Tramites"
 

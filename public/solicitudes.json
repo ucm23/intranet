@@ -1,0 +1,12 @@
+[
+    { "id": 1, "nombre": "Juan Pérez", "fecha": "2024-09-15", "estado": "Pendiente", "tipo_solicitud": "Vacaciones", "nombre_tramite": "Solicitud de Vacaciones", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 2, "nombre": "María García", "fecha": "2024-09-18", "estado": "Pendiente", "tipo_solicitud": "Permiso", "nombre_tramite": "Permiso por Asunto Personal", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 3, "nombre": "Carlos Ruiz", "fecha": "2024-09-20", "estado": "Autorizado", "tipo_solicitud": "Vacaciones", "nombre_tramite": "Solicitud de Vacaciones", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 4, "nombre": "Ana Martínez", "fecha": "2024-09-22", "estado": "No Autorizado", "tipo_solicitud": "Permiso", "nombre_tramite": "Permiso por Enfermedad", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 5, "nombre": "Luis Hernández", "fecha": "2024-09-25", "estado": "Pendiente", "tipo_solicitud": "Permiso", "nombre_tramite": "Permiso por Mudanza", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 6, "nombre": "Laura Gómez", "fecha": "2024-09-27", "estado": "Pendiente", "tipo_solicitud": "Vacaciones", "nombre_tramite": "Solicitud de Vacaciones", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 7, "nombre": "Miguel Torres", "fecha": "2024-09-29", "estado": "Autorizado", "tipo_solicitud": "Permiso", "nombre_tramite": "Permiso por Asunto Familiar", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 8, "nombre": "Sofía López", "fecha": "2024-10-01", "estado": "Pendiente", "tipo_solicitud": "Vacaciones", "nombre_tramite": "Solicitud de Vacaciones", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 9, "nombre": "Ricardo Morales", "fecha": "2024-10-05", "estado": "No Autorizado", "tipo_solicitud": "Permiso", "nombre_tramite": "Permiso por Cita Médica", "ruta": "/files/AnalisisyRequerimientosV3.pdf" },
+    { "id": 10, "nombre": "Valeria Fernández", "fecha": "2024-10-08", "estado": "Pendiente", "tipo_solicitud": "Permiso", "nombre_tramite": "Permiso por Evento Familiar", "ruta": "/files/AnalisisyRequerimientosV3.pdf" }
+]

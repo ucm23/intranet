@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import NavBar from '../../components/NavBar';
+import Navbar from '../../componentes/Navbar'; // Asegúrate de que la ruta sea correcta
 import TablaContenidos from '../../components/TablaContenidos';
 import Footer from '../../components/Footer';
 import SectionCarousel from '../../components/SectionCarousel';
@@ -27,7 +27,7 @@ const Gestor = () => {
 
   return (
     <div>
-      <NavBar />
+      <Navbar /> {/*  */}
 
       {/* Carrusel de imágenes */}
       <SectionCarousel
