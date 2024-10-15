@@ -32,44 +32,14 @@ const Calendario = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
     const [newEvent, setNewEvent] = useState({ title: '', description: '', link: '', type: '', area: '', start: null, end: null });
-    const [eventos, setEventos] = useState([]);
-    const [events, setEvents] = useState([
-        {
-            "id": 4,
-            "department_id": 1,
-            "user_id": 1,
-            "title": "Curso ISO",
-            "description": "Curso Certificacion ISO",
-            "url": "string",
-            "start_date": "2024-10-19T09:00:00.000Z",
-            "end_date": "2024-10-19T14:00:00.000Z",
-            "active": true,
-            "event_type": "Curso",
-            "created_at": "2024-10-14T21:05:55.447Z",
-            "updated_at": "2024-10-14T21:05:55.447Z"
-        },
-        {
-            title: 'Evento de Prueba',
-            description: 'este es un evento de prueba',
-            link: 'opcional',
-            type: 'reunion',
-            area: 'desarrollo',
-            start: new Date(),
-            end: new Date(new Date().getTime() + 60 * 60 * 1000), // 1 hora después
-        },
-        {
-            title: 'Evento 1',
-            start: new Date(2024, 9, 10, 10, 0), // 10 de octubre de 2024
-            end: new Date(2024, 9, 10, 12, 0), // 10 de octubre de 2024
-            description: 'Descripción del evento 1',
-            type: 'Reunión',
-            link: 'https://example.com/evento1',
-            color: '#FFDDC1' // Color opcional
-        }
-    ]);
+    const [users, setUsers] = useState([]);
+    const [departaments, setDepartaments] = useState([]);
+    const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
 
     useEffect(() => {
+        getDepartments()
+        getUsers()
         getEvents()
     }, [])
 
@@ -77,31 +47,21 @@ const Calendario = () => {
         const response = await indexEvents({})
         if (response.status) {
             console.log(response.data)
-            setEventos(response.data)
+            setEvents(response.data)
         }
     };
-
-    useEffect(() => {
-        getDepartments()
-    }, [])
 
     const getDepartments = async () => {
         const response = await indexDepartments({})
         if (response.status) {
-            console.log(response.data)
-            setEventos(response.data)
+            setDepartaments(response.data)
         }
     };
-
-    useEffect(() => {
-        getUsers()
-    }, [])
 
     const getUsers = async () => {
         const response = await indexUsers({})
         if (response.status) {
-            console.log(response.data)
-            setEventos(response.data)
+            setUsers(response.data)
         }
     };
 
@@ -151,10 +111,7 @@ const Calendario = () => {
         <div style={{ height: '100vh', overflow: 'hidden', padding: '20px' }}>
             <Navbar backgroundColor="#001529" />
             {/* Título del calendario */}
-            <div style={{
-                marginBottom: '20px', // Espacio entre el título y el contenido
-                textAlign: 'center',
-            }}>
+            <div style={{ marginBottom: '20px', textAlign: 'center', }}>
                 <h1 style={{
                     color: 'black',
                     fontSize: mobile ? '16px' : '20px',
@@ -165,36 +122,11 @@ const Calendario = () => {
                 </h1>
             </div>
 
-            <div style={{
-                display: 'flex', // Usa flex para colocar el formulario y el calendario uno al lado del otro
-                alignItems: 'flex-start', // Alinea los elementos al principio del contenedor
-                justifyContent: 'space-between',
-                height: 'calc(100% - 60px)', // Ocupa el resto del espacio (ajusta el valor según el tamaño del título y el padding)
-            }}>
+            <div style={{ display: 'flex',  alignItems: 'flex-start', justifyContent: 'space-between', height: 'calc(100% - 60px)',  }}>
 
                 {/* Marco para el formulario */}
-                <div style={{
-                    border: '1px solid #ccc', // Borde del marco
-                    borderRadius: '8px', // Bordes redondeados
-                    padding: '20px', // Espaciado interno
-                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', // Sombra
-                    marginBottom: '20px',
-                    width: mobile ? '30vw' : '30vw', // Ancho del marco
-                    marginLeft: 'auto', // Alinea a la derecha
-                    marginRight: 'auto', // Alinea a la izquierda
-                    position: 'relative', // Posiciona el contenedor relativamente
-                    zIndex: 4 // Asegúrate de que esté por debajo del título
-                }}>
-                    <div style={{
-                        marginBottom: '1px',
-                        textAlign: 'center',
-                        display: 'flex',
-                        alignItems: 'center',
-                        // justifyContent: 'space-between',
-                        flexWrap: 'wrap',
-                        gap: '5px', // Espacio de 20px entre los inputs en la misma línea
-                        position: 'relative', // Hace que el contenedor principal sea relativo para colocar el ícono dentro de él
-                    }}>
+                <div style={{ border: '1px solid #ccc',  borderRadius: '8px',  padding: '20px',  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px', width: mobile ? '30vw' : '30vw',  marginLeft: 'auto',  marginRight: 'auto',  position: 'relative',  zIndex: 4  }}>
+                    <div style={{ marginBottom: '1px', textAlign: 'center', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '5px',  position: 'relative'}}>
                         <FontAwesomeIcon
                             icon={faPlusCircle}
                             style={{
@@ -234,8 +166,8 @@ const Calendario = () => {
                                 onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
                             >
                                 <option value="">Selecciona un departamento</option>
-                                {eventos.length > 0 ? (
-                                    eventos.map((department) => (
+                                { departaments.length > 0 ? (
+                                    departaments.map((department) => (
                                         <option key={department.id} value={department.id}>
                                             {department.name}
                                         </option>
@@ -263,10 +195,10 @@ const Calendario = () => {
                                 onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
                             >
                                 <option value="">Integrantes</option>
-                                {eventos.length > 0 ? (
-                                    eventos.map((users) => (
-                                        <option key={users.id} value={users.id}>
-                                            {users.name}
+                                {users.length > 0 ? (
+                                    users.map((user) => (
+                                        <option key={user.id} value={user.id}>
+                                            {user.name}
                                         </option>
                                     ))
                                 ) : (
@@ -274,10 +206,6 @@ const Calendario = () => {
                                 )}
                             </select>
                         </div>
-
-
-
-
 
                         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                             <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Titulo:</label>
@@ -387,9 +315,6 @@ const Calendario = () => {
                             <option value="otro">Otro</option>
                         </select>
 
-                       
-
-
                         <DatePicker
                             placeholderText="Fecha de inicio"
                             selected={newEvent.start}
@@ -471,7 +396,7 @@ const Calendario = () => {
                     {/* Calendario */}
                     <Calendar
                         localizer={localizer}
-                        events={eventos}
+                        events={events}
                         startAccessor="start"
                         endAccessor="end"
                         style={{

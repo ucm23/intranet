@@ -8,12 +8,7 @@ export const indexDepartments = async ({ }) => {
             url: `/departments`
         })
         if (fetch.status == 200) {
-            let data = fetch?.data?.data.map((name) => {
-                return {
-                    ...name,
-                }
-            })
-            response = { data: data, status: true }
+            response = { data: fetch?.data?.data, status: true }
         }
     } catch (error) {
         console.error("TCL: indexDepartments -> error", error)
