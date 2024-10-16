@@ -24,3 +24,22 @@ export const indexEvents = async ({ }) => {
     }
 }
 
+export const createEvents = async ({ event }) => {
+    let response = { status: false };
+    try {
+        const fetch = await Fetcher({
+            method: 'POST',
+            url: `/events`,
+            data: JSON.stringify(event)
+        });
+        if (fetch.status === 201) {
+            response = { data: fetch?.data, status: true };
+        }
+    } catch (error) {
+        console.error("TCL: indexCreateEvents -> error", error);
+    } finally {
+        return response;
+    }
+};
+
+

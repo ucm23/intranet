@@ -12,10 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/custom-calendar.css'
 import { useEffect } from 'react';
-import { indexEvents } from '../../api/events/events';
+import { createEvents, indexEvents } from '../../api/events/events';
 import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
-import { indexCreateEvents } from '../../api/events/createevent';
+import moment from 'moment/moment';
 
 const locales = {
     es: es,
@@ -32,7 +32,13 @@ const localizer = dateFnsLocalizer({
 const Calendario = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
-    const [newEvent, setNewEvent] = useState({ department_id: '', user_id: '', title: '', description: '', link: '', start: null, end: null, type: '', participants_ids: '' });
+    const [newEvent, setNewEvent] = useState({
+        department_id: '',
+        user_id: '',
+        title: '',
+        description: '',
+        link: '', start: null, end: null, type: '', participants_ids: ''
+    });
     const [users, setUsers] = useState([]);
     const [departaments, setDepartaments] = useState([]);
     const [events, setEvents] = useState([]);
@@ -78,9 +84,7 @@ const Calendario = () => {
     };
 
     const handleAddEvent = async () => {
-        // Validar que todos los campos estén completos
-        console.log("Estado de newEvent:", newEvent);
-        // Validar campos específicos
+
         if (!newEvent.department_id) {
             alert('El campo Departamento es obligatorio.');
             return;
@@ -95,7 +99,6 @@ const Calendario = () => {
             newEvent.user_id &&
             newEvent.title &&
             newEvent.description &&
-            newEvent.link &&
             newEvent.start &&
             newEvent.end &&
             newEvent.type &&
@@ -103,25 +106,24 @@ const Calendario = () => {
             newEvent.start < newEvent.end
         ) {
             try {
-                const response = await indexCreateEvents(newEvent); // Utiliza la función para crear el evento
+                newEvent.department_id = parseInt(newEvent.department_id)
+                if (newEvent.link) newEvent.url = newEvent.link;
+                delete newEvent.link;
+                newEvent.event_type = newEvent.type;
+                delete newEvent.type;
+                
+                newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTH:MM');
+                newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
+                delete newEvent.start;
+                delete newEvent.end;
+                console.log("Estado de newEvent:", newEvent);
+                alert(JSON.stringify(newEvent));
+                const response = await createEvents({ event: newEvent });
                 console.log("Respuesta del servidor:", response);
 
+
                 if (response.status === true) {
-                    console.log("Evento creado con éxito:", response.data);
-                    // Aquí podrías hacer algo más, como limpiar el formulario o mostrar un mensaje
-                    setNewEvent({
-                        department_id: '',
-                        user_id: '',
-                        title: '',
-                        description: '',
-                        link: '',
-                        start: null,
-                        end: null,
-                        type: '',
-                        // participants_ids: '',
-                        participants_ids: [],
-                        users: [] // Inicializa users como un array vacío
-                    });
+                    console.log("Evento creado con éxito:",response.data);
                 } else {
                     console.error("Error al crear el evento:", response.error);
                 }
@@ -129,9 +131,9 @@ const Calendario = () => {
                 console.error("Error en la petición:", error);
             }
         }
-        // else {
-        //     alert('Por favor, complete todos los campos correctamente.');
-        // }
+        else {
+            alert('Por favor, complete todos los campos correctamente.');
+        }
     };
 
 
@@ -248,12 +250,12 @@ const Calendario = () => {
                                     value={newEvent.users}
                                     // onChange={(e) => setNewEvent({ ...newEvent, users: e.target.value })}
                                     onChange={(e) => {
-                                        const selectedUserId = e.target.value;
+                                        const selectedUserId = parseInt(e.target.value);
                                         // Actualizar tanto user_id como participants_ids con el mismo valor
                                         setNewEvent({
                                             ...newEvent,
-                                            user_id: selectedUserId, // Asignar el valor seleccionado a user_id
-                                            participants_ids: [selectedUserId] // Asignar el mismo valor a participants_ids como array
+                                            user_id: selectedUserId,
+                                            participants_ids: [selectedUserId]
                                         });
                                     }}
                                     style={{
@@ -273,10 +275,7 @@ const Calendario = () => {
                                     <option value="">Integrantes</option>
                                     {users.length > 0 ? (
                                         users.map((user) => (
-                                            <option key={user.id} value={user.id}>
-                                                {/* {user.first_name} */}
-                                                {`${user.first_name} ${user.last_name}`} {/* Muestra el nombre completo */}
-                                            </option>
+                                            <option key={user.id} value={user.id}>{`${user.first_name} ${user.last_name}`}</option>
                                         ))
                                     ) : (
                                         <option value="" disabled>No hay participantes disponibles</option> // Mensaje si no hay departamentos
@@ -505,7 +504,6 @@ const Calendario = () => {
                         height: mobile ? '62vh' : '72vh', // Ajustar aquí la altura del calendario
                         overflow: 'hidden',
                     }}>
-                        {/* Calendario */}
                         <Calendar
                             localizer={localizer}
                             events={events}
