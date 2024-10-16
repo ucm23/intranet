@@ -9,7 +9,6 @@ import Index from "./pages/landing/Index";
 import NewsList from './pages/noticies/NewsList';
 import Inicio from './pages/inicio/Inicio';
 import Home from './pages/inicio/Home';
-import Noticias from './pages/Noticias';
 import NoticiaDetalle from './pages/NoticiaDetalle';
 import Colaborador from './pages/colaborador/Colaborador';
 import Collaborator from './pages/colaborador/Collaborator';
@@ -69,7 +68,6 @@ function App() {
                         <Route path="*" element={<Inicio />} />
                         <Route path="/Home" element={<Home />} />
                         <Route path="/Inicio" element={<Inicio />} />
-                        <Route path="/noticias" element={<Noticias />} />
 
 
                         <Route path="/noticia/:id" element={<NoticiaDetalle />} />

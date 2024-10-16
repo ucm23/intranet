@@ -26,6 +26,8 @@ import { FaCheck } from 'react-icons/fa';
 import { FiUpload } from "react-icons/fi";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { ShareAltOutlined } from '@ant-design/icons';
+
 
 const modules = {
     toolbar: [
@@ -247,7 +249,14 @@ const AddNews = ({ page }) => {
 
     return (
         <>
-            <AppBar page={page}>
+            <AppBar
+                page={page}
+                extra={
+                    <ButtonAntd type="primary" icon={<ShareAltOutlined />}>
+                        Publicar
+                    </ButtonAntd>
+                }
+            >
                 <div className="bg-white scroll-100">
                     <div className="relative w-full">
                         <div className="relative_ hover-border-form" onClick={showDrawer}>
@@ -282,6 +291,7 @@ const AddNews = ({ page }) => {
                                 </div>
                             </div>
                         </div>
+                        <Divider />
                         <div className="hover-border-form">
                             <div className="max-w-[850px] mx-auto px-4 py-6">
                                 <h1 class="flex-auto text-lg font-semibold text-blue-100">
@@ -303,9 +313,8 @@ const AddNews = ({ page }) => {
                                         type="file"
                                         ref={fileInputRef}
                                         onChange={handleImageChange}
-                                        accept="image/*"
+                                        accept="image/*, .png, .jpeg, .jpg, .gif"
                                         className="hidden"
-                                        aria-label="Upload image"
                                     />
                                     {image ? (
                                         <img
@@ -318,17 +327,18 @@ const AddNews = ({ page }) => {
                                     ) : (
                                         <div className="text-gray-500">
                                             <FiUpload className="mx-auto text-3xl mb-2" />
-                                            <p>Drag and drop an image or click to upload</p>
+                                            <p>Arrastre y suelte una imagen o haga clic para cargar</p>
                                         </div>
                                     )}
                                 </motion.div>
                             </div>
                         </div>
+                        <Divider />
 
                         <div className="hover-border-form">
                             <div className="max-w-[850px] mx-auto px-4 py-6">
                                 <h1 class="flex-auto text-lg font-semibold text-blue-100">
-                                    Añadir características
+                                    Añadir lista
                                 </h1>
                                 <div className="space-y-6">
                                     <div>
@@ -351,7 +361,11 @@ const AddNews = ({ page }) => {
                                                 className={`bg-white rounded-lg p-6 border-none outline-none border border-gray-300 transition-all duration-300 ${editingIndex === index ? 'ring-2 ring-primary-100' : ''}`}
                                             >
                                                 <div className={`flex ${editingIndex !== index ? "justify-between" : "justify-end"} items-center`}>
-                                                    {editingIndex !== index && <h3 className="text-lg font-semibold text-purple-600">{item.name || "Sin nombre"}</h3>}
+                                                    {editingIndex !== index &&
+                                                        <h3 className="text-lg font-semibold text-primary-100">
+                                                            {item.name || "Sin nombre"}
+                                                        </h3>
+                                                    }
                                                     <div className="flex space-x-2">
                                                         <button
                                                             type="button"
@@ -387,16 +401,6 @@ const AddNews = ({ page }) => {
                                                             {errors[`name_${index}`] && <p className="mt-2 text-sm text-red-600">{errors[`name_${index}`]}</p>}
                                                         </div>
                                                         <div>
-                                                            {/*<label htmlFor={`description_${index}`} className="block text-sm font-medium text-purple-700 mb-1">
-                                                                Descripción
-                                                            </label>
-                                                            <input
-                                                                type="text"
-                                                                id={`description_${index}`}
-                                                                value={item.description}
-                                                                onChange={(e) => handleDataChange(index, 'description', e.target.value)}
-                                                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500 sm:text-sm"
-                                                            />*/}
                                                             <ReactQuill id={`description_${index}`} modules={modules} formats={formats} theme="snow" value={item?.description} onChange={(value) => handleDataChange(index, 'description', value)} placeholder="Agregar descripción..." />
                                                             {errors[`description_${index}`] && <p className="mt-2 text-sm text-red-600">{errors[`description_${index}`]}</p>}
                                                         </div>
@@ -413,7 +417,7 @@ const AddNews = ({ page }) => {
                                         <button
                                             type="button"
                                             onClick={addMoreFields}
-                                            className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:-translate-y-1 ${isTitleEmpty ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                            className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-100 hover:bg-primary-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300 ease-in-out transform hover:-translate-y-1 ${isTitleEmpty ? 'opacity-50 cursor-not-allowed' : ''}`}
                                             disabled={isTitleEmpty}
                                         >
                                             <FiPlus className="mr-2" /> Add More
@@ -422,6 +426,7 @@ const AddNews = ({ page }) => {
                                 </div>
                             </div>
                         </div>
+                        <Divider />
 
                         <div className="hover-border-form">
                             <div className="max-w-[850px] mx-auto px-4 py-6">
