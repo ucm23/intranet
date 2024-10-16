@@ -1252,3 +1252,14 @@ a.dropdown-item {
 
 .header {}
 
+
+
+.element-class {
+  padding: 5px;
+  width: 185px;
+  border: 1px solid #ccc; /* Marco del select */
+  border-radius: 4px; /* Bordes redondeados */
+  transition: box-shadow 0.3s ease; /* Transición suave */
+  font-size: 12px;
+  margin-left: 5px;
+}

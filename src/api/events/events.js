@@ -36,7 +36,7 @@ export const createEvents = async ({ event }) => {
             response = { data: fetch?.data, status: true };
         }
     } catch (error) {
-        console.error("TCL: indexCreateEvents -> error", error);
+        console.log("🚀 ~ createEvents ~ error:", error)
     } finally {
         return response;
     }

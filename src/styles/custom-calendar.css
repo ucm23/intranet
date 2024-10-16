@@ -22,3 +22,20 @@
 .custom-calendar .rbc-time-view .rbc-time-slot {
     font-size: 10px; /* Ajusta el tamaño de las horas */
 }
+
+.input-select-calendar {
+    padding: 5px;
+    width: 185px;
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/*.input-select-calendar:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}*/
+
+.input-shadow:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}

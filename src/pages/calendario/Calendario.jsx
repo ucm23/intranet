@@ -109,6 +109,7 @@ const Calendario = () => {
                 newEvent.department_id = parseInt(newEvent.department_id)
                 if (newEvent.link) newEvent.url = newEvent.link;
                 delete newEvent.link;
+
                 newEvent.event_type = newEvent.type;
                 delete newEvent.type;
                 
@@ -116,11 +117,11 @@ const Calendario = () => {
                 newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
                 delete newEvent.start;
                 delete newEvent.end;
+
                 console.log("Estado de newEvent:", newEvent);
                 alert(JSON.stringify(newEvent));
                 const response = await createEvents({ event: newEvent });
                 console.log("Respuesta del servidor:", response);
-
 
                 if (response.status === true) {
                     console.log("Evento creado con éxito:",response.data);
@@ -220,17 +221,7 @@ const Calendario = () => {
                                 <select
                                     value={newEvent.department_id}
                                     onChange={(e) => setNewEvent({ ...newEvent, department_id: e.target.value })}
-                                    style={{
-                                        padding: '5px',
-                                        width: '185px',
-                                        border: '1px solid #ccc', // Marco del select
-                                        borderRadius: '4px', // Bordes redondeados
-                                        transition: 'box-shadow 0.3s ease', // Transición suave
-                                        fontSize: '12px',
-                                        marginLeft: '5px'
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                    className='input-select-calendar input-shadow'
                                 >
                                     <option value="">Selecciona un departamento</option>
                                     {departaments.length > 0 ? (
@@ -258,19 +249,7 @@ const Calendario = () => {
                                             participants_ids: [selectedUserId]
                                         });
                                     }}
-                                    style={{
-                                        padding: '5px',
-                                        width: '180px',
-                                        border: '1px solid #ccc', // Marco del select
-                                        borderRadius: '4px', // Bordes redondeados
-                                        transition: 'box-shadow 0.3s ease', // Transición suave
-                                        fontSize: '12px',
-                                        marginLeft: '5px' // Mueve el select hacia la derecha
-
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                    aria-label="Seleccionar Integrante"
+                                     className='input-select-calendar'
                                 >
                                     <option value="">Integrantes</option>
                                     {users.length > 0 ? (
@@ -302,8 +281,10 @@ const Calendario = () => {
                                         transition: 'box-shadow 0.3s ease', // Transición suave
                                         fontSize: '12px',
                                         marginTop: '10px',
-                                        marginLeft: '40px' // Mueve el select hacia la derecha
+                                        marginLeft: '40px', // Mueve el select hacia la derecha,
+                                        margin: '10px 20px 2px'
                                     }}
+                                    className='nuevo-selector-inventadoo-con-lo9s-estilos-de-arriba-input-select-calendar input-shadow'
                                     onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
                                     onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
                                 />
