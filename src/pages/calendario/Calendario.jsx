@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { indexEvents } from '../../api/events/events';
 import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
+import { indexCreateEvents } from '../../api/events/createevent';
 
 const locales = {
     es: es,
@@ -31,11 +32,12 @@ const localizer = dateFnsLocalizer({
 const Calendario = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
-    const [newEvent, setNewEvent] = useState({ title: '', description: '', link: '', type: '', area: '', start: null, end: null });
+    const [newEvent, setNewEvent] = useState({ department_id: '', user_id: '', title: '', description: '', link: '', start: null, end: null, type: '', participants_ids: '' });
     const [users, setUsers] = useState([]);
     const [departaments, setDepartaments] = useState([]);
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [showEditDelete, setShowEditDelete] = useState(true);
 
     useEffect(() => {
         getDepartments()
@@ -61,20 +63,75 @@ const Calendario = () => {
     const getUsers = async () => {
         const response = await indexUsers({})
         if (response.status) {
-            setUsers(response.data)
+            console.log("Usuarios cargados:", response.data);
+            setUsers(response.data); // Establece el estado de usuarios
+        } else {
+            console.error("Error al cargar usuarios:", response.error);
         }
+        // if (response.status) {
+        //     setUsers(response.data)
+        // }
+    };
+    const formatDateTime = (date) => {
+        const options = { hour: '2-digit', minute: '2-digit' }; // Formato de horas y minutos
+        return new Date(date).toLocaleTimeString([], options);
     };
 
-
-    const handleAddEvent = () => {
-        console.log('Intentando agregar evento:', newEvent);
-        // if (newEvent.title && newEvent.start && newEvent.end && newEvent.start < newEvent.end) {
-        if (newEvent.title && newEvent.description && newEvent.link && newEvent.type && newEvent.area && newEvent.start && newEvent.end && newEvent.start < newEvent.end) {
-            setEvents([...events, newEvent]);
-            setNewEvent({ title: '', description: '', link: '', type: '', area: '', start: null, end: null });
-        } else {
-            alert('Por favor, complete todos los campos correctamente.');
+    const handleAddEvent = async () => {
+        // Validar que todos los campos estén completos
+        console.log("Estado de newEvent:", newEvent);
+        // Validar campos específicos
+        if (!newEvent.department_id) {
+            alert('El campo Departamento es obligatorio.');
+            return;
         }
+        if (!newEvent.participants_ids) {
+            alert('El campo Participantes es obligatorio.');
+            return;
+        }
+
+        if (
+            newEvent.department_id &&
+            newEvent.user_id &&
+            newEvent.title &&
+            newEvent.description &&
+            newEvent.link &&
+            newEvent.start &&
+            newEvent.end &&
+            newEvent.type &&
+            newEvent.participants_ids &&
+            newEvent.start < newEvent.end
+        ) {
+            try {
+                const response = await indexCreateEvents(newEvent); // Utiliza la función para crear el evento
+                console.log("Respuesta del servidor:", response);
+
+                if (response.status === true) {
+                    console.log("Evento creado con éxito:", response.data);
+                    // Aquí podrías hacer algo más, como limpiar el formulario o mostrar un mensaje
+                    setNewEvent({
+                        department_id: '',
+                        user_id: '',
+                        title: '',
+                        description: '',
+                        link: '',
+                        start: null,
+                        end: null,
+                        type: '',
+                        // participants_ids: '',
+                        participants_ids: [],
+                        users: [] // Inicializa users como un array vacío
+                    });
+                } else {
+                    console.error("Error al crear el evento:", response.error);
+                }
+            } catch (error) {
+                console.error("Error en la petición:", error);
+            }
+        }
+        // else {
+        //     alert('Por favor, complete todos los campos correctamente.');
+        // }
     };
 
 
@@ -94,7 +151,7 @@ const Calendario = () => {
             // setNewEvent({ title: '', start: null, end: null });
             setNewEvent({ title: '', description: '', link: '', type: '', area: '', start: null, end: null });
         } else {
-            alert('Por favor, complete todos los campos correctamente.');
+            // alert('Por favor, complete todos los campos correctamente.');
         }
     };
 
@@ -106,325 +163,381 @@ const Calendario = () => {
         setNewEvent({ title: '', description: '', link: '', type: '', area: '', start: null, end: null });
     };
 
+    const handleCancel = () => {
+        // Restablecer el estado al cancelar
+        setSelectedEvent(null); // Limpiar el evento seleccionado
+        setNewEvent({ title: '', description: '', link: '', type: '', area: '', start: null, end: null }); // Limpiar formulario
+        setShowEditDelete(true); // Mostrar nuevamente los botones de editar y eliminar si corresponde
+    };
+
     return (
-
-        <div style={{ height: '100vh', overflow: 'hidden', padding: '20px' }}>
+        <div style={{ height: '100vh', overflow: 'hidden' }}>
             <Navbar backgroundColor="#001529" />
-            {/* Título del calendario */}
-            <div style={{ marginBottom: '20px', textAlign: 'center', }}>
-                <h1 style={{
-                    color: 'black',
-                    fontSize: mobile ? '16px' : '20px',
-                    fontFamily: 'copperplate gothic bold',
-                    marginTop: '20px'
-                }}>
-                    Calendario de Eventos
-                </h1>
-            </div>
+            <div style={{ height: '100vh', overflow: 'hidden', padding: '10px' }}>
+                {/* Título del calendario */}
+                <div style={{ marginBottom: '20px', textAlign: 'center', }}>
+                    <h1 style={{
+                        color: 'black',
+                        fontSize: mobile ? '16px' : '20px',
+                        fontFamily: 'copperplate gothic bold',
+                        marginTop: '20px'
+                    }}>
+                        Calendario de Eventos
+                    </h1>
+                </div>
 
-            <div style={{ display: 'flex',  alignItems: 'flex-start', justifyContent: 'space-between', height: 'calc(100% - 60px)',  }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', height: 'calc(100% - 60px)', }}>
 
-                {/* Marco para el formulario */}
-                <div style={{ border: '1px solid #ccc',  borderRadius: '8px',  padding: '20px',  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px', width: mobile ? '30vw' : '30vw',  marginLeft: 'auto',  marginRight: 'auto',  position: 'relative',  zIndex: 4  }}>
-                    <div style={{ marginBottom: '1px', textAlign: 'center', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '5px',  position: 'relative'}}>
-                        <FontAwesomeIcon
-                            icon={faPlusCircle}
-                            style={{
-                                color: 'blue', // Cambia el color según tu preferencia
-                                fontSize: mobile ? '20px' : '24px', // Tamaño del ícono
-                                marginRight: '10px', // Espacio entre el ícono y el texto
-                                cursor: 'pointer', // Cambia el cursor al pasar sobre el ícono
-                            }}
-                        />
-                        <span style={{
-                            fontSize: mobile ? '16px' : '20px', // Tamaño del texto
-                            color: 'black', // Color del texto
-                            fontFamily: 'copperplate gothic bold', // Fuente del texto
-                            display: 'flex', // Usar flex para centrar el texto
-                            alignItems: 'center', // Centrar verticalmente
-                            justifyContent: 'center', // Centrar horizontalmente
-                            // marginLeft: 'auto', // Empujar el texto a la derecha
-                        }}>
-                            Nuevo Evento
-                        </span>
-                        {/* Sección del formulario */}
-
-                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                            <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Departamento:</label>
-                            <select
-                                value={newEvent.department}
-                                onChange={(e) => setNewEvent({ ...newEvent, department: e.target.value })}
+                    {/* Marco para el formulario */}
+                    <div style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '20px', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px', width: mobile ? '30vw' : '30vw', marginLeft: 'auto', marginRight: 'auto', position: 'relative', zIndex: 4 }}>
+                        <div style={{ marginBottom: '1px', textAlign: 'center', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '5px', position: 'relative' }}>
+                            <FontAwesomeIcon
+                                icon={faPlusCircle}
                                 style={{
-                                    padding: '5px',
-                                    width: '180px',
-                                    border: '1px solid #ccc', // Marco del select
-                                    borderRadius: '4px', // Bordes redondeados
-                                    transition: 'box-shadow 0.3s ease', // Transición suave
-                                    fontSize: '12px'
+                                    color: 'blue', // Cambia el color según tu preferencia
+                                    fontSize: mobile ? '20px' : '24px', // Tamaño del ícono
+                                    marginRight: '10px', // Espacio entre el ícono y el texto
+                                    cursor: 'pointer', // Cambia el cursor al pasar sobre el ícono
                                 }}
-                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                            >
-                                <option value="">Selecciona un departamento</option>
-                                { departaments.length > 0 ? (
-                                    departaments.map((department) => (
-                                        <option key={department.id} value={department.id}>
-                                            {department.name}
-                                        </option>
-                                    ))
-                                ) : (
-                                    <option value="" disabled>No hay departamentos disponibles</option> // Mensaje si no hay departamentos
-                                )}
-                            </select>
-                        </div>
-
-                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                            <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Participantes:</label>
-                            <select
-                                value={newEvent.user}
-                                onChange={(e) => setNewEvent({ ...newEvent, users: e.target.value })}
-                                style={{
-                                    padding: '5px',
-                                    width: '180px',
-                                    border: '1px solid #ccc', // Marco del select
-                                    borderRadius: '4px', // Bordes redondeados
-                                    transition: 'box-shadow 0.3s ease', // Transición suave
-                                    fontSize: '12px'
-                                }}
-                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                            >
-                                <option value="">Integrantes</option>
-                                {users.length > 0 ? (
-                                    users.map((user) => (
-                                        <option key={user.id} value={user.id}>
-                                            {user.name}
-                                        </option>
-                                    ))
-                                ) : (
-                                    <option value="" disabled>No hay participantes disponibles</option> // Mensaje si no hay departamentos
-                                )}
-                            </select>
-                        </div>
-
-                        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                            <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Titulo:</label>
-                            <input
-                                type="text"
-                                placeholder="Título del evento"
-                                value={newEvent.title}
-                                onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                                style={{
-                                    // marginRight: '35px',
-                                    marginLeft: '10px', // Desplaza este input 20px a la derecha
-                                    padding: '5px',
-                                    width: '300px',
-                                    // maxWidth: '100%', // Los inputs ocuparán el 100% del contenedor si es necesario
-                                    border: '1px solid #ccc', // Marco del input
-                                    borderRadius: '4px', // Bordes redondeados
-                                    transition: 'box-shadow 0.3s ease', // Transición suave
-                                    fontSize: '12px',
-                                    marginTop: '10px'
-                                }}
-                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
                             />
+                            <span style={{
+                                fontSize: mobile ? '16px' : '20px', // Tamaño del texto
+                                color: 'black', // Color del texto
+                                fontFamily: 'copperplate gothic bold', // Fuente del texto
+                                display: 'flex', // Usar flex para centrar el texto
+                                alignItems: 'center', // Centrar verticalmente
+                                justifyContent: 'center', // Centrar horizontalmente
+                                // marginLeft: 'auto', // Empujar el texto a la derecha
+                            }}>
+                                Nuevo Evento
+                            </span>
+                            {/* Sección del formulario */}
+
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Departamento:</label>
+                                <select
+                                    value={newEvent.department_id}
+                                    onChange={(e) => setNewEvent({ ...newEvent, department_id: e.target.value })}
+                                    style={{
+                                        padding: '5px',
+                                        width: '185px',
+                                        border: '1px solid #ccc', // Marco del select
+                                        borderRadius: '4px', // Bordes redondeados
+                                        transition: 'box-shadow 0.3s ease', // Transición suave
+                                        fontSize: '12px',
+                                        marginLeft: '5px'
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                >
+                                    <option value="">Selecciona un departamento</option>
+                                    {departaments.length > 0 ? (
+                                        departaments.map((department) => (
+                                            <option key={department.id} value={department.id}>
+                                                {department.name}
+                                            </option>
+                                        ))
+                                    ) : (
+                                        <option value="" disabled>No hay departamentos disponibles</option> // Mensaje si no hay departamentos
+                                    )}
+                                </select>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Colaboradores:</label>
+                                <select
+                                    value={newEvent.users}
+                                    // onChange={(e) => setNewEvent({ ...newEvent, users: e.target.value })}
+                                    onChange={(e) => {
+                                        const selectedUserId = e.target.value;
+                                        // Actualizar tanto user_id como participants_ids con el mismo valor
+                                        setNewEvent({
+                                            ...newEvent,
+                                            user_id: selectedUserId, // Asignar el valor seleccionado a user_id
+                                            participants_ids: [selectedUserId] // Asignar el mismo valor a participants_ids como array
+                                        });
+                                    }}
+                                    style={{
+                                        padding: '5px',
+                                        width: '180px',
+                                        border: '1px solid #ccc', // Marco del select
+                                        borderRadius: '4px', // Bordes redondeados
+                                        transition: 'box-shadow 0.3s ease', // Transición suave
+                                        fontSize: '12px',
+                                        marginLeft: '5px' // Mueve el select hacia la derecha
+
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                    aria-label="Seleccionar Integrante"
+                                >
+                                    <option value="">Integrantes</option>
+                                    {users.length > 0 ? (
+                                        users.map((user) => (
+                                            <option key={user.id} value={user.id}>
+                                                {/* {user.first_name} */}
+                                                {`${user.first_name} ${user.last_name}`} {/* Muestra el nombre completo */}
+                                            </option>
+                                        ))
+                                    ) : (
+                                        <option value="" disabled>No hay participantes disponibles</option> // Mensaje si no hay departamentos
+                                    )}
+                                </select>
+                            </div>
+
+
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Titulo:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Título del evento"
+                                    value={newEvent.title}
+                                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                                    style={{
+                                        // marginRight: '35px',
+                                        marginLeft: '10px', // Desplaza este input 20px a la derecha
+                                        padding: '5px',
+                                        width: '280px',
+                                        // maxWidth: '100%', // Los inputs ocuparán el 100% del contenedor si es necesario
+                                        border: '1px solid #ccc', // Marco del input
+                                        borderRadius: '4px', // Bordes redondeados
+                                        transition: 'box-shadow 0.3s ease', // Transición suave
+                                        fontSize: '12px',
+                                        marginTop: '10px',
+                                        marginLeft: '40px' // Mueve el select hacia la derecha
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Descripción:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Descripción"
+                                    value={newEvent.description}
+                                    onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+                                    style={{
+                                        marginRight: '10px',
+                                        padding: '5px',
+                                        width: '280px',
+                                        border: '1px solid #ccc', // Marco del input
+                                        borderRadius: '4px', // Bordes redondeados
+                                        transition: 'box-shadow 0.3s ease', // Transición suave
+                                        fontSize: '12px'
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Link(opcion):</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enlace de la reunión "
+                                    value={newEvent.link}
+                                    onChange={(e) => setNewEvent({ ...newEvent, link: e.target.value })}
+                                    style={{
+                                        marginRight: '30px',
+                                        padding: '5px',
+                                        width: '280px',
+                                        border: '1px solid #ccc', // Marco del input
+                                        borderRadius: '4px', // Bordes redondeados
+                                        transition: 'box-shadow 0.3s ease', // Transición suave
+                                        fontSize: '12px',
+                                        marginLeft: '-5px' // Mueve el select hacia la derecha
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                />
+                            </div>
+
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Fecha Inicio:</label>
+                                <DatePicker
+                                    placeholderText="Fecha de inicio"
+                                    selected={newEvent.start}
+                                    onChange={(start) => setNewEvent({ ...newEvent, start })}
+                                    showTimeSelect
+                                    dateFormat="Pp"
+                                    customInput={
+                                        <input style={{
+                                            marginRight: '10px',
+                                            border: '1px solid #ccc', // Marco del input
+                                            borderRadius: '4px', // Bordes redondeados
+                                            fontSize: '13px',
+                                            marginLeft: '5px' // Mueve el select hacia la derecha
+                                        }}
+                                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                        />}
+                                />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Fecha de Fin:</label>
+                                <DatePicker
+                                    placeholderText="Fecha de finalización"
+                                    selected={newEvent.end}
+                                    onChange={(end) => setNewEvent({ ...newEvent, end })}
+                                    showTimeSelect
+                                    dateFormat="Pp"
+                                    customInput={
+                                        <input style={{
+                                            marginRight: '10px',
+                                            border: '1px solid #ccc', // Marco del input
+                                            borderRadius: '4px',// Bordes redondeados
+                                            transition: 'box-shadow 0.3s ease', // Transición suave
+                                            fontSize: '13px'
+                                        }}
+                                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+
+                                        />}
+                                />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Tipo Evento:</label>
+                                <select
+                                    value={newEvent.type}
+                                    onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
+                                    style={{
+                                        padding: '5px',
+                                        width: '180px',
+                                        border: '1px solid #ccc', // Marco del select
+                                        borderRadius: '4px', // Bordes redondeados
+                                        transition: 'box-shadow 0.3s ease', // Transición suave
+                                        // marginLeft: '20px',
+                                        fontSize: '12px'
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
+                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                >
+                                    <option value="">Tipo de evento</option>
+                                    <option value="reunion">Reunión</option>
+                                    <option value="Curso">Curso</option>
+                                    <option value="Cumpleaños">Cumpleaños</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+
+                            {selectedEvent ? (
+                                <>
+                                    <button onClick={handleUpdateEvent}
+                                        style={{
+                                            marginLeft: '10px', border: '1px solid #ccc', // Borde del botón
+                                            borderRadius: '4px',
+                                            padding: '5px 10px',
+                                            cursor: 'pointer',
+                                            fontSize: mobile ? '10px' : '14px',
+                                            transition: 'box-shadow 0.5s ease',
+                                            backgroundColor: '#007A33',
+                                            color: 'white'
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'} // Sombra al pasar el mouse
+                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                    >
+                                        Actualizar Evento
+                                    </button>
+                                    <button onClick={handleDeleteEvent}
+                                        style={{
+                                            marginLeft: '10px', border: '1px solid #ccc', // Borde del botón
+                                            borderRadius: '4px',
+                                            padding: '5px 10px',
+                                            cursor: 'pointer',
+                                            fontSize: mobile ? '10px' : '14px',
+                                            transition: 'box-shadow 0.5s ease',
+                                            backgroundColor: 'red',
+                                            color: 'white'
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'} // Sombra al pasar el mouse
+                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                    >
+                                        Eliminar Evento
+                                    </button>
+                                    <button
+                                        onClick={handleCancel}
+                                        style={{
+                                            marginLeft: '10px',
+                                            border: '1px solid #ccc',
+                                            borderRadius: '4px',
+                                            padding: '5px 10px',
+                                            cursor: 'pointer',
+                                            fontSize: mobile ? '10px' : '14px',
+                                            transition: 'box-shadow 0.5s ease',
+                                            backgroundColor: 'orange', // Color verde claro para el botón de cancelar
+                                            color: 'white'
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'}
+                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
+                                    >
+                                        Cancelar
+                                    </button>
+                                </>
+                            ) : (
+                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    <button
+                                        onClick={handleAddEvent}
+                                        style={{
+                                            // marginLeft: '10px',
+                                            border: '1px solid #ccc', // Borde del botón
+                                            borderRadius: '4px', // Bordes redondeados
+                                            backgroundColor: '#1890ff', // Cambia el color de fondo según sea necesario
+                                            color: 'white', // Color del texto
+                                            padding: '5px 10px', // Espaciado interno
+                                            cursor: 'pointer', // Cambia el cursor al pasar por encima
+                                            fontSize: mobile ? '10px' : '14px',
+                                            transition: 'box-shadow 0.5s ease',
+                                            marginLeft: '200px'
+                                        }}
+                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'} // Sombra al pasar el mouse
+                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                    >
+                                        <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
+                                        Agregar Evento
+                                    </button>
+                                </div>
+                            )}
                         </div>
+                    </div>
+                    {/* aqui termina el formulario de nuevo evento */}
 
-
-                        <label style={{ marginBottom: '5px', fontWeight: 'bold', fontSize: mobile ? '12px' : '12px' }}>
-                            Nombre del evento:
-                        </label>
-                        <input
-                            type="text"
-                            placeholder="Título del evento"
-                            value={newEvent.title}
-                            onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                    <div style={{
+                        width: mobile ? '61vw' : '66vw',
+                        height: mobile ? '62vh' : '72vh', // Ajustar aquí la altura del calendario
+                        overflow: 'hidden',
+                    }}>
+                        {/* Calendario */}
+                        <Calendar
+                            localizer={localizer}
+                            events={events}
+                            startAccessor="start"
+                            endAccessor="end"
                             style={{
-                                // marginRight: '35px',
-                                marginLeft: '10px', // Desplaza este input 20px a la derecha
-                                padding: '5px',
-                                width: '380px',
-                                // maxWidth: '100%', // Los inputs ocuparán el 100% del contenedor si es necesario
-                                border: '1px solid #ccc', // Marco del input
-                                borderRadius: '4px', // Bordes redondeados
-                                transition: 'box-shadow 0.3s ease', // Transición suave
-                                fontSize: '12px',
-                                marginTop: '10px'
-
+                                width: '100%',
+                                height: '100%',
+                                fontSize: '11px'
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-
-                        />
-                        <input
-                            type="text"
-                            placeholder="Descripción"
-                            value={newEvent.description}
-                            onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-                            style={{
-                                marginRight: '10px',
-                                padding: '5px',
-                                width: '380px',
-                                border: '1px solid #ccc', // Marco del input
-                                borderRadius: '4px', // Bordes redondeados
-                                transition: 'box-shadow 0.3s ease', // Transición suave
-                                fontSize: '12px'
+                            defaultView="month"
+                            views={['month', 'week', 'day']}
+                            messages={{
+                                today: 'Hoy',
+                                previous: 'Anterior',
+                                next: 'Siguiente',
+                                month: 'Mes',
+                                week: 'Semana',
+                                day: 'Día',
+                                agenda: 'Agenda',
+                                date: 'Fecha',
+                                time: 'Hora',
+                                event: 'Evento',
+                                noEventsInRange: 'No hay eventos en este rango.',
                             }}
-                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-
+                            className="custom-calendar"  // Agregamos clase personalizada
+                            onSelectEvent={handleEditEvent}
                         />
-                        <input
-                            type="text"
-                            placeholder="Enlace de la reunión (opcional)"
-                            value={newEvent.link}
-                            onChange={(e) => setNewEvent({ ...newEvent, link: e.target.value })}
-                            style={{
-                                marginRight: '10px',
-                                padding: '5px',
-                                width: '380px',
-                                border: '1px solid #ccc', // Marco del input
-                                borderRadius: '4px', // Bordes redondeados
-                                transition: 'box-shadow 0.3s ease', // Transición suave
-                                fontSize: '12px'
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-
-                        />
-                        <select
-                            value={newEvent.type}
-                            onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
-                            style={{
-                                padding: '5px',
-                                width: '180px',
-                                border: '1px solid #ccc', // Marco del select
-                                borderRadius: '4px', // Bordes redondeados
-                                transition: 'box-shadow 0.3s ease', // Transición suave
-                                marginLeft: '10px',
-                                fontSize: '12px'
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                        >
-                            <option value="">Tipo de evento</option>
-                            <option value="reunion">Reunión</option>
-                            <option value="Curso">Curso</option>
-                            <option value="Cumpleaños">Cumpleaños</option>
-                            <option value="otro">Otro</option>
-                        </select>
-
-                        <DatePicker
-                            placeholderText="Fecha de inicio"
-                            selected={newEvent.start}
-                            onChange={(start) => setNewEvent({ ...newEvent, start })}
-                            showTimeSelect
-                            dateFormat="Pp"
-                            customInput={
-                                <input style={{
-                                    marginRight: '10px',
-                                    border: '1px solid #ccc', // Marco del input
-                                    borderRadius: '4px', // Bordes redondeados
-                                    fontSize: '13px'
-                                }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                />}
-                        />
-
-                        <DatePicker
-                            placeholderText="Fecha de finalización"
-                            selected={newEvent.end}
-                            onChange={(end) => setNewEvent({ ...newEvent, end })}
-                            showTimeSelect
-                            dateFormat="Pp"
-                            customInput={
-                                <input style={{
-                                    marginRight: '10px',
-                                    border: '1px solid #ccc', // Marco del input
-                                    borderRadius: '4px',// Bordes redondeados
-                                    transition: 'box-shadow 0.3s ease', // Transición suave
-                                    fontSize: '13px'
-                                }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-
-                                />}
-                        />
-                        {selectedEvent ? (
-                            <>
-                                <button onClick={handleUpdateEvent} style={{ marginLeft: '10px' }}>
-                                    Actualizar Evento
-                                </button>
-                                <button onClick={handleDeleteEvent} style={{ marginLeft: '10px', backgroundColor: 'red', color: 'white' }}>
-                                    Eliminar Evento
-                                </button>
-                            </>
-                        ) : (
-                            <button
-                                onClick={handleAddEvent}
-                                style={{
-                                    marginLeft: '10px',
-                                    border: '1px solid #ccc', // Borde del botón
-                                    borderRadius: '4px', // Bordes redondeados
-                                    backgroundColor: 'blue', // Cambia el color de fondo según sea necesario
-                                    color: 'white', // Color del texto
-                                    padding: '5px 10px', // Espaciado interno
-                                    cursor: 'pointer', // Cambia el cursor al pasar por encima
-                                    fontSize: mobile ? '10px' : '14px',
-                                    transition: 'box-shadow 0.5s ease'
-                                }}
-                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-
-                            >
-                                <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
-                                Agregar Evento
-                            </button>
-                        )}
                     </div>
                 </div>
-                {/* aqui termina el formulario de nuevo evento */}
-
-                <div style={{
-                    width: mobile ? '61vw' : '66vw',
-                    height: mobile ? '62vh' : '72vh', // Ajustar aquí la altura del calendario
-                    overflow: 'hidden',
-                }}>
-
-                    {/* Calendario */}
-                    <Calendar
-                        localizer={localizer}
-                        events={events}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            fontSize: '11px'
-                        }}
-                        defaultView="month"
-                        views={['month', 'week', 'day']}
-                        messages={{
-                            today: 'Hoy',
-                            previous: 'Anterior',
-                            next: 'Siguiente',
-                            month: 'Mes',
-                            week: 'Semana',
-                            day: 'Día',
-                            agenda: 'Agenda',
-                            date: 'Fecha',
-                            time: 'Hora',
-                            event: 'Evento',
-                            noEventsInRange: 'No hay eventos en este rango.',
-                        }}
-                        className="custom-calendar"  // Agregamos clase personalizada
-                        onSelectEvent={handleEditEvent}
-                    />
-                </div>
             </div>
-        // </div>
+        </div>
     );
 };
 
