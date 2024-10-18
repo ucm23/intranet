@@ -258,117 +258,115 @@ const Calendar = () => {
 
     return (
         <div>
-            <div>
-                <Navbar backgroundColor="#001529" />
+            <Navbar backgroundColor="#001529" />
+            <SplitterLayout
+                percentage={true}
+                primaryMinSize={12}
+                primaryMaxSize={12}
+                secondaryInitialSize={88}
+                secondaryMinSize={88}
+                customClassName="my-splitter-layout"
+            >
+                <div>
+                    <Dropdown.Button
+                        type="primary"
+                        loading={false}
+                        menu={{
+                            items,
+                        }}
+                        size='large'
+                        onClick={onOpenEvent}
+                        style={{ padding: '10px 0px 10px 8px' }}
+                    >
+                        Crear
+                    </Dropdown.Button>
+                    <Accordion>
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box as='span' flex='1' textAlign='left'>
+                                        Calendarios
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel>
+                                <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
                 <SplitterLayout
                     percentage={true}
-                    primaryMinSize={12}
-                    primaryMaxSize={12}
-                    secondaryInitialSize={88}
-                    secondaryMinSize={88}
-                    customClassName="my-splitter-layout"
+                    primaryMinSize={50}
+                    primaryMaxSize={100}
+                    secondaryMinSize={20}
+                    secondaryMaxSize={50}
+                    secondaryInitialSize={25}
+                    customClassName="my-inner-splitter-layout"
                 >
-                    <div>
-                        <Dropdown.Button
-                            type="primary"
+                    <BigCalendar
+                        selectable
+                        localizer={localizer}
+                        events={events}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            fontSize: '11px'
+                        }}
+                        defaultView="month"
+                        onSelectSlot={handleSelectSlot}
+                        views={['month', 'week', 'day']}
+                        messages={{
+                            today: 'Hoy',
+                            previous: 'Anterior',
+                            next: 'Siguiente',
+                            month: 'Mes',
+                            week: 'Semana',
+                            day: 'Día',
+                            agenda: 'Agenda',
+                            date: 'Fecha',
+                            time: 'Hora',
+                            event: 'Evento',
+                            noEventsInRange: 'No hay eventos en este rango.',
+                        }}
+                        className="custom-calendar"  // Agregamos clase personalizada
+                        onSelectEvent={handleEditEvent}
+                    />
+                    <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
+                        <h2>
+                            <Box as='span' flex='1' textAlign='left'>
+                                {dateSelect}
+                            </Box>
+                        </h2>
+                        <List
+                            className="demo-loadmore-list"
                             loading={false}
-                            menu={{
-                                items,
+                            itemLayout="horizontal"
+                            //loadMore={loadMore}
+                            dataSource={eventsByDay}
+                            renderItem={(item) => {
+                                console.log("🚀 ~ Calendar ~ item:", item)
+                                return (
+                                    <List.Item
+                                        actions={[<RightOutlined />]}
+                                    >
+                                        <Skeleton avatar title={false} loading={item?.loading} active>
+                                            <List.Item.Meta
+                                                title={<a href="https://ant.design">{item?.title}</a>}
+                                                description={<div dangerouslySetInnerHTML={{ __html: item?.description }} />}
+                                            />
+                                            {/*<div>content</div>*/}
+                                        </Skeleton>
+                                    </List.Item>
+                                )
                             }}
-                            size='large'
-                            onClick={onOpenEvent}
-                            style={{ padding: '10px 0px 10px 8px' }}
-                        >
-                            Crear
-                        </Dropdown.Button>
-                        <Accordion>
-                            <AccordionItem>
-                                <h2>
-                                    <AccordionButton>
-                                        <Box as='span' flex='1' textAlign='left'>
-                                            Calendarios
-                                        </Box>
-                                        <AccordionIcon />
-                                    </AccordionButton>
-                                </h2>
-                                <AccordionPanel>
-                                    <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
-                                </AccordionPanel>
-                            </AccordionItem>
-                        </Accordion>
-                    </div>
-                    <SplitterLayout
-                        percentage={true}
-                        primaryMinSize={50}
-                        primaryMaxSize={100}
-                        secondaryMinSize={20}
-                        secondaryMaxSize={50}
-                        secondaryInitialSize={25}
-                        customClassName="my-inner-splitter-layout"
-                    >
-                        <BigCalendar
-                            selectable
-                            localizer={localizer}
-                            events={events}
-                            startAccessor="start"
-                            endAccessor="end"
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                fontSize: '11px'
-                            }}
-                            defaultView="month"
-                            onSelectSlot={handleSelectSlot}
-                            views={['month', 'week', 'day']}
-                            messages={{
-                                today: 'Hoy',
-                                previous: 'Anterior',
-                                next: 'Siguiente',
-                                month: 'Mes',
-                                week: 'Semana',
-                                day: 'Día',
-                                agenda: 'Agenda',
-                                date: 'Fecha',
-                                time: 'Hora',
-                                event: 'Evento',
-                                noEventsInRange: 'No hay eventos en este rango.',
-                            }}
-                            className="custom-calendar"  // Agregamos clase personalizada
-                            onSelectEvent={handleEditEvent}
                         />
-                        <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
-                            <h2>
-                                <Box as='span' flex='1' textAlign='left'>
-                                    {dateSelect}
-                                </Box>
-                            </h2>
-                            <List
-                                className="demo-loadmore-list"
-                                loading={false}
-                                itemLayout="horizontal"
-                                //loadMore={loadMore}
-                                dataSource={eventsByDay}
-                                renderItem={(item) => {
-                                    console.log("🚀 ~ Calendar ~ item:", item)
-                                    return (
-                                        <List.Item
-                                            actions={[<RightOutlined />]}
-                                        >
-                                            <Skeleton avatar title={false} loading={item?.loading} active>
-                                                <List.Item.Meta
-                                                    title={<a href="https://ant.design">{item?.title}</a>}
-                                                    description={<div dangerouslySetInnerHTML={{ __html: item?.description }} />}
-                                                />
-                                                {/*<div>content</div>*/}
-                                            </Skeleton>
-                                        </List.Item>
-                                    )
-                                }}
-                            />
-                        </div>
-                    </SplitterLayout>
+                    </div>
                 </SplitterLayout>
-            </div>
+            </SplitterLayout>
             <Modal onClose={onCloseEvent} size={'6xl'} isOpen={isOpenEvent} scrollBehavior={'inside'}>
                 <ModalOverlay />
                 <ModalContent>
@@ -492,7 +490,7 @@ const Calendar = () => {
                                 <Button type='primary'
                                     onClick={handleAddEvent}
                                 >
-                                    <RiSave2Fill style={{ fontSize: 20, color: 'white', marginRight: 6 }} />                                    
+                                    <RiSave2Fill style={{ fontSize: 20, color: 'white', marginRight: 6 }} />
                                     Guardar
                                 </Button>
                             </div>

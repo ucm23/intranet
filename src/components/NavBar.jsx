@@ -107,7 +107,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
                     padding: 0 15px;
                     display: flex;
                      flex-wrap: nowrap;
-                     width: 200%;
+                     width: 100%;
                       height: 85px;
                  }
                  .nav-link {
