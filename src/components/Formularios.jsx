@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
-import { FaPaperPlane } from 'react-icons/fa'; // Importa íconos de react-icons
+import { FaPaperPlane } from 'react-icons/fa';
 
-// Componente de Tarjeta para formularios
 const FormCard = ({ title, children }) => (
     <Card style={{ width: '100%', maxWidth: '900px', margin: '20px auto', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}>
         <Card.Body>
@@ -12,7 +11,6 @@ const FormCard = ({ title, children }) => (
     </Card>
 );
 
-// Componente para formularios de vacaciones
 const VacacionesForm = () => (
     <Form>
         <Form.Group controlId="formNombre">
@@ -33,7 +31,6 @@ const VacacionesForm = () => (
     </Form>
 );
 
-// Componente para formularios de permisos
 const PermisosForm = () => (
     <Form>
         <Form.Group controlId="formNombre">
@@ -54,7 +51,30 @@ const PermisosForm = () => (
     </Form>
 );
 
-// Componente principal que renderiza los formularios según la sección seleccionada
+const ServiciosForm = () => (
+    <Form>
+        <Form.Group controlId="formNombre">
+            <Form.Label>Nombre completo</Form.Label>
+            <Form.Control type="text" placeholder="Ingresa tu nombre" />
+        </Form.Group>
+        <Form.Group controlId="formDescripcionServicio">
+            <Form.Label>Descripción del Servicio</Form.Label>
+            <Form.Control as="textarea" rows={3} placeholder="Describe el servicio solicitado" />
+        </Form.Group>
+        <Form.Group controlId="formUrgencia">
+            <Form.Label>Urgencia</Form.Label>
+            <Form.Control as="select">
+                <option>Baja</option>
+                <option>Media</option>
+                <option>Alta</option>
+            </Form.Control>
+        </Form.Group>
+        <Button variant="primary" type="submit" style={{ marginTop: '10px' }}>
+            <FaPaperPlane /> Enviar
+        </Button>
+    </Form>
+);
+
 const Formularios = ({ selectedSection }) => {
     return (
         <div>
@@ -66,6 +86,11 @@ const Formularios = ({ selectedSection }) => {
             {selectedSection === 'permisos' && (
                 <FormCard title="Solicitud de Permisos">
                     <PermisosForm />
+                </FormCard>
+            )}
+            {selectedSection === 'servicios' && (
+                <FormCard title="Solicitud de Servicios">
+                    <ServiciosForm />
                 </FormCard>
             )}
         </div>

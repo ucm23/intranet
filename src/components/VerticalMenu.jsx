@@ -8,53 +8,56 @@ const VerticalMenu = ({ selectedSection, setSelectedSection }) => {
 
     return (
         <div style={styles.menuContainer}>
-            {/* Sección de Trámites */}
             <h4 style={styles.sectionTitle} onClick={() => setOpenTramites(!openTramites)}>
-                <FaRegCalendarAlt style={styles.icon}/> Trámites
+                <FaRegCalendarAlt style={styles.icon} /> Trámites
             </h4>
             {openTramites && (
                 <ul style={styles.menuList}>
-                    <li 
+                    <li
                         style={selectedSection === 'vacaciones' ? styles.activeItem : styles.menuItem}
                         onClick={() => setSelectedSection('vacaciones')}
                     >
-                        <FaUmbrellaBeach style={styles.icon}/> Vacaciones
+                        <FaUmbrellaBeach style={styles.icon} /> Vacaciones
                     </li>
-                    <li 
+                    <li
                         style={selectedSection === 'permisos' ? styles.activeItem : styles.menuItem}
                         onClick={() => setSelectedSection('permisos')}
                     >
-                        <FaUserClock style={styles.icon}/> Permisos
+                        <FaUserClock style={styles.icon} /> Permisos
                     </li>
                 </ul>
             )}
 
-            {/* Sección de Servicios */}
             <h4 style={styles.sectionTitle} onClick={() => setOpenServicios(!openServicios)}>
-                <FaRegEdit style={styles.icon}/> Servicios
+                <FaRegEdit style={styles.icon} /> Servicios
             </h4>
             {openServicios && (
                 <ul style={styles.menuList}>
-                    <li 
+                    <li
                         style={selectedSection === 'nuevoServicio' ? styles.activeItem : styles.menuItem}
                         onClick={() => setSelectedSection('nuevoServicio')}
                     >
-                        <FaPlusCircle style={styles.icon}/> Nuevo Servicio
+                        <FaPlusCircle style={styles.icon} /> Nuevo Servicio
                     </li>
                 </ul>
             )}
 
-            {/* Sección de Gestión */}
             <h4 style={styles.sectionTitle} onClick={() => setOpenGestion(!openGestion)}>
-                <FaTools style={styles.icon}/> Gestión de Solicitudes
+                <FaTools style={styles.icon} /> Gestión de Solicitudes
             </h4>
             {openGestion && (
                 <ul style={styles.menuList}>
-                    <li 
+                    <li
                         style={selectedSection === 'gestion' ? styles.activeItem : styles.menuItem}
                         onClick={() => setSelectedSection('gestion')}
                     >
-                        <FaTasks style={styles.icon}/> Gestión de Solicitudes
+                        <FaTasks style={styles.icon} /> Gestión de Solicitudes
+                    </li>
+                    <li
+                        style={selectedSection === 'agregarSolicitudes' ? styles.activeItem : styles.menuItem}
+                        onClick={() => setSelectedSection('agregarSolicitudes')}
+                    >
+                        <FaPlusCircle style={styles.icon} /> Agregar Solicitudes
                     </li>
                 </ul>
             )}

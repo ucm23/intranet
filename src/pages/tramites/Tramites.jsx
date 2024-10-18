@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Navbar from '../../componentes/Navbar';
-import VerticalMenu from '../../components/VerticalMenu'; // Importa el menú vertical
-import SectionCarousel from '../../components/SectionCarousel'; // Importa el carrusel
-import Formularios from '../../components/Formularios'; // Importa los formularios
-import GestionSolicitudes from '../../components/GestionSolicitudes'; // Importa el componente de gestión de solicitudes
+import Navbar from '../../componentes/Navbar'; 
+import VerticalMenu from '../../components/VerticalMenu'; 
+import SectionCarousel from '../../components/SectionCarousel'; 
+import Formularios from '../../components/Formularios'; 
+import GestionSolicitudes from '../../components/GestionSolicitudes'; 
+import AgregarSolicitudes from '../../components/AgregarSolicitudes'; 
 
 const Tramites = () => {
-    const [selectedSection, setSelectedSection] = useState('vacaciones'); // Estado para la sección seleccionada
+    const [selectedSection, setSelectedSection] = useState('gestion'); 
 
-    // Define las imágenes, título y descripción para el carrusel
     const carouselImages = [
         '/imgNoticias/proyecto3.jpg',
         '/imgNoticias/proyecto2.jpg',
@@ -21,25 +21,29 @@ const Tramites = () => {
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Navbar backgroundColor="#001529" />
-            {/* Sección del carrusel */}
             <SectionCarousel 
                 images={carouselImages} 
                 sectionTitle={sectionTitle} 
                 sectionDescription={sectionDescription} 
             />
             <div style={{ display: 'flex', flex: 1, flexDirection: 'row' }}>
-                {/* El menú vertical */}
                 <div style={{ minWidth: '200px', maxWidth: '250px', flex: '0 0 auto' }}>
                     <VerticalMenu 
                         selectedSection={selectedSection} 
                         setSelectedSection={setSelectedSection} 
                     />
                 </div>
-                {/* Contenido principal */}
                 <div style={{ flex: 1, padding: '20px' }}>
-                    {/* Renderizado condicional de contenido según la sección seleccionada */}
                     {selectedSection === 'gestion' ? (
                         <GestionSolicitudes />
+                    ) : selectedSection === 'agregarSolicitudes' ? ( 
+                        <AgregarSolicitudes />
+                    ) : selectedSection === 'soporteTecnico' ? (
+                        <Formularios selectedSection="soporteTecnico" />
+                    ) : selectedSection === 'solicitudMateriales' ? (
+                        <Formularios selectedSection="solicitudMateriales" />
+                    ) : selectedSection === 'consultoria' ? (
+                        <Formularios selectedSection="consultoria" />
                     ) : (
                         <Formularios selectedSection={selectedSection} />
                     )}
