@@ -12,6 +12,7 @@ import UserProfile from "../pages/Puestos/UserProfile"
 import PerfilGral from "../pages/perfiles/PerfilGral";
 import PerfilesPuesto from "../pages/Puestos/PerfilesPuesto";
 import PerfilesPuesto1 from "../pages/Puestos/PerfilesPuesto1";
+import Calendar from "../pages/calendar/Calendar";
 
 
 
@@ -29,7 +30,7 @@ function RoutesComp() {
             <Route path="/Organizacion" element={<Organizacion />} />
             <Route path="/Indicador" element={<Indicador />} />
             {/* <Route path="/Indicador/:proyectos" element={<Indicador/>} /> */}
-            <Route path="/Calendario" element={<Calendario />} />
+            <Route path="/calendar" element={<Calendar />} />
             <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="/PerfilPuesto/:id" element={<PerfilPuesto />} />
             <Route path="/PerfilesPuesto1/:id" element={<PerfilesPuesto1 />} />

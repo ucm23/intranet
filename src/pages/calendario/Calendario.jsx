@@ -18,6 +18,8 @@ import { indexUsers } from '../../api/users/users';
 import moment from 'moment/moment';
 import CalendarEventModal from './CalendarEventModal';
 import { Modal, Button, Form, Input } from 'antd';
+import { Splitter } from "antd";
+
 const locales = {
     es: es,
 };
@@ -74,12 +76,7 @@ const Calendario = () => {
         if (response.status) {
             console.log("Usuarios cargados:", response.data);
             setUsers(response.data); // Establece el estado de usuarios
-        } else {
-            console.error("Error al cargar usuarios:", response.error);
         }
-        // if (response.status) {
-        //     setUsers(response.data)
-        // }
     };
     const formatDateTime = (date) => {
         const options = { hour: '2-digit', minute: '2-digit' }; // Formato de horas y minutos
@@ -191,16 +188,17 @@ const Calendario = () => {
             return;
         }
     
+        console.log("🚀 ~ handleOk 1 ~ newEvent:", newEvent)
+
         if (
             newEvent.department_id &&
-            newEvent.user_id &&
             newEvent.title &&
             newEvent.description &&
             newEvent.start &&
             newEvent.end &&
             newEvent.type &&
             newEvent.participants_ids &&
-            newEvent.start < newEvent.end
+            newEvent.start <= newEvent.end
         ) {
             try {
                 newEvent.department_id = parseInt(newEvent.department_id);
@@ -216,6 +214,8 @@ const Calendario = () => {
                 newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTHH:mm');
                 delete newEvent.start;
                 delete newEvent.end;
+
+                newEvent.user_id = 1;
     
                 console.log("Estado de newEvent:", newEvent);
                 alert(JSON.stringify(newEvent));
@@ -234,7 +234,7 @@ const Calendario = () => {
         } else {
             alert('Por favor, complete todos los campos correctamente.');
         }
-        console.log(newEvent);
+        console.log("🚀 ~ handleOk 2 ~ newEvent:", newEvent)
         setIsModalVisible(false);
     };
 

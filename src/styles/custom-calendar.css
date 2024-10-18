@@ -1,35 +1,48 @@
 /* Estilo general para todo el calendario */
 .custom-calendar {
-    font-size: 11px; /* Tamaño de fuente general */
+    font-size: 11px;
+    /* Tamaño de fuente general */
+    padding: 5px;
 }
 
 /* Estilo para el encabezado de la vista de mes */
 .custom-calendar .rbc-month-view .rbc-header {
-    font-size: 11px; /* Ajusta el tamaño del encabezado del mes */
+    font-size: 11px;
+    /* Ajusta el tamaño del encabezado del mes */
 }
 
 /* Estilo para los eventos en la vista de mes */
 .custom-calendar .rbc-month-view .rbc-event {
-    font-size: 9px; /* Ajusta el tamaño de los eventos */
+    font-size: 9px;
+    /* Ajusta el tamaño de los eventos */
 }
 
 /* Estilo para el encabezado de la vista de semana o día */
 .custom-calendar .rbc-time-view .rbc-header {
-    font-size: 11px; /* Tamaño de encabezado para las vistas de semana y día */
+    font-size: 11px;
+    /* Tamaño de encabezado para las vistas de semana y día */
 }
 
 /* Estilo para las horas en la vista de semana o día */
 .custom-calendar .rbc-time-view .rbc-time-slot {
-    font-size: 10px; /* Ajusta el tamaño de las horas */
+    font-size: 10px;
+    /* Ajusta el tamaño de las horas */
 }
 
 .input-select-calendar {
     padding: 5px;
-    width: 185px;
     border: 1px solid #ccc;
-    border-radius: 4px; 
+    border-radius: 4px;
     font-size: 12px;
-    margin-left: 5px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.input-date-calendar {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
 }
 
 /*.input-select-calendar:hover {
@@ -38,4 +51,128 @@
 
 .input-shadow:hover {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.layout-splitter {
+    width: 25px;
+}
+
+.custom-splitter .layout-splitter {
+    width: 25px;
+    cursor: ew-resize;
+}
+
+.custom-splitter {
+    width: 25px;
+    cursor: ew-resize;
+}
+
+.custom-splitter::before {
+    width: 25px;
+    cursor: ew-resize;
+}
+
+.splitter-layout {
+    width: 25px;
+}
+
+.layout-splitter {
+    width: 25px;
+}
+
+.splitter-layout>.layout-splitter {
+    width: 25px;
+}
+
+.splitter-layout.splitter-layout-vertical>.layout-splitter {
+    width: 25px;
+}
+
+div.layout-splitter {
+    width: 25px;
+}
+
+.my-splitter-layout .layout-pane {
+    background-color: white;
+    border: 1px solid white;
+}
+.my-inner-splitter-layout .layout-pane {
+    background-color: white;
+    border: 1px solid white;
+}
+
+.label-input-modal {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.modal-header-bg {
+    background-color: #F0F0F0;
+}
+
+.css-79z5gx {
+    -webkit-padding-start: 1px;
+    padding-inline-start: 1px;
+    -webkit-padding-end: 1px;
+    padding-inline-end: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+.modal-body-create {
+    padding: 1.5rem;
+    -webkit-padding-start: 1px;
+    padding-inline-start: 1px;
+    -webkit-padding-end: 1px;
+    padding-inline-end: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+
+.select-options-form {
+    padding: 5px;
+    font-size: 12px;
+    border: 1px solid white;
+}
+
+.select-options-form:hover {
+    border: 1px solid #c1c1c1;
+    background-color:#F0F0F0;
+    border-radius: 4px;
+}
+
+.select-options-form:hover * {
+    background-color: #F0F0F0;
+}
+
+.without-focus:focus-visible {
+    outline: none;
+    border: none;  
+    box-shadow: none;
+}
+
+.input-text-form {
+    border: none;
+    border-bottom: 0.9px solid gray;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.input-text-form:focus {
+    border-bottom-color: darkgray; /* Cambia el color del borde inferior al enfocar */
+}
+
+.div-container-inputs-form {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center
 }

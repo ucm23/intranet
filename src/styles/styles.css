@@ -1263,3 +1263,7 @@ a.dropdown-item {
   font-size: 12px;
   margin-left: 5px;
 }
+
+.splitter-layout > .layout-splitter {
+  width: 1px;
+}
