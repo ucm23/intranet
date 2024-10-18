@@ -34,6 +34,13 @@ import {
 } from '@chakra-ui/react'
 import { Card } from '@chakra-ui/react'
 import { FiBriefcase } from 'react-icons/fi';
+import { TbUsersPlus } from "react-icons/tb";
+import { VscUngroupByRefType } from "react-icons/vsc";
+import { IoTimeOutline } from "react-icons/io5";
+import { RiSave2Fill } from "react-icons/ri";
+import { BsTextParagraph } from "react-icons/bs";
+import { MdOutlineLayers } from "react-icons/md";
+import { CiVideoOn } from "react-icons/ci";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { MultiSelect } from "react-multi-select-component";
@@ -384,7 +391,7 @@ const Calendar = () => {
                             </div>
                             <div style={{ width: 1, height: 'auto', backgroundColor: '#B6B6B699' }} />
                             <div className='select-options-form div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 15, color: '#ccc', marginRight: 4 }} />
+                                <MdOutlineLayers style={{ fontSize: 15, color: '#ccc', marginRight: 4 }} />
                                 <select
                                     value={newEvent.type}
                                     onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
@@ -395,9 +402,9 @@ const Calendar = () => {
                                 </select>
                             </div>
                         </Card>
-                        <Card style={{ display: 'flex', flexDirection: 'column', marginTop: 8, padding: 6, gap: 6 }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', marginTop: 8, paddingTop: 6, gap: 6 }}>
                             <div className='div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 22, color: '#00a0df80', border: '1px solid #B6B6B650', borderRadius: 3, padding: 3, marginRight: 6 }} />
+                                <VscUngroupByRefType style={{ fontSize: 25, color: '#00a0df80', border: '1px solid #B6B6B650', borderRadius: 3, padding: 2, marginRight: 2 }} />
                                 <input
                                     type="text"
                                     placeholder="Agregar título"
@@ -410,7 +417,7 @@ const Calendar = () => {
                             </div>
 
                             <div className='div-container-inputs-form' style={{ marginTop: 6, marginBottom: 6 }}>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <TbUsersPlus style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
                                 <MultiSelect
                                     options={users}
                                     value={selected}
@@ -430,7 +437,7 @@ const Calendar = () => {
                                 />
                             </div>
                             <div className='div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <CiVideoOn style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
                                 <input
                                     type="text"
                                     placeholder="Liga de videoconferencia"
@@ -442,7 +449,7 @@ const Calendar = () => {
                                 />
                             </div>
                             <div className='div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <IoTimeOutline style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
                                 <div className='div-container-inputs-form' style={{ gap: 4 }}>
                                     <DatePicker
                                         placeholderText="Fecha de inicio"
@@ -467,8 +474,8 @@ const Calendar = () => {
                                 </div>
                             </div>
                             <div className='div-container-inputs-form' style={{ alignItems: 'flex-start' }}>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
-                                <div style={{ width: '100%', height: 150 }}>
+                                <BsTextParagraph style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <div style={{ width: '100%', height: 180 }}>
                                     <ReactQuill
                                         modules={modules}
                                         formats={formats}
@@ -476,7 +483,7 @@ const Calendar = () => {
                                         value={body}
                                         onChange={setBody}
                                         placeholder="Agregar contenido..."
-                                        style={{ height: 100 }}
+                                        style={{ height: 135 }}
                                     />
                                 </div>
                             </div>
@@ -485,14 +492,14 @@ const Calendar = () => {
                                 <Button type='primary'
                                     onClick={handleAddEvent}
                                 >
-                                    <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
+                                    <RiSave2Fill style={{ fontSize: 20, color: 'white', marginRight: 6 }} />                                    
                                     Guardar
                                 </Button>
                             </div>
 
 
 
-                        </Card>
+                        </div>
                     </ModalBody>
                 </ModalContent>
             </Modal>
