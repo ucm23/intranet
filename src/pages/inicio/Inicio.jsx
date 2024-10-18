@@ -43,34 +43,34 @@ const Inicio = () => {
                         }}
 
                     >
-<div
-  style={{
-    position: 'absolute',
-    top: '-1%',
-    left: '0%', // Alinea al margen izquierdo
-    backgroundColor: 'rgba(0, 0, 0, 0)', // Fondo transparente
-    color: 'white', // Color del texto
-    padding: '20px',
-    borderRadius: '8px',
-    display: 'flex', // Usamos flexbox para alinear
-    alignItems: 'center', // Centra verticalmente
-    gap: '0', // Sin espacio entre la imagen y el título
-    justifyContent: 'flex-start', // Alinea al inicio
-    textAlign: 'left',
-  }}
->
-  <img
-    src="/logoCTI.png" // Ruta a la imagen en public
-    alt="Logo Grupo CTI"
-    style={{
-      width: '60px', // Ajusta el tamaño del logo
-      height: 'auto', // Mantiene las proporciones
-      margin: '0', // Sin margen en la imagen
-    }}
-  />
-  
-  <h1 style={{ fontSize: '20px', margin: 0 }}>Grupo CTI</h1> {/* Elimina el margen del h1 */}
-</div>
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '-1%',
+                                left: '0%', // Alinea al margen izquierdo
+                                backgroundColor: 'rgba(0, 0, 0, 0)', // Fondo transparente
+                                color: 'white', // Color del texto
+                                padding: '20px',
+                                borderRadius: '8px',
+                                display: 'flex', // Usamos flexbox para alinear
+                                alignItems: 'center', // Centra verticalmente
+                                gap: '0', // Sin espacio entre la imagen y el título
+                                justifyContent: 'flex-start', // Alinea al inicio
+                                textAlign: 'left',
+                            }}
+                        >
+                            <img
+                                src="/logoCTI.png" // Ruta a la imagen en public
+                                alt="Logo Grupo CTI"
+                                style={{
+                                    width: '60px', // Ajusta el tamaño del logo
+                                    height: 'auto', // Mantiene las proporciones
+                                    margin: '0', // Sin margen en la imagen
+                                }}
+                            />
+
+                            <h1 style={{ fontSize: '20px', margin: 0 }}>Grupo CTI</h1> {/* Elimina el margen del h1 */}
+                        </div>
 
 
 
