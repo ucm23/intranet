@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../../componentes/Navbar';
 import { useNavigate } from 'react-router-dom';
 import { Calendar as BigCalendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -8,18 +7,15 @@ import es from 'date-fns/locale/es';
 import { Box, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/custom-calendar.css'
 import { useEffect } from 'react';
 import { createEvents, indexEvents } from '../../api/events/events';
 import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
 import moment from 'moment/moment';
-import CalendarEventModal from './CalendarEventModal';
 import SplitterLayout from 'react-splitter-layout';
 import 'react-splitter-layout/lib/index.css';
-import { Button, Form, Input, Flex, Dropdown, Checkbox, Space, Avatar, List, Skeleton } from "antd";
+import { Button, Dropdown, Checkbox, List, Skeleton } from "antd";
 import {
     Accordion,
     AccordionItem,
@@ -33,15 +29,27 @@ import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react'
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
+import { Card } from '@chakra-ui/react'
 import { FiBriefcase } from 'react-icons/fi';
-//import { Select } from '@chakra-ui/react'
-import { Select } from 'antd';
-import { Divider } from '@chakra-ui/react'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { MultiSelect } from "react-multi-select-component";
+import Navbar from '../../componentes/Navbar';
+
+const modules = {
+    toolbar: [
+        ['bold', 'italic', 'underline'],
+        ['link', 'video'],
+    ]
+};
+
+const formats = [
+    'bold', 'italic', 'underline', 'blockquote',
+    'link', 'video'
+];
 
 const locales = {
     es: es,
@@ -58,7 +66,6 @@ const localizer = dateFnsLocalizer({
 const Calendar = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
-    const [visible, setVisible] = useState(false);
     const { isOpen: isOpenEvent, onOpen: onOpenEvent, onClose: onCloseEvent } = useDisclosure()
     const [newEvent, setNewEvent] = useState({
         department_id: '',
@@ -67,7 +74,9 @@ const Calendar = () => {
         description: '',
         link: '', start: null, end: null, type: '', participants_ids: ''
     });
+    const [selected, setSelected] = useState([]);
     const [users, setUsers] = useState([]);
+    const [body, setBody] = useState('');
     const [departaments, setDepartaments] = useState([]);
     const [events, setEvents] = useState([]);
     const [eventsByDay, setEventsByDay] = useState([]);
@@ -114,20 +123,18 @@ const Calendar = () => {
             alert('El campo Departamento es obligatorio.');
             return;
         }
-        if (!newEvent.participants_ids) {
+
+        if (!selected.length) {
             alert('El campo Participantes es obligatorio.');
             return;
         }
-
+        console.log(newEvent)
         if (
             newEvent.department_id &&
-            newEvent.user_id &&
             newEvent.title &&
-            newEvent.description &&
             newEvent.start &&
             newEvent.end &&
             newEvent.type &&
-            newEvent.participants_ids &&
             newEvent.start < newEvent.end
         ) {
             try {
@@ -138,11 +145,14 @@ const Calendar = () => {
                 newEvent.event_type = newEvent.type;
                 delete newEvent.type;
 
+                newEvent.description = body;
+
                 newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTH:MM');
                 newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
                 delete newEvent.start;
                 delete newEvent.end;
-
+                newEvent.user_id = 1;
+                newEvent.participants_ids = selected.map(item => item?.value)
                 console.log("Estado de newEvent:", newEvent);
                 alert(JSON.stringify(newEvent));
                 const response = await createEvents({ event: newEvent });
@@ -150,14 +160,16 @@ const Calendar = () => {
 
                 if (response.status === true) {
                     console.log("Evento creado con éxito:", response.data);
+                    getEvents()
+                    onCloseEvent();
                 } else {
                     console.error("Error al crear el evento:", response.error);
                 }
             } catch (error) {
                 console.error("Error en la petición:", error);
             }
-        }
-        else {
+        } else {
+            console.log("🚀 ~ handleOk 2 ~ newEvent:", newEvent)
             alert('Por favor, complete todos los campos correctamente.');
         }
     };
@@ -196,75 +208,6 @@ const Calendar = () => {
         setSelectedEvent(null); // Limpiar el evento seleccionado
         setNewEvent({ title: '', description: '', link: '', type: '', area: '', start: null, end: null }); // Limpiar formulario
         setShowEditDelete(true); // Mostrar nuevamente los botones de editar y eliminar si corresponde
-    };
-
-    const [isModalVisible, setIsModalVisible] = useState(false);
-
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-    const handleOk = async () => {
-        if (!newEvent.department_id) {
-            alert('El campo Departamento es obligatorio.');
-            return;
-        }
-        if (!newEvent.participants_ids) {
-            alert('El campo Participantes es obligatorio.');
-            return;
-        }
-
-        console.log("🚀 ~ handleOk 1 ~ newEvent:", newEvent)
-
-        if (
-            newEvent.department_id &&
-            newEvent.title &&
-            newEvent.description &&
-            newEvent.start &&
-            newEvent.end &&
-            newEvent.type &&
-            newEvent.participants_ids &&
-            newEvent.start <= newEvent.end
-        ) {
-            try {
-                newEvent.department_id = parseInt(newEvent.department_id);
-
-                if (newEvent.link) newEvent.url = newEvent.link;
-                delete newEvent.link;
-
-                newEvent.event_type = newEvent.type;
-                delete newEvent.type;
-
-                // Ajuste del formato de las fechas
-                newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTHH:mm');
-                newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTHH:mm');
-                delete newEvent.start;
-                delete newEvent.end;
-
-                newEvent.user_id = 1;
-
-                console.log("Estado de newEvent:", newEvent);
-                alert(JSON.stringify(newEvent));
-
-                const response = await createEvents({ event: newEvent });
-                console.log("Respuesta del servidor:", response);
-
-                if (response.status === true) {
-                    console.log("Evento creado con éxito:", response.data);
-                } else {
-                    console.error("Error al crear el evento:", response.error);
-                }
-            } catch (error) {
-                console.error("Error en la petición:", error);
-            }
-        } else {
-            alert('Por favor, complete todos los campos correctamente.');
-        }
-        console.log("🚀 ~ handleOk 2 ~ newEvent:", newEvent)
-        setIsModalVisible(false);
-    };
-
-    const handleCerrar = () => {
-        setIsModalVisible(false);
     };
 
     const items = [
@@ -307,115 +250,118 @@ const Calendar = () => {
     };
 
     return (
-        <>
-            <SplitterLayout
-                percentage={true}
-                primaryMinSize={12}
-                primaryMaxSize={12}
-                secondaryInitialSize={88}
-                secondaryMinSize={88}
-                customClassName="my-splitter-layout"
-            >
-                <div>
-                    <Dropdown.Button
-                        type="primary"
-                        loading={false}
-                        menu={{
-                            items,
-                        }}
-                        size='large'
-                        onClick={onOpenEvent}
-                        style={{ padding: '10px 0px 10px 8px' }}
-                    >
-                        Crear
-                    </Dropdown.Button>
-                    <Accordion>
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton>
-                                    <Box as='span' flex='1' textAlign='left'>
-                                        Calendarios
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel>
-                                <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
-                            </AccordionPanel>
-                        </AccordionItem>
-                    </Accordion>
-                </div>
+        <div>
+            <div>
+                <Navbar backgroundColor="#001529" />
                 <SplitterLayout
                     percentage={true}
-                    primaryMinSize={50}
-                    primaryMaxSize={100}
-                    secondaryMinSize={20}
-                    secondaryMaxSize={50}
-                    secondaryInitialSize={25}
-                    customClassName="my-inner-splitter-layout"
+                    primaryMinSize={12}
+                    primaryMaxSize={12}
+                    secondaryInitialSize={88}
+                    secondaryMinSize={88}
+                    customClassName="my-splitter-layout"
                 >
-                    <BigCalendar
-                        selectable
-                        localizer={localizer}
-                        events={events}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            fontSize: '11px'
-                        }}
-                        defaultView="month"
-                        onSelectSlot={handleSelectSlot}
-                        views={['month', 'week', 'day']}
-                        messages={{
-                            today: 'Hoy',
-                            previous: 'Anterior',
-                            next: 'Siguiente',
-                            month: 'Mes',
-                            week: 'Semana',
-                            day: 'Día',
-                            agenda: 'Agenda',
-                            date: 'Fecha',
-                            time: 'Hora',
-                            event: 'Evento',
-                            noEventsInRange: 'No hay eventos en este rango.',
-                        }}
-                        className="custom-calendar"  // Agregamos clase personalizada
-                        onSelectEvent={handleEditEvent}
-                    />
-                    <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
-                        <h2>
-                            <Box as='span' flex='1' textAlign='left'>
-                                {dateSelect}
-                            </Box>
-                        </h2>
-                        <List
-                            className="demo-loadmore-list"
+                    <div>
+                        <Dropdown.Button
+                            type="primary"
                             loading={false}
-                            itemLayout="horizontal"
-                            //loadMore={loadMore}
-                            dataSource={eventsByDay}
-                            renderItem={(item) => {
-                                console.log("🚀 ~ Calendar ~ item:", item)
-                                return (
-                                    <List.Item
-                                        actions={[<RightOutlined />]}
-                                    >
-                                        <Skeleton avatar title={false} loading={item?.loading} active>
-                                            <List.Item.Meta
-                                                title={<a href="https://ant.design">{item?.title}</a>}
-                                                description={item?.description}
-                                            />
-                                            {/*<div>content</div>*/}
-                                        </Skeleton>
-                                    </List.Item>
-                                )
+                            menu={{
+                                items,
                             }}
-                        />
+                            size='large'
+                            onClick={onOpenEvent}
+                            style={{ padding: '10px 0px 10px 8px' }}
+                        >
+                            Crear
+                        </Dropdown.Button>
+                        <Accordion>
+                            <AccordionItem>
+                                <h2>
+                                    <AccordionButton>
+                                        <Box as='span' flex='1' textAlign='left'>
+                                            Calendarios
+                                        </Box>
+                                        <AccordionIcon />
+                                    </AccordionButton>
+                                </h2>
+                                <AccordionPanel>
+                                    <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
+                                </AccordionPanel>
+                            </AccordionItem>
+                        </Accordion>
                     </div>
+                    <SplitterLayout
+                        percentage={true}
+                        primaryMinSize={50}
+                        primaryMaxSize={100}
+                        secondaryMinSize={20}
+                        secondaryMaxSize={50}
+                        secondaryInitialSize={25}
+                        customClassName="my-inner-splitter-layout"
+                    >
+                        <BigCalendar
+                            selectable
+                            localizer={localizer}
+                            events={events}
+                            startAccessor="start"
+                            endAccessor="end"
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                fontSize: '11px'
+                            }}
+                            defaultView="month"
+                            onSelectSlot={handleSelectSlot}
+                            views={['month', 'week', 'day']}
+                            messages={{
+                                today: 'Hoy',
+                                previous: 'Anterior',
+                                next: 'Siguiente',
+                                month: 'Mes',
+                                week: 'Semana',
+                                day: 'Día',
+                                agenda: 'Agenda',
+                                date: 'Fecha',
+                                time: 'Hora',
+                                event: 'Evento',
+                                noEventsInRange: 'No hay eventos en este rango.',
+                            }}
+                            className="custom-calendar"  // Agregamos clase personalizada
+                            onSelectEvent={handleEditEvent}
+                        />
+                        <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
+                            <h2>
+                                <Box as='span' flex='1' textAlign='left'>
+                                    {dateSelect}
+                                </Box>
+                            </h2>
+                            <List
+                                className="demo-loadmore-list"
+                                loading={false}
+                                itemLayout="horizontal"
+                                //loadMore={loadMore}
+                                dataSource={eventsByDay}
+                                renderItem={(item) => {
+                                    console.log("🚀 ~ Calendar ~ item:", item)
+                                    return (
+                                        <List.Item
+                                            actions={[<RightOutlined />]}
+                                        >
+                                            <Skeleton avatar title={false} loading={item?.loading} active>
+                                                <List.Item.Meta
+                                                    title={<a href="https://ant.design">{item?.title}</a>}
+                                                    description={<div dangerouslySetInnerHTML={{ __html: item?.description }} />}
+                                                />
+                                                {/*<div>content</div>*/}
+                                            </Skeleton>
+                                        </List.Item>
+                                    )
+                                }}
+                            />
+                        </div>
+                    </SplitterLayout>
                 </SplitterLayout>
-            </SplitterLayout>
+            </div>
             <Modal onClose={onCloseEvent} size={'6xl'} isOpen={isOpenEvent} scrollBehavior={'inside'}>
                 <ModalOverlay />
                 <ModalContent>
@@ -451,7 +397,7 @@ const Calendar = () => {
                         </Card>
                         <Card style={{ display: 'flex', flexDirection: 'column', marginTop: 8, padding: 6, gap: 6 }}>
                             <div className='div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', border: '1px solid #B6B6B650', borderRadius: 3, padding: 3, marginRight: 6 }} />
+                                <FiBriefcase style={{ fontSize: 22, color: '#00a0df80', border: '1px solid #B6B6B650', borderRadius: 3, padding: 3, marginRight: 6 }} />
                                 <input
                                     type="text"
                                     placeholder="Agregar título"
@@ -462,8 +408,29 @@ const Calendar = () => {
                                     style={{ fontSize: 20 }}
                                 />
                             </div>
+
+                            <div className='div-container-inputs-form' style={{ marginTop: 6, marginBottom: 6 }}>
+                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <MultiSelect
+                                    options={users}
+                                    value={selected}
+                                    onChange={setSelected}
+                                    //labelledBy="Select"
+                                    className='input-multi-text-form'
+                                    labelledBy="Select"
+                                    hasSelectAll={false}
+                                    overrideStrings={{
+                                        "selectSomeItems": "Selecciona...",
+                                        "allItemsAreSelected": "Todos los elementos seleccionados",
+                                        "search": "Buscar",
+                                        "clearSearch": "Limpiar búsqueda",
+                                        "clearSelected": "Limpiar seleccionados",
+                                        "noOptions": "No hay opciones disponibles"
+                                    }}
+                                />
+                            </div>
                             <div className='div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', border: '1px solid #B6B6B650', borderRadius: 3, padding: 3, marginRight: 6 }} />
+                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
                                 <input
                                     type="text"
                                     placeholder="Liga de videoconferencia"
@@ -475,7 +442,7 @@ const Calendar = () => {
                                 />
                             </div>
                             <div className='div-container-inputs-form'>
-                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', border: '1px solid #B6B6B650', borderRadius: 3, padding: 3, marginRight: 6 }} />
+                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
                                 <div className='div-container-inputs-form' style={{ gap: 4 }}>
                                     <DatePicker
                                         placeholderText="Fecha de inicio"
@@ -499,31 +466,37 @@ const Calendar = () => {
                                     />
                                 </div>
                             </div>
+                            <div className='div-container-inputs-form' style={{ alignItems: 'flex-start' }}>
+                                <FiBriefcase style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <div style={{ width: '100%', height: 150 }}>
+                                    <ReactQuill
+                                        modules={modules}
+                                        formats={formats}
+                                        theme="snow"
+                                        value={body}
+                                        onChange={setBody}
+                                        placeholder="Agregar contenido..."
+                                        style={{ height: 100 }}
+                                    />
+                                </div>
+                            </div>
 
-                            <label className='label-input-modal'>Descripción:</label>
-                            <input
-                                type="text"
-                                placeholder="Descripción"
-                                value={newEvent.description}
-                                onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-                                className='input-select-calendar'
-                            />
+                            <div className='div-container-inputs-form' style={{ justifyContent: 'flex-end' }}>
+                                <Button type='primary'
+                                    onClick={handleAddEvent}
+                                >
+                                    <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
+                                    Guardar
+                                </Button>
+                            </div>
+
+
+
                         </Card>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button type='primary'
-                            onClick={() => {
-                                handleAddEvent();
-                                onCloseEvent();
-                            }}
-                        >
-                            <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
-                            Guardar
-                        </Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
-        </>
+        </div>
     )
 };
 

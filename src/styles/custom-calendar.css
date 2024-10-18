@@ -167,6 +167,13 @@ div.layout-splitter {
     font-size: 12px;
 }
 
+.input-multi-text-form {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 12px;
+}
+
 .input-text-form:focus {
     border-bottom-color: darkgray; /* Cambia el color del borde inferior al enfocar */
 }
@@ -176,3 +183,4 @@ div.layout-splitter {
     flex-direction: row; 
     align-items: center
 }
+

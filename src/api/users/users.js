@@ -8,8 +8,13 @@ export const indexUsers = async ({ }) => {
             url: `/users`
         })
         if (fetch.status == 200) {
-            // response = { data: fetch?.data?.data, status: true }
-            response = { data: fetch.data.data || [], status: true };
+            let data = fetch?.data?.data.map((item) => {
+                return {
+                    label: `${item?.first_name} ${item?.last_name}`,
+                    value: `${item?.id}`
+                }
+            })
+            response = { data: data || [], status: true };
         }
     } catch (error) {
         console.error("TCL: indexUsers -> error", error)
