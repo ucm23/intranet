@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { FiPlus, FiX, FiEdit, FiEdit2, FiCheck } from "react-icons/fi";
 import { FiBold, FiItalic, FiAlignCenter } from 'react-icons/fi';
 import { Modal as ModalBootstrap, Button } from "react-bootstrap";
-import { FaCalendarAlt, FaUser, FaComments, FaShareAlt, FaNewspaper, FaCheckCircle, FaExternalLinkAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaUser, FaComments, FaShareAlt, FaNewspaper, FaCheckCircle, FaExternalLinkAlt, FaCheck } from "react-icons/fa";
 import { useLocation } from 'react-router-dom';
 import { indexIMGByID } from "../../api/news/news";
 import moment from "moment/moment";
@@ -22,11 +22,11 @@ import { Divider } from '@chakra-ui/react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Button as ButtonAntd, Drawer, Radio, Space } from 'antd';
-import { FaCheck } from 'react-icons/fa';
 import { FiUpload } from "react-icons/fi";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { motion } from "framer-motion";
 import { ShareAltOutlined } from '@ant-design/icons';
+import { motion } from "framer-motion";
+
 
 
 const modules = {
@@ -252,7 +252,7 @@ const AddNews = ({ page }) => {
             <AppBar
                 page={page}
                 extra={
-                    <ButtonAntd type="primary" icon={<ShareAltOutlined />}>
+                    <ButtonAntd type="primary" icon={<FaNewspaper />}>
                         Publicar
                     </ButtonAntd>
                 }
