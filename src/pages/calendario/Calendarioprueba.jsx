@@ -16,8 +16,7 @@ import { createEvents, indexEvents } from '../../api/events/events';
 import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
 import moment from 'moment/moment';
-import CalendarEventModal from './CalendarEventModal';
-import { Modal, Button, Form, Input } from 'antd';
+
 const locales = {
     es: es,
 };
@@ -33,8 +32,6 @@ const localizer = dateFnsLocalizer({
 const Calendario = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
-    const [visible, setVisible] = useState(false);
-    
     const [newEvent, setNewEvent] = useState({
         department_id: '',
         user_id: '',
@@ -115,7 +112,7 @@ const Calendario = () => {
 
                 newEvent.event_type = newEvent.type;
                 delete newEvent.type;
-
+                
                 newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTH:MM');
                 newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
                 delete newEvent.start;
@@ -127,7 +124,7 @@ const Calendario = () => {
                 console.log("Respuesta del servidor:", response);
 
                 if (response.status === true) {
-                    console.log("Evento creado con éxito:", response.data);
+                    console.log("Evento creado con éxito:",response.data);
                 } else {
                     console.error("Error al crear el evento:", response.error);
                 }
@@ -176,72 +173,6 @@ const Calendario = () => {
         setShowEditDelete(true); // Mostrar nuevamente los botones de editar y eliminar si corresponde
     };
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
-
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-    const handleOk = async () => {
-        if (!newEvent.department_id) {
-            alert('El campo Departamento es obligatorio.');
-            return;
-        }
-        if (!newEvent.participants_ids) {
-            alert('El campo Participantes es obligatorio.');
-            return;
-        }
-    
-        if (
-            newEvent.department_id &&
-            newEvent.user_id &&
-            newEvent.title &&
-            newEvent.description &&
-            newEvent.start &&
-            newEvent.end &&
-            newEvent.type &&
-            newEvent.participants_ids &&
-            newEvent.start < newEvent.end
-        ) {
-            try {
-                newEvent.department_id = parseInt(newEvent.department_id);
-    
-                if (newEvent.link) newEvent.url = newEvent.link;
-                delete newEvent.link;
-    
-                newEvent.event_type = newEvent.type;
-                delete newEvent.type;
-    
-                // Ajuste del formato de las fechas
-                newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTHH:mm');
-                newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTHH:mm');
-                delete newEvent.start;
-                delete newEvent.end;
-    
-                console.log("Estado de newEvent:", newEvent);
-                alert(JSON.stringify(newEvent));
-    
-                const response = await createEvents({ event: newEvent });
-                console.log("Respuesta del servidor:", response);
-    
-                if (response.status === true) {
-                    console.log("Evento creado con éxito:", response.data);
-                } else {
-                    console.error("Error al crear el evento:", response.error);
-                }
-            } catch (error) {
-                console.error("Error en la petición:", error);
-            }
-        } else {
-            alert('Por favor, complete todos los campos correctamente.');
-        }
-        console.log(newEvent);
-        setIsModalVisible(false);
-    };
-
-    const handleCerrar = () => {
-        setIsModalVisible(false);
-    };
-
     return (
         <div style={{ height: '100vh', overflow: 'hidden' }}>
             <Navbar backgroundColor="#001529" />
@@ -257,32 +188,6 @@ const Calendario = () => {
                         Calendario de Eventos
                     </h1>
                 </div>
-
-
-                <>
-            <div
-                style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', border: '1px solid #ccc',padding: '10px',borderRadius: '5px',width: '180px', height: '30px', marginLeft:'15px'  }}
-                onClick={() => setVisible(true)}
-            >
-                <FontAwesomeIcon
-                    icon={faPlusCircle}
-                    style={{ color: 'blue', fontSize: '24px', marginRight: '10px' }}
-                />
-                <span style={{ fontSize: '20px', color: 'black', fontFamily: 'copperplate gothic bold' }}>
-                    Nuevo Evento
-                </span>
-            </div>
-
-            <CalendarEventModal
-                visible={visible}
-                onClose={() => setVisible(false)}
-                newEvent={newEvent}
-                setNewEvent={setNewEvent}
-                departaments={departaments}
-                users={users}
-                handleOk={handleOk}
-            />
-        </>
 
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', height: 'calc(100% - 60px)', }}>
 
@@ -344,7 +249,7 @@ const Calendario = () => {
                                             participants_ids: [selectedUserId]
                                         });
                                     }}
-                                    className='input-select-calendar'
+                                     className='input-select-calendar'
                                 >
                                     <option value="">Integrantes</option>
                                     {users.length > 0 ? (
