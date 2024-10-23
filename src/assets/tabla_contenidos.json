@@ -1,5 +1,19 @@
 [
   {
+<<<<<<< HEAD
+=======
+    "id": 0,
+    "departamento": "Administración",
+    "proyecto": "VICTUM INTRANET",
+    "tipoManual": "Manual de Procedimientos",
+    "titulo": "Gestión de Recursos",
+    "descripcion": "Instrucciones detalladas sobre la gestión de recursos administrativos.",
+    "fecha": "2024-09-01",
+    "ruta": "/files/AnalisisyRequerimientosV3 (1).pdf",
+    "path": "/administracion"
+  },
+  {
+>>>>>>> cano
     "id": 1,
     "departamento": "Administración",
     "proyecto": "VICTUM INTRANET",

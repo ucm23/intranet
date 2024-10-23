@@ -1,6 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+<<<<<<< HEAD
 
+=======
+import './styles/styles.css'
+>>>>>>> cano
 // Importación de páginas
 import Index from './pages/Index';
 import Noticias from './pages/Noticias';
@@ -15,8 +19,13 @@ const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Index />} />
+<<<<<<< HEAD
             <Route path="/noticias" element={<Noticias />} />
             <Route path="/noticia/:id" element={<NoticiaDetalle />} />
+=======
+            <Route path="/noticiasAntonia" element={<Noticias />} />
+            <Route path="/noticiasAntonia/:id" element={<NoticiaDetalle />} />
+>>>>>>> cano
             <Route path="/colaboradores" element={<Colaboradores />} />
             <Route path="/tramites-servicios" element={<TramitesServicios />} />
             <Route path="/gestor-contenidos/*" element={<GestorContenidos />} />

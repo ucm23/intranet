@@ -8,6 +8,7 @@ import Footer from '../../componentes/Footer';
 
 
 const Home = () => {
+<<<<<<< HEAD
   const mobile = useBreakpointValue({ base: true, md: false });
   const navigate = useNavigate();
   
@@ -79,5 +80,25 @@ const Home = () => {
         </div>
         </div>
 )
+=======
+
+    const mobile = useBreakpointValue({ base: true, md: false });
+    const navigate = useNavigate();
+
+
+    const goToHome = () => {
+        navigate('/');
+    };
+
+
+    return (
+        <div style={{ minheight: '100vh', flexdirection: 'column' }}>
+            <Navbar backgroundColor="#001529" />
+            <div>
+
+            </div>
+        </div>
+    )
+>>>>>>> cano
 }
 export default Home;

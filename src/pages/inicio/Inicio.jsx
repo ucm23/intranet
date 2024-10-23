@@ -9,7 +9,12 @@ import Organigrama2 from '../../componentes/Organigrama2';
 import Footer from '../../componentes/Footer';
 import '../../styles/estilo.css';
 import UserProvider from '../../componentes/UserProfile';
+<<<<<<< HEAD
 import ValoresCorporativos from '../../componentes/ValoresCorporativos';
+=======
+
+
+>>>>>>> cano
 
 
 const Inicio = () => {
@@ -22,6 +27,10 @@ const Inicio = () => {
                 <Navbar backgroundColor="#001529" />
 
                 <div style={{ overflow: 'hidden', width: '100%', margin: '0' }}> {/* Evita el desbordamiento horizontal */}
+<<<<<<< HEAD
+=======
+                
+>>>>>>> cano
                     <div
                         style={{
                             position: 'relative',
@@ -36,6 +45,7 @@ const Inicio = () => {
                             color: 'white', // Cambia el color del texto
                             width: '100%', // Asegura que el ancho no cause desbordamiento
                             margin: '0',   // Elimina márgenes que puedan causar desbordamiento
+<<<<<<< HEAD
                         }}
                     >
                         <div
@@ -71,6 +81,35 @@ const Inicio = () => {
                             style={{
                                 position: 'absolute',
                                 top: '35%',
+=======
+
+
+                        }}
+
+                    >
+                       
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '15%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                backgroundColor: 'rgba(0, 0, 0, 0)', // Fondo semitransparente
+                                color: 'white', // Texto blanco para contraste
+                                padding: '20px',
+                                borderRadius: '8px',
+                                textAlign: 'center',
+                            }}
+                        >
+                            <h1 style={{ fontSize: '50px', marginTop: '105px', textAlign: 'center' }}>Grupo CTI</h1>
+                            <p style={{ textAlign: 'center' }}>Tu aliado Tecnológico</p>
+                        </div>
+
+                        <div
+                            style={{
+                                position: 'absolute',
+                                top: '55%',
+>>>>>>> cano
                                 left: '50%',
                                 transform: 'translate(-50%, -50%)',
                                 backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fondo semitransparente
@@ -86,6 +125,7 @@ const Inicio = () => {
                             }}
                         >
                             {/* <h1 style={{ fontSize: '50px',marginTop: '100px' }}>Grupo CTI</h1> */}
+<<<<<<< HEAD
                         {/* <p style={{ color: 'white', fontFamily: 'Arial, sans-serif', fontSize: '17px', textAlign: 'justify' }}>Somos un equipo multidisciplinario con más de 20 años de experiencia en servicios de consultoría especializada,
                                 Creamos relaciones de confianza y profesionalismo que nos permite pensar como un solo equipo entre nuestros
                                 colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico.</p> */}
@@ -93,6 +133,12 @@ const Inicio = () => {
                                 <p>Creamos relaciones de confianza y profesionalismo que nos permite pensar como un solo equipo entre nuestros
                                 colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico.</p> */}
                         {/* </div>  */}
+=======
+                            <p style={{ color: 'white', fontFamily: 'Arial, sans-serif', fontSize: '17px', textAlign: 'justify' }}>Somos un equipo multidisciplinario con más de 20 años de experiencia en servicios de consultoría especializada,
+                                Creamos relaciones de confianza y profesionalismo que nos permite pensar como un solo equipo entre nuestros
+                                colaboradores, clientes, socios, mayoristas y fabricantes para contribuir en la innovación y desarrollo tecnológico.</p>
+                        </div>
+>>>>>>> cano
 
                     </div>
                 </div>

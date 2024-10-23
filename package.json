@@ -7,6 +7,10 @@
     "@chakra-ui/react": "^2.8.2",
     "@chatscope/chat-ui-kit-react": "^2.0.3",
     "@chatscope/chat-ui-kit-styles": "^1.4.0",
+<<<<<<< HEAD
+=======
+    "@cyntler/react-doc-viewer": "^1.17.0",
+>>>>>>> cano
     "@emailjs/browser": "^3.6.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -24,20 +28,36 @@
     "@mui/styled-engine-sc": "^6.0.0",
     "@react-google-maps/api": "^2.19.3",
     "@react-icons/all-files": "^4.1.0",
+<<<<<<< HEAD
+=======
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
+    "@react-pdf/renderer": "^4.0.0",
+>>>>>>> cano
     "@remixicon/react": "^4.2.0",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.43.4",
+<<<<<<< HEAD
+=======
+    "@tailwindcss/line-clamp": "^0.4.4",
+>>>>>>> cano
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tremor/react": "^3.14.1",
     "@vis.gl/react-google-maps": "^1.0.0",
+<<<<<<< HEAD
     "antd": "^5.21.4",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.4",
+=======
+    "antd": "^5.20.2",
+    "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
+>>>>>>> cano
     "crypto-js": "^4.2.0",
     "d3": "^7.9.0",
     "date-fns": "^3.6.0",
@@ -46,15 +66,27 @@
     "express": "^4.20.0",
     "fast-xml-parser": "^4.4.0",
     "formik": "^2.4.6",
+<<<<<<< HEAD
     "framer-motion": "^11.3.30",
+=======
+    "framer-motion": "^11.11.8",
+>>>>>>> cano
     "google-map-react": "^2.2.1",
     "leaflet": "^1.8.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.2",
     "moment": "^2.30.1",
     "next": "^12.2.4",
+<<<<<<< HEAD
     "nprogress": "^0.2.0",
     "orgchart": "^4.0.1",
+=======
+    "nodehun": "^3.0.2",
+    "nprogress": "^0.2.0",
+    "orgchart": "^4.0.1",
+    "pdf-viewer-reactjs": "^2.2.3",
+    "pdfjs-dist": "^3.11.174",
+>>>>>>> cano
     "public-ip": "^6.0.1",
     "react": "^18.3.1",
     "react-awesome-reveal": "^4.0.0",
@@ -62,35 +94,63 @@
     "react-big-calendar": "^1.13.4",
     "react-bootstrap": "^2.10.4",
     "react-calendar": "^5.0.0",
+<<<<<<< HEAD
     "react-chartjs-2": "^5.2.0",
     "react-chatbot-kit": "^2.2.2",
     "react-datepicker": "^7.4.0",
+=======
+    "react-chatbot-kit": "^2.2.2",
+>>>>>>> cano
     "react-dom": "^18.3.1",
     "react-dotenv": "^0.1.3",
     "react-icons": "^4.12.0",
     "react-leaflet": "^4.0.1",
     "react-loader-spinner": "^6.1.6",
+<<<<<<< HEAD
     "react-multi-select-component": "^4.3.4",
     "react-native-parsed-text": "^0.0.22",
     "react-org-tree": "^1.0.1",
     "react-orgchart": "^1.0.5",
+=======
+    "react-native-parsed-text": "^0.0.22",
+    "react-org-tree": "^1.0.1",
+    "react-orgchart": "^1.0.5",
+    "react-pdf": "^9.1.1",
+>>>>>>> cano
     "react-pick-color": "^2.0.0",
     "react-quill": "^2.0.0",
     "react-resize-detector": "^11.0.1",
     "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
     "react-simple-chatbot": "^0.6.1",
+<<<<<<< HEAD
     "react-splitter-layout": "^4.0.0",
     "react-web-gifted-chat": "^0.6.7",
     "scroll": "^3.0.1",
     "sort-by": "^1.2.0",
+=======
+    "react-slick": "^0.30.2",
+    "react-web-gifted-chat": "^0.6.7",
+    "scroll": "^3.0.1",
+    "sort-by": "^1.2.0",
+    "spellchecker": "^3.7.1",
+>>>>>>> cano
     "styled-components": "^6.1.13",
     "tailwindcss-animate": "^1.0.7",
     "vue": "^3.2.47",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
     "xml2js": "^0.6.2",
+<<<<<<< HEAD
     "yup": "^1.4.0"
+=======
+    "yup": "^1.4.0",
+    "chart.js": "^4.4.4",
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^7.4.0",
+    "react-multi-select-component": "^4.3.4",
+    "react-splitter-layout": "^4.0.0"
+>>>>>>> cano
   },
   "scripts": {
     "start": "react-scripts start",
@@ -122,6 +182,10 @@
     "@babel/node": "^7.25.0",
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
+<<<<<<< HEAD
+=======
+    "@tailwindcss/forms": "^0.5.9",
+>>>>>>> cano
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",

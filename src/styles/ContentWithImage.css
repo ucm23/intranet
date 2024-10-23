@@ -7,7 +7,11 @@ html, body {
 * {
   box-sizing: border-box; /* Asegura que el ancho incluya padding y bordes */
 }
+<<<<<<< HEAD
 .container {
+=======
+.container_ {
+>>>>>>> cano
   display: flex;
   min-height: 100vh;
   min-width: 100%;

@@ -16,7 +16,11 @@
   display: inline-block;
   white-space: nowrap;
   width: 160px; 
+<<<<<<< HEAD
   height: 220px;
+=======
+  /*height: 220px;
+>>>>>>> cano
   /* transition: none !important;
   transform: none !important; */
   font-Size: '14px';
@@ -37,7 +41,11 @@
   display: inline-block;
   padding: 10px;
   background-color: white;
+<<<<<<< HEAD
   border: 1px solid #ddd;
+=======
+  /*border: 1px solid #ddd;
+>>>>>>> cano
   border-radius: 10%;
   box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2); /* Efecto sombreado */
   transition: box-shadow 0.8s ease; /* Animación suave */
@@ -131,3 +139,21 @@
     gap: 10px; /* Espacio entre los contenedores */
   }
 }
+<<<<<<< HEAD
+=======
+
+.image-container {
+  width: 800px; /* Ajusta según tus necesidades */
+  height: 600px; /* Ajusta según tus necesidades */
+  overflow: hidden; /* Evita el scroll dentro del div */
+  position: relative;
+  border: 1px solid #ccc;
+  user-select: none; /* Evita seleccionar el contenido */
+}
+
+.image-container img {
+  width: 100%; /* La imagen toma el tamaño del contenedor */
+  height: auto;
+  will-change: transform; /* Mejora el rendimiento de las transformaciones */
+}
+>>>>>>> cano

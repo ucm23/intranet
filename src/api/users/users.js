@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import Fetcher from "../../libs/Petition";
+=======
+import Fetcher from "../../libs/Petition"
+>>>>>>> cano
 
 export const indexUsers = async ({ }) => {
     let response = { status: false }
@@ -17,8 +21,16 @@ export const indexUsers = async ({ }) => {
             response = { data: data || [], status: true };
         }
     } catch (error) {
+<<<<<<< HEAD
         console.error("TCL: indexUsers -> error", error)
     } finally {
         return response;
     }
 }
+=======
+        console.error("🚀 ~ indeDocuments ~ error:", error)
+    } finally {
+        return response;
+    }
+}
+>>>>>>> cano

@@ -97,8 +97,14 @@ const Indicador = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div style={{ height: '100vh' }}>
       <Navbar backgroundColor="#001529" />
+=======
+    <div>Indicadores esta es la pagina de </div>
+  )
+}
+>>>>>>> cano
 
       <div style={{ padding: '20px' }}>
         {/* Título centrado */}

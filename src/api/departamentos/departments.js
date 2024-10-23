@@ -15,4 +15,8 @@ export const indexDepartments = async ({ }) => {
     } finally {
         return response;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cano

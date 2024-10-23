@@ -42,4 +42,7 @@ export const createEvents = async ({ event }) => {
     }
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cano

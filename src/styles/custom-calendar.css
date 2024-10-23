@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilo general para todo el calendario */
 .custom-calendar {
     font-size: 11px;
@@ -27,6 +28,27 @@
 .custom-calendar .rbc-time-view .rbc-time-slot {
     font-size: 10px;
     /* Ajusta el tamaño de las horas */
+=======
+.custom-calendar {
+    font-size: 11px;
+    padding: 5px;
+}
+
+.custom-calendar .rbc-month-view .rbc-header {
+    font-size: 11px;
+}
+
+.custom-calendar .rbc-month-view .rbc-event {
+    font-size: 9px;
+}
+
+.custom-calendar .rbc-time-view .rbc-header {
+    font-size: 11px;
+}
+
+.custom-calendar .rbc-time-view .rbc-time-slot {
+    font-size: 10px;
+>>>>>>> cano
 }
 
 .input-select-calendar {
@@ -39,7 +61,11 @@
 }
 
 .input-date-calendar {
+<<<<<<< HEAD
     padding: 5px;
+=======
+    padding: 8px;
+>>>>>>> cano
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 12px;
@@ -96,6 +122,10 @@ div.layout-splitter {
     background-color: white;
     border: 1px solid white;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cano
 .my-inner-splitter-layout .layout-pane {
     background-color: white;
     border: 1px solid white;
@@ -108,6 +138,11 @@ div.layout-splitter {
 
 .modal-header-bg {
     background-color: #F0F0F0;
+<<<<<<< HEAD
+=======
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+>>>>>>> cano
 }
 
 .css-79z5gx {
@@ -122,6 +157,10 @@ div.layout-splitter {
     flex: 1;
     overflow: auto;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cano
 .modal-body-create {
     padding: 1.5rem;
     -webkit-padding-start: 1px;
@@ -135,17 +174,30 @@ div.layout-splitter {
     flex: 1;
     overflow: auto;
     background-color: white;
+<<<<<<< HEAD
 }
 
 .select-options-form {
     padding: 5px;
+=======
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.select-options-form {
+    padding: 0px 5px;
+>>>>>>> cano
     font-size: 12px;
     border: 1px solid white;
 }
 
 .select-options-form:hover {
     border: 1px solid #c1c1c1;
+<<<<<<< HEAD
     background-color:#F0F0F0;
+=======
+    background-color: #F0F0F0;
+>>>>>>> cano
     border-radius: 4px;
 }
 
@@ -153,9 +205,21 @@ div.layout-splitter {
     background-color: #F0F0F0;
 }
 
+<<<<<<< HEAD
 .without-focus:focus-visible {
     outline: none;
     border: none;  
+=======
+.without-focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.without-focus:focus-visible {
+    outline: none;
+    border: none;
+>>>>>>> cano
     box-shadow: none;
 }
 
@@ -168,6 +232,16 @@ div.layout-splitter {
     font-size: 12px;
 }
 
+<<<<<<< HEAD
+=======
+.input-text-form:focus-visible {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 0.9px solid gray;
+}
+
+>>>>>>> cano
 .input-multi-text-form {
     border: none;
     outline: none;
@@ -176,6 +250,7 @@ div.layout-splitter {
 }
 
 .input-text-form:focus {
+<<<<<<< HEAD
     border-bottom-color: darkgray; /* Cambia el color del borde inferior al enfocar */
 }
 
@@ -185,3 +260,93 @@ div.layout-splitter {
     align-items: center
 }
 
+=======
+    border-bottom-color: darkgray;
+}
+
+.div-container-inputs-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+
+.div-items-events {
+    width: 6px;
+    background: #8bb7f3;
+    height: 50px;
+    border-style: dotted;
+    background-color: #8bb7f3;
+    border: 1px solid blue;
+    border-style: dashed;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: 5px;
+}
+
+p {
+    padding-bottom: 0px;
+}
+
+
+
+.splitter-layout {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.splitter-layout .layout-pane {
+    position: relative;
+    flex: 0 0 auto;
+    overflow: auto;
+}
+
+.splitter-layout .layout-pane.layout-pane-primary {
+    flex: 1 1 auto;
+}
+
+.splitter-layout>.layout-splitter {
+    flex: 0 0 auto;
+    width: 1px;
+    height: 100%;
+    cursor: col-resize;
+    background-color: #ccc;
+}
+
+.splitter-layout .layout-splitter:hover {
+    background-color: #bbb;
+}
+
+.splitter-layout.layout-changing {
+    cursor: col-resize;
+}
+
+.splitter-layout.layout-changing>.layout-splitter {
+    background-color: #aaa;
+}
+
+.splitter-layout.splitter-layout-vertical {
+    flex-direction: column;
+}
+
+.splitter-layout.splitter-layout-vertical.layout-changing {
+    cursor: row-resize;
+}
+
+.splitter-layout.splitter-layout-vertical>.layout-splitter {
+    width: 100%;
+    height: 1px;
+    cursor: row-resize;
+}
+
+.rmsc .dropdown-heading {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.dropdown-heading {
+    padding-inline: 8px;
+}
+>>>>>>> cano
