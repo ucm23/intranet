@@ -31,6 +31,7 @@ function RoutesComp() {
             <Route path="/Indicador" element={<Indicador />} />
             {/* <Route path="/Indicador/:proyectos" element={<Indicador/>} /> */}
             <Route path="/calendar" element={<Calendar />} />
+            <Route path="/calendario" element={<Calendario />} />
             <Route path="/profile/:id" element={<UserProfile />} />
             <Route path="/PerfilPuesto/:id" element={<PerfilPuesto />} />
             <Route path="/PerfilesPuesto1/:id" element={<PerfilesPuesto1 />} />

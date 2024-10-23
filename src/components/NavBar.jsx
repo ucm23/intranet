@@ -39,6 +39,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
         },
         { id: 8, href: "/tramites-servicios", content: "Trámites y Servicios", icon: "fa-tachometer-alt" },
         { id: 6, href: "/calendar", content: "Calendario de Eventos", icon: "fa-calendar-alt" },
+        { id: 6, href: "/calendario", content: "Calendario ", icon: "fa-calendar-alt" },
         { id: 7, href: "/Indicador", content: "Indicadores", icon: "fa-chart-line" },
 
     ];
@@ -46,7 +47,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
     const handleCheckBoxChange = ({ target }) => setIsChecked(target.checked);
 
     return (
-        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor, overflowx: 'auto' }}>
+        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor, overflowX: 'hidden',width: '155vw' }}>
             <a href="/" className="navbar-brand d-flex align-items-center">
                 <img
                     src={(showShadow || isChecked) ? "/img/LOGO-INTRANET.png" : "/img/LOGO-INTRANET.png"}

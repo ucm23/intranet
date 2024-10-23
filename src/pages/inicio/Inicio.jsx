@@ -12,8 +12,6 @@ import UserProvider from '../../componentes/UserProfile';
 import ValoresCorporativos from '../../componentes/ValoresCorporativos';
 
 
-
-
 const Inicio = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
 
@@ -24,7 +22,6 @@ const Inicio = () => {
                 <Navbar backgroundColor="#001529" />
 
                 <div style={{ overflow: 'hidden', width: '100%', margin: '0' }}> {/* Evita el desbordamiento horizontal */}
-
                     <div
                         style={{
                             position: 'relative',
@@ -39,9 +36,7 @@ const Inicio = () => {
                             color: 'white', // Cambia el color del texto
                             width: '100%', // Asegura que el ancho no cause desbordamiento
                             margin: '0',   // Elimina márgenes que puedan causar desbordamiento
-
                         }}
-
                     >
                         <div
                             style={{
@@ -68,11 +63,8 @@ const Inicio = () => {
                                     margin: '0', // Sin margen en la imagen
                                 }}
                             />
-
                             <h1 style={{ fontSize: '20px', margin: 0 }}>Grupo CTI</h1> {/* Elimina el margen del h1 */}
                         </div>
-
-
 
                         <ValoresCorporativos />
                         {/* <div

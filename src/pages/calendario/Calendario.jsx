@@ -1,24 +1,62 @@
 import React, { useState } from 'react';
-import Navbar from '../../componentes/Navbar';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
+import { Calendar as BigCalendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { format, parse, startOfWeek, getDay } from 'date-fns';
 import es from 'date-fns/locale/es';
-import { useBreakpointValue } from '@chakra-ui/react';
+import { Box, useBreakpointValue, useDisclosure } from '@chakra-ui/react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/custom-calendar.css'
 import { useEffect } from 'react';
 import { createEvents, indexEvents } from '../../api/events/events';
 import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
 import moment from 'moment/moment';
-import CalendarEventModal from './CalendarEventModal';
-import { Modal, Button, Form, Input } from 'antd';
-import { Splitter } from "antd";
+import SplitterLayout from 'react-splitter-layout';
+import 'react-splitter-layout/lib/index.css';
+import { Button, Dropdown, Checkbox, List, Skeleton } from "antd";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from '@chakra-ui/react'
+import { RightOutlined } from '@ant-design/icons';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+} from '@chakra-ui/react'
+import { Card } from '@chakra-ui/react'
+import { FiBriefcase } from 'react-icons/fi';
+import { TbUsersPlus } from "react-icons/tb";
+import { VscUngroupByRefType } from "react-icons/vsc";
+import { IoTimeOutline } from "react-icons/io5";
+import { RiSave2Fill } from "react-icons/ri";
+import { BsTextParagraph } from "react-icons/bs";
+import { MdOutlineLayers } from "react-icons/md";
+import { CiVideoOn } from "react-icons/ci";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { MultiSelect } from "react-multi-select-component";
+import Navbar from '../../componentes/Navbar';
+
+const modules = {
+    toolbar: [
+        ['bold', 'italic', 'underline'],
+        ['link', 'video'],
+    ]
+};
+
+const formats = [
+    'bold', 'italic', 'underline', 'blockquote',
+    'link', 'video'
+];
 
 const locales = {
     es: es,
@@ -35,8 +73,7 @@ const localizer = dateFnsLocalizer({
 const Calendario = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
-    const [visible, setVisible] = useState(false);
-    
+    const { isOpen: isOpenEvent, onOpen: onOpenEvent, onClose: onCloseEvent } = useDisclosure()
     const [newEvent, setNewEvent] = useState({
         department_id: '',
         user_id: '',
@@ -44,11 +81,15 @@ const Calendario = () => {
         description: '',
         link: '', start: null, end: null, type: '', participants_ids: ''
     });
+    const [selected, setSelected] = useState([]);
     const [users, setUsers] = useState([]);
+    const [body, setBody] = useState('');
     const [departaments, setDepartaments] = useState([]);
     const [events, setEvents] = useState([]);
+    const [eventsByDay, setEventsByDay] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [showEditDelete, setShowEditDelete] = useState(true);
+    const [dateSelect, setDateSelect] = useState(new Date().toISOString().split('T')[0])
 
     useEffect(() => {
         getDepartments()
@@ -89,20 +130,18 @@ const Calendario = () => {
             alert('El campo Departamento es obligatorio.');
             return;
         }
-        if (!newEvent.participants_ids) {
+
+        if (!selected.length) {
             alert('El campo Participantes es obligatorio.');
             return;
         }
-
+        console.log(newEvent)
         if (
             newEvent.department_id &&
-            newEvent.user_id &&
             newEvent.title &&
-            newEvent.description &&
             newEvent.start &&
             newEvent.end &&
             newEvent.type &&
-            newEvent.participants_ids &&
             newEvent.start < newEvent.end
         ) {
             try {
@@ -113,11 +152,14 @@ const Calendario = () => {
                 newEvent.event_type = newEvent.type;
                 delete newEvent.type;
 
+                newEvent.description = body;
+
                 newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTH:MM');
                 newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
                 delete newEvent.start;
                 delete newEvent.end;
-
+                newEvent.user_id = 1;
+                newEvent.participants_ids = selected.map(item => item?.value)
                 console.log("Estado de newEvent:", newEvent);
                 alert(JSON.stringify(newEvent));
                 const response = await createEvents({ event: newEvent });
@@ -125,24 +167,32 @@ const Calendario = () => {
 
                 if (response.status === true) {
                     console.log("Evento creado con éxito:", response.data);
+                    getEvents()
+                    onCloseEvent();
                 } else {
                     console.error("Error al crear el evento:", response.error);
                 }
             } catch (error) {
                 console.error("Error en la petición:", error);
             }
-        }
-        else {
+        } else {
+            console.log("🚀 ~ handleOk 2 ~ newEvent:", newEvent)
             alert('Por favor, complete todos los campos correctamente.');
         }
     };
 
 
     const handleEditEvent = (event) => {
+        console.log('Evento seleccionado:', event); 
+        if (!event) {
+            console.error("No se ha pasado un evento válido.");
+            return;
+        }
         setSelectedEvent(event);
         setNewEvent({ title: event.title, description: event.description, link: event.link, type: event.type, area: event.area, start: event.start, end: event.end })
         // setNewEvent({ title: event.title,start: event.start, end: event.end });
     };
+   
 
     const handleUpdateEvent = () => {
         if (newEvent.title && newEvent.start && newEvent.end && newEvent.start < newEvent.end) {
@@ -173,446 +223,293 @@ const Calendario = () => {
         setShowEditDelete(true); // Mostrar nuevamente los botones de editar y eliminar si corresponde
     };
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    const items = [
+        {
+            label: 'Cumpleaños',
+            key: '1',
+        },
+        {
+            label: 'Reunión programada',
+            key: '2',
+        },
+    ];
 
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-    const handleOk = async () => {
-        if (!newEvent.department_id) {
-            alert('El campo Departamento es obligatorio.');
-            return;
-        }
-        if (!newEvent.participants_ids) {
-            alert('El campo Participantes es obligatorio.');
-            return;
-        }
-    
-        console.log("🚀 ~ handleOk 1 ~ newEvent:", newEvent)
-
-        if (
-            newEvent.department_id &&
-            newEvent.title &&
-            newEvent.description &&
-            newEvent.start &&
-            newEvent.end &&
-            newEvent.type &&
-            newEvent.participants_ids &&
-            newEvent.start <= newEvent.end
-        ) {
-            try {
-                newEvent.department_id = parseInt(newEvent.department_id);
-    
-                if (newEvent.link) newEvent.url = newEvent.link;
-                delete newEvent.link;
-    
-                newEvent.event_type = newEvent.type;
-                delete newEvent.type;
-    
-                // Ajuste del formato de las fechas
-                newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTHH:mm');
-                newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTHH:mm');
-                delete newEvent.start;
-                delete newEvent.end;
-
-                newEvent.user_id = 1;
-    
-                console.log("Estado de newEvent:", newEvent);
-                alert(JSON.stringify(newEvent));
-    
-                const response = await createEvents({ event: newEvent });
-                console.log("Respuesta del servidor:", response);
-    
-                if (response.status === true) {
-                    console.log("Evento creado con éxito:", response.data);
-                } else {
-                    console.error("Error al crear el evento:", response.error);
-                }
-            } catch (error) {
-                console.error("Error en la petición:", error);
-            }
-        } else {
-            alert('Por favor, complete todos los campos correctamente.');
-        }
-        console.log("🚀 ~ handleOk 2 ~ newEvent:", newEvent)
-        setIsModalVisible(false);
+    const onChange = (checkedValues) => {
+        console.log('checked = ', checkedValues);
     };
 
-    const handleCerrar = () => {
-        setIsModalVisible(false);
+    const options = [
+        {
+            label: 'Cumpleaños',
+            value: 1,
+        },
+        {
+            label: 'Reuniones',
+            value: 2,
+        },
+        {
+            label: 'Curso',
+            value: 3,
+        },
+    ];
+
+    const handleSelectSlot = (slotInfo) => {
+        const filter = events.filter(event => {
+            const eventDate = new Date(event.start).toISOString().split('T')[0];
+            return eventDate < new Date(slotInfo?.start).toISOString().split('T')[0];
+        });
+        setEventsByDay(filter)
+        setDateSelect(new Date(slotInfo?.start).toISOString().split('T')[0])
     };
 
     return (
-        <div style={{ height: '100vh', overflow: 'hidden' }}>
+        <div>
             <Navbar backgroundColor="#001529" />
-            <div style={{ height: '100vh', overflow: 'hidden', padding: '10px' }}>
-                {/* Título del calendario */}
-                <div style={{ marginBottom: '20px', textAlign: 'center', }}>
-                    <h1 style={{
-                        color: 'black',
-                        fontSize: mobile ? '16px' : '20px',
-                        fontFamily: 'copperplate gothic bold',
-                        marginTop: '20px'
-                    }}>
-                        Calendario de Eventos
-                    </h1>
-                </div>
-
-
-                <>
-            <div
-                style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', border: '1px solid #ccc',padding: '10px',borderRadius: '5px',width: '180px', height: '30px', marginLeft:'15px'  }}
-                onClick={() => setVisible(true)}
+            <SplitterLayout
+                percentage={true}
+                primaryMinSize={12}
+                primaryMaxSize={12}
+                secondaryInitialSize={88}
+                secondaryMinSize={88}
+                customClassName="my-splitter-layout"
             >
-                <FontAwesomeIcon
-                    icon={faPlusCircle}
-                    style={{ color: 'blue', fontSize: '24px', marginRight: '10px' }}
-                />
-                <span style={{ fontSize: '20px', color: 'black', fontFamily: 'copperplate gothic bold' }}>
-                    Nuevo Evento
-                </span>
-            </div>
-
-            <CalendarEventModal
-                visible={visible}
-                onClose={() => setVisible(false)}
-                newEvent={newEvent}
-                setNewEvent={setNewEvent}
-                departaments={departaments}
-                users={users}
-                handleOk={handleOk}
-            />
-        </>
-
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', height: 'calc(100% - 60px)', }}>
-
-                    {/* Marco para el formulario */}
-                    <div style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '20px', boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px', width: mobile ? '30vw' : '30vw', marginLeft: 'auto', marginRight: 'auto', position: 'relative', zIndex: 4 }}>
-                        <div style={{ marginBottom: '1px', textAlign: 'center', display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '5px', position: 'relative' }}>
-                            <FontAwesomeIcon
-                                icon={faPlusCircle}
-                                style={{
-                                    color: 'blue', // Cambia el color según tu preferencia
-                                    fontSize: mobile ? '20px' : '24px', // Tamaño del ícono
-                                    marginRight: '10px', // Espacio entre el ícono y el texto
-                                    cursor: 'pointer', // Cambia el cursor al pasar sobre el ícono
-                                }}
-                            />
-                            <span style={{
-                                fontSize: mobile ? '16px' : '20px', // Tamaño del texto
-                                color: 'black', // Color del texto
-                                fontFamily: 'copperplate gothic bold', // Fuente del texto
-                                display: 'flex', // Usar flex para centrar el texto
-                                alignItems: 'center', // Centrar verticalmente
-                                justifyContent: 'center', // Centrar horizontalmente
-                                // marginLeft: 'auto', // Empujar el texto a la derecha
-                            }}>
-                                Nuevo Evento
-                            </span>
-                            {/* Sección del formulario */}
-
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Departamento:</label>
+                <div>
+                    <Dropdown.Button
+                        type="primary"
+                        loading={false}
+                        menu={{
+                            items,
+                        }}
+                        size='large'
+                        onClick={onOpenEvent}
+                        style={{ padding: '10px 0px 10px 8px' }}
+                    >
+                        Crear
+                    </Dropdown.Button>
+                    <Accordion>
+                        <AccordionItem>
+                            <h2>
+                                <AccordionButton>
+                                    <Box as='span' flex='1' textAlign='left'>
+                                        Calendarios
+                                    </Box>
+                                    <AccordionIcon />
+                                </AccordionButton>
+                            </h2>
+                            <AccordionPanel>
+                                <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
+                            </AccordionPanel>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
+                <SplitterLayout
+                    percentage={true}
+                    primaryMinSize={50}
+                    primaryMaxSize={100}
+                    secondaryMinSize={20}
+                    secondaryMaxSize={50}
+                    secondaryInitialSize={25}
+                    customClassName="my-inner-splitter-layout"
+                >
+                    <BigCalendar
+                        selectable
+                        localizer={localizer}
+                        events={events}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            fontSize: '11px'
+                        }}
+                        defaultView="month"
+                        onSelectSlot={handleSelectSlot}
+                        views={['month', 'week', 'day']}
+                        messages={{
+                            today: 'Hoy',
+                            previous: 'Anterior',
+                            next: 'Siguiente',
+                            month: 'Mes',
+                            week: 'Semana',
+                            day: 'Día',
+                            agenda: 'Agenda',
+                            date: 'Fecha',
+                            time: 'Hora',
+                            event: 'Evento',
+                            noEventsInRange: 'No hay eventos en este rango.',
+                        }}
+                        className="custom-calendar"  // clase personalizada llamada de css
+ // para editar eventos aqui se llama la funcion
+                        onSelectEvent={handleEditEvent}
+                    />
+                    <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
+                        <h2>
+                            <Box as='span' flex='1' textAlign='left'>
+                                {dateSelect}
+                            </Box>
+                        </h2>
+                        <List
+                            className="demo-loadmore-list"
+                            loading={false}
+                            itemLayout="horizontal"
+                            //loadMore={loadMore}
+                            dataSource={eventsByDay}
+                            renderItem={(item) => {
+                                console.log("🚀 ~ Calendar ~ item:", item)
+                                return (
+                                    <List.Item
+                                        actions={[<RightOutlined />]}
+                                    >
+                                        <Skeleton avatar title={false} loading={item?.loading} active>
+                                            <List.Item.Meta
+                                                title={<a href="https://www.google.com.mx/">{item?.title}</a>}
+                                                description={<div dangerouslySetInnerHTML={{ __html: item?.description }} />}
+                                            />
+                                            {/*<div>content</div>*/}
+                                        </Skeleton>
+                                    </List.Item>
+                                )
+                            }}
+                        />
+                    </div>
+                </SplitterLayout>
+            </SplitterLayout>
+            <Modal onClose={onCloseEvent} size={'6xl'} isOpen={isOpenEvent} scrollBehavior={'inside'}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader className='modal-header-bg'>Nuevo evento</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody className='modal-body-create'>
+                        <Card style={{ display: 'flex', flexDirection: 'row', padding: 3, gap: 6 }}>
+                            <div className='select-options-form div-container-inputs-form'>
+                                <FiBriefcase style={{ fontSize: 15, color: '#ccc', marginRight: 4 }} />
                                 <select
                                     value={newEvent.department_id}
                                     onChange={(e) => setNewEvent({ ...newEvent, department_id: e.target.value })}
-                                    className='input-select-calendar input-shadow'
+                                    className='without-focus'
                                 >
-                                    <option value="">Selecciona un departamento</option>
-                                    {departaments.length > 0 ? (
-                                        departaments.map((department) => (
-                                            <option key={department.id} value={department.id}>
-                                                {department.name}
-                                            </option>
-                                        ))
-                                    ) : (
-                                        <option value="" disabled>No hay departamentos disponibles</option> // Mensaje si no hay departamentos
-                                    )}
+                                    <option>Departamento</option>
+                                    {departaments.length > 0 ?
+                                        departaments.map((item) => <option key={`sel-dep-event-${item?.id}-${item?.name}`} value={item?.id}>{item?.name}</option>)
+                                        : <option disabled>No hay departamentos disponibles</option>}
                                 </select>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Colaboradores:</label>
-                                <select
-                                    value={newEvent.users}
-                                    // onChange={(e) => setNewEvent({ ...newEvent, users: e.target.value })}
-                                    onChange={(e) => {
-                                        const selectedUserId = parseInt(e.target.value);
-                                        // Actualizar tanto user_id como participants_ids con el mismo valor
-                                        setNewEvent({
-                                            ...newEvent,
-                                            user_id: selectedUserId,
-                                            participants_ids: [selectedUserId]
-                                        });
-                                    }}
-                                    className='input-select-calendar'
-                                >
-                                    <option value="">Integrantes</option>
-                                    {users.length > 0 ? (
-                                        users.map((user) => (
-                                            <option key={user.id} value={user.id}>{`${user.first_name} ${user.last_name}`}</option>
-                                        ))
-                                    ) : (
-                                        <option value="" disabled>No hay participantes disponibles</option> // Mensaje si no hay departamentos
-                                    )}
-                                </select>
-                            </div>
-
-
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Titulo:</label>
-                                <input
-                                    type="text"
-                                    placeholder="Título del evento"
-                                    value={newEvent.title}
-                                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                                    style={{
-                                        // marginRight: '35px',
-                                        marginLeft: '10px', // Desplaza este input 20px a la derecha
-                                        padding: '5px',
-                                        width: '280px',
-                                        // maxWidth: '100%', // Los inputs ocuparán el 100% del contenedor si es necesario
-                                        border: '1px solid #ccc', // Marco del input
-                                        borderRadius: '4px', // Bordes redondeados
-                                        transition: 'box-shadow 0.3s ease', // Transición suave
-                                        fontSize: '12px',
-                                        marginTop: '10px',
-                                        marginLeft: '40px', // Mueve el select hacia la derecha,
-                                        margin: '10px 20px 2px'
-                                    }}
-                                    className='nuevo-selector-inventadoo-con-lo9s-estilos-de-arriba-input-select-calendar input-shadow'
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                />
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Descripción:</label>
-                                <input
-                                    type="text"
-                                    placeholder="Descripción"
-                                    value={newEvent.description}
-                                    onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
-                                    style={{
-                                        marginRight: '10px',
-                                        padding: '5px',
-                                        width: '280px',
-                                        border: '1px solid #ccc', // Marco del input
-                                        borderRadius: '4px', // Bordes redondeados
-                                        transition: 'box-shadow 0.3s ease', // Transición suave
-                                        fontSize: '12px'
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                />
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Link(opcion):</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enlace de la reunión "
-                                    value={newEvent.link}
-                                    onChange={(e) => setNewEvent({ ...newEvent, link: e.target.value })}
-                                    style={{
-                                        marginRight: '30px',
-                                        padding: '5px',
-                                        width: '280px',
-                                        border: '1px solid #ccc', // Marco del input
-                                        borderRadius: '4px', // Bordes redondeados
-                                        transition: 'box-shadow 0.3s ease', // Transición suave
-                                        fontSize: '12px',
-                                        marginLeft: '-5px' // Mueve el select hacia la derecha
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                />
-                            </div>
-
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Fecha Inicio:</label>
-                                <DatePicker
-                                    placeholderText="Fecha de inicio"
-                                    selected={newEvent.start}
-                                    onChange={(start) => setNewEvent({ ...newEvent, start })}
-                                    showTimeSelect
-                                    dateFormat="Pp"
-                                    customInput={
-                                        <input style={{
-                                            marginRight: '10px',
-                                            border: '1px solid #ccc', // Marco del input
-                                            borderRadius: '4px', // Bordes redondeados
-                                            fontSize: '13px',
-                                            marginLeft: '5px' // Mueve el select hacia la derecha
-                                        }}
-                                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                        />}
-                                />
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Fecha de Fin:</label>
-                                <DatePicker
-                                    placeholderText="Fecha de finalización"
-                                    selected={newEvent.end}
-                                    onChange={(end) => setNewEvent({ ...newEvent, end })}
-                                    showTimeSelect
-                                    dateFormat="Pp"
-                                    customInput={
-                                        <input style={{
-                                            marginRight: '10px',
-                                            border: '1px solid #ccc', // Marco del input
-                                            borderRadius: '4px',// Bordes redondeados
-                                            transition: 'box-shadow 0.3s ease', // Transición suave
-                                            fontSize: '13px'
-                                        }}
-                                            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-
-                                        />}
-                                />
-                            </div>
-                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <label htmlFor="myInput" style={{ marginRight: '10px', fontWeight: 'bold', fontSize: mobile ? '14px' : '14px' }}> Tipo Evento:</label>
+                            <div style={{ width: 1, height: 'auto', backgroundColor: '#B6B6B699' }} />
+                            <div className='select-options-form div-container-inputs-form'>
+                                <MdOutlineLayers style={{ fontSize: 15, color: '#ccc', marginRight: 4 }} />
                                 <select
                                     value={newEvent.type}
                                     onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })}
-                                    style={{
-                                        padding: '5px',
-                                        width: '180px',
-                                        border: '1px solid #ccc', // Marco del select
-                                        borderRadius: '4px', // Bordes redondeados
-                                        transition: 'box-shadow 0.3s ease', // Transición suave
-                                        // marginLeft: '20px',
-                                        fontSize: '12px'
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-                                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+                                    className='without-focus'
                                 >
-                                    <option value="">Tipo de evento</option>
-                                    <option value="reunion">Reunión</option>
-                                    <option value="Curso">Curso</option>
-                                    <option value="Cumpleaños">Cumpleaños</option>
-                                    <option value="otro">Otro</option>
+                                    <option>Tipo</option>
+                                    {['Reunión', 'Curso', 'Cumpleaños', 'Otro'].map((item) => <option key={`sel-type-event-${item}`} value={item}>{item}</option>)}
                                 </select>
                             </div>
+                        </Card>
+                        <div style={{ display: 'flex', flexDirection: 'column', marginTop: 8, paddingTop: 6, gap: 6 }}>
+                            <div className='div-container-inputs-form'>
+                                <VscUngroupByRefType style={{ fontSize: 25, color: '#00a0df80', border: '1px solid #B6B6B650', borderRadius: 3, padding: 2, marginRight: 2 }} />
+                                <input
+                                    type="text"
+                                    placeholder="Agregar título"
+                                    value={newEvent.title}
+                                    onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+                                    //className='input-select-calendar'
+                                    className='input-text-form'
+                                    style={{ fontSize: 20 }}
+                                />
+                            </div>
 
-                            {selectedEvent ? (
-                                <>
-                                    <button onClick={handleUpdateEvent}
-                                        style={{
-                                            marginLeft: '10px', border: '1px solid #ccc', // Borde del botón
-                                            borderRadius: '4px',
-                                            padding: '5px 10px',
-                                            cursor: 'pointer',
-                                            fontSize: mobile ? '10px' : '14px',
-                                            transition: 'box-shadow 0.5s ease',
-                                            backgroundColor: '#007A33',
-                                            color: 'white'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'} // Sombra al pasar el mouse
-                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                    >
-                                        Actualizar Evento
-                                    </button>
-                                    <button onClick={handleDeleteEvent}
-                                        style={{
-                                            marginLeft: '10px', border: '1px solid #ccc', // Borde del botón
-                                            borderRadius: '4px',
-                                            padding: '5px 10px',
-                                            cursor: 'pointer',
-                                            fontSize: mobile ? '10px' : '14px',
-                                            transition: 'box-shadow 0.5s ease',
-                                            backgroundColor: 'red',
-                                            color: 'white'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'} // Sombra al pasar el mouse
-                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                    >
-                                        Eliminar Evento
-                                    </button>
-                                    <button
-                                        onClick={handleCancel}
-                                        style={{
-                                            marginLeft: '10px',
-                                            border: '1px solid #ccc',
-                                            borderRadius: '4px',
-                                            padding: '5px 10px',
-                                            cursor: 'pointer',
-                                            fontSize: mobile ? '10px' : '14px',
-                                            transition: 'box-shadow 0.5s ease',
-                                            backgroundColor: 'orange', // Color verde claro para el botón de cancelar
-                                            color: 'white'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'}
-                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
-                                    >
-                                        Cancelar
-                                    </button>
-                                </>
-                            ) : (
-                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <button
-                                        onClick={handleAddEvent}
-                                        style={{
-                                            // marginLeft: '10px',
-                                            border: '1px solid #ccc', // Borde del botón
-                                            borderRadius: '4px', // Bordes redondeados
-                                            backgroundColor: '#1890ff', // Cambia el color de fondo según sea necesario
-                                            color: 'white', // Color del texto
-                                            padding: '5px 10px', // Espaciado interno
-                                            cursor: 'pointer', // Cambia el cursor al pasar por encima
-                                            fontSize: mobile ? '10px' : '14px',
-                                            transition: 'box-shadow 0.5s ease',
-                                            marginLeft: '200px'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.9)'} // Sombra al pasar el mouse
-                                        onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
-                                    >
-                                        <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
-                                        Agregar Evento
-                                    </button>
+                            <div className='div-container-inputs-form' style={{ marginTop: 6, marginBottom: 6 }}>
+                                <TbUsersPlus style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <MultiSelect
+                                    options={users}
+                                    value={selected}
+                                    onChange={setSelected}
+                                    //labelledBy="Select"
+                                    className='input-multi-text-form'
+                                    labelledBy="Select"
+                                    hasSelectAll={false}
+                                    overrideStrings={{
+                                        "selectSomeItems": "Selecciona...",
+                                        "allItemsAreSelected": "Todos los elementos seleccionados",
+                                        "search": "Buscar",
+                                        "clearSearch": "Limpiar búsqueda",
+                                        "clearSelected": "Limpiar seleccionados",
+                                        "noOptions": "No hay opciones disponibles"
+                                    }}
+                                />
+                            </div>
+                            <div className='div-container-inputs-form'>
+                                <CiVideoOn style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <input
+                                    type="text"
+                                    placeholder="Liga de videoconferencia"
+                                    value={newEvent.link}
+                                    onChange={(e) => setNewEvent({ ...newEvent, link: e.target.value })}
+                                    //className='input-select-calendar'
+                                    className='input-text-form'
+                                //style={{ fontSize: 20 }}
+                                />
+                            </div>
+                            <div className='div-container-inputs-form'>
+                                <IoTimeOutline style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <div className='div-container-inputs-form' style={{ gap: 4 }}>
+                                    <DatePicker
+                                        placeholderText="Fecha de inicio"
+                                        selected={newEvent.start}
+                                        onChange={(start) => setNewEvent({ ...newEvent, start })}
+                                        showTimeSelect
+                                        dateFormat="Pp"
+                                        customInput={
+                                            <input className='input-date-calendar' />}
+                                    />
+                                    <p style={{ color: '#B6B6B650' }}>_</p>
+                                    <DatePicker
+                                        placeholderText="Fecha de finalización"
+                                        selected={newEvent.end}
+                                        onChange={(end) => setNewEvent({ ...newEvent, end })}
+                                        showTimeSelect
+                                        dateFormat="Pp"
+                                        minDate={newEvent.start || null}
+                                        customInput={
+                                            <input className='input-date-calendar' />}
+                                    />
                                 </div>
-                            )}
-                        </div>
-                    </div>
-                    {/* aqui termina el formulario de nuevo evento */}
+                            </div>
+                            <div className='div-container-inputs-form' style={{ alignItems: 'flex-start' }}>
+                                <BsTextParagraph style={{ fontSize: 22, color: '#ccc', padding: 3, marginRight: 6 }} />
+                                <div style={{ width: '100%', height: 180 }}>
+                                    <ReactQuill
+                                        modules={modules}
+                                        formats={formats}
+                                        theme="snow"
+                                        value={body}
+                                        onChange={setBody}
+                                        placeholder="Agregar contenido..."
+                                        style={{ height: 135 }}
+                                    />
+                                </div>
+                            </div>
 
-                    <div style={{
-                        width: mobile ? '61vw' : '66vw',
-                        height: mobile ? '62vh' : '72vh', // Ajustar aquí la altura del calendario
-                        overflow: 'hidden',
-                    }}>
-                        <Calendar
-                            localizer={localizer}
-                            events={events}
-                            startAccessor="start"
-                            endAccessor="end"
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                fontSize: '11px'
-                            }}
-                            defaultView="month"
-                            views={['month', 'week', 'day']}
-                            messages={{
-                                today: 'Hoy',
-                                previous: 'Anterior',
-                                next: 'Siguiente',
-                                month: 'Mes',
-                                week: 'Semana',
-                                day: 'Día',
-                                agenda: 'Agenda',
-                                date: 'Fecha',
-                                time: 'Hora',
-                                event: 'Evento',
-                                noEventsInRange: 'No hay eventos en este rango.',
-                            }}
-                            className="custom-calendar"  // Agregamos clase personalizada
-                            onSelectEvent={handleEditEvent}
-                        />
-                    </div>
-                </div>
-            </div>
+                            <div className='div-container-inputs-form' style={{ justifyContent: 'flex-end' }}>
+                                <Button type='primary'
+                                    onClick={handleAddEvent}
+                                >
+                                    <RiSave2Fill style={{ fontSize: 20, color: 'white', marginRight: 6 }} />
+                                    Guardar
+                                </Button>
+                            </div>
+
+
+
+                        </div>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </div>
-    );
+    )
 };
 
 export default Calendario;

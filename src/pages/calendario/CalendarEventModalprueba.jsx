@@ -5,7 +5,7 @@ import moment from 'moment/moment';
 
 const { Option } = Select;
 
-const CalendarEventModal = ({ visible, onClose, newEvent, setNewEvent, departaments, users, handleOk }) => {
+const CalendarEventModalprueba = ({ visible, onClose, newEvent, setNewEvent, departaments, users, handleOk }) => {
     return (
         <Modal
             title="Nuevo Evento"
@@ -189,4 +189,4 @@ const CalendarEventModal = ({ visible, onClose, newEvent, setNewEvent, departame
     );
 };
 
-export default CalendarEventModal;
+export default CalendarEventModalprueba;

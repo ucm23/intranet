@@ -14,17 +14,15 @@ const Colaborador = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
 
     return (
-        <div style={{minheight: '105vh',flexdirection: 'column'}}>
+        <div style={{minheight: '105vh',flexdirection: 'column',display: 'flex'}}>
             <Navbar backgroundColor="#001529" />
             <div>
             {/* <div style={{flex: '1',overflowy: 'auto',padding: '10px'}}> */}
             <h1 style={{ textAlign: 'center', color: 'black', fontSize: '22px', marginLeft: '10px' }}> Colaboradores de Grupo CTI</h1>
             <ArbolOrganigrama />
-           
         </div>
         {/* <Footer /> */}
-        </div>
-         
+        </div>       
     );
 }
 

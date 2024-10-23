@@ -10,15 +10,16 @@ const Indicador = () => {
   const [proyectos, setProyectos] = useState([
     {
       nombre: 'Intranet',
-      avance: 70,
+      avance: 0,
       actividades: [
-        { nombre: 'Login', avance: 50 },
-        { nombre: 'Inicio', avance: 100 },
-        { nombre: 'Noticias', avance: 90 },
-        { nombre: 'Organigrama', avance: 100 },
-        { nombre: 'Gestor de Documentos', avance: 80 },
-        { nombre: 'Calendario', avance: 80 },
-        { nombre: 'Indicadores', avance: 90 },
+        { nombre: 'Login', avance: 50 , responsable: 'Ulises Cano' },
+        { nombre: 'Inicio', avance: 100 , responsable: 'Adriana Castillo' },
+        { nombre: 'Noticias', avance: 90, responsable: 'Ulises Cano' },
+        { nombre: 'Organigrama', avance: 100, responsable: 'Adriana Castillo' },
+        { nombre: 'Gestor de Documentos', avance: 80, responsable: 'Ulises Cano' },
+        { nombre: 'Calendario', avance: 80, responsable: 'Ulises Cano' },
+        { nombre: 'Indicadores', avance: 90, responsable: 'Adriana Castillo' },
+        { nombre: 'BD', avance: 90, responsable: 'Gilberto López' },
       ],
     },
     {
@@ -135,7 +136,6 @@ const Indicador = () => {
             <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}
             Agregar Proyecto
           </button>
-
 
         </form>
 
