@@ -11,14 +11,7 @@ import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
 import moment from 'moment/moment';
 import SplitterLayout from 'react-splitter-layout';
-import { Button, Dropdown, Checkbox, List, Skeleton } from "antd";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-} from '@chakra-ui/react'
+import { Button, Dropdown, List, Skeleton } from "antd";
 import { RightOutlined } from '@ant-design/icons';
 import {
     Modal,
@@ -43,7 +36,6 @@ import { formats, modules } from '../../libs/main';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
-//import 'react-splitter-layout/lib/index.css';
 import 'react-quill/dist/quill.snow.css';
 import '../../styles/custom-calendar.css';
 
@@ -148,10 +140,9 @@ const Calendar = () => {
                 newEvent.user_id = 1;
                 newEvent.participants_ids = selected.map(item => item?.value)
                 console.log("Estado de newEvent:", newEvent);
-                alert(JSON.stringify(newEvent));
+
                 const response = await createEvents({ event: newEvent });
                 console.log("Respuesta del servidor:", response);
-
                 if (response.status === true) {
                     console.log("Evento creado con éxito:", response.data);
                     getEvents()
@@ -247,50 +238,26 @@ const Calendar = () => {
         <div className="mx-auto min-h-screen bg-white scroll">
             <SplitterLayout
                 percentage={true}
-                primaryMinSize={12}
-                primaryMaxSize={12}
-                secondaryInitialSize={88}
-                secondaryMinSize={88}
-                customClassName="my-splitter-layout"
+                primaryMinSize={50}
+                primaryMaxSize={100}
+                secondaryMinSize={20}
+                secondaryMaxSize={50}
+                secondaryInitialSize={25}
+                customClassName="my-inner-splitter-layout"
             >
-                <div>
+                <div style={{ height: '100%' }}>
                     <Dropdown.Button
                         type="primary"
                         loading={false}
                         menu={{
                             items,
                         }}
-                        size='large'
+                        //size='large'
                         onClick={onOpenEvent}
                         style={{ padding: '10px 0px 10px 8px' }}
                     >
                         Crear
                     </Dropdown.Button>
-                    <Accordion>
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton>
-                                    <Box as='span' flex='1' textAlign='left'>
-                                        Calendarios
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel>
-                                <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
-                            </AccordionPanel>
-                        </AccordionItem>
-                    </Accordion>
-                </div>
-                <SplitterLayout
-                    percentage={true}
-                    primaryMinSize={50}
-                    primaryMaxSize={100}
-                    secondaryMinSize={20}
-                    secondaryMaxSize={50}
-                    secondaryInitialSize={25}
-                    customClassName="my-inner-splitter-layout"
-                >
                     <BigCalendar
                         selectable
                         localizer={localizer}
@@ -299,7 +266,7 @@ const Calendar = () => {
                         endAccessor="end"
                         style={{
                             width: '100%',
-                            height: '100%',
+                            height: '93.3%',
                             fontSize: '11px'
                         }}
                         defaultView="month"
@@ -318,41 +285,35 @@ const Calendar = () => {
                             event: 'Evento',
                             noEventsInRange: 'No hay eventos en este rango.',
                         }}
-                        className="custom-calendar"  // Agregamos clase personalizada
+                        className="custom-calendar"
                         onSelectEvent={handleEditEvent}
                     />
-                    <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
-                        <h2>
-                            <Box as='span' flex='1' textAlign='left'>
-                                {dateSelect}
-                            </Box>
-                        </h2>
-                        <List
-                            className="demo-loadmore-list"
-                            loading={false}
-                            itemLayout="horizontal"
-                            //loadMore={loadMore}
-                            dataSource={eventsByDay}
-                            renderItem={(item) => {
-                                console.log("🚀 ~ Calendar ~ item:", item)
-                                return (
-                                    <List.Item
-                                        actions={[<RightOutlined />]}
-                                    >
-                                        <Skeleton avatar title={false} loading={item?.loading} active>
-                                            <div className="div-items-events"/>
-                                            <List.Item.Meta
-                                                title={<a href="https://ant.design">{item?.title}</a>}
-                                                description={<p className='my-0 my-0'><div className='line-clamp-1' dangerouslySetInnerHTML={{ __html: item?.description }} /></p>}
-                                            />
-                                            {/*<div>content</div>*/}
-                                        </Skeleton>
-                                    </List.Item>
-                                )
-                            }}
-                        />
-                    </div>
-                </SplitterLayout>
+                </div>
+                <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
+                    <h2>
+                        <Box as='span' flex='1' textAlign='left'> {dateSelect} </Box>
+                    </h2>
+                    <List
+                        className="demo-loadmore-list"
+                        loading={false}
+                        itemLayout="horizontal"
+                        //loadMore={loadMore}
+                        dataSource={eventsByDay}
+                        renderItem={(item) => {
+                            return (
+                                <List.Item actions={[<RightOutlined />]}>
+                                    <Skeleton avatar title={false} loading={item?.loading} active>
+                                        <div className="div-items-events" />
+                                        <List.Item.Meta
+                                            title={<a href="https://ant.design">{item?.title}</a>}
+                                            description={<p className='my-0'><div className='line-clamp-1' dangerouslySetInnerHTML={{ __html: item?.description }} /></p>}
+                                        />
+                                    </Skeleton>
+                                </List.Item>
+                            )
+                        }}
+                    />
+                </div>
             </SplitterLayout>
             <Modal onClose={onCloseEvent} size={'3xl'} isOpen={isOpenEvent} scrollBehavior={'inside'} isCentered>
                 <ModalOverlay />
@@ -369,9 +330,8 @@ const Calendar = () => {
                                     className='without-focus'
                                 >
                                     <option>Departamento</option>
-                                    {departaments.length > 0 ?
-                                        departaments.map((item) => <option key={`sel-dep-event-${item?.id}-${item?.name}`} value={item?.id}>{item?.name}</option>)
-                                        : <option disabled>No hay departamentos disponibles</option>}
+                                    {departaments.length <= 0 ? <option disabled>No hay departamentos disponibles</option> :
+                                        departaments.map((item) => <option key={`sel-dep-event-${item?.id}-${item?.name}`} value={item?.id}>{item?.name}</option>)}
                                 </select>
                             </div>
                             <div style={{ width: 1, height: 'auto', backgroundColor: '#B6B6B699' }} />
@@ -395,7 +355,6 @@ const Calendar = () => {
                                     placeholder="Agregar título"
                                     value={newEvent.title}
                                     onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-                                    //className='input-select-calendar'
                                     className='input-text-form'
                                     style={{ fontSize: 20 }}
                                 />
@@ -407,7 +366,6 @@ const Calendar = () => {
                                     options={users}
                                     value={selected}
                                     onChange={setSelected}
-                                    //labelledBy="Select"
                                     className='input-multi-text-form'
                                     labelledBy="Select"
                                     hasSelectAll={false}
@@ -428,9 +386,7 @@ const Calendar = () => {
                                     placeholder="Liga de videoconferencia"
                                     value={newEvent.link}
                                     onChange={(e) => setNewEvent({ ...newEvent, link: e.target.value })}
-                                    //className='input-select-calendar'
                                     className='input-text-form'
-                                //style={{ fontSize: 20 }}
                                 />
                             </div>
                             <div className='div-container-inputs-form'>
@@ -471,7 +427,6 @@ const Calendar = () => {
                                     />
                                 </div>
                             </div>
-
                             <div className='div-container-inputs-form' style={{ justifyContent: 'flex-end', marginTop: 16, marginBottom: 14 }}>
                                 <Button type='primary' onClick={handleAddEvent}>
                                     <RiSave2Fill style={{ fontSize: 20, color: 'white', marginRight: 6 }} />
