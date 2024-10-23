@@ -1691,3 +1691,30 @@ img.w-32\.h-32\.object-cover {
     color: var(--color-primary);
     text-decoration: underline;
 }
+
+.border-0-5 {
+    border-width: 0.5px;
+    border-color: #B6BB6620;
+}
+
+.p-ellipsis {
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.flex-row-columns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.sub-flex-row-columns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}

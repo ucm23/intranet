@@ -53,53 +53,63 @@ const NewDetails = ({ page }) => {
                     </div>
                 </div>
                 <div className="max-w-[850px] mx-auto px-4 py-6">
-                    <h1 class="flex-auto text-lg font-semibold text-slate-900">
-                        Resumen
-                    </h1>
-                    <p className="text-gray-700 leading-relaxed mb-6">{item?.summary}</p>
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Galería de imágenes</h2>
-                        <ImageLoader
-                            id={item?.id}
-                            className="w-full h-64 object-cover rounded-lg h-auto"
-                        />
-                    </div>
-
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Noticias relacionadas</h2>
-                        <div className="space-y-4">
-                            {item?.list.map((news, index) => (
-                                <div key={index} className="bg-gray-100 p-4 rounded-lg transition-all duration-300 hover:shadow-md">
-                                    <div href={news?.url} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600">
-                                        <div className="flex items-center mb-2">
-                                            <FaNewspaper className="mr-3 text-blue-600 flex-shrink-0" />
-                                            <span className="font-semibold">{news?.title}</span>
-                                        </div>
-                                        <p className="text-sm text-gray-600 ml-7">{news?.title}</p>
-                                        <p className="text-sm text-gray-600 ml-7">{news?.summary}</p>
-                                        <div className="flex justify-end mt-2">
-                                            <FaExternalLinkAlt className="text-blue-600" />
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Conclusiones</h2>
-                        <p className="text-gray-700 leading-relaxed">{item?.conclusion}</p>
-                    </div>
-                    <div className="flex flex-wrap gap-4 mb-4">
+                    <div className="flex flex-wrap gap-1 mb-4 items-center">
+                        Categorías:
                         {item?.categories.map((category, index) => (
                             <button
                                 key={index}
-                                className={`flex items-center px-4 py-2 rounded-full shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-white text-gray-800 hover:bg-blue-100`}
+                                className={`flex items-center px-2 py-1 rounded-full shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-white text-gray-800 hover:bg-blue-100`}
                             >
                                 <span>{category}</span>
                             </button>
                         ))}
                     </div>
+                    <h1 class="flex-auto text-lg font-semibold text-slate-900">
+                        Resumen
+                    </h1>
+
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                        <div dangerouslySetInnerHTML={{ __html: item?.summary }} />
+                    </p>
+
+                    <div className="mb-3">
+                        <ImageLoader
+                            id={item?.id}
+                            className="w-full h-64 object-cover rounded-lg h-auto"
+                        />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                        <div dangerouslySetInnerHTML={{ __html: item?.body }} />
+                    </p>
+                    {item?.list &&
+                        <div className="mb-8">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-4">{item?.list?.title}</h2>
+                            <div className="space-y-4">
+                                {item?.list?.data.map((news, index) => (
+                                    <div key={index} className="bg-gray-100 p-4 rounded-lg transition-all duration-300 hover:shadow-md">
+                                        <div href={news?.url} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600">
+                                            <div className="flex items-center mb-2">
+                                                <FaNewspaper className="mr-3 text-blue-600 flex-shrink-0" />
+                                                <span className="font-semibold">{news?.name}</span>
+                                            </div>
+                                            <p className="text-sm text-gray-600 ml-7">
+                                                <div dangerouslySetInnerHTML={{ __html: news?.description }} />
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    }
+
+
+                    <div className="mb-8">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Conclusiones</h2>
+                        <p className="text-gray-700 leading-relaxed">
+                            <div dangerouslySetInnerHTML={{ __html: item?.conclusion }} />
+                        </p>
+                    </div>
+
                     <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                         <div className="flex items-center text-sm text-gray-600">
                         </div>

@@ -1,3 +1,4 @@
+import { headers2 } from "../../libs/main"
 import Fetcher from "../../libs/Petition"
 
 export const indexNews = async ({ }) => {
@@ -29,3 +30,25 @@ export const indexIMGByID = async ({ id, picture = 'body', thumbnail = false }) 
         return response;
     }
 }
+
+export const createNews = async ({ data }) => {
+    let fetch = { status: false };
+    try {
+        console.log("🚀 ~ createNews ~ data:", data)
+        let response = await Fetcher({
+            url: `/news`,
+            method: 'POST',
+            data,
+            headers: headers2
+        });
+        console.log(response?.status, response?.data)
+        if (response.status === 200) {
+            fetch = { status: true, data: response?.data }
+        }
+    } catch (error) {
+        console.log("Error: " + error)
+    } finally {
+        return fetch;
+    }
+}
+

@@ -29,7 +29,7 @@ const AppBar = ({ children, page, extra }) => {
                 </div>
             </Header>
             {extra &&
-                <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#03296A', height: 46, padding: 0, paddingRight: 12 }}>
+                <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'white', padding: '0px 12px' }}>
                     {extra}
                 </Header>
             }

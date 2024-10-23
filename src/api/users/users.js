@@ -7,7 +7,15 @@ export const indexUsers = async ({ }) => {
             method: 'GET',
             url: `/users`
         })
-        response = { data: fetch?.data?.data, status: true }
+        if (fetch.status == 200) {
+            let data = fetch?.data?.data.map((item) => {
+                return {
+                    label: `${item?.first_name} ${item?.last_name}`,
+                    value: `${item?.id}`
+                }
+            })
+            response = { data: data || [], status: true };
+        }
     } catch (error) {
         console.error("🚀 ~ indeDocuments ~ error:", error)
     } finally {

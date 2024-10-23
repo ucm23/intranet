@@ -8,7 +8,6 @@ import Index from "./pages/landing/Index";
 //import Noticies from './pages/landing/Noticies';
 import NewsList from './pages/noticies/NewsList';
 import Inicio from './pages/inicio/Inicio';
-import Home from './pages/inicio/Home';
 import NoticiaDetalle from './pages/NoticiaDetalle';
 import Colaborador from './pages/colaborador/Colaborador';
 import Collaborator from './pages/colaborador/Collaborator';
@@ -24,6 +23,8 @@ import Manager from './pages/gestor/Manager';
 import Finder from './pages/gestor/Finder';
 import NewDetails from './pages/noticies/NewDetails'
 import AddNews from './pages/noticies/AddNews';
+import Home from './pages/home/Home';
+import Calendar from './pages/calendar/Calendar';
 
 const LayoutWithNavBar = ({ menu }) => (
     <NavBarVertical menu={menu}>
@@ -65,9 +66,13 @@ function App() {
                         {/*<Route path="/noticies" element={<Noticies />} />*/}
                     </Routes> :
                     <Routes>
-                        <Route path="*" element={<Inicio />} />
-                        <Route path="/Home" element={<Home />} />
-                        <Route path="/Inicio" element={<Inicio />} />
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/*" element={<Home />} />
+                        </Route>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/home" element={<Home />} />
+                        </Route>
+                       
 
 
                         <Route path="/noticia/:id" element={<NoticiaDetalle />} />
@@ -86,6 +91,10 @@ function App() {
                         </Route>
                         <Route path="/newDetails" element={<NewDetails page={'newslist'} />} />
                         <Route path="/addnews" element={<AddNews page={'newslist'} />} />
+
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/calendar" element={<Calendar />} />
+                        </Route>
 
                         
                     </Routes>

@@ -195,7 +195,7 @@ const NewsList = () => {
     };
 
     return (
-        <div className="mx-auto px-4 py-8 bg-gray-100 bg-white scroll">
+        <div className="mx-auto px-4 py-8 bg-white scroll">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold text-gray-800">Noticias</h2>
                 <button onClick={() => navigate("/addnews")} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center transition-colors duration-300">

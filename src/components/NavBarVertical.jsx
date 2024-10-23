@@ -67,9 +67,6 @@ const items = [
     {
         key: 'sub8', label: 'Calendario', icon: React.createElement(CalendarOutlined), href: '/calendar',
     },
-    {
-        key: 'sub9', label: 'Calendario', icon: React.createElement(CalendarOutlined), href: '/newDetails',
-    },
 
 ];
 
@@ -80,7 +77,7 @@ const NavBarVertical = ({ children, menu }) => {
     //const information_user = useSelector(state => state.login.information_user);
     //const { company } = information_user;
     const { signOut } = useContext(Context);
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
     const [menuCog, setMenuCog] = useState(true);
     const mobile = useBreakpointValue({ base: true, md: false });
 
@@ -91,7 +88,7 @@ const NavBarVertical = ({ children, menu }) => {
 
     return (
         <Layout style={{ height: '100vh', overflow: 'hidden' }}>
-            <Header style={{ display: 'flex', alignItems: 'center', background: '#03296A', height: 46, padding: !collapsed ? 0 : 14 }}>
+            <Header style={{ display: 'flex', alignItems: 'center', background: '#03296A', height: 48, padding: !collapsed ? 0 : 14 }}>
                 <div className="btn-menu-header" onClick={() => setCollapsed(!collapsed)} >
                     <MenuOutlined color='white' style={{ color: 'white' }} />
                 </div>
