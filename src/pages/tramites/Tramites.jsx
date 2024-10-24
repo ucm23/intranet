@@ -6,6 +6,7 @@ import SectionCarousel from '../../components/SectionCarousel';
 import Formularios from '../../components/Formularios'; 
 import GestionSolicitudes from '../../components/GestionSolicitudes'; 
 import AgregarSolicitudes from '../../components/AgregarSolicitudes'; 
+import GestionTiposSolicitudes from '../../components/GestionTiposSolicitudes'; // Importar el componente de gestionar tipos de solicitudes
 
 const Tramites = () => {
     const [selectedSection, setSelectedSection] = useState('gestion');
@@ -53,6 +54,8 @@ const Tramites = () => {
                         <GestionSolicitudes />
                     ) : selectedSection === 'agregarSolicitudes' ? ( 
                         <AgregarSolicitudes />
+                    ) : selectedSection === 'administrarSolicitudes' ? ( 
+                        <GestionTiposSolicitudes />  // Mostrar el componente cuando se selecciona "Administrar Solicitudes"
                     ) : (
                         <Formularios selectedSection={selectedSection} />
                     )}

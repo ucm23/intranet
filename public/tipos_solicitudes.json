@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "tipo": "Solicitud de Vacaciones",
+        "descripcion": "Permite a los empleados solicitar días de vacaciones."
+    },
+    {
+        "id": 2,
+        "tipo": "Solicitud de Permiso",
+        "descripcion": "Permite solicitar permisos por asuntos personales o médicos."
+    },
+    {
+        "id": 3,
+        "tipo": "Solicitud de Reembolso",
+        "descripcion": "Permite a los empleados solicitar el reembolso de gastos corporativos."
+    },
+    {
+        "id": 4,
+        "tipo": "Solicitud de Equipamiento",
+        "descripcion": "Permite a los empleados solicitar equipamiento de oficina o tecnológico."
+    },
+    {
+        "id": 5,
+        "tipo": "Solicitud de Certificado",
+        "descripcion": "Permite a los empleados solicitar certificados de empleo o ingresos."
+    }
+]
