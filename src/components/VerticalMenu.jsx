@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaRegCalendarAlt, FaRegEdit, FaTools, FaUmbrellaBeach, FaUserClock, FaPlusCircle, FaTasks } from 'react-icons/fa';
+import { FaRegCalendarAlt, FaRegEdit, FaTools, FaUmbrellaBeach, FaUserClock, FaPlusCircle, FaTasks, FaEdit } from 'react-icons/fa';
 
 const VerticalMenu = ({ selectedSection, setSelectedSection }) => {
     const [openTramites, setOpenTramites] = useState(false);
@@ -58,6 +58,12 @@ const VerticalMenu = ({ selectedSection, setSelectedSection }) => {
                         onClick={() => setSelectedSection('agregarSolicitudes')}
                     >
                         <FaPlusCircle style={styles.icon} /> Agregar Solicitudes
+                    </li>
+                    <li
+                        style={selectedSection === 'administrarSolicitudes' ? styles.activeItem : styles.menuItem}
+                        onClick={() => setSelectedSection('administrarSolicitudes')}
+                    >
+                        <FaEdit style={styles.icon} /> Administrar Solicitudes
                     </li>
                 </ul>
             )}

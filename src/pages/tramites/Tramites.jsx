@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaUmbrellaBeach, FaUserClock, FaPlusCircle } from 'react-icons/fa'; // Importar los íconos
 import Navbar from '../../componentes/Navbar'; 
 import VerticalMenu from '../../components/VerticalMenu'; 
 import SectionCarousel from '../../components/SectionCarousel'; 
@@ -7,7 +8,19 @@ import GestionSolicitudes from '../../components/GestionSolicitudes';
 import AgregarSolicitudes from '../../components/AgregarSolicitudes'; 
 
 const Tramites = () => {
-    const [selectedSection, setSelectedSection] = useState('gestion'); 
+    const [selectedSection, setSelectedSection] = useState('gestion');
+
+    // Definir secciones de trámites y servicios dinámicamente
+    const tramitesSections = [
+        { id: 'vacaciones', title: 'Vacaciones', icon: <FaUmbrellaBeach /> },
+        { id: 'permisos', title: 'Permisos', icon: <FaUserClock /> },
+        // Agregar más trámites aquí
+    ];
+
+    const serviciosSections = [
+        { id: 'nuevoServicio', title: 'Nuevo Servicio', icon: <FaPlusCircle /> },
+        // Agregar más servicios aquí
+    ];
 
     const carouselImages = [
         '/imgNoticias/proyecto3.jpg',
@@ -31,6 +44,8 @@ const Tramites = () => {
                     <VerticalMenu 
                         selectedSection={selectedSection} 
                         setSelectedSection={setSelectedSection} 
+                        tramitesSections={tramitesSections}
+                        serviciosSections={serviciosSections}
                     />
                 </div>
                 <div style={{ flex: 1, padding: '20px' }}>
@@ -38,12 +53,6 @@ const Tramites = () => {
                         <GestionSolicitudes />
                     ) : selectedSection === 'agregarSolicitudes' ? ( 
                         <AgregarSolicitudes />
-                    ) : selectedSection === 'soporteTecnico' ? (
-                        <Formularios selectedSection="soporteTecnico" />
-                    ) : selectedSection === 'solicitudMateriales' ? (
-                        <Formularios selectedSection="solicitudMateriales" />
-                    ) : selectedSection === 'consultoria' ? (
-                        <Formularios selectedSection="consultoria" />
                     ) : (
                         <Formularios selectedSection={selectedSection} />
                     )}
