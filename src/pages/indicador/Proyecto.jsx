@@ -1,39 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Proyecto = ({ proyecto, onActualizarProyecto }) => {
     const [nuevaActividad, setNuevaActividad] = useState({ nombre: '', avance: 0, responsable: '' });
-    const [nuevoNombre, setNuevoNombre] = useState(proyecto.nombre); // Estado para el nuevo nombre del proyecto
+    const [nuevoNombre, setNuevoNombre] = useState(proyecto.nombre);
+
+    useEffect(() => {
+        calcularAvance();
+    }, [proyecto.actividades]);
+
+    const calcularEfectividad = () => {
+        const efectividades = {};
+
+        proyecto.actividades.forEach(({ responsable, avance }) => {
+            if (!efectividades[responsable]) {
+                efectividades[responsable] = { totalAvance: 0, numActividades: 0 };
+            }
+            efectividades[responsable].totalAvance += avance;
+            efectividades[responsable].numActividades += 1;
+        });
+
+        // Calcular el porcentaje de efectividad para cada responsable
+        for (const responsable in efectividades) {
+            efectividades[responsable] = (efectividades[responsable].totalAvance / efectividades[responsable].numActividades) || 0;
+        }
+
+        return efectividades;
+    };
+
+    const calcularAvance = () => {
+        const avanceTotal =
+            proyecto.actividades.reduce((acc, actividad) => acc + actividad.avance, 0) /
+            proyecto.actividades.length;
+
+        const efectividades = calcularEfectividad();
+
+        // Actualizar el proyecto con el avance total y efectividades recalculadas
+        onActualizarProyecto({ ...proyecto, avance: avanceTotal, efectividades, nombre: nuevoNombre });
+    };
 
     const actualizarActividad = (index, nuevaActividad) => {
         const nuevasActividades = [...proyecto.actividades];
         nuevasActividades[index] = nuevaActividad;
 
-        // Calcular el avance total como promedio del avance de actividades
-        const avanceTotal =
-            nuevasActividades.reduce((acc, actividad) => acc + actividad.avance, 0) /
-            nuevasActividades.length;
-
-        // Actualizar el proyecto con las nuevas actividades, responsable, y el avance total recalculado
-        onActualizarProyecto({ ...proyecto, actividades: nuevasActividades, avance: avanceTotal, nombre: nuevoNombre });
+        // Calcular el avance al actualizar una actividad
+        calcularAvance();
     };
 
     const agregarActividad = (e) => {
         e.preventDefault();
 
-        // Ver que el nombre de la nueva actividad y el responsable no estén vacíos
         if (nuevaActividad.nombre.trim() === '' || nuevaActividad.responsable.trim() === '') return;
 
         const nuevasActividades = [...proyecto.actividades, nuevaActividad];
+        const avanceTotal = nuevasActividades.reduce((acc, actividad) => acc + actividad.avance, 0) / nuevasActividades.length;
 
-        // Calcular el avance total como promedio del avance de actividades
-        const avanceTotal =
-            nuevasActividades.reduce((acc, actividad) => acc + actividad.avance, 0) /
-            nuevasActividades.length;
+        const efectividades = calcularEfectividad();
 
-        // Actualizar el proyecto con la nueva actividad y recalcular el avance total 
-        onActualizarProyecto({ ...proyecto, actividades: nuevasActividades, avance: avanceTotal, nombre: nuevoNombre });
+        onActualizarProyecto({ ...proyecto, actividades: nuevasActividades, avance: avanceTotal, efectividades, nombre: nuevoNombre });
 
-        // Resetear el estado del formulario
         setNuevaActividad({ nombre: '', avance: 0, responsable: '' });
     };
 
@@ -46,7 +70,7 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
                     onChange={(e) => setNuevoNombre(e.target.value)}
                     style={{ border: 'none', fontSize: '24px', color: 'blue', outline: 'none' }}
                 />
-                {Math.round(proyecto.avance)}% {/* Muestra el avance total aquí */}
+                {Math.round(proyecto.avance)}%
             </h2>
 
             <ul style={{ listStyleType: 'none', padding: 0, marginTop: '10px' }}>
@@ -60,7 +84,7 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
                                 onChange={(e) =>
                                     actualizarActividad(index, {
                                         ...actividad,
-                                        avance: Math.min(Math.max(parseInt(e.target.value, 10), 0), 100), // Limitando el valor entre 0 y 100
+                                        avance: Math.min(Math.max(parseInt(e.target.value, 10), 0), 100),
                                     })
                                 }
                                 max="100"
@@ -69,8 +93,6 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
                             />
                             <span style={{ marginLeft: '5px' }}>% completado</span>
                         </div>
-
-                        {/* Responsable */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '5px' }}>
                             <span style={{ flex: 1 }}>Responsable: </span>
                             <input
@@ -90,72 +112,35 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
                 ))}
             </ul>
 
-            {/* Formulario para agregar nuevas actividades */}
             <form onSubmit={agregarActividad} style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
                 <input
                     type="text"
                     placeholder="Nueva actividad"
                     value={nuevaActividad.nombre}
                     onChange={(e) => setNuevaActividad({ ...nuevaActividad, nombre: e.target.value })}
-                    style={{
-                        marginRight: '5px',
-                        border: '1px solid #ccc',
-                        borderRadius: '4px',
-                        transition: 'box-shadow 0.3s ease',
-                        padding: '2px',
-                        fontSize: '12px',
-                        width: '230px',
-                    }}
+                    style={{ marginRight: '5px', border: '1px solid #ccc', borderRadius: '4px', padding: '2px', fontSize: '12px', width: '230px' }}
                 />
                 <input
                     type="number"
                     placeholder="Avance"
                     value={nuevaActividad.avance}
-                    onChange={(e) => setNuevaActividad({ ...nuevaActividad, avance: Math.min(Math.max(parseInt(e.target.value, 10), 0), 100) })}
+                    onChange={(e) => setNuevaActividad({ ...nuevaActividad, avance: Math.min(Math.max(parseInt(e.target.value, 10), 0), 100) }) }
                     max="100"
                     min="0"
-                    style={{
-                        marginRight: '5px',
-                        border: '1px solid #ccc',
-                        borderRadius: '4px',
-                        transition: 'box-shadow 0.3s ease',
-                        padding: '2px',
-                        fontSize: '12px',
-                        width: '60px',
-                    }}
+                    style={{ marginRight: '5px', border: '1px solid #ccc', borderRadius: '4px', padding: '2px', fontSize: '12px', width: '60px' }}
                 />
                 <input
                     type="text"
                     placeholder="Responsable"
                     value={nuevaActividad.responsable}
                     onChange={(e) => setNuevaActividad({ ...nuevaActividad, responsable: e.target.value })}
-                    style={{
-                        marginTop: '5px',
-                        marginRight: '5px',
-                        border: '1px solid #ccc',
-                        borderRadius: '4px',
-                        padding: '2px',
-                        fontSize: '12px',
-                        width: '230px',
-                    }}
+                    style={{ marginTop: '5px', marginRight: '5px', border: '1px solid #ccc', borderRadius: '4px', padding: '2px', fontSize: '12px', width: '230px' }}
                 />
                 <button
                     type="submit"
-                    style={{
-                        marginTop: '10px',
-                        border: '1px solid #ccc',
-                        borderRadius: '4px',
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        color: 'white',
-                        padding: '5px 10px',
-                        cursor: 'pointer',
-                        fontSize: '14px',
-                        transition: 'box-shadow 0.5s ease',
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'}
-                    onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
+                    style={{ marginTop: '10px', border: '1px solid #ccc', borderRadius: '4px', backgroundColor: 'rgba(54, 162, 235, 0.6)', color: 'white', padding: '5px 10px', cursor: 'pointer', fontSize: '14px' }}
                 >
-                    <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}Agregar
+                    <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> Agregar
                 </button>
             </form>
         </div>
