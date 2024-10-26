@@ -1,6 +1,5 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Home from "../pages/inicio/Home";
-import Colaborador from "../pages/colaborador/Colaborador";
 import Tramites from "../pages/tramites/Tramites"
 import Indicador from "../pages/indicador/Indicador";
 import Calendario from "../pages/calendario/Calendario";
@@ -26,7 +25,6 @@ function RoutesComp() {
             <Route path="*" element={<Inicio />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Inicio" element={<Inicio />} />
-            <Route path="/Colaborador" element={<Colaborador />} />
             <Route path="/Organizacion" element={<Organizacion />} />
             <Route path="/Indicador" element={<Indicador />} />
             {/* <Route path="/Indicador/:proyectos" element={<Indicador/>} /> */}

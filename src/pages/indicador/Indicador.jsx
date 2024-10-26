@@ -110,7 +110,7 @@ const Indicador = () => {
       <Navbar backgroundColor="#001529" />
 
       <div style={{ padding: '20px' }}>
-        {/* Título centrado */}
+        {/* Título  */}
         <h1 style={{ textAlign: 'center', fontSize: mobile ? '20px' : '28px', fontFamily: 'copperplate gothic bold' }}>
           Avances de Proyectos
         </h1>
@@ -123,23 +123,23 @@ const Indicador = () => {
             value={nuevoProyecto.nombre}
             onChange={(e) => setNuevoProyecto({ ...nuevoProyecto, nombre: e.target.value })}
             style={{ marginRight: '10px', padding: '8px', flex: 1, border: '1px solid #ccc', borderRadius: '4px', transition: 'box-shadow 0.3s ease' }}
-            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} 
+            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} 
           />
           <button type="submit"
             style={{
               marginLeft: '10px',
-              border: '1px solid #ccc', // Borde del botón
-              borderRadius: '4px', // Bordes redondeados
-              backgroundColor: 'blue', // Cambia el color de fondo según sea necesario
-              color: 'white', // Color del texto
-              padding: '5px 10px', // Espaciado interno
-              cursor: 'pointer', // Cambia el cursor al pasar por encima
+              border: '1px solid #ccc', 
+              borderRadius: '4px', 
+              backgroundColor: 'blue', 
+              color: 'white', 
+              padding: '5px 10px', 
+              cursor: 'pointer', 
               fontSize: mobile ? '10px' : '14px',
               transition: 'box-shadow 0.5s ease'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} // Sombra al pasar el mouse
-            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} // Quitar sombra al salir
+            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'} 
+            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'} 
 
           >
             <i className="fas fa-plus-circle" style={{ marginRight: '5px' }}></i> {/* Icono de agregar */}

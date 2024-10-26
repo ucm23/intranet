@@ -19,7 +19,6 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
             efectividades[responsable].numActividades += 1;
         });
 
-        // Calcular el porcentaje de efectividad para cada responsable
         for (const responsable in efectividades) {
             efectividades[responsable] = (efectividades[responsable].totalAvance / efectividades[responsable].numActividades) || 0;
         }
@@ -29,12 +28,11 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
 
     const calcularAvance = () => {
         const avanceTotal =
-            proyecto.actividades.reduce((acc, actividad) => acc + actividad.avance, 0) /
+            proyecto.actividades.reduce((acc, actividad) => acc + actividad.avance, 0) / 
             proyecto.actividades.length;
 
         const efectividades = calcularEfectividad();
 
-        // Actualizar el proyecto con el avance total y efectividades recalculadas
         onActualizarProyecto({ ...proyecto, avance: avanceTotal, efectividades, nombre: nuevoNombre });
     };
 
@@ -42,8 +40,10 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
         const nuevasActividades = [...proyecto.actividades];
         nuevasActividades[index] = nuevaActividad;
 
-        // Calcular el avance al actualizar una actividad
-        calcularAvance();
+        const avanceTotal = nuevasActividades.reduce((acc, actividad) => acc + actividad.avance, 0) / nuevasActividades.length;
+        const efectividades = calcularEfectividad();
+
+        onActualizarProyecto({ ...proyecto, actividades: nuevasActividades, avance: avanceTotal, efectividades, nombre: nuevoNombre });
     };
 
     const agregarActividad = (e) => {
@@ -84,7 +84,7 @@ const Proyecto = ({ proyecto, onActualizarProyecto }) => {
                                 onChange={(e) =>
                                     actualizarActividad(index, {
                                         ...actividad,
-                                        avance: Math.min(Math.max(parseInt(e.target.value, 10), 0), 100),
+                                        avance: Math.min(Math.max(parseInt(e.target.value, 10), 0), 100), // Esto es para el porcentaje q va de 0 a 100
                                     })
                                 }
                                 max="100"

@@ -6,15 +6,21 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarEle
 
 const GraficaAvancesProyecto = ({ proyectos }) => {
     const colores = [
+        'rgba(255, 0, 0, 0.6)', // Rojo
         'rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
         'rgba(255, 206, 86, 0.6)',
+        'rgba(0, 255, 0, 0.6)', // Verde
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 255, 0, 0.6)', // Amarillo
+        'rgba(128, 0, 128, 0.6)', // Púrpura
         'rgba(75, 192, 192, 0.6)',
         'rgba(153, 102, 255, 0.6)',
         'rgba(255, 159, 64, 0.6)',
+        'rgba(255, 165, 0, 0.6)', // Naranja
+        
     ];
 
-    // Datos para la gráfica de proyectos (Doughnut)
+    // Datos para la gráfica de proyectos
     const dataProyectos = {
         labels: proyectos.map(proyecto => proyecto.nombre),
         datasets: [
@@ -45,7 +51,7 @@ const GraficaAvancesProyecto = ({ proyectos }) => {
         },
     };
 
-    // Preparar datos para la gráfica de efectividad (Bar)
+    // Preparar datos para la gráfica de efectividad 
     const responsables = {};
     proyectos.forEach(proyecto => {
         for (const [responsable, efectividad] of Object.entries(proyecto.efectividades || {})) {
@@ -54,13 +60,12 @@ const GraficaAvancesProyecto = ({ proyectos }) => {
             }
             // Asignar la efectividad correspondiente a cada proyecto
             const index = proyectos.indexOf(proyecto);
-            // responsables[responsable][index] = efectividad * 100; // Convertir a porcentaje
-            responsables[responsable][index] = efectividad ;
+            responsables[responsable][index] = efectividad;
         }
     });
 
     const dataEfectividad = {
-        labels: proyectos.map(proyecto => proyecto.nombre), // Proyectos como etiquetas
+        labels: proyectos.map(proyecto => proyecto.nombre),
         datasets: Object.entries(responsables).map(([responsable, efectividades], index) => ({
             label: responsable,
             data: efectividades,
@@ -111,13 +116,14 @@ const GraficaAvancesProyecto = ({ proyectos }) => {
 
     return (
         <div>
+            <h3>Avances por proyecto</h3>
             {/* Gráfica de avances de proyectos */}
             <div style={chartStyles}>
                 <Doughnut data={dataProyectos} options={optionsProyectos} />
             </div>
 
             {/* Título para la gráfica de efectividad */}
-            <h3>Efectividad de los colaboradores por proyecto</h3>
+            <h3>Efectividad por responsable por proyecto</h3>
 
             {/* Gráfica de efectividad de los colaboradores */}
             <div style={chartStyles}>

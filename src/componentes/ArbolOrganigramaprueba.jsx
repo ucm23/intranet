@@ -37,7 +37,7 @@ import MouseOverMessage from './MouseOverMessage';
 import HoverText from './HoverText';
 import PerfilPuesto from '../pages/Puestos/PerfilPuesto';
 import HoverText1 from './HoverText1';
-import ImageWithHoverText from '../componentes/ImageWithHoverText';
+import ImageWithHoverText from './ImageWithHoverText';
 import "../styles/ImageWithHoverText.css";
 
 const userId = 123;

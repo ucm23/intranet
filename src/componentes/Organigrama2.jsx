@@ -471,26 +471,26 @@ const myTreeData = {
 
                     children: [
 
-                        {
-                            id: '26', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
-                                <br></br>
-                                <Link to={`/PerfilGral/${19}/${'MESA1.png'}`}>
-                                {/* <Link to="/Perfilmesa1"> */}
-                                    <div>
-                                        <ImageWithHoverText
-                                            imgSrc={mesa1}
-                                            hoverText="Ver mi Perfil"
-                                        // style={{ marginTop: '-35px', border: '2px solid #ccc', borderRadius: '50%', cursor: 'pointer', width: '90%', height: '75%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
-                                        />
-                                    </div>
-                                </Link>
-                                <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Juan José Gil López
-                                    <br></br>
-                                    <Link to={`/PerfilesPuesto1/${15}`}>
-                                        <HoverText text="Ing. Soporte Técnico" />
-                                    </Link>
-                                </span></div>
-                        },
+                        // {
+                        //     id: '26', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
+                        //         <br></br>
+                        //         <Link to={`/PerfilGral/${19}/${'MESA1.png'}`}>
+                        //         {/* <Link to="/Perfilmesa1"> */}
+                        //             <div>
+                        //                 <ImageWithHoverText
+                        //                     imgSrc={mesa1}
+                        //                     hoverText="Ver mi Perfil"
+                        //                 // style={{ marginTop: '-35px', border: '2px solid #ccc', borderRadius: '50%', cursor: 'pointer', width: '90%', height: '75%', objectFit: 'cover', marginLeft: '10px', transition: 'none !important', transform: 'none !important' }}
+                        //                 />
+                        //             </div>
+                        //         </Link>
+                        //         <span style={{ fontSize: '12px', fontWeight: 'bold' }}>  Juan José Gil López
+                        //             <br></br>
+                        //             <Link to={`/PerfilesPuesto1/${15}`}>
+                        //                 <HoverText text="Ing. Soporte Técnico" />
+                        //             </Link>
+                        //         </span></div>
+                        // },
                         {
                             id: '27', label: <div className="tree-node" style={{ border: '2px solid #1890ff', borderRadius: '10%', width: '160px', height: '240px', transition: 'none !important', transform: 'none !important' }}>
                                 <br></br>
