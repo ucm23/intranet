@@ -13,7 +13,10 @@ import {
     ToolOutlined,
     SettingOutlined,
     AppstoreOutlined,
+    FileDoneOutlined,
 } from '@ant-design/icons';
+ 
+import { FaCalendarAlt, FaUser, FaComments, FaShareAlt, FaNewspaper, FaCheckCircle, FaExternalLinkAlt, FaCheck } from "react-icons/fa";
 import { Layout, Menu, theme } from 'antd';
 import { Divider, useBreakpointValue } from '@chakra-ui/react'
 import { useNavigate, Link } from 'react-router-dom';
@@ -46,24 +49,23 @@ const items = [
         key: 'sub1', label: 'Inicio', icon: React.createElement(HomeOutlined), href: '/',
     },
     {
-        key: 'sub2', label: 'Noticias', icon: <AppstoreOutlined />, href: '/newslist',
+        key: 'sub2', label: 'Noticias', icon: <FaNewspaper />, href: '/newslist',
     },
-
-    {
+    /*{
         key: 'sub3', label: 'Colaboradores', icon: <AppstoreOutlined />, href: '/collaborator',
     },
     {
         key: 'sub4', label: 'Trámites y Servicios', icon: <AppstoreOutlined />, href: '/docs',
     },
     {
-        key: 'sub5', label: 'Gestor de Contenidos', icon: <AppstoreOutlined />, href: '/files',
-    },
+        key: 'sub5', label: 'Gestor de Contenidos', icon: <FileDoneOutlined />, href: '/files',
+    },*/
     {
-        key: 'sub6', label: 'Gestor de Contenidos', icon: <AppstoreOutlined />, href: '/finder',
+        key: 'sub6', label: 'Gestor de archivos', icon: <FileDoneOutlined />, href: '/files',
     },
-    {
+    /*{
         key: 'sub7', label: 'Indicadores', icon: <SettingOutlined />, href: '/ind',
-    },
+    },*/
     {
         key: 'sub8', label: 'Calendario', icon: React.createElement(CalendarOutlined), href: '/calendar',
     },
@@ -95,25 +97,24 @@ const NavBarVertical = ({ children, menu }) => {
                 <img src="/img/logo-white-removebg.png" alt="/img/logo-blue-removebg.png" style={{ height: 40, marginLeft: !mobile ? 12 : 0 }} />
             </Header>
             <Layout>
-                {menu &&
-                    <Sider
-                        collapsed={collapsed}
-                        style={{ borderRightWidth: 0.6, backgroundColor: '#f0f0f0', background: '#f0f0f0' }}
-                    >
-                        <Menu
-                            onClick={onClick}
-                            className='menu-vertical'
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            //mode="inline"
-                            //theme='light'
-                            inlineCollapsed={collapsed}
-                            items={items}
-                        />
-                    </Sider>
-                }
+                <Sider
+                    collapsed={collapsed}
+                    style={{ borderRightWidth: 0.6, backgroundColor: '#03296A', background: '#03296A' }}
+                >
+                    <Menu
+                        className='menu-vertical'
+                        //defaultSelectedKeys={['1']}
+                        //defaultOpenKeys={['sub1']}
+                        mode="inline"
+                        theme='dark'
+                        inlineCollapsed={collapsed}
+                        items={items}
+                        onClick={onClick}
+                    />
+                </Sider>
 
-                <Content className=''>
+
+                <Content className='' style={{ backgroundColor: 'white' }}>
                     {children}
                 </Content>
             </Layout>

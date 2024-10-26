@@ -176,37 +176,37 @@ const Manager = () => {
     const transformToTree = () => {
         const tree = [];
         data.forEach((item) => {
-            let departmentFolder = tree.find(
-                (folder) => folder.name === item?.department?.name
-            );
-
-            if (!departmentFolder) {
-                departmentFolder = {
-                    id: item.id,
-                    name: item?.department?.name,
-                    type: "folder",
-                    children: [],
-                    mime: 'folder',
-                    isOpen: false,
-                };
-                tree.push(departmentFolder);
-            }
-            let projectFolder = departmentFolder.children.find(
+            let projectFolder = tree.find(
                 (folder) => folder.name === item?.project?.name
             );
+
             if (!projectFolder) {
                 projectFolder = {
-                    id: item.id + 100,
+                    id: item.id,
                     name: item?.project?.name,
                     type: "folder",
                     children: [],
                     mime: 'folder',
                     isOpen: false,
                 };
-                departmentFolder.children.push(projectFolder);
+                tree.push(projectFolder);
+            }
+            let departamentFolder = projectFolder.children.find(
+                (folder) => folder.name === item?.department?.name
+            );
+            if (!departamentFolder) {
+                departamentFolder = {
+                    id: item.id + 100,
+                    name: item?.department?.name,
+                    type: "folder",
+                    children: [],
+                    mime: 'folder',
+                    isOpen: false,
+                };
+                projectFolder.children.push(departamentFolder);
             }
 
-            projectFolder.children.push({
+            departamentFolder.children.push({
                 ...item,
                 type: "file",
             });

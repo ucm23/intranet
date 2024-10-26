@@ -69,7 +69,7 @@ const Home = () => {
                 </a>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-                    <div className="md:col-span-2 bg-white rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden relative h-auto">
+                    <div className="md:col-span-2 bg-white rounded shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden relative h-auto">
                         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${recentNews[0].image})` }}></div>
                         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-6">
                             <h3 className="text-3xl font-semibold text-white mb-4">{recentNews[0].title}cc</h3>
@@ -78,7 +78,7 @@ const Home = () => {
                     </div>
                     <div className="space-y-6">
                         {recentNews.slice(1).map((news) => (
-                            <div key={news.id} className="bg-white rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden">
+                            <div key={news.id} className="bg-white rounded shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden">
                                 <img src={news.image} alt={news.title} className="w-full h-32 object-cover" />
                                 <div className="p-1.5">
                                     <h3 className="text-lg font-semibold text-gray-800 mb-2">{news.title}</h3>
@@ -101,7 +101,7 @@ const Home = () => {
                     {recentEvents.map((event, index) => {
                         if (index === 0) {
                             return (
-                                <div key={event.id} className="bg-white rounded-lg shadow-md border-0-5 transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden flex flex-col justify-between">
+                                <div key={event.id} className="bg-white rounded shadow-md border-0-5 transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden flex flex-col justify-between">
                                     <div className="bg-blue-500 p-12 flex justify-center items-center">
                                         {event.icon}
                                     </div>
@@ -118,7 +118,7 @@ const Home = () => {
                         const day = date.getDate().toString().padStart(2, '0');
 
                         return (
-                            <div key={event.id} className="bg-white rounded-lg shadow-md border-0-5 transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden">
+                            <div key={event.id} className="bg-white rounded shadow-md border-0-5 transition duration-300 ease-in-out transform hover:-translate-y-1 overflow-hidden">
                                 <div className="p-0">
                                     <div className="flex justify-between items-center p-4">
                                         <div className="text-center">
@@ -141,7 +141,7 @@ const Home = () => {
                 </div>
             </section>
 
-            <div className="bg-gray-200 py-12 mt-16">
+            {/*<div className="bg-gray-200 py-12 mt-16">
                 <div className="container mx-auto px-4">
                     <h2 className="text-xl md:text-2xl font-bold text-center mb-8 text-gray-800">
                         ¿Cómo funciona?
@@ -202,14 +202,19 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div>*/}
 
             <div className="bg-white py-16 pb-24">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-24 text-gray-800">
-                        Nuestra Empresa
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <h2 className="text-2xl font-bold text-gray-800"> Nuestra Empresa</h2>
+
+                    <a onClick={(e) => e.preventDefault()} style={{ fontWeight: 500 }}>
+                        <Space>
+                            Conoce la Misión, Visión y las Políticas <GoChevronDown />
+                        </Space>
+                    </a>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24">
                         <div className="bg-gradient-to-br from-blue-200 to-blue-300 p-6 shadow-lg transition-all duration-300 relative pt-16" style={{ borderRadius: 8 }}>
                             <div className="flex items-center justify-center w-20 h-20 bg-blue-500 rounded-full mb-6 mx-auto absolute -top-10 left-1/2 transform -translate-x-1/2 shadow-lg">
                                 <FaBullseye className="text-white text-3xl" />

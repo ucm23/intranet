@@ -33,6 +33,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 12px;
+    width: 200px;
 }
 
 /*.input-select-calendar:hover {
@@ -43,7 +44,7 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.layout-splitter {
+/*.layout-splitter {
     width: 25px;
 }
 
@@ -84,13 +85,13 @@ div.layout-splitter {
 
 .my-splitter-layout .layout-pane {
     background-color: white;
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 .my-inner-splitter-layout .layout-pane {
     background-color: white;
-    border: 1px solid white;
-}
+    border: 2px solid white;
+}*/
 
 .label-input-modal {
     font-size: 12px;

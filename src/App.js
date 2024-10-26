@@ -25,6 +25,15 @@ import NewDetails from './pages/noticies/NewDetails'
 import AddNews from './pages/noticies/AddNews';
 import Home from './pages/home/Home';
 import Calendar from './pages/calendar/Calendar';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import Files from './pages/gestor/Files';
+
+const pageTransition = {
+    in: { opacity: 1, x: 0, rotate: 0 },
+    out: { opacity: 0, x: "100vw", rotate: 45 }
+};
+
 
 const LayoutWithNavBar = ({ menu }) => (
     <NavBarVertical menu={menu}>
@@ -59,45 +68,58 @@ function App() {
 
     return (
         <Context.Provider value={authContext}>
+
             <Provider store={store}>
                 {!userToken ?
                     <Routes>
                         <Route path="/" index element={<Index />} />
                         {/*<Route path="/noticies" element={<Noticies />} />*/}
                     </Routes> :
-                    <Routes>
-                        <Route element={<LayoutWithNavBar menu={true} />}>
-                            <Route path="/*" element={<Home />} />
-                        </Route>
-                        <Route element={<LayoutWithNavBar menu={true} />}>
-                            <Route path="/home" element={<Home />} />
-                        </Route>
-                       
+                    <AnimatePresence mode='wait'>
+                        <Routes>
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/*" element={<Home />} />
+                            </Route>
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/home" element={<Home />} />
+                            </Route>
+
+                            <Route path="/noticia/:id" element={<NoticiaDetalle />} />
+                            <Route path="/collaborator" element={<Collaborator />} />
+                            <Route path="/Organizacion" element={<Organizacion />} />
+
+                            <Route path="/finder" element={<Finder />} />
+                            <Route path="/gestor" element={<Gestor />} />
+                            <Route path="/docs" element={<Tramites />} />
+                            <Route path="/ind" element={<Indicadores />} />
+                            <Route path="/Perfilceo" element={<Perfilceo />} />
+                            <Route path="/gestor-contenidos/*" element={<Gestor />} />
+
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/files" element={<Files />} />
+                            </Route>
+
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route
+                                    path="/newslist"
+                                    element={<NewsList />}
+                                />
+                            </Route>
+                            <Route path="/newDetails" element={<NewDetails page={'newslist'} />} />
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route
+                                    path="/addnews"
+                                    element={<AddNews page={'newslist'} />}
+                                />
+                            </Route>
+
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/calendar" element={<Calendar />} />
+                            </Route>
 
 
-                        <Route path="/noticia/:id" element={<NoticiaDetalle />} />
-                        <Route path="/collaborator" element={<Collaborator />} />
-                        <Route path="/Organizacion" element={<Organizacion />} />
-                        <Route path="/files" element={<Manager />} />
-                        <Route path="/finder" element={<Finder />} />
-                        <Route path="/gestor" element={<Gestor />} />
-                        <Route path="/docs" element={<Tramites />} />
-                        <Route path="/ind" element={<Indicadores />} />
-                        <Route path="/Perfilceo" element={<Perfilceo />} />
-                        <Route path="/gestor-contenidos/*" element={<Gestor />} />
-
-                        <Route element={<LayoutWithNavBar menu={true} />}>
-                            <Route path="/newslist" element={<NewsList />} />
-                        </Route>
-                        <Route path="/newDetails" element={<NewDetails page={'newslist'} />} />
-                        <Route path="/addnews" element={<AddNews page={'newslist'} />} />
-
-                        <Route element={<LayoutWithNavBar menu={true} />}>
-                            <Route path="/calendar" element={<Calendar />} />
-                        </Route>
-
-                        
-                    </Routes>
+                        </Routes>
+                    </AnimatePresence>
                 }
             </Provider>
         </Context.Provider>

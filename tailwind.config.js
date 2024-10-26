@@ -113,6 +113,9 @@ export default {
       },
       textShadow: {
         'custom': '2px 2px 4px rgba(0, 0, 0, 0.5)',
+      },
+      fontSize: {
+        'xxs': '0.625rem',
       }
     },
   },

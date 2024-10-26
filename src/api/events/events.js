@@ -9,10 +9,12 @@ export const indexEvents = async ({ }) => {
         })
         if (fetch.status == 200) {
             let data = fetch?.data?.data.map((event) => {
+                let date = new Date(event.start_date);
+                let date_ = new Date(event.end_date);
                 return {
                     ...event,
-                    start: new Date(event?.start_date),
-                    end: new Date(event?.end_date),
+                    start: new Date(date.getTime() - date.getTimezoneOffset() * 60000),
+                    end: new Date(date_.getTime() - date_.getTimezoneOffset() * 60000), //new Date(event?.end_date),
                 }
             })
             response = { data: data, status: true }

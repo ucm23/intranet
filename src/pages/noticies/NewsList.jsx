@@ -4,6 +4,20 @@ import { indexIMGByID, indexNews } from "../../api/news/news";
 import { indexUsers } from "../../api/users/users";
 import { useNavigate } from 'react-router-dom';
 import moment from "moment/moment";
+import { Button, Empty, Typography } from 'antd';
+import {
+    PlusOutlined
+} from '@ant-design/icons';
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure,
+} from '@chakra-ui/react'
+import AddNews from "./AddNews";
 
 const categories = [
     "Todos",
@@ -18,8 +32,6 @@ const categories = [
     "Capacitación y Desarrollo",
     "Seguridad Informática",
     "Responsabilidad Social y Sustentabilidad",
-    "responsabilidad",
-    "digital"
 ]
 
 const viewModes = [
@@ -31,6 +43,7 @@ const viewModes = [
 
 const NewsList = () => {
 
+    const { isOpen: isOpenEvent, onOpen: onOpenEvent, onClose: onCloseEvent } = useDisclosure()
     const [data, setData] = useState([]);
     const [users, setUsers] = useState(null);
     const navigate = useNavigate();
@@ -70,7 +83,7 @@ const NewsList = () => {
         setViewMode(mode);
     };
 
-    const findUser = ({ id }) => users.find(item => item?.id == id);
+    const findUser = ({ id }) => users.find(item => item?.value == id);
 
     const ImageLoader = ({ id, className }) => {
         const [imageUrl, setImageUrl] = useState(null);
@@ -99,14 +112,17 @@ const NewsList = () => {
                         {filteredNews.map((item, index) => {
                             const user = findUser({ id: item.user_id });
                             return (
-                                <div key={index} onClick={() => handleDetails({ item, user })} className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div key={index} onClick={() => handleDetails({ item, user })} className="bg-white rounded overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                                     <ImageLoader id={item?.id} className={"w-full h-55 object-cover"} />
                                     <div className="p-6">
-                                        <h3 className="text-xl font-semibold mb-2 text-gray-800">{item.title}</h3>
-                                        <p className="text-gray-600 mb-4 line-clamp-3">{item.summary}</p>
+                                        <h3 className="text-xl font-semibold mb-0 text-gray-800">{item.title}</h3>
+                                        <span className="text-xs text-blue-600 font-medium">{user?.label}</span>
+                                        <p className="text-gray-600 mb-4 mt-3 line-clamp-3">
+                                            <div dangerouslySetInnerHTML={{ __html: item?.summary }} />
+                                        </p>
                                         <div className="flex justify-between items-center">
-                                            <div className="flex flex-row">
-                                                {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 py-1 px-2 ml-0.5 rounded-full text-xs">{item}</span>)}
+                                            <div className="flex flex-row wrap gap-0.5">
+                                                {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 py-0.5 px-1.5 rounded text-xxs">{item}</span>)}
                                             </div>
                                         </div>
                                     </div>
@@ -121,11 +137,13 @@ const NewsList = () => {
                         {filteredNews.map((item, index) => {
                             const user = findUser({ id: item.user_id });
                             return (
-                                <div key={index} onClick={() => handleDetails({ item, user })} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div key={index} onClick={() => handleDetails({ item, user })} className="bg-white rounded overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                                     <ImageLoader id={item?.id} className={"w-full h-32 object-cover"} />
                                     <div className="p-2">
                                         <h3 className="text-sm font-semibold mb-1 text-gray-800">{item.title}</h3>
-                                        {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 py-1 px-3 ml-1 rounded-full text-xs">{item}</span>)}
+                                        <div className="flex flex-column wrap gap-0.5">
+                                            {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 py-1 px-3 ml-1 rounded-full text-xxs">{item}</span>)}
+                                        </div>
                                     </div>
                                 </div>
                             )
@@ -136,14 +154,31 @@ const NewsList = () => {
                 return (
                     <div className="space-y-4">
                         {filteredNews.map((item, index) => {
-                            const user = findUser({ id: item.user_id });
+                            const user = findUser({ id: item?.user_id });
                             return (
-                                <div key={index} onClick={() => handleDetails({ item, user })} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex">
-                                    <ImageLoader id={item?.id} className={"w-32.h-32.object-cover"} />
-                                    <div className="p-4 flex-grow">
-                                        <h3 className="text-lg font-semibold mb-1 text-gray-800">{item.title}</h3>
-                                        <p className="text-sm text-gray-600 mb-2 line-clamp-2">{item.summary}</p>
-                                        <span className="text-xs text-blue-600 font-medium">{user?.first_name} {user?.last_name}</span>
+                                <div
+                                    key={item.id}
+                                    className="bg-white rounded overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500"
+                                    tabIndex="0"
+                                    role="button"
+                                    onClick={() => handleDetails({ item, user })}
+                                //onClick={() => setSelectedCard(item)}
+                                //onKeyPress={(e) => e.key === "Enter" && setSelectedCard(item)}
+                                >
+                                    <div className="flex flex-row">
+                                        <div className="w-1/3">
+                                            <ImageLoader id={item?.id} className={"w-full h-full object-cover"} />
+                                        </div>
+                                        <div className="w-2/3 p-6 flex flex-col justify-between">
+                                            <div>
+                                                <h3 className="text-2xl font-bold mb-2 line-clamp-1">{item.title}</h3>
+                                                <p className="text-sm text-gray-600 mb-1 line-clamp-2 text-justify">
+                                                    <div dangerouslySetInnerHTML={{ __html: item?.summary }} />
+                                                </p>
+                                               
+                                            </div>
+                                            <span className="text-xs text-blue-600 font-medium">{user?.label}</span>
+                                        </div>
                                     </div>
                                 </div>
                             )
@@ -171,7 +206,7 @@ const NewsList = () => {
                                                 <div className="flex items-center">
                                                     <div className="flex flex-col">
                                                         <span className="font-medium">{item.title}</span>
-                                                        <span>{user?.first_name} {user?.last_name}</span>
+                                                        <span>{user?.label} {user?.last_name}</span>
                                                     </div>
                                                 </div>
                                             </td>
@@ -198,9 +233,10 @@ const NewsList = () => {
         <div className="mx-auto px-4 py-8 bg-white scroll">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-bold text-gray-800">Noticias</h2>
-                <button onClick={() => navigate("/addnews")} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center transition-colors duration-300">
-                    <FaPlus className="mr-2" /> Añadir
-                </button>
+                <Button
+                    icon={<PlusOutlined />}
+                    onClick={() => navigate("/addnews")}
+                    type="primary">Añadir</Button>
             </div>
 
             <div className="mb-8 flex flex-wrap gap-4 justify-between">
@@ -212,7 +248,7 @@ const NewsList = () => {
                         value={selectedCategory}
                         onChange={handleCategoryClick}
                         aria-label={"category-select"}
-                        className="bg-white border border-gray-300 text-gray-700 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="bg-white border border-gray-300 text-gray-700 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                         {categories.map((category, index) => (
                             <option key={index} value={category}>{category}</option>
@@ -224,7 +260,7 @@ const NewsList = () => {
                         <button
                             key={mode}
                             onClick={() => handleViewModeChange(mode)}
-                            className={`p-2 rounded-md ${viewMode === mode ? "bg-blue-600 text-white" : "bg-white text-gray-800 hover:bg-gray-200"}`}
+                            className={`py-1.5 px-2.5 rounded ${viewMode === mode ? "bg-blue-600 text-white" : "bg-white text-gray-800 hover:bg-gray-200"}`}
                         >
                             {icon}
                         </button>
@@ -235,9 +271,22 @@ const NewsList = () => {
             {renderNewsItems()}
 
             {filteredNews.length === 0 && (
-                <p className="text-center text-gray-600 mt-8">
-                    No news articles found for the selected category.
-                </p>
+                <div style={{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
+                    <Empty
+                        image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                        imageStyle={{
+                            height: 60,
+                        }}
+                        description={
+                            <Typography.Text>
+                                <p className="text-center text-gray-600 mt-8">No hay elementos en la lista</p>
+                                <p className="text-center text-gray-600">Agrega elementos haciendo clic en el botón `Añadir`</p>
+                            </Typography.Text>
+                        }
+                    >
+                        <Button icon={<PlusOutlined />} onClick={() => navigate("/addnews")} type="primary">Añadir</Button>
+                    </Empty>
+                </div>
             )}
         </div>
     );

@@ -39,16 +39,26 @@ import { MdOutlineLayers } from "react-icons/md";
 import { CiVideoOn } from "react-icons/ci";
 import ReactQuill from 'react-quill';
 import { MultiSelect } from "react-multi-select-component";
-import { formats, modules } from '../../libs/main';
-
+import { formats, messagesNotification, modules } from '../../libs/main';
+import { notification } from 'antd';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
 //import 'react-splitter-layout/lib/index.css';
 import 'react-quill/dist/quill.snow.css';
 import '../../styles/custom-calendar.css';
+import {
+    PlusOutlined
+} from '@ant-design/icons';
 
 const locales = {
     es: es,
+};
+
+const openNotificationWithIcon = (api, type, description) => {
+    api[type]({
+        message: messagesNotification[type].message,
+        description: messagesNotification[type].description || description,
+    });
 };
 
 const localizer = dateFnsLocalizer({
@@ -64,12 +74,18 @@ const Calendar = () => {
     const navigate = useNavigate();
     const { isOpen: isOpenEvent, onOpen: onOpenEvent, onClose: onCloseEvent } = useDisclosure()
     const [newEvent, setNewEvent] = useState({
-        department_id: '',
-        user_id: '',
+        department_id: 0,
+        user_id: 0,
         title: '',
         description: '',
-        link: '', start: null, end: null, type: '', participants_ids: ''
+        link: '',
+        start: null,
+        end: null,
+        type: '',
+        participants_ids: ''
     });
+    const [api, contextHolder] = notification.useNotification();
+    const openNotification = (type, description) => openNotificationWithIcon(api, type, description)
     const [selected, setSelected] = useState([]);
     const [users, setUsers] = useState([]);
     const [body, setBody] = useState('');
@@ -106,67 +122,68 @@ const Calendar = () => {
             setUsers(response.data);
         }
     };
+
     const formatDateTime = (date) => {
         const options = { hour: '2-digit', minute: '2-digit' };
         return new Date(date).toLocaleTimeString([], options);
     };
 
-    const handleAddEvent = async () => {
+    const validateEvent = () => {
+        const requiredFields = [
+            { field: newEvent.department_id, message: 'Debe seleccionar el departamento' },
+            { field: newEvent.type, message: 'Debe seleccionar el tipo de evento' },
+            { field: selected.length, message: 'Debe seleccionar al menos un participante' },
+            { field: newEvent.title, message: 'El campo título es obligatorio' },
+            { field: newEvent.start, message: 'Es necesario establecer una fecha y hora de inicio' },
+            { field: newEvent.end, message: 'Es necesario establecer una fecha y hora de fin' },
+        ];
 
-        if (!newEvent.department_id) {
-            alert('El campo Departamento es obligatorio.');
-            return;
-        }
-
-        if (!selected.length) {
-            alert('El campo Participantes es obligatorio.');
-            return;
-        }
-        console.log(newEvent)
-        if (
-            newEvent.department_id &&
-            newEvent.title &&
-            newEvent.start &&
-            newEvent.end &&
-            newEvent.type &&
-            newEvent.start < newEvent.end
-        ) {
-            try {
-                newEvent.department_id = parseInt(newEvent.department_id)
-                if (newEvent.link) newEvent.url = newEvent.link;
-                delete newEvent.link;
-
-                newEvent.event_type = newEvent.type;
-                delete newEvent.type;
-
-                newEvent.description = body;
-
-                newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTH:MM');
-                newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
-                delete newEvent.start;
-                delete newEvent.end;
-                newEvent.user_id = 1;
-                newEvent.participants_ids = selected.map(item => item?.value)
-                console.log("Estado de newEvent:", newEvent);
-                alert(JSON.stringify(newEvent));
-                const response = await createEvents({ event: newEvent });
-                console.log("Respuesta del servidor:", response);
-
-                if (response.status === true) {
-                    console.log("Evento creado con éxito:", response.data);
-                    getEvents()
-                    onCloseEvent();
-                } else {
-                    console.error("Error al crear el evento:", response.error);
-                }
-            } catch (error) {
-                console.error("Error en la petición:", error);
+        for (const { field, message } of requiredFields) {
+            if (!field) {
+                openNotification('warning', message);
+                return false;
             }
-        } else {
-            console.log("🚀 ~ handleOk 2 ~ newEvent:", newEvent)
-            alert('Por favor, complete todos los campos correctamente.');
         }
+        return true;
     };
+
+    const handleAddEvent = async () => {
+        console.log("🚀 ~ handleAddEvent ~ !validateEvent() || newEvent.start < newEvent.end:", (newEvent.start < newEvent.end))
+        if (!validateEvent()/* && newEvent.start < newEvent.end*/) return;
+        try {
+            newEvent.department_id = parseInt(newEvent.department_id)
+            if (newEvent.link) newEvent.url = newEvent.link;
+            delete newEvent.link;
+            newEvent.event_type = newEvent.type;
+            delete newEvent.type;
+            newEvent.description = body;
+            //newEvent.start_date = moment(newEvent.start).format('YYYY-MM-DDTH:MM');
+            let date = new Date(newEvent.start);
+            let localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+            newEvent.start_date = localDate;
+            //newEvent.end_date = moment(newEvent.end).format('YYYY-MM-DDTH:MM');
+            date = new Date(newEvent.end);
+            localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+            newEvent.end_date = localDate;
+            delete newEvent.start;
+            delete newEvent.end;
+            newEvent.user_id = 1;
+            newEvent.participants_ids = selected.map(item => item?.value)
+            console.log("Estado de newEvent:", newEvent);
+            const response = await createEvents({ event: newEvent });
+            console.log("Respuesta del servidor:", response);
+            if (response?.status) {
+                openNotification('success', 'Evento creado con éxito');
+                getEvents()
+                //onCloseEvent();
+            } else openNotification('warning', 'No hemos podido crear el evento, verifique los campos');
+        } catch (error) {
+            console.error("Error en la petición:", error);
+            openNotification('error', 'Ha ocurrido un error, intenté de nuevo');
+        }
+
+    }
+
 
 
     const handleEditEvent = (event) => {
@@ -235,9 +252,10 @@ const Calendar = () => {
     ];
 
     const handleSelectSlot = (slotInfo) => {
+        let date = new Date(slotInfo?.start);
         const filter = events.filter(event => {
-            const eventDate = new Date(event.start).toISOString().split('T')[0];
-            return eventDate >= new Date(slotInfo?.start).toISOString().split('T')[0];
+            const eventDate = /*new Date(event.start).toISOString().split('T')[0];*/ new Date(event?.start.getTime() - date.getTimezoneOffset() * 60000);
+            return eventDate < /*new Date(slotInfo?.start).toISOString().split('T')[0];*/ new Date(slotInfo?.start.getTime() - date.getTimezoneOffset() * 60000);
         });
         setEventsByDay(filter)
         setDateSelect(new Date(slotInfo?.start).toISOString().split('T')[0])
@@ -245,52 +263,33 @@ const Calendar = () => {
 
     return (
         <div className="mx-auto min-h-screen bg-white scroll">
+            {contextHolder}
             <SplitterLayout
                 percentage={true}
-                primaryMinSize={12}
-                primaryMaxSize={12}
-                secondaryInitialSize={88}
-                secondaryMinSize={88}
-                customClassName="my-splitter-layout"
+                primaryMinSize={50}
+                primaryMaxSize={100}
+                secondaryMinSize={20}
+                secondaryMaxSize={50}
+                secondaryInitialSize={25}
+                //customClassName="my-inner-splitter-layout"
             >
-                <div>
-                    <Dropdown.Button
-                        type="primary"
-                        loading={false}
-                        menu={{
-                            items,
-                        }}
-                        size='large'
-                        onClick={onOpenEvent}
-                        style={{ padding: '10px 0px 10px 8px' }}
-                    >
-                        Crear
-                    </Dropdown.Button>
-                    <Accordion>
-                        <AccordionItem>
-                            <h2>
-                                <AccordionButton>
-                                    <Box as='span' flex='1' textAlign='left'>
-                                        Calendarios
-                                    </Box>
-                                    <AccordionIcon />
-                                </AccordionButton>
-                            </h2>
-                            <AccordionPanel>
-                                <Checkbox.Group options={options} defaultValue={[1]} onChange={onChange} />
-                            </AccordionPanel>
-                        </AccordionItem>
-                    </Accordion>
-                </div>
-                <SplitterLayout
-                    percentage={true}
-                    primaryMinSize={50}
-                    primaryMaxSize={100}
-                    secondaryMinSize={20}
-                    secondaryMaxSize={50}
-                    secondaryInitialSize={25}
-                    customClassName="my-inner-splitter-layout"
-                >
+                <div style={{ height: '100%' }}>
+                    <div className="flex justify-between items-center py-6 mx-2">
+                        <h2 className="text-3xl font-bold text-gray-800">Calendario</h2>
+                        <Button
+                            type="primary"
+                            //loading={false}
+                            icon={<PlusOutlined />}
+                            //menu={{ items }}
+                            size='large'
+                            onClick={onOpenEvent}
+                        //style={{ padding: '10px 0px 10px 8px' }}
+                        >
+                            Añadir
+                        </Button>
+                    </div>
+
+
                     <BigCalendar
                         selectable
                         localizer={localizer}
@@ -299,7 +298,7 @@ const Calendar = () => {
                         endAccessor="end"
                         style={{
                             width: '100%',
-                            height: '100%',
+                            height: '89%',
                             fontSize: '11px'
                         }}
                         defaultView="month"
@@ -321,38 +320,37 @@ const Calendar = () => {
                         className="custom-calendar"  // Agregamos clase personalizada
                         onSelectEvent={handleEditEvent}
                     />
-                    <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
-                        <h2>
-                            <Box as='span' flex='1' textAlign='left'>
-                                {dateSelect}
-                            </Box>
-                        </h2>
-                        <List
-                            className="demo-loadmore-list"
-                            loading={false}
-                            itemLayout="horizontal"
-                            //loadMore={loadMore}
-                            dataSource={eventsByDay}
-                            renderItem={(item) => {
-                                console.log("🚀 ~ Calendar ~ item:", item)
-                                return (
-                                    <List.Item
-                                        actions={[<RightOutlined />]}
-                                    >
-                                        <Skeleton avatar title={false} loading={item?.loading} active>
-                                            <div className="div-items-events"/>
-                                            <List.Item.Meta
-                                                title={<a href="https://ant.design">{item?.title}</a>}
-                                                description={<p className='my-0 my-0'><div className='line-clamp-1' dangerouslySetInnerHTML={{ __html: item?.description }} /></p>}
-                                            />
-                                            {/*<div>content</div>*/}
-                                        </Skeleton>
-                                    </List.Item>
-                                )
-                            }}
-                        />
-                    </div>
-                </SplitterLayout>
+                </div>
+                <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
+                    <h2>
+                        <Box as='span' flex='1' textAlign='left'>
+                            {dateSelect}
+                        </Box>
+                    </h2>
+                    <List
+                        className="demo-loadmore-list"
+                        loading={false}
+                        itemLayout="horizontal"
+                        //loadMore={loadMore}
+                        dataSource={eventsByDay}
+                        renderItem={(item) => {
+                            return (
+                                <List.Item
+                                    actions={[<RightOutlined />]}
+                                >
+                                    <Skeleton avatar title={false} loading={item?.loading} active>
+                                        <div className="div-items-events" />
+                                        <List.Item.Meta
+                                            title={<a>{item?.title}</a>}
+                                            description={<p className='my-0 my-0'><div className='line-clamp-1' dangerouslySetInnerHTML={{ __html: item?.description }} /></p>}
+                                        />
+                                        {/*<div>content</div>*/}
+                                    </Skeleton>
+                                </List.Item>
+                            )
+                        }}
+                    />
+                </div>
             </SplitterLayout>
             <Modal onClose={onCloseEvent} size={'3xl'} isOpen={isOpenEvent} scrollBehavior={'inside'} isCentered>
                 <ModalOverlay />
@@ -441,8 +439,13 @@ const Calendar = () => {
                                         selected={newEvent.start}
                                         onChange={(start) => setNewEvent({ ...newEvent, start })}
                                         showTimeSelect
-                                        dateFormat="Pp"
+                                        //dateFormat="Pp"
                                         customInput={<input className='input-date-calendar' />}
+                                        locale={es}
+                                        timeFormat="HH:mm"
+                                        timeIntervals={30}
+                                        timeCaption="time"
+                                        dateFormat="d-MMMM-yyyy h:mm aa"
                                     />
                                     <p style={{ color: '#B6B6B650' }}>_</p>
                                     <DatePicker
@@ -450,10 +453,15 @@ const Calendar = () => {
                                         selected={newEvent.end}
                                         onChange={(end) => setNewEvent({ ...newEvent, end })}
                                         showTimeSelect
-                                        dateFormat="Pp"
+                                        //dateFormat="Pp"
                                         minDate={newEvent.start || null}
                                         customInput={<input className='input-date-calendar' />}
                                         disabled={!newEvent.start}
+                                        locale={es}
+                                        timeFormat="HH:mm"
+                                        timeIntervals={30}
+                                        timeCaption="time"
+                                        dateFormat="d-MMMM-yyyy h:mm aa"
                                     />
                                 </div>
                             </div>

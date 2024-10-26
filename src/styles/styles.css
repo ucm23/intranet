@@ -17,6 +17,8 @@
     --color-gray: gray;
     --gray: #B6B6B6;
     --gray-light: #B6B6B699;
+    --radius: 50px;
+    --radius-sm: 5px;
 }
 
 * {
@@ -26,9 +28,21 @@
     /*font-family: "Oswald", sans-serif;*/
 }
 
+
+
 html,
 body {
     scroll-behavior: smooth;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
+.pb-0 {
+    margin-top: 0;
+    margin-bottom: 0rem;
 }
 
 .section-title {
@@ -46,6 +60,9 @@ body {
     margin: 0;
 }
 
+.rounded-sm {
+    border-radius: 3px;
+}
 .text-center {
     text-align: center;
 }
@@ -254,7 +271,7 @@ figure {
 }
 
 .menu-vertical {
-    background-color: #f0f0f0;
+    background-color: #03296A;
     position: initial;
     height: '100vh'
 }
@@ -1663,7 +1680,12 @@ main.ant-layout-content.Content.css-dev-only-do-not-override-1gwfwyx {
 
 .bg-white.scroll-100 {
     overflow-y: scroll;
-    height: 100%;
+    height: 100vh;
+}
+
+.content-scroll-auto {
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .position-0 {
@@ -1706,10 +1728,13 @@ img.w-32\.h-32\.object-cover {
 
 .flex-row-columns {
     width: 100%;
+    height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    padding: 0px 12px;
+    border-bottom-width: 0.5px;
 }
 
 .sub-flex-row-columns {
@@ -1717,4 +1742,57 @@ img.w-32\.h-32\.object-cover {
     flex-direction: row;
     align-items: center;
     gap: 6px;
+}
+
+.icon-container {
+    cursor: pointer;
+    transition: transform 1s ease, color 1s ease;
+}
+
+.icon-container:hover {
+    transform: scale(1.2);
+}
+
+.icon-container svg {
+    transition: all 1s ease;
+}
+
+:where(.css-dev-only-do-not-override-1gwfwyx).ant-empty .ant-empty-image {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+  .folder {
+    @apply flex items-center justify-between bg-gray-200 text-gray-700 rounded-lg p-4;
+  }
+  .file {
+    @apply bg-white rounded-lg shadow-lg p-4 flex flex-col items-center;
+  }
+
+.head-bottom {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    background-color: #f4f2f2;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    border: 1px transparent solid;
+    bottom: 24px;
+    color: #3c4043;
+    height: 52px;
+    line-height: normal;
+    padding: 17px;
+    justify-content: space-between;
+}
+
+.bg-border-blue {
+    background-color: #00adff50;
+    border: 2px #00a0df dashed;
+    border-radius: var(--radius-sm);
+    margin-right: 1rem;
+}
+
+.height-75vh {
+    /*height: 78vh;*/
 }

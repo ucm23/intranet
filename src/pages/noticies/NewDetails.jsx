@@ -38,7 +38,7 @@ const NewDetails = ({ page }) => {
                         picture={'header'}
                         className="w-full h-64 md:h-95 object-cover news-banner-img"
                     />
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-4 pt-4 rounded-lg max-w-[850px] w-full position-0">
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-4 pt-4 max-w-[850px] w-full position-0">
                         <h1 className="text-3xl font-bold text-gray-800 mb-2">{item?.title}</h1>
                         <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
                             <div className="flex items-center">
@@ -53,7 +53,7 @@ const NewDetails = ({ page }) => {
                     </div>
                 </div>
                 <div className="max-w-[850px] mx-auto px-4 py-6">
-                    <div className="flex flex-wrap gap-1 mb-4 items-center">
+                    <div className="flex flex-wrap gap-2 mb-4 items-center">
                         Categorías:
                         {item?.categories.map((category, index) => (
                             <button
@@ -64,29 +64,29 @@ const NewDetails = ({ page }) => {
                             </button>
                         ))}
                     </div>
-                    <h1 class="flex-auto text-lg font-semibold text-slate-900">
+                    <h1 class="flex-auto text-lg font-semibold text-slate-900 mt-8">
                         Resumen
                     </h1>
 
-                    <p className="text-gray-700 leading-relaxed mb-3">
+                    <p className="text-gray-700 leading-relaxed mb-3 text-justify">
                         <div dangerouslySetInnerHTML={{ __html: item?.summary }} />
                     </p>
 
                     <div className="mb-3">
                         <ImageLoader
                             id={item?.id}
-                            className="w-full h-64 object-cover rounded-lg h-auto"
+                            className="w-full object-cover rounded h-auto"
                         />
                     </div>
-                    <p className="text-gray-700 leading-relaxed mb-6">
+                    <p className="text-gray-700 leading-relaxed mb-6 text-justify">
                         <div dangerouslySetInnerHTML={{ __html: item?.body }} />
                     </p>
                     {item?.list &&
-                        <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-gray-800 mb-4">{item?.list?.title}</h2>
+                        <div className="mb-8 mt-8">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-3">{item?.list?.title}</h2>
                             <div className="space-y-4">
                                 {item?.list?.data.map((news, index) => (
-                                    <div key={index} className="bg-gray-100 p-4 rounded-lg transition-all duration-300 hover:shadow-md">
+                                    <div key={index} className="bg-gray-100 p-4 pb-1 rounded transition-all duration-300 hover:shadow-md">
                                         <div href={news?.url} target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-blue-600">
                                             <div className="flex items-center mb-2">
                                                 <FaNewspaper className="mr-3 text-blue-600 flex-shrink-0" />
@@ -102,10 +102,9 @@ const NewDetails = ({ page }) => {
                         </div>
                     }
 
-
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-4">Conclusiones</h2>
-                        <p className="text-gray-700 leading-relaxed">
+                    <div className="mb-8 mt-8">
+                        <h2 className="text-2xl font-bold text-gray-800 mb-3">Conclusiones</h2>
+                        <p className="text-gray-700 leading-relaxed text-justify">
                             <div dangerouslySetInnerHTML={{ __html: item?.conclusion }} />
                         </p>
                     </div>
