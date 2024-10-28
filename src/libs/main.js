@@ -30,6 +30,8 @@ export const locales = {
     es: es
 };
 
+export const formatDate = (date) => date.toISOString().split('T')[0];
+
 export const localizer = dateFnsLocalizer({
     format: (date, formatString) => format(date, formatString, { locale: es }),
     parse: (dateString, formatString) => parse(dateString, formatString, new Date(), { locale: es }),

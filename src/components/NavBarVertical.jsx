@@ -51,10 +51,10 @@ const items = [
     {
         key: 'sub2', label: 'Noticias', icon: <FaNewspaper />, href: '/newslist',
     },
-    /*{
+    {
         key: 'sub3', label: 'Colaboradores', icon: <AppstoreOutlined />, href: '/collaborator',
     },
-    {
+    /*{
         key: 'sub4', label: 'Trámites y Servicios', icon: <AppstoreOutlined />, href: '/docs',
     },
     {
@@ -65,6 +65,7 @@ const items = [
     },
     /*{
         key: 'sub7', label: 'Indicadores', icon: <SettingOutlined />, href: '/ind',
+        
     },*/
     {
         key: 'sub8', label: 'Calendario', icon: React.createElement(CalendarOutlined), href: '/calendar',

@@ -1796,3 +1796,40 @@ img.w-32\.h-32\.object-cover {
 .height-75vh {
     /*height: 78vh;*/
 }
+
+.flex-1.flex.items-center.justify-center.p-4.relative {
+    background-color: #969595f0;
+}
+
+.font-small {
+    padding-bottom: 0rem;
+    font-size: 13px;
+}
+
+.height-46 {
+    min-height: 46.1px;
+}
+
+.position-fixed-50 {
+    position: fixed;
+    top: 55px;
+}
+
+.height-icon-500 {
+    height: 500px;
+}
+
+.css-1yn2e29-InputColor_ span#reference151630 {
+    width: 100%;
+}
+
+.css-1yn2e29-InputColor {
+    width: 100%;
+}
+
+.span#reference173422 {
+    width: 100%;
+}
+span#reference173422 {
+    width: 100%;
+}

@@ -15,6 +15,17 @@ import { BrowserRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
+import { ImageCacheProvider } from './redux/ImageCacheProvider';
+import { PreviewFileProvider } from './redux/PreviewFileContext';
+
+import { pdfjs } from 'react-pdf';
+
+// Configura el worker de PDF.js
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js', // Usa .js aquí
+  window.location.href,
+).toString();
+
 
 // Create a theme instance.
 const theme = createTheme({
@@ -47,7 +58,11 @@ ReactDOM.render(
     <StrictMode>
         <ChakraProvider>
             <BrowserRouter>
-                <App />
+                <ImageCacheProvider>
+                    <PreviewFileProvider>
+                        <App />
+                    </PreviewFileProvider>
+                </ImageCacheProvider>
             </BrowserRouter>
         </ChakraProvider>
     </StrictMode>,

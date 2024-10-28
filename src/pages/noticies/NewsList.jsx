@@ -36,9 +36,9 @@ const categories = [
 
 const viewModes = [
     { mode: 1, icon: <FaThLarge /> },
-    { mode: 2, icon: <FaTh /> },
+    //{ mode: 2, icon: <FaTh /> },
     { mode: 3, icon: <FaList /> },
-    { mode: 4, icon: <FaTable /> },
+    //{ mode: 4, icon: <FaTable /> },
 ];
 
 const NewsList = () => {
@@ -122,7 +122,7 @@ const NewsList = () => {
                                         </p>
                                         <div className="flex justify-between items-center">
                                             <div className="flex flex-row wrap gap-0.5">
-                                                {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 py-0.5 px-1.5 rounded text-xxs">{item}</span>)}
+                                                {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 text-center py-0.5 px-1.5 rounded-lg text-xxs">{item}</span>)}
                                             </div>
                                         </div>
                                     </div>
@@ -172,10 +172,14 @@ const NewsList = () => {
                                         <div className="w-2/3 p-6 flex flex-col justify-between">
                                             <div>
                                                 <h3 className="text-2xl font-bold mb-2 line-clamp-1">{item.title}</h3>
-                                                <p className="text-sm text-gray-600 mb-1 line-clamp-2 text-justify">
+                                                <p className="text-sm text-gray-600 mb-0 pb-0 line-clamp-3 text-justify">
                                                     <div dangerouslySetInnerHTML={{ __html: item?.summary }} />
                                                 </p>
-                                               
+                                                <div className="flex justify-between items-center">
+                                                    <div className="flex flex-row wrap gap-0.5">
+                                                        {item?.categories.map((item, index) => <span key={`${item}-${index}`} className="bg-blue-200 text-blue-600 text-center py-0.5 px-1.5 rounded-lg text-xxs">{item}</span>)}
+                                                    </div>
+                                                </div>
                                             </div>
                                             <span className="text-xs text-blue-600 font-medium">{user?.label}</span>
                                         </div>
