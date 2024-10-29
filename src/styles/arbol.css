@@ -85,10 +85,10 @@
   /* justify-content: center; */
   justify-content: flex-start; /* Alinea el contenedor a la izquierda */
   /* align-items: left; */
-  width: 5vw; /*Ancho del viewport */
-  height: 10vh; /* Alto del viewport */
+  /*width: 5vw; /*Ancho del viewport */
+  /*-height: 10vh; /* Alto del viewport */
   /* overflow: auto; Permitir scroll si es necesario */
-  transform: scale(0.8); 
+  /*transform: scale(0.8); 
   /* Escala inicial del organigrama */
   transform-origin: top center; 
   /* Ajusta el origen del escalado */
@@ -98,6 +98,7 @@
   display: inline-block;
   margin: 0;      
   padding: 0;
+  
  
   .node-images {
     display: flex; /* Usar flexbox para colocar las imágenes una al lado de la otra */
@@ -145,4 +146,53 @@
   width: 100%; /* La imagen toma el tamaño del contenedor */
   height: auto;
   will-change: transform; /* Mejora el rendimiento de las transformaciones */
+}
+
+.org-tree-node-label .org-tree-node-label-inner {
+  padding: 0px 0px;
+  text-align: center;
+  color: black;
+  border-radius: 0px;
+}
+
+.childrens-label-title {
+  color: white;
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.image-img-profile {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.project-indicators {
+  padding: 20px;
+}
+
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.project-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  flex: 1 1 300px; /* Tamaño adaptable */
+}
+
+.progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #4caf50; /* Color verde */
+  height: 20px;
 }

@@ -122,6 +122,10 @@ const DocumentManager = () => {
             openNotification('warning', 'Ya existe un projecto con el mismo nombre');
             return;
         }
+        if (departments.find(item => item?.name.trim().toLowerCase() == formDataProjects.name.trim().toLowerCase())) {
+            openNotification('warning', 'Ya existe un departamento con el mismo nombre');
+            return;
+        }
         const startDate = new Date(formDataProjects?.start_date);
         const endDate = new Date(formDataProjects?.end_date);
 

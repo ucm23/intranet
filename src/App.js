@@ -28,6 +28,11 @@ import Calendar from './pages/calendar/Calendar';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Files from './pages/gestor/Files';
+import UserProfile from './pages/Puestos/UserProfile';
+import PerfilPuesto from './pages/Puestos/PerfilPuesto';
+import PerfilesPuesto1 from './pages/Puestos/PerfilesPuesto1';
+import PerfilesPuesto from './pages/Puestos/PerfilesPuesto';
+import PerfilGral from './pages/perfiles/PerfilGral';
 
 const pageTransition = {
     in: { opacity: 1, x: 0, rotate: 0 },
@@ -85,7 +90,6 @@ function App() {
                             </Route>
 
                             <Route path="/noticia/:id" element={<NoticiaDetalle />} />
-                            <Route path="/collaborator" element={<Collaborator />} />
                             <Route path="/Organizacion" element={<Organizacion />} />
 
                             <Route path="/finder" element={<Finder />} />
@@ -94,6 +98,28 @@ function App() {
                             <Route path="/ind" element={<Indicadores />} />
                             <Route path="/Perfilceo" element={<Perfilceo />} />
                             <Route path="/gestor-contenidos/*" element={<Gestor />} />
+
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/collaborator" element={<Collaborator />} />
+                            </Route>
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/perfilesPuesto1/:id" element={<PerfilesPuesto1 page={'collaborator'} />} />
+                            </Route>
+
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/profile/:id" element={<UserProfile />} />
+                            </Route>
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/PerfilPuesto/:id" element={<PerfilPuesto />} />
+                            </Route>
+
+
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/PerfilesPuesto" element={<PerfilesPuesto />} />
+                            </Route>
+                            <Route element={<LayoutWithNavBar menu={true} />}>
+                                <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />
+                            </Route>
 
                             <Route element={<LayoutWithNavBar menu={true} />}>
                                 <Route path="/files" element={<Files />} />

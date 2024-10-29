@@ -1833,3 +1833,8 @@ img.w-32\.h-32\.object-cover {
 span#reference173422 {
     width: 100%;
 }
+
+.overView {
+    overflow-x: scroll;
+    height: -webkit-fill-available;
+}

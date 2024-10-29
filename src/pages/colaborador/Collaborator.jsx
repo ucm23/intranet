@@ -7,7 +7,7 @@ import DiagramOrgTree from '../../componentes/DiagramOrgTree';
 const Colaborador = () => {
 
     return (
-        <div>
+        <div className='overView'>
             <h1 style={{ textAlign: 'center', color: 'black', fontSize: '22px', marginLeft: '10px' }}> Colaboradores de Grupo CTI</h1>
             <DiagramOrgTree />
         </div>
