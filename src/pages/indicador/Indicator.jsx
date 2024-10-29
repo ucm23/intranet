@@ -22,80 +22,92 @@ const Indicator = () => {
             id: 1,
             avance: 0,
             actividades: [
-                { name: 'Login', avance: 50, responsable: 'Ulises Cano' },
-                { name: 'Inicio', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Noticias', avance: 90, responsable: 'Ulises Cano' },
-                { name: 'Organigrama', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Gestor de Documentos', avance: 80, responsable: 'Ulises Cano' },
-                { name: 'Calendario', avance: 80, responsable: 'Ulises Cano' },
-                { name: 'Indicadores', avance: 90, responsable: 'Adriana Castillo' },
-                { name: 'BD', avance: 90, responsable: 'Gilberto López' },
-            ],
-        },
-        {
-            name: 'Victum RE',
-            id: 2,
-            avance: 40,
-            actividades: [
-                { name: 'Módulo 1', avance: 100, responsable: 'Gilberto López' },
-                { name: 'Módulo 2', avance: 100, responsable: 'Gilberto López' },
-                { name: 'Módulo 2', avance: 30, responsable: 'Gilberto López' },
-            ],
-        },
-        {
-            name: 'Geo-Truck',
-            id: 3,
-            avance: 40,
-            actividades: [
-                { name: 'Módulo 1', avance: 100, responsable: 'Ulises Cano' },
-                { name: 'Módulo 2', avance: 100, responsable: 'Ulises Cano' },
-                { name: 'Módulo 2', avance: 40, responsable: 'Ulises Cano' },
-            ],
-        },
-        {
-            name: 'Victum SGA',
-            id: 4,
-            avance: 60,
-            actividades: [
-                { name: 'Módulo 1', avance: 60, responsable: 'Gilberto López' },
-                { name: 'Módulo 2', avance: 60, responsable: 'Gilberto López' },
-            ],
-        },
-        {
-            name: 'Victum DESK',
-            id: 5,
-            avance: 60,
-            actividades: [
-                { name: 'Módulo 1', avance: 60, responsable: 'Gilberto López' },
-                { name: 'Módulo 2', avance: 60, responsable: 'Gilberto López' },
-            ],
-        },
-        {
-            name: 'Victum POS CS',
-            id: 6,
-            avance: 60,
-            actividades: [
-                { name: 'Módulo 1 Interfaz Grafica', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 1 Funcionalidad', avance: 0, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 2 Interfaz Grafica', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 2 Funcionalidad', avance: 0, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 3 Interfaz Grafica', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 3 Funcionalidad', avance: 0, responsable: 'Adriana Castillo' },
-            ],
-        },
-        {
-            name: 'Backoffice',
-            id: 7,
-            avance: 60,
-            actividades: [
-                { name: 'Módulo 1 Interfaz Grafica', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 1 Funcionalidad', avance: 10, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 2 Interfaz Grafica', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 2 Funcionalidad', avance: 10, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 3 Interfaz Grafica', avance: 100, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 3 Funcionalidad', avance: 10, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 3 Interfaz Grafica', avance: 0, responsable: 'Adriana Castillo' },
-                { name: 'Módulo 3 Funcionalidad', avance: 0, responsable: 'Adriana Castillo' },
+                { 
+                    name: 'Login',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'Login 1',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'Login 5',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'Login 8',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'Login 10',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'Login 10',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                
+
             ],
         },
     ]);
@@ -108,11 +120,11 @@ const Indicator = () => {
             return suma
         })
         console.log(suma);
-        suma = (suma / item.actividades.length).toFixed(2)
+        suma = (suma / item.actividades.length).toFixed(0)
         return suma
     }
-    const handleFilePreview = (folder) => {
-        navigate('/indicadorDetalles', { state: folder });
+    const handleFilePreview = (id, total) => {
+        navigate('/indicadorDetalles', { state: {id, total} });
     }
     const ProjectList = ({ isLoading, projects, onProjectSelect, project_id }) => {
         return (
@@ -126,7 +138,7 @@ const Indicator = () => {
                                 key={folder.id}
                                 className="p-3 rounded hover:shadow-md transition-shadow duration-200 cursor-pointer"
                                 style={{ backgroundColor: '#B6B6B625' }}
-                                onClick={() => handleFilePreview(folder)}
+                                onClick={() => handleFilePreview(folder?.id, total)}
                                 onDoubleClick={() => {
                                     //handleFilePreview({ ...folder, type: 'folder_projs' })
                                     // onProjectSelect(folder)
@@ -136,7 +148,7 @@ const Indicator = () => {
                                     <FaFolder style={{ fontSize: 18 }} className="text-yellow-400" />
                                     <div className="flex-1">
                                         <h3 className="font-normal text-sm text-gray-800 line-clamp-1">{folder?.name}</h3>
-                                        <p className="text-sm text-gray-500 pb-0 line-clamp-1">{total} total</p>
+                                        <p className="text-sm text-gray-500 pb-0 line-clamp-1">Progreso: {total}%</p>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +164,7 @@ const Indicator = () => {
             <div className="flex" style={{ width: '100%' }}>
                 <div className="mx-auto pb-8 content-scroll-auto" style={{ flex: '1' }}>
                     <div className="flex justify-between items-center mb-2 pl-6 mt-8">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-0 pb-0 mt-8" style={{ paddingLeft: 8 }}>Gestor de archivos</h2>
+                        <h2 className="text-3xl font-bold text-gray-800 mb-0 pb-0 mt-8">Gestor de archivos</h2>
                     </div>
                     <div className="p-4 pt-0 pb-0">
                         <ProjectList
