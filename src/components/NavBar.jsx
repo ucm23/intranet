@@ -46,7 +46,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
     const handleCheckBoxChange = ({ target }) => setIsChecked(target.checked);
 
     return (
-        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor, overflowX: 'hidden',width: '155vw' }}>
+        <nav className={`navbar navbar-expand-lg ${showShadow ? 'shadow' : ''}`} style={{ backgroundColor: (showShadow || isChecked) ? 'white' : backgroundColor, overflowX: 'hidden',width: '100vw' }}>
             <a href="/" className="navbar-brand d-flex align-items-center">
                 <img
                     src={(showShadow || isChecked) ? "/img/LOGO-INTRANET.png" : "/img/LOGO-INTRANET.png"}
@@ -102,106 +102,7 @@ const NavBar = ({ mobile, backgroundColor = '#001529' }) => {
                     ))}
                 </ul>
             </div>
-            <style>{`
-                .navbar {
-                    padding: 0 15px;
-                    display: flex;
-                     flex-wrap: nowrap;
-                     width: 100%;
-                      height: 85px;
-                 }
-                 .nav-link {
-                     color: white;
-                 }
-
-                 .nav-link::after {
-                     content: '';
-                     position: absolute;
-                     bottom: 10px;
-                     left: 0;
-                     width: 0;
-                     height: 2px;
-                     background-color: red;
-                     transition: width 0.3s ease;
-                 }
-
-                 .nav-link.active::after {
-                    width: 95%; /* Esto hace que el subrayado aparezca en el elemento activo */
-                 }
-
-                 .nav-link:hover {
-                     color: orange;
-                     background-color: transparent;
-                 }
-                 .nav-link.active {
-                     color: orange;
-                     background-color: transparent;
-                 }
-                 .nav-link:hover .indicator {
-                     position: absolute;
-                     bottom: 10px;
-                     left: 0;
-                    width: 95%;
-                     height: 2px;
-                     background-color: orange;
-                 }
-                 .shadow {
-                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                 }
-                 .checkbtn {
-                     display: none;
-                 }
-                 .submenu {
-                     position: absolute;
-                     top: 100%;
-                     left: 0;
-                     background-color: #001529;
-                    width: 130%;
-                     list-style: none;
-                     padding: 0;
-                     margin: 0;
-                     border: 1px solid #ddd;
-                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                     z-index: 101; /* Asegura que el submenú esté encima de otros elementos */
-                 }
-                 .submenu-item {
-                     padding: 5px 20px;
-                 }
-                 .submenu-link {
-                     color: white;
-                     fontSize: '5px'
-                     text-decoration: none;
-                     display: block;
-                 }
-                 .submenu-link:hover {
-                     background-color: #1890ff;
-                     width: 100%;
-                 }
-                 @media (max-width: 991px) {
-                     .navbar-collapse {
-                         background-color: white;
-                         position: absolute;
-                         top: 100%;
-                         left: 0;
-                         right: 0;
-                     }
-                     .checkbtn {
-                         display: block;
-                     }
-                     .nav-link {
-                         color: #001529;
-                     }
-                     .nav-link.active {
-                         color: #001529;
-                         background-color: transparent;
-                     }
-                     .fa {
-                         color: #001529;
-                     }
-                 }
-
-               
-             `}</style>
+           
         </nav>
     );
 }
