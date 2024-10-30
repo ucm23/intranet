@@ -110,6 +110,72 @@ const Indicator = () => {
 
             ],
         },
+
+        {
+            name: 'VICTUM RE',
+            id: 2,
+            avance: 0,
+            actividades: [
+                { 
+                    name: 'Login',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 100, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'MODULO 1',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'MODULO 2',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },
+                { 
+                    name: 'MODULO 3',
+                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                    avance: 50, 
+                    responsable: 1,
+                    start_date: '25-10-2024',
+                    end_date: '25-11-2024',
+                    notes: [
+                        'Crear un componente de Login',
+                        'Añadir REDUX',
+                        'Conectar con la API',
+                        'Validaciones'
+                    ]
+                },              
+
+            ],
+        },
+
     ]);
 
     const calcularavance = (id) => {

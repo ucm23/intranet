@@ -26,9 +26,14 @@ const Indicador = () => {
       nombre: 'Victum RE',
       avance: 40,
       actividades: [
-        { nombre: 'Módulo 1', avance: 100, responsable: 'Gilberto López' },
-        { nombre: 'Módulo 2', avance: 100, responsable: 'Gilberto López' },
-        { nombre: 'Módulo 2', avance: 30, responsable: 'Gilberto López' },
+        { nombre: 'Login', avance: 50 , responsable: 'Gilberto López' },
+        { nombre: 'Inicio', avance: 100 , responsable: 'Gilberto López' },
+        { nombre: 'Noticias', avance: 90, responsable: 'Gilberto López' },
+        { nombre: 'Organigrama', avance: 100, responsable: 'Gilberto López' },
+        { nombre: 'Gestor de Documentos', avance: 80, responsable:'Gilberto López' },
+        { nombre: 'Calendario', avance: 80, responsable: 'Gilberto López' },
+        { nombre: 'Indicadores', avance: 90, responsable: 'Gilberto López' },
+        { nombre: 'BD', avance: 90, responsable: 'Gilberto López' },
       ],
     },
     {
@@ -104,6 +109,8 @@ const Indicador = () => {
     // Resetear el estado del nuevo proyecto
     setNuevoProyecto({ nombre: '', actividades: [] });
   };
+
+  console.log(proyectos); 
 
   return (
     <div style={{ height: '100vh' }}>

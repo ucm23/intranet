@@ -102,6 +102,52 @@ const proyectos = [
             },
         ],
     },
+
+    {
+        name: 'VICTUM RE',
+        id: 2,
+        actividades: [
+            {
+                name: 'Login',
+                description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
+                avance: 0,
+                responsable: 1,
+                start_date: '25-10-2024',
+                end_date: '25-11-2024',
+                tasks: [
+                    { name: 'Crear un componente de Login', complete: true },
+                    { name: 'Añadir REDUX', complete: false },
+                ]
+            },
+            {
+                name: 'MODULO 1',
+                description: 'Diseñar una lista de NOTICIAS bonito con ciertas especificaciones',
+                avance: 100,
+                responsable: 1,
+                start_date: '25-10-2024',
+                end_date: '25-11-2024',
+                tasks: [
+                    { name: 'Crear un componente de Login', complete: true },
+                    { name: 'Añadir REDUX', complete: true },
+                    { name: 'Conectar con la API', complete: true },
+                ]
+            },
+            {
+                name: 'MODULO 2',
+                description: 'Diseñar un GESTOR DE DOCUMENTOS igual que Google Drive',
+                avance: 50,
+                responsable: 1,
+                start_date: '25-10-2024',
+                end_date: '25-11-2024',
+                tasks: [
+                    { name: 'Crear un componente de Login', complete: false },
+                    { name: 'Añadir REDUX', complete: false },
+                    { name: 'Conectar con la API', complete: true },
+                    { name: 'Validaciones', complete: false },
+                ]
+            },
+        ],
+    },
 ];
 
 const IndicadorDetalles = () => {
