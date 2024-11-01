@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import { DownloadOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Radio } from 'antd';
 import Navbar from '../../componentes/Navbar';
@@ -9,8 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useBreakpointValue } from '@chakra-ui/react';
 import '../../styles/ContentWithImage.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHome } from '@fortawesome/free-solid-svg-icons';
-//import '@fortawesome/fontawesome-free/css/all.min.css';
 import { faHome, faEnvelope, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
 import Linea from '../../componentes/Linea';
 import Lineaformacion from '../../componentes/Lineaformaciob';
@@ -23,24 +21,22 @@ import Descargacv from '../../componentes/Descargacv';
 const PerfilGral = () => {
     const mobile = useBreakpointValue({ base: true, md: false });
     const navigate = useNavigate();
-    const [size, setSize] = useState('middle'); // default is 'middle'
+    const [size, setSize] = useState('middle');
 
     const [mostrarComponente, setMostrarComponente] = useState(false);
 
     const handleClick = () => {
-        setMostrarComponente(true); // Actualiza el estado para mostrar el componente
+        setMostrarComponente(true); 
     };
-
-    //PARAMETROS PARA LLENAR PERFIL//
-    // const { id } = useParams(); // Obtener el id desde la URL
+    
     const { id, nombreImagen } = useParams();
-    const puestoId = parseInt(id); // Convertir el id a número, ya que useParams devuelve strings
+    const puestoId = parseInt(id); 
 
-    // Filtrar el perfil del archivo JSON por id
+    
     const puesto = dato.find((item) => item.id === puestoId);
-    console.log("Perfil encontrado:", puesto); // Para ver el puesto que se encuentra
+    console.log("Perfil encontrado:", puesto); 
 
-    // Si no se encuentra el perfil, muestra un mensaje
+    
     if (!puesto) {
         return <p>Perfil no encontrado</p>;
     }
@@ -51,33 +47,45 @@ const PerfilGral = () => {
                 <div className="leftContainer">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                         <img
-                            src={require(`../../imgOrganigrama/${nombreImagen}`)} // Asegúrate de que la ruta es correcta
+                            src={require(`../../imgOrganigrama/${nombreImagen}`)} 
                             alt="Descripción de la imagen"
                             style={{ borderRadius: '0%', cursor: 'pointer', width: '50%', height: '40%', objectFit: 'cover', marginLeft: '45px', marginTop: '10px' }}
                         />
                     </div>
                     <div>
-                        <p className="coloredUnderline" style={{ textAlign: 'center', color: 'gray', fontSize: '20px', marginLeft: '30px', fontFamily: 'customFont' }}>Datos Personales</p>
-                        {/* <h2 className="title">{puesto.titulo}</h2> */}
+                        <p 
+                        className="coloredUnderline" 
+                        style={{ textAlign: 'center', color: 'gray', fontSize: '20px', marginLeft: '30px', fontFamily: 'customFont' }}>
+                        Datos Personales</p>
+
                         <p></p>
-                        <FontAwesomeIcon icon={faUser} style={{ color: 'white', marginLeft: '7px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-                        <span style={{ textAlign: 'center', color: 'white', fontSize: '13px', marginLeft: '2px', fontFamily: 'customFont' }}>{puesto.user}</span>
-                        {/* <br></br> */}
+                        <FontAwesomeIcon icon={faUser} style={{ color: 'white', marginLeft: '7px', height: '15px', width: '15px' }} />
+                        <span 
+                        style={{ textAlign: 'center', color: 'white', fontSize: '13px', marginLeft: '2px', fontFamily: 'customFont' }}>
+                        {puesto.user}
+                        </span>
+
                         <p></p>
-                        <FontAwesomeIcon icon={faEnvelope} style={{ color: 'white', marginLeft: '6px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-                        <span style={{ textAlign: 'center', color: 'white', fontSize: '11px', marginLeft: '0x', fontFamily: 'customFont' }}>{puesto.mail}</span> {/* Texto */}
-                        {/* <p style={{ color: 'white', fontSize: '12px', marginLeft: '18px', fontFamily: 'customFont' }}>{puesto.mail}</p> */}
+                        <FontAwesomeIcon icon={faEnvelope} style={{ color: 'white', marginLeft: '6px', height: '15px', width: '15px' }} />
+                        <span style={{ textAlign: 'center', color: 'white', fontSize: '11px', marginLeft: '0x', fontFamily: 'customFont' }}>
+                        {puesto.mail}
+                        </span>
+                        
                         <p></p>
-                        <FontAwesomeIcon icon={faPhone} style={{ color: 'white', marginLeft: '7px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-                        <span style={{ textAlign: 'center', color: 'white', fontSize: '13px', marginLeft: '2px', fontFamily: 'Roboto, sans-serif' }}>Telefono {puesto.telefono}</span> {/* Texto */}
-                        {/* <p style={{ color: 'white', fontSize: '12px', marginLeft: '50px', fontFamily: 'customFont' }}>2361039980</p> */}
-                        <p></p>
-                        <FontAwesomeIcon icon={faHome} style={{ color: 'white', marginLeft: '7px', height: '15px', width: '15px' }} /> {/* Icono Font Awesome */}
-                        <span style={{ textAlign: 'center', color: 'white', fontSize: '14px', marginLeft: '10px', fontFamily: 'customFont' }}>Domicilio</span> {/* Texto */}
-                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '10px', fontFamily: 'Roboto, sans-serif' }}>{puesto.domicilio}</p>
+                        <FontAwesomeIcon icon={faPhone} style={{ color: 'white', marginLeft: '7px', height: '15px', width: '15px' }} />
+                        <span style={{ textAlign: 'center', color: 'white', fontSize: '13px', marginLeft: '2px', fontFamily: 'Roboto, sans-serif' }}>Telefono 
+                        {puesto.telefono}
+                        </span>
+                       
+                       <p></p>
+                        <FontAwesomeIcon icon={faHome} style={{ color: 'white', marginLeft: '7px', height: '15px', width: '15px' }} />
+                        <span style={{ textAlign: 'center', color: 'white', fontSize: '14px', marginLeft: '10px', fontFamily: 'customFont' }}>Domicilio</span>
+                        <p style={{ color: 'white', fontSize: '10px', marginLeft: '10px', fontFamily: 'Roboto, sans-serif' }}>
+                        {puesto.domicilio}
+                        </p>
 
                         <p className="coloredUnderline" style={{ textAlign: 'center', color: 'gray', fontSize: '20px', marginLeft: '30px', fontFamily: 'customFont' }}>Competencias</p>
-                        {/* <br></br> */}<p></p>
+                        <p></p>
                         <p style={{ color: 'white', fontSize: '10px', marginLeft: '10px', marginRight: '10px', fontFamily: 'Roboto, sans-serif', textAlign: 'justify', lineHeight: '1.6', wordSpacing: '-0.03em', hyphens: 'auto' }}>
                             {puesto.competencias.split('\n').map((line, index) => (
                                 <span key={index}>
@@ -85,13 +93,12 @@ const PerfilGral = () => {
                                     <br />
                                 </span>
                             ))}
-                        </p> {/* Texto con saltos de línea */}
+                        </p>
                     </div>
                 </div>
                 <div className="rightContainer">
                     <br></br>
                     <Linea />
-                    {/* <br></br> */}
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'Roboto, sans-serif', textAlign: 'justify' }}>
                         {puesto.perfil.split('\n').map((line, index) => (
                             <span key={index}>
@@ -100,7 +107,6 @@ const PerfilGral = () => {
                             </span>
                         ))}
                     </p>
-                    {/* <br></br> */}
                     <Lineaformacion />
 
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'Roboto, sans-serif', textAlign: 'justify' }}>
@@ -111,7 +117,6 @@ const PerfilGral = () => {
                             </span>
                         ))}
                     </p>
-                    {/* Licenciado en Informática en La Universidad de la Cañada */}
                     <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontWeight: 'bold' }}> Capacitación:</p>
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'Roboto, sans-serif', textAlign: 'justify' }}>
                         {puesto.capacitacion.split('\n').map((line, index) => (
@@ -125,7 +130,6 @@ const PerfilGral = () => {
 
                     <Lineaexperiencia />
                     <p style={{ color: 'black', fontSize: '15px', marginLeft: '30px', fontFamily: 'customFont', fontWeight: 'bold' }}> Grupo CTI:</p>
-                    {/* <Descargacv cv={cv} style={{ position: 'absolute', top: '0px', right: '20px' }} /> */}
                     <p style={{ color: 'black', fontSize: '13px', marginLeft: '25px', marginRight: '25px', fontFamily: 'Roboto, sans-serif', textAlign: 'justify' }}>
                         {puesto.experiencia.split('\n').map((line, index) => (
                             <span key={index}>
@@ -134,17 +138,7 @@ const PerfilGral = () => {
                             </span>
                         ))}
                     </p>
-                    {/* <Descargacv cv={cv} style={{ size: 'small',position: 'relative', top: '-10px' }} /> */}
                     <Descargacv cv={cv} />
-
-                    {/* <div style={{ position: 'relative' }}>
-  <Descargacv
-    cv={cv}
-   style={{ position: 'absolute', top: '-80px', left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}
-  /></div> */}
-
-                    {/* cv
-                    <Descargadev1 cv={cv} /> */}
                 </div>
             </div>
         </div>
@@ -153,6 +147,201 @@ const PerfilGral = () => {
     );
 };
 
+export default PerfilGral;*/
 
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useBreakpointValue } from '@chakra-ui/react';
+import '../../styles/ContentWithImage.css';
+//import dato from '../../assets/dato.json';
+import dato from '../../assets/cvs.json';
+import '../../styles/perfil.css';
+import { FaUser, FaBriefcase, FaGraduationCap, FaLanguage, FaCertificate, FaCog, FaEdit, FaTrash, FaPrint, FaEye, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import Descargacv from "../../componentes/Descargacv";
+
+const PerfilGral = () => {
+    const { id, nombreImagen } = useParams();
+
+    const [position, setPosition] = useState(null)
+    useEffect(() => {
+        setPosition(dato.find((item) => item?.id === parseInt(id)));
+    }, []);
+
+    /*if (!puesto) {
+        return <p>Perfil no encontrado</p>;
+    }*/
+    //const cv = puesto.cv;
+    const [personalInfo, setPersonalInfo] = useState({
+        name: "Gilberto López Antonio",
+        email: "glopez@consultores-cti.com.mx",
+        phone: "2361039980",
+        location: "Av. Ejército Nacional Mexicano 769, Granada, Miguel Hidalgo, 11520, CDMX",
+        about: "Profesional en TI con experiencia en implementación de Aplicaciones de Escritorio, Web, .Net, C# y Sharepoint, trabajando desde el 2019 en autopistas de cuota, con amplia experiencia en Instalación , Mantenimiento y Soporte a SISTEMAS DE ITS (SISTEMA DE GESTIÓN DE AUTOPISTAS, PMV, CCTV, CONTROL DE ACCESOS, ANPR, RADARES, CCO)."
+    });
+
+    const [activeTab, setActiveTab] = useState("personal");
+    const personalRef = useRef(null);
+    const experienceRef = useRef(null);
+    const educationRef = useRef(null);
+    const skillsRef = useRef(null);
+    const certificationsRef = useRef(null);
+
+    const handlePrint = (mode) => {
+        const link = document.createElement("a");
+        if (mode) {
+            link.href = `/CVs/${position?.url}`;
+            link.download = `CV ${position?.name}.pdf`;
+        } else {
+            link.href = `/perfiles/${position?.position}`;
+            link.download = `Detalles ${position?.post}.pdf`;
+        }
+
+        link.click()
+    }
+
+    const scrollToSection = (ref, tabName) => {
+        setActiveTab(tabName);
+        ref.current.scrollIntoView({ behavior: "smooth" });
+    };
+
+    return (
+        <div className="p-4 bg-white scroll">
+            <div className="max-w-6xl mx-auto bg-white rounded shadow-lg">
+                <div className="p-6">
+                    <section ref={personalRef} className="flex justify-between items-center mb-8 top-0 bg-white z-10 py-4">
+                        <h1 className="text-3xl font-bold text-gray-800">{position?.name}</h1>
+                        <div className="flex gap-4">
+                            <button
+                                onClick={() =>handlePrint(true)}
+                                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            >
+                                <FaPrint /> Imprimir
+                            </button>
+                            <button
+                                onClick={() =>handlePrint(false)}
+                                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            >
+                                <FaPrint /> Especificaciones
+                            </button>
+                        </div>
+                    </section>
+                    <div className="flex">
+                        <div className="w-56 pr-4 sticky top-0 space-y-1" style={{ height: 500 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="pb-3">
+                                <img
+                                    src={require(`../../imgOrganigrama/${nombreImagen}`)}
+                                    alt="img"
+                                    className="image-img-profile"
+                                    style={{ height: 175, width: 175 }}
+                                //style={{ borderRadius: '0%', cursor: 'pointer', width: '50%', height: '40%', objectFit: 'cover', marginLeft: '45px', marginTop: '10px' }}
+                                />
+                            </div>
+                            <button
+                                onClick={() => scrollToSection(personalRef, "personal")}
+                                className={`w-full rounded flex items-center gap-2 py-3 px-4 text-left ${activeTab === "personal" ? "bg-blue-50 text-white font-bold border-r-4 border-blue-500" : "text-gray-500 hover:bg-gray-10"}`}
+                            >
+                                <FaUser className="text-lg" /> Datos Personales
+                            </button>
+                            <button
+                                onClick={() => scrollToSection(skillsRef, "skills")}
+                                className={`w-full rounded flex items-center gap-2 py-3 px-4 text-left ${activeTab === "skills" ? "bg-blue-50 text-white font-bold border-r-4 border-blue-500" : "text-gray-500 hover:bg-gray-10"}`}
+                            >
+                                <FaCertificate className="text-lg" /> Competencias
+                            </button>
+                            <button
+                                onClick={() => scrollToSection(experienceRef, "experience")}
+                                className={`w-full rounded flex items-center gap-2 py-3 px-4 text-left ${activeTab === "experience" ? "bg-blue-50 text-white font-bold border-r-4 border-blue-500" : "text-gray-500 hover:bg-gray-10"}`}
+                            >
+                                <FaBriefcase className="text-lg" /> Experiencia
+                            </button>
+                            <button
+                                onClick={() => scrollToSection(educationRef, "education")}
+                                className={`w-full rounded flex items-center gap-2 py-3 px-4 text-left ${activeTab === "education" ? "bg-blue-50 text-white font-bold border-r-4 border-blue-500" : "text-gray-500 hover:bg-gray-10"}`}
+                            >
+                                <FaGraduationCap className="text-lg" /> Formación
+                            </button>
+                            {/*<button
+                                onClick={() => scrollToSection(certificationsRef, "certifications")}
+                                className={`w-full flex items-center gap-2 py-3 px-4 text-left ${activeTab === "certifications" ? "bg-blue-50 text-white font-bold border-r-4 border-blue-500" : "text-gray-500 hover:bg-gray-10"}`}
+                            >
+                                <FaCertificate className="text-lg" /> Capacitación
+                            </button>*/}
+                        </div>
+
+                        <div className="flex-1 border-l pl-5 space-y-12">
+                            <section ref={null} className="space-b-4">
+                                <h2 className="text-2xl font-bold text-gray-800 mb-4">Datos Personales</h2>
+                                <div className="grid grid-cols-1 gap-6">
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2">
+                                            <FaUser className="text-gray-600" />
+                                            <span className="font-medium">{position?.name} - {position?.profile[0]}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <FaPhone className="text-gray-600" />
+                                            <span>{position?.phone}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 break-all">
+                                            <FaMapMarkerAlt className="text-gray-600" />
+                                            <span className="text-blue-600">{position?.email}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <FaMapMarkerAlt className="text-gray-600" />
+                                            <span>{position?.address}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div className="mt-4">
+                                    <p className="text-gray-700 text-justify">{position?.profile[1]}</p>
+                                </div>
+                            </section>
+
+                            <section ref={skillsRef} className="space-b-4">
+                                <h2 className="text-2xl font-bold text-gray-800 mb-4">Competencias</h2>
+                                <div className="p-4 pb-1 border rounded">
+                                    {position?.competencies.map((cert, index) => (
+                                        <div key={`competencies-${index}`} className="flex flex-row p-0 text-justify gap-1">
+                                            ✅<p className="text-gray-600">{cert}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            <section ref={experienceRef} className="space-b-4">
+                                <h2 className="text-2xl font-bold text-gray-800 mb-4">Experiencia</h2>
+                                <div className="p-4 pb-1 border rounded">
+                                    {position?.experience.map((cert, index) => (
+                                        <div key={`experience-${index}`} className="flex flex-row p-0 text-justify gap-1">
+                                            💼 <p className="text-gray-600"> {cert}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+
+                            <section ref={educationRef} className="space-b-4">
+                                <h2 className="text-2xl font-bold text-gray-800 mb-4">Formación</h2>
+                                <div className="p-4 pb-1 border rounded">
+                                    {position?.training.map((cert, index) => (
+                                        //<p key={`training-${index}`} className={`text-gray-600 p-0 mr-1 text-justify ${!index && 'font-bold'}`}>{cert}</p>
+                                        (index % 2 == 0) ? <h3 className="font-semibold">{cert}</h3> : <p className="text-gray-600">{cert}</p>
+                                    ))}
+                                    <h3 className="font-semibold pt-2">Cursos y Certificaciones</h3>
+                                    {position?.education.map((cert, index) => (
+                                        <div key={`education-${index}`} className="flex flex-row p-0 text-justify gap-1">
+                                            🎓 <p className="text-gray-600">{cert}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default PerfilGral;

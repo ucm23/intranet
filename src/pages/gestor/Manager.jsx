@@ -1,12 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-//import data from '../../assets/tabla_contenidos.json'; // Datos de ejemplo
-import { Table, Button, Container, Form } from 'react-bootstrap'; // Bootstrap Components
-import { useLocation } from 'react-router-dom';
-import { FaEye, FaDownload } from 'react-icons/fa';
-import Folder from '../../componentes/Folder';
-import PDFViewerComp from '../../componentes/PDFViewerComp'
-import File from '../../componentes/File';
-import PdfCanvasViewer from '../../componentes/PdfCanvasViewer'
 import { FolderOpenOutlined, FolderOutlined, FileOutlined, FilePdfOutlined } from '@ant-design/icons';
 import { indexDocuments, indexDocumentsByID } from '../../api/docs/docs';
 import Slider from "react-slick";

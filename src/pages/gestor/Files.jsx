@@ -44,16 +44,11 @@ import { createDepartments, indexDepartments } from '../../api/departamentos/dep
 import { createProjects, indexProjects } from '../../api/project/projects';
 import { useImageCache } from '../../redux/ImageCacheProvider';
 import { usePreviewFile } from '../../redux/PreviewFileContext';
-import PDFViewerComp from '../../componentes/PDFViewerComp';
+//import PDFViewerComp from '../../componentes/PDFViewerComp';
 import es from 'date-fns/locale/es';
 import { format } from 'date-fns';
-import { formatDate, messagesNotification, openNotificationWithIcon } from '../../libs/main';
+import { openNotificationWithIcon } from '../../libs/main';
 import { notification } from 'antd';
-
-const locales = {
-    es: es
-};
-
 
 const DocumentManager = () => {
     const [level, setLevel] = useState(0);
@@ -63,17 +58,15 @@ const DocumentManager = () => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [selectedDepartment, setSelectedDepartment] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const [modal1Open, setModal1Open] = useState(false);
     const [uploadResults, setUploadResults] = useState([]);
-
     const { isOpen: isOpenProject, onOpen: onOpenProject, onClose: onCloseProject } = useDisclosure()
-
     const today = new Date();
     const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-
+    
     const [api, contextHolder] = notification.useNotification();
     const openNotification = (type, description) => openNotificationWithIcon(api, type, description)
+    const [colors, setColor] = useState({});
+    const [minEndDate, setMinEndDate] = useState('');
 
     const [formDataProjects, setFormDataProjects] = useState({
         name: '',
@@ -81,11 +74,6 @@ const DocumentManager = () => {
         start_date: today.toISOString().split('T')[0],
         end_date: tomorrow.toISOString().split('T')[0],
     });
-    const [colors, setColor] = useState({});
-
-    //const today = formatDate(new Date());
-    //const tomorrow = formatDate(new Date(new Date().setDate(new Date().getDate() + 1)));
-    const [minEndDate, setMinEndDate] = useState('');
 
     const handleStartDateChange = (e) => {
         const selectedStartDate = e.target.value;
@@ -162,6 +150,7 @@ const DocumentManager = () => {
         getProjects()
         getDepartments()
         getDocuments()
+        tomorrow.setDate(today.getDate() + 1);
     }, [])
 
     const getDocuments = async () => {
@@ -578,9 +567,9 @@ const DocumentManager = () => {
         //div-pdf
         return (imageUrl ?
             <div className={`${className}`}>
-                <PDFViewerComp
+                {/*<PDFViewerComp
                     key='view'
-                    file={imageUrl} />
+                    file={imageUrl} />*/}
                 <iframe
                     src={imageUrl}
                     width="100%"

@@ -108,7 +108,7 @@ const NewsList = () => {
         switch (viewMode) {
             case 1:
                 return (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3">
                         {filteredNews.map((item, index) => {
                             const user = findUser({ id: item.user_id });
                             return (

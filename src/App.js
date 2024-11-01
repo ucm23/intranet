@@ -9,17 +9,13 @@ import Index from "./pages/landing/Index";
 import NewsList from './pages/noticies/NewsList';
 import Inicio from './pages/inicio/Inicio';
 import NoticiaDetalle from './pages/NoticiaDetalle';
-import Colaborador from './pages/colaborador/Colaborador';
 import Collaborator from './pages/colaborador/Collaborator';
-import Organizacion from './pages/colaborador/Organizacion';
 import Gestor from './pages/gestor/Gestor';
 import Tramites from './pages/tramites/Tramites';
 import Indicadores from './pages/Indicadores';
-import Perfilceo from './pages/perfiles/Perfilceo';
 import store from './redux/store';
 import Context from './redux/Context';
 import NavBarVertical from './components/NavBarVertical';
-import Manager from './pages/gestor/Manager';
 import Finder from './pages/gestor/Finder';
 import NewDetails from './pages/noticies/NewDetails'
 import AddNews from './pages/noticies/AddNews';
@@ -28,10 +24,7 @@ import Calendar from './pages/calendar/Calendar';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import Files from './pages/gestor/Files';
-import UserProfile from './pages/Puestos/UserProfile';
-import PerfilPuesto from './pages/Puestos/PerfilPuesto';
 import PerfilesPuesto1 from './pages/Puestos/PerfilesPuesto1';
-import PerfilesPuesto from './pages/Puestos/PerfilesPuesto';
 import PerfilGral from './pages/perfiles/PerfilGral';
 
 const pageTransition = {
@@ -90,13 +83,11 @@ function App() {
                             </Route>
 
                             <Route path="/noticia/:id" element={<NoticiaDetalle />} />
-                            <Route path="/Organizacion" element={<Organizacion />} />
 
                             <Route path="/finder" element={<Finder />} />
                             <Route path="/gestor" element={<Gestor />} />
                             <Route path="/docs" element={<Tramites />} />
                             <Route path="/ind" element={<Indicadores />} />
-                            <Route path="/Perfilceo" element={<Perfilceo />} />
                             <Route path="/gestor-contenidos/*" element={<Gestor />} />
 
                             <Route element={<LayoutWithNavBar menu={true} />}>
@@ -104,18 +95,6 @@ function App() {
                             </Route>
                             <Route element={<LayoutWithNavBar menu={true} />}>
                                 <Route path="/perfilesPuesto1/:id" element={<PerfilesPuesto1 page={'collaborator'} />} />
-                            </Route>
-
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/profile/:id" element={<UserProfile />} />
-                            </Route>
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/PerfilPuesto/:id" element={<PerfilPuesto />} />
-                            </Route>
-
-
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/PerfilesPuesto" element={<PerfilesPuesto />} />
                             </Route>
                             <Route element={<LayoutWithNavBar menu={true} />}>
                                 <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />

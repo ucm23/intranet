@@ -1,10 +1,8 @@
 import { Route, Routes,BrowserRouter as Router } from "react-router-dom";
 import Home from "../pages/inicio/Home";
-import Colaborador from "../pages/colaborador/Colaborador";
 import Indicador from "../pages/indicador/Indicador";
 import Calendario from "../pages/calendario/Calendario";
 import Organizacion from "../pages/colaborador/Organizacion";
-import Perfilceo from "../pages/perfiles/Perfilceo";
 import Perfilceo1 from "../pages/perfiles/Perfilceo1";
 import Perfildev1 from "../pages/perfiles/Perfildev1";
 import Perfildev2 from "../pages/perfiles/Perfildev2";
