@@ -151,7 +151,6 @@ const proyectos = [
     },
 ];
 
-
 const IndicadorDetalles = () => {
     const location = useLocation();
     const { id, total } = location.state;
@@ -160,9 +159,6 @@ const IndicadorDetalles = () => {
     const [item, setItem] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [modal1Open, setModal1Open] = useState(false);
-
-
-
 
     useEffect(() => {
         searchArray()
