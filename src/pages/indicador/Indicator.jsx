@@ -1,214 +1,64 @@
-import React, { useState, useEffect, useRef, memo, useCallback } from 'react';
-import { FaFolder, FaFileImage, FaFilePowerpoint, FaFilePdf, FaFileWord, FaFileExcel, FaSpinner } from "react-icons/fa";
-import {
-    AiOutlineFile, AiOutlineDownload, AiOutlineDelete, AiOutlineShareAlt, AiOutlineClose, AiOutlineZoomIn, AiOutlineZoomOut, AiOutlineLeft, AiOutlineRight
-} from "react-icons/ai";
-import { FaClockRotateLeft } from "react-icons/fa6";
-import { CiCircleCheck } from "react-icons/ci";
-import { IoChevronForwardSharp } from "react-icons/io5";
-import { IoMdArrowDropdown } from "react-icons/io";
-import { FcFolder } from "react-icons/fc";
-import Navbar from '../../componentes/Navbar';
-import GraficaAvancesProyecto from './GraficaAvancesProyecto';
-import { useBreakpointValue } from '@chakra-ui/react';
-import Proyecto from './Proyecto';
+import React, { useState, useEffect } from 'react';
+import { FaFolder } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import { indexProjects } from '../../api/proyectos/projects';
+
 
 const Indicator = () => {
     const navigate = useNavigate();
-    const [proyectos, setProyectos] = useState([
-        {
-            name: 'Intranet',
-            id: 1,
-            avance: 0,
-            actividades: [
-                { 
-                    name: 'Login',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'Login 1',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'Login 5',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'Login 8',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'Login 10',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'Login 10',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                
+    const [proyectos, setProyectos] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+// ++aqui hago lo de la bd los proyectos
+    useEffect(() => {
+        const fetchProjects = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const response = await indexProjects();
+                if (response.status) {
+                    setProyectos(response.data);
+                } else {
+                    setError("No se pudieron cargar los proyectos.");
+                }
+            } catch (err) {
+                setError("Ocurrió un error al cargar los proyectos.");
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-            ],
-        },
-
-        {
-            name: 'VICTUM RE',
-            id: 2,
-            avance: 0,
-            actividades: [
-                { 
-                    name: 'Login',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 100, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'MODULO 1',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'MODULO 2',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },
-                { 
-                    name: 'MODULO 3',
-                    description: 'Diseñar un formulario bonito con ciertas validaciones de usuario',
-                    avance: 50, 
-                    responsable: 1,
-                    start_date: '25-10-2024',
-                    end_date: '25-11-2024',
-                    notes: [
-                        'Crear un componente de Login',
-                        'Añadir REDUX',
-                        'Conectar con la API',
-                        'Validaciones'
-                    ]
-                },              
-
-            ],
-        },
-
-    ]);
-
+        fetchProjects();
+    }, []);
+// ++ hasta aqui llega lo de la bd los proyectos
     const calcularavance = (id) => {
-        let suma = 0
-        let item = proyectos.find(i => i?.id == id)
-        item.actividades.map(i => {
-            suma += i?.avance
-            return suma
-        })
-        console.log(suma);
-        suma = (suma / item.actividades.length).toFixed(0)
-        return suma
-    }
+        let suma = 0;
+        let item = proyectos.find(i => i?.id === id);
+        if (item && Array.isArray(item.actividades)) {
+            suma = item.actividades.reduce((acc, actividad) => acc + actividad.avance, 0);
+            return (suma / item.actividades.length).toFixed(0);
+        }
+        return 0; // Retorna 0 si no hay actividades estaba marcando error pq en esta api no hay actividades
+    };
+
     const handleFilePreview = (id, total) => {
-        navigate('/indicadorDetalles', { state: {id, total} });
-    }
-    const ProjectList = ({ isLoading, projects, onProjectSelect, project_id }) => {
+        navigate('/indicadorDetalles', { state: { id, total } });
+        console.log("proyecto:", id);
+    };
+
+    const ProjectList = ({ projects }) => {
         return (
             <div>
                 <h2 className="text-sm font-semibold text-gray-800 mb-3">Proyectos</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
                     {projects.map((folder) => {
-                        let total = calcularavance(folder.id)
+                        let total = calcularavance(folder.id);
                         return (
                             <div
                                 key={folder.id}
                                 className="p-3 rounded hover:shadow-md transition-shadow duration-200 cursor-pointer"
                                 style={{ backgroundColor: '#B6B6B625' }}
                                 onClick={() => handleFilePreview(folder?.id, total)}
-                                onDoubleClick={() => {
-                                    //handleFilePreview({ ...folder, type: 'folder_projs' })
-                                    // onProjectSelect(folder)
-                                }}
                             >
                                 <div className="flex items-center space-x-2">
                                     <FaFolder style={{ fontSize: 18 }} className="text-yellow-400" />
@@ -218,7 +68,7 @@ const Indicator = () => {
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })}
                 </div>
             </div>
@@ -233,12 +83,15 @@ const Indicator = () => {
                         <h2 className="text-3xl font-bold text-gray-800 mb-0 pb-0 mt-8">Gestor de archivos</h2>
                     </div>
                     <div className="p-4 pt-0 pb-0">
-                        <ProjectList
-                            // isLoading={isLoading} 
-                            projects={proyectos}
-                        // onProjectSelect={handleProjectSelect} 
-                        // project_id={selectedProject?.id}
-                        />
+                        {isLoading ? (
+                            <div className="flex justify-center items-center">
+                                <p>Cargando proyectos...</p>
+                            </div>
+                        ) : error ? (
+                            <div className="text-red-500 text-center">{error}</div>
+                        ) : (
+                            <ProjectList projects={proyectos} />
+                        )}
                     </div>
                 </div>
             </div>

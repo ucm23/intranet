@@ -33,6 +33,7 @@ import {
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react'
 import '../../styles/estilo.css';
 import { MdCheckCircle } from 'react-icons/md';
+import { detalleProjects } from '../../api/proyectos/projects';
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
@@ -150,6 +151,7 @@ const proyectos = [
     },
 ];
 
+
 const IndicadorDetalles = () => {
     const location = useLocation();
     const { id, total } = location.state;
@@ -159,10 +161,34 @@ const IndicadorDetalles = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [modal1Open, setModal1Open] = useState(false);
 
+
+
+
     useEffect(() => {
         searchArray()
     }, [])
 
+    //esto lo sustituimos para llamar a la api con el id, haber si funciona
+    // const searchArray = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const response = await detalleProjects(id); 
+    //         if (response.status) {
+    //             setItem(response.data);
+    //         } else {
+    //             console.error("No se pudo obtener el proyecto");
+    //         }
+    //     } catch (error) {
+    //         console.error("🚀 ~ searchArray ~ error:", error);
+    //     } finally {
+    //         setIsLoading(false); 
+    //     }
+    // };
+
+    // if (isLoading) {
+    //     return <div>Cargando...</div>;
+    // }
+    //**************************************************************** */
     const searchArray = () => {
         try {
             // Reemplazar por una llamada a API's
@@ -388,8 +414,8 @@ const IndicadorDetalles = () => {
                 {!itemSelected ? <p>Cargando...</p> :
                     <div>
                         <CheckboxGroup colorScheme='green' defaultValue={[0]}>
-                        <div className='flex flex-col'>
-                            {itemSelected?.tasks.map((item_) => <Checkbox value={item_?.name}>{item_?.name}</Checkbox>)}
+                            <div className='flex flex-col'>
+                                {itemSelected?.tasks.map((item_) => <Checkbox value={item_?.name}>{item_?.name}</Checkbox>)}
                             </div>
                         </CheckboxGroup>
                     </div>
