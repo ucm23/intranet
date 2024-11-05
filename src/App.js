@@ -5,9 +5,7 @@ import { Outlet } from 'react-router-dom';
 import './styles/styles.css'
 import { Route, Routes } from "react-router-dom";
 import Index from "./pages/landing/Index";
-//import Noticies from './pages/landing/Noticies';
 import NewsList from './pages/noticies/NewsList';
-import Inicio from './pages/inicio/Inicio';
 import NoticiaDetalle from './pages/NoticiaDetalle';
 import Collaborator from './pages/colaborador/Collaborator';
 import Gestor from './pages/gestor/Gestor';
@@ -21,17 +19,8 @@ import NewDetails from './pages/noticies/NewDetails'
 import AddNews from './pages/noticies/AddNews';
 import Home from './pages/home/Home';
 import Calendar from './pages/calendar/Calendar';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
 import Files from './pages/gestor/Files';
-import PerfilesPuesto1 from './pages/Puestos/PerfilesPuesto1';
 import PerfilGral from './pages/perfiles/PerfilGral';
-
-const pageTransition = {
-    in: { opacity: 1, x: 0, rotate: 0 },
-    out: { opacity: 0, x: "100vw", rotate: 45 }
-};
-
 
 const LayoutWithNavBar = ({ menu }) => (
     <NavBarVertical menu={menu}>
@@ -66,7 +55,6 @@ function App() {
 
     return (
         <Context.Provider value={authContext}>
-
             <Provider store={store}>
                 {!userToken ?
                     <Routes>
@@ -74,56 +62,52 @@ function App() {
                         <Route path="*" index element={<Index />} />
                         {/*<Route path="/noticies" element={<Noticies />} />*/}
                     </Routes> :
-                    <AnimatePresence mode='wait'>
-                        <Routes>
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/*" element={<Home />} />
-                            </Route>
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/home" element={<Home />} />
-                            </Route>
+                    <Routes>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/*" element={<Home />} />
+                        </Route>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/home" element={<Home />} />
+                        </Route>
 
-                            <Route path="/noticia/:id" element={<NoticiaDetalle />} />
+                        <Route path="/noticia/:id" element={<NoticiaDetalle />} />
 
-                            <Route path="/finder" element={<Finder />} />
-                            <Route path="/gestor" element={<Gestor />} />
-                            <Route path="/docs" element={<Tramites />} />
-                            <Route path="/ind" element={<Indicadores />} />
-                            <Route path="/gestor-contenidos/*" element={<Gestor />} />
+                        <Route path="/finder" element={<Finder />} />
+                        <Route path="/gestor" element={<Gestor />} />
+                        <Route path="/docs" element={<Tramites />} />
+                        <Route path="/ind" element={<Indicadores />} />
+                        <Route path="/gestor-contenidos/*" element={<Gestor />} />
 
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/collaborator" element={<Collaborator />} />
-                            </Route>
-                           
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />
-                            </Route>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/collaborator" element={<Collaborator />} />
+                        </Route>
 
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/files" element={<Files />} />
-                            </Route>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />
+                        </Route>
 
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route
-                                    path="/newslist"
-                                    element={<NewsList />}
-                                />
-                            </Route>
-                            <Route path="/newDetails" element={<NewDetails page={'newslist'} />} />
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route
-                                    path="/addnews"
-                                    element={<AddNews page={'newslist'} />}
-                                />
-                            </Route>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/files" element={<Files />} />
+                        </Route>
 
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/calendar" element={<Calendar />} />
-                            </Route>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route
+                                path="/newslist"
+                                element={<NewsList />}
+                            />
+                        </Route>
+                        <Route path="/newDetails" element={<NewDetails page={'newslist'} />} />
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route
+                                path="/addnews"
+                                element={<AddNews page={'newslist'} />}
+                            />
+                        </Route>
 
-
-                        </Routes>
-                    </AnimatePresence>
+                        <Route element={<LayoutWithNavBar menu={true} />}>
+                            <Route path="/calendar" element={<Calendar />} />
+                        </Route>
+                    </Routes>
                 }
             </Provider>
         </Context.Provider>
