@@ -10,7 +10,6 @@ import { createEvents, indexEvents } from '../../api/events/events';
 import { indexDepartments } from '../../api/departamentos/departments';
 import { indexUsers } from '../../api/users/users';
 import moment from 'moment/moment';
-import SplitterLayout from 'react-splitter-layout';
 import { Button, Dropdown, Checkbox, List, Skeleton } from "antd";
 import {
     Accordion,
@@ -43,7 +42,6 @@ import { formats, messagesNotification, modules } from '../../libs/main';
 import { notification } from 'antd';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
-//import 'react-splitter-layout/lib/index.css';
 import 'react-quill/dist/quill.snow.css';
 import '../../styles/custom-calendar.css';
 import {
@@ -264,16 +262,17 @@ const Calendar = () => {
     return (
         <div className="mx-auto min-h-screen bg-white scroll">
             {contextHolder}
-            <SplitterLayout
-                percentage={true}
+            <div
+                /*percentage={true}
                 primaryMinSize={50}
                 primaryMaxSize={100}
                 secondaryMinSize={20}
                 secondaryMaxSize={50}
-                secondaryInitialSize={25}
+                secondaryInitialSize={25}*/
                 //customClassName="my-inner-splitter-layout"
+                style={{ display: 'flex', flexDirection: 'row' }}
             >
-                <div style={{ height: '100%' }}>
+                <div style={{ height: '100%', width: '70%' }}>
                     <div className="flex justify-between items-center py-6 mx-2">
                         <h2 className="text-3xl font-bold text-gray-800">Calendario</h2>
                         <Button
@@ -321,7 +320,7 @@ const Calendar = () => {
                         onSelectEvent={handleEditEvent}
                     />
                 </div>
-                <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px' }}>
+                <div style={{ backgroundColor: 'white', padding: '10px 0px 10px 8px', width: '70%'  }}>
                     <h2>
                         <Box as='span' flex='1' textAlign='left'>
                             {dateSelect}
@@ -351,7 +350,7 @@ const Calendar = () => {
                         }}
                     />
                 </div>
-            </SplitterLayout>
+            </div>
             <Modal onClose={onCloseEvent} size={'3xl'} isOpen={isOpenEvent} scrollBehavior={'inside'} isCentered>
                 <ModalOverlay />
                 <ModalContent>
