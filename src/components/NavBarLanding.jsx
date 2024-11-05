@@ -5,14 +5,12 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import Footer_ from './Footer_';
 import ModalCenter from './ModalCenter';
 
-const NavBarLanding = ({ mobile, backgroundColor = '#001529', children }) => {
+const NavBarLanding = ({ mobile, backgroundColor = '#001529', children, handleModal, modalShow }) => {
 
     const location = useLocation();
     const { pathname } = location;
     const [isChecked, setIsChecked] = useState(false);
     const [showShadow, setShowShadow] = useState(false);
-    const [modalShow, setModalShow] = useState(false);
-    const handleModal = () => setModalShow(!modalShow)
 
     useEffect(() => {
         const handleScroll = () => setShowShadow(window.scrollY > 0);
@@ -25,9 +23,9 @@ const NavBarLanding = ({ mobile, backgroundColor = '#001529', children }) => {
     }, [isChecked]);
 
     const routes = [
-        { id: 1, href: "/", content: "Inicio", icon: "fa-home" },
-        { id: 2, href: "/noticies", content: "Noticias", icon: "fa-newspaper" },
-        { id: 3, href: "/about", content: "Acerca de", icon: "fa-users" },
+        //{ id: 1, href: "/", content: "Inicio", icon: "fa-home" },
+        //{ id: 2, href: "/noticies", content: "Noticias", icon: "fa-newspaper" },
+        //{ id: 3, href: "/about", content: "Acerca de", icon: "fa-users" },
         { id: 7, href: "https://development.victum-re.online", content: "Iniciar sesión", onlyLink: true },
     ];
 
@@ -63,11 +61,7 @@ const NavBarLanding = ({ mobile, backgroundColor = '#001529', children }) => {
                 {children}
             </main>
 
-            <ModalCenter
-                show={modalShow}
-                onHide={handleModal}
-                mobile={mobile}
-            />
+
 
             <Footer_
                 modalShow={modalShow}

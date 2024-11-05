@@ -23,6 +23,7 @@ import { FaInstagram, FaTwitter, FaYoutube, FaFacebook, FaLinkedin } from 'react
 import { RiArrowDownSLine, } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
 import { PiArrowRightThin } from "react-icons/pi";
+import ModalCenter from '../../components/ModalCenter';
 
 
 const Index = () => {
@@ -34,6 +35,8 @@ const Index = () => {
 
     const ref1 = useRef(null);
     const [open, setOpen] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
+    const handleModal = () => setModalShow(!modalShow)
     const steps = [
         {
             cover: (
@@ -54,7 +57,7 @@ const Index = () => {
     };
     return (
         <div style={{ width: '100%' }}>
-            <NavBarLanding >
+            <NavBarLanding modalShow={modalShow} handleModal={handleModal}>
                 <Box
                     position={'relative'}
                     height={'98vh'}
@@ -98,14 +101,13 @@ const Index = () => {
                                     alignItems: "center",
                                 }}
                             >
-                                <h2 className="text-shadow" style={{ lineHeight: 0, fontSize: 18, fontWeight: 'bold', textTransform: 'uppercase',}}>
+                                <h2 className="text-shadow" style={{ lineHeight: 0, fontSize: 22, fontWeight: 'bold', textTransform: 'uppercase', }}>
                                     {'Software de uso compartido sencillo y colaboración sin problemas'}
-                                    </h2>
-                                <h1 className="col-about-title text-shadow" style={{ fontWeight: 'bold', lineHeight: 1, textTransform: 'uppercase' }}>
-                                    {`Comparte y administra contenido, conocimientos y aplicaciones para impulsar el trabajo en equipo, 
+                                </h2>
+                                <p className="text-shadow" style={{ lineHeight: 1, maxWidth: '65%', textAlign: 'center', margin: '15px 0px' }}>
+                                    {`Comparte y administra contenido, conocimientos y aplicaciones para impulsar el trabajo en equipo,
                                     encontrar información rápidamente y colaborar con todos los miembros de la organización sin problemas.`}
-                                    </h1>
-                                <p className="text-shadow" style={{ lineHeight: 1 }}>{'card.description'}</p>
+                                </p>
 
                                 <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 6 }}>
                                     <Button
@@ -113,7 +115,7 @@ const Index = () => {
                                         bg={'orange'}
                                         rounded={5}
                                         color="white"
-                                        //onClick={() => mobile ? openLink() : handleVideo()}
+                                        onClick={handleModal}
                                         rightIcon={<div />}
                                         leftIcon={<div />}
                                         fontWeight={'bold'}
@@ -148,41 +150,13 @@ const Index = () => {
                         </Box>
                     </Box>
                 </Box>
-                <section className="_main container" id="#id">
-                    <section className="section-5" id='about-me'>
-                        <div className="mx-auto max-w-2xl lg:text-center">
-                            <h2 className="text-base font-semibold leading-7" style={{ color: 'red' }}>Construimos experiencia, solidez y confianza</h2>
-                        </div>
-                        <Fade direction="down">
-                            <section className="text-center">
-                                <h2 className="section-title">Sobre Nosotros <span className="text-primary-blue">GRUPO TICONSA<sup>®</sup></span></h2>
-                            </section>
-                        </Fade>
-                        <div className="row-base row">
-                            <div className="col-base col-sm-6 col-md-6" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                                <h3 className="col-about-title" style={{ textAlign: 'center' }}>Concreto, Prefabricado y <span className="text-primary-blue">Presforzado</span></h3>
-                                <div className="col-about-info">
-                                    <p><strong>Ticonsa Inmobiliaria</strong>, <strong>Sociedad Anónima de Capital Variable</strong> (en lo sucesivo <strong>GRUPO TICONSA<sup>®</sup></strong>) en una empresa con <strong>50 años de experiencia desarrollando soluciones innovadoras</strong> que aportan valor agregado a los proyectos de nuestros clientes.</p>
-                                    <p className={mobile && "text-center"}><strong>Cancún: </strong> (998) 892-3143 <br /> <strong>México: </strong>(55) 5484-8355<br /> <strong>Teotihuacán: </strong>(594) 956-1645</p>
-                                    <p className={mobile && "text-center"}><strong>Grupo Ticonsa </strong> - Desde el 15 de febrero de 1971</p>
-                                </div>
-                            </div>
-                            <div className="col-base col-sm-6 col-md-6 content-img-round"
-                            /*style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                gap: 0.2,
-                            }}*/
-                            >
-                                <img src={`/grua.jpg`} className="img-round" />
-                                <img src={`/1.jpg`} className="img-round" />
-                                <img src={`/ticonsa1.avif`} className="img-round" />
-                            </div>
-                        </div>
-                    </section>
-                </section>
+
             </NavBarLanding>
+            <ModalCenter
+                show={modalShow}
+                onHide={handleModal}
+                mobile={mobile}
+            />
         </div>
 
     );

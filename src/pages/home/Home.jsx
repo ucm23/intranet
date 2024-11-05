@@ -40,11 +40,8 @@ const Home = () => {
                 }}
             >
                 <div className="absolute inset-0 bg-gray-50 opacity-10"></div>
-                <div className={`relative z-10 text-white p-6 ${isSmallScreen ? "w-full" : "w-2/3"} text-left`}>
-                    <h1
-                        className="text-xl md:text-3xl font-bold mb-4 transition-all duration-300 ease-in-out transform"
-                        aria-label="Crear, compartir y realizar un seguimiento de tu intranet"
-                    >
+                <div className={`relative text-white p-6 ${isSmallScreen ? "w-full" : "w-2/3"} text-left`}>
+                    <h1 className="text-xl md:text-3xl font-bold mb-4 transition-all duration-300 ease-in-out transform">
                         Crear, compartir y realizar un seguimiento de tu intranet
                     </h1>
                     <p className="text-sm md:text-base mb-6 opacity-90">

@@ -71,6 +71,7 @@ function App() {
                 {!userToken ?
                     <Routes>
                         <Route path="/" index element={<Index />} />
+                        <Route path="*" index element={<Index />} />
                         {/*<Route path="/noticies" element={<Noticies />} />*/}
                     </Routes> :
                     <AnimatePresence mode='wait'>
@@ -93,9 +94,7 @@ function App() {
                             <Route element={<LayoutWithNavBar menu={true} />}>
                                 <Route path="/collaborator" element={<Collaborator />} />
                             </Route>
-                            <Route element={<LayoutWithNavBar menu={true} />}>
-                                <Route path="/perfilesPuesto1/:id" element={<PerfilesPuesto1 page={'collaborator'} />} />
-                            </Route>
+                           
                             <Route element={<LayoutWithNavBar menu={true} />}>
                                 <Route path="/PerfilGral/:id/:nombreImagen" element={<PerfilGral />} />
                             </Route>

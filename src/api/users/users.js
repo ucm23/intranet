@@ -1,4 +1,31 @@
+import { headers2 } from "../../libs/main";
 import Fetcher from "../../libs/Petition"
+
+export const login = async ({ data }) => {
+    let fetch = { status: false };
+    try {
+        console.log("🚀 ~ createNews ~ data:", data)
+        let response = await Fetcher({
+            url: `/signon`,
+            method: 'POST',
+            data,
+            headers: headers2
+        });
+        console.log(response?.status, response?.data)
+        if (response.status === 201) {
+            fetch = { status: true, data: response?.data }
+        }
+        if (response.status === 401) {
+            fetch = { message: response?.data?.message }
+        }
+    } catch (error) {
+        console.log("Error: " + error)
+    } finally {
+        return fetch;
+    }
+}
+
+
 
 export const indexUsers = async ({ }) => {
     let response = { status: false }

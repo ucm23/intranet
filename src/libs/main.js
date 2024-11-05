@@ -79,6 +79,13 @@ export const messagesNotificationLogin = {
 export const openNotificationWithIcon = (api, type, description) => {
     api[type]({
         message: messagesNotification[type].message,
-        description: messagesNotification[type].description || description,
+        description: description || messagesNotification[type].description,
+    });
+};
+
+export const openNotificationForLogin = (api, type, description) => {
+    api[type]({
+        message: messagesNotificationLogin[type].message,
+        description: description || messagesNotificationLogin[type].description,
     });
 };

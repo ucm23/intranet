@@ -159,6 +159,7 @@ import '../../styles/ContentWithImage.css';
 import dato from '../../assets/cvs.json';
 import '../../styles/perfil.css';
 import { FaUser, FaBriefcase, FaGraduationCap, FaLanguage, FaCertificate, FaCog, FaEdit, FaTrash, FaPrint, FaEye, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { MdAlternateEmail } from "react-icons/md";
 import Descargacv from "../../componentes/Descargacv";
 
 const PerfilGral = () => {
@@ -197,7 +198,6 @@ const PerfilGral = () => {
             link.href = `/perfiles/${position?.position}`;
             link.download = `Detalles ${position?.post}.pdf`;
         }
-
         link.click()
     }
 
@@ -207,20 +207,20 @@ const PerfilGral = () => {
     };
 
     return (
-        <div className="p-4 bg-white scroll">
+        <div className="p-3 bg-white scroll">
             <div className="max-w-6xl mx-auto bg-white rounded shadow-lg">
-                <div className="p-6">
+                <div className="p-4">
                     <section ref={personalRef} className="flex justify-between items-center mb-8 top-0 bg-white z-10 py-4">
                         <h1 className="text-3xl font-bold text-gray-800">{position?.name}</h1>
-                        <div className="flex gap-4">
+                        <div className="flex gap-2">
                             <button
-                                onClick={() =>handlePrint(true)}
+                                onClick={() => handlePrint(true)}
                                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                             >
                                 <FaPrint /> Imprimir
                             </button>
                             <button
-                                onClick={() =>handlePrint(false)}
+                                onClick={() => handlePrint(false)}
                                 className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                             >
                                 <FaPrint /> Especificaciones
@@ -228,7 +228,7 @@ const PerfilGral = () => {
                         </div>
                     </section>
                     <div className="flex">
-                        <div className="w-56 pr-4 sticky top-0 space-y-1" style={{ height: 500 }}>
+                        <div className="w-54 pr-4 sticky top-0 space-y-1" style={{ height: 500 }}>
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="pb-3">
                                 <img
                                     src={require(`../../imgOrganigrama/${nombreImagen}`)}
@@ -276,15 +276,18 @@ const PerfilGral = () => {
                                 <div className="grid grid-cols-1 gap-6">
                                     <div className="space-y-2">
                                         <div className="flex items-center gap-2">
+                                            <span className="font-medium">{position?.name}</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
                                             <FaUser className="text-gray-600" />
-                                            <span className="font-medium">{position?.name} - {position?.profile[0]}</span>
+                                            <span>{position?.profile[0]}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <FaPhone className="text-gray-600" />
                                             <span>{position?.phone}</span>
                                         </div>
                                         <div className="flex items-center gap-2 break-all">
-                                            <FaMapMarkerAlt className="text-gray-600" />
+                                            <MdAlternateEmail className="text-gray-600" />
                                             <span className="text-blue-600">{position?.email}</span>
                                         </div>
                                         <div className="flex items-center gap-2">
@@ -328,12 +331,17 @@ const PerfilGral = () => {
                                         //<p key={`training-${index}`} className={`text-gray-600 p-0 mr-1 text-justify ${!index && 'font-bold'}`}>{cert}</p>
                                         (index % 2 == 0) ? <h3 className="font-semibold">{cert}</h3> : <p className="text-gray-600">{cert}</p>
                                     ))}
-                                    <h3 className="font-semibold pt-2">Cursos y Certificaciones</h3>
-                                    {position?.education.map((cert, index) => (
-                                        <div key={`education-${index}`} className="flex flex-row p-0 text-justify gap-1">
-                                            🎓 <p className="text-gray-600">{cert}</p>
+                                    {position?.education.length != 0 &&
+                                        <div>
+                                            <h3 className="font-semibold pt-2">Cursos y Certificaciones</h3>
+                                            {position?.education.map((cert, index) => (
+                                                <div key={`education-${index}`} className="flex flex-row p-0 text-justify gap-1">
+                                                    🎓 <p className="text-gray-600">{cert}</p>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
+                                    }
+
                                 </div>
                             </section>
                         </div>

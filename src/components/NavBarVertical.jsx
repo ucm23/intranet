@@ -14,16 +14,16 @@ import {
     SettingOutlined,
     AppstoreOutlined,
     FileDoneOutlined,
+    FormOutlined
 } from '@ant-design/icons';
- 
+
 import { FaCalendarAlt, FaUser, FaComments, FaShareAlt, FaNewspaper, FaCheckCircle, FaExternalLinkAlt, FaCheck } from "react-icons/fa";
-import { Layout, Menu, theme } from 'antd';
-import { Divider, useBreakpointValue } from '@chakra-ui/react'
+import { Layout, theme, Menu } from 'antd';
+import { useBreakpointValue } from '@chakra-ui/react'
 import { useNavigate, Link } from 'react-router-dom';
-import { Avatar, List, Button } from "antd";
-import { useSelector } from 'react-redux';
-//import LabelProfile from './LabelProfile';
 import Context from '../redux/Context';
+import LabelProfile from './LabelProfile';
+import { useSelector } from 'react-redux';
 
 const { Header, Content, Sider } = Layout;
 const routes = [
@@ -46,30 +46,55 @@ const routes = [
 ];
 const items = [
     {
-        key: 'sub1', label: 'Inicio', icon: React.createElement(HomeOutlined), href: '/',
+        key: '1',
+        label: 'Inicio',
+        icon: React.createElement(HomeOutlined),
+        route: '/'
     },
     {
-        key: 'sub2', label: 'Noticias', icon: <FaNewspaper />, href: '/newslist',
+        key: '2',
+        label: 'Noticias',
+        icon: React.createElement(FormOutlined),
+        route: '/newslist',
     },
     {
-        key: 'sub3', label: 'Colaboradores', icon: <AppstoreOutlined />, href: '/collaborator',
+        key: '3',
+        label: 'Colaboradores',
+        icon: React.createElement(AppstoreOutlined),
+        route: '/collaborator',
     },
     /*{
-        key: 'sub4', label: 'Trámites y Servicios', icon: <AppstoreOutlined />, href: '/docs',
+        key: '4',
+        label: 'Trámites y Servicios',
+        icon: <AppstoreOutlined />,
+        route: '/docs',
     },
     {
-        key: 'sub5', label: 'Gestor de Contenidos', icon: <FileDoneOutlined />, href: '/files',
+        key: '5',
+        label: 'Gestor de Contenidos',
+        icon: <FileDoneOutlined />,
+        route: '/files',
     },*/
     {
-        key: 'sub6', label: 'Gestor de archivos', icon: <FileDoneOutlined />, href: '/files',
+        key: '6',
+        label: 'Gestor de archivos',
+        icon: React.createElement(FileDoneOutlined),
+        route: '/files',
     },
     /*{
-        key: 'sub7', label: 'Indicadores', icon: <SettingOutlined />, href: '/ind',
+        key: '7',
+        label: 'Indicadores',
+        icon: <SettingOutlined />,
+        route: '/ind',
         
     },*/
     {
-        key: 'sub8', label: 'Calendario', icon: React.createElement(CalendarOutlined), href: '/calendar',
+        key: '8',
+        label: 'Calendario',
+        icon: React.createElement(CalendarOutlined),
+        route: '/calendar',
     },
+
 
 ];
 
@@ -77,7 +102,7 @@ const NavBarVertical = ({ children, menu }) => {
 
     const { token: { colorBgContainer } } = theme.useToken();
     const navigate = useNavigate();
-    //const information_user = useSelector(state => state.login.information_user);
+    const information_user = useSelector(state => state.login.information_user);
     //const { company } = information_user;
     const { signOut } = useContext(Context);
     const [collapsed, setCollapsed] = useState(true);
@@ -91,31 +116,59 @@ const NavBarVertical = ({ children, menu }) => {
 
     return (
         <Layout style={{ height: '100vh', overflow: 'hidden' }}>
-            <Header style={{ display: 'flex', alignItems: 'center', background: '#03296A', height: 48, padding: !collapsed ? 0 : 14 }}>
-                <div className="btn-menu-header" onClick={() => setCollapsed(!collapsed)} >
-                    <MenuOutlined color='white' style={{ color: 'white' }} />
-                </div>
-                <img src="/img/logo-white-removebg.png" alt="/img/logo-blue-removebg.png" style={{ height: 40, marginLeft: !mobile ? 12 : 0 }} />
-            </Header>
+
             <Layout>
                 <Sider
                     collapsed={collapsed}
-                    style={{ borderRightWidth: 0.6, backgroundColor: '#03296A', background: '#03296A' }}
+                    style={{ borderRightWidth: 0.6, backgroundColor: '#001629', background: '#001629' }}
+                //style={{ backgroundColor: 'white', background: 'white' }}
                 >
+                    <LabelProfile
+                        information_user={information_user}
+                        //company={company}
+                        collapsed={collapsed}
+                        signOut={signOut}
+                        opencog={() => {
+                            navigate(`/settings`);
+                            //opencog()
+                        }}
+                    />
                     <Menu
-                        className='menu-vertical'
+                        //className='menu-vertical'
                         //defaultSelectedKeys={['1']}
                         //defaultOpenKeys={['sub1']}
                         mode="inline"
                         theme='dark'
                         inlineCollapsed={collapsed}
-                        items={items}
-                        onClick={onClick}
-                    />
+                    //items={items}
+                    //onClick={onClick}
+                    >
+                        {items.map((item, index) =>
+                            <Menu.Item key={`item-menu-${item?.route}-${index}`}>
+                                <Link to={item?.route}><span>{item?.icon}&nbsp;<span>{item?.label}</span></span></Link>
+                            </Menu.Item>
+                        )}
+                    </Menu>
                 </Sider>
 
 
                 <Content className='' style={{ backgroundColor: 'white' }}>
+                    {/*<Header style={{ display: 'flex', alignItems: 'center', background: 'white' }}>
+                        {mobile &&
+                            <div className="btn-menu-header" onClick={() => setCollapsed(!collapsed)} >
+                                <MenuOutlined />
+                            </div>
+                        }
+
+                        <img src="/side-bar-logo.png" alt="/side-bar-logo.png" style={{ height: 50, marginLeft: !mobile ? 12 : 0 }} />
+                        <h1 className='header-title'>Victum Geo Truck</h1>
+                    </Header>*/}
+                    <Header style={{ display: 'flex', alignItems: 'center', background: 'white', height: 48, padding: 0 }}>
+                        <div className="btn-menu-header" onClick={() => setCollapsed(!collapsed)} >
+                            <MenuOutlined />
+                        </div>
+                        <img src="/img/logo-blue-removebg.png" alt="logo" style={{ height: 40, marginLeft: !mobile ? 12 : 0 }} />
+                    </Header>
                     {children}
                 </Content>
             </Layout>

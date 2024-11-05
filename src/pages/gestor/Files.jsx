@@ -705,7 +705,7 @@ const DocumentManager = () => {
     //className="w-full max-h-[70vh] object-contain"
 
     return (
-        <div className="mx-auto pr-4 pb-8 bg-white">
+        <div className="mx-auto pr-4 pb-8 bgwhite">
             {contextHolder}
             <div className="flex" style={{ width: '100%' }}>
                 <div className="mx-auto pb-8 content-scroll-auto" style={{ flex: '1' }}>

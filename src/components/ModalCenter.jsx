@@ -7,16 +7,10 @@ import { connect } from "react-redux";
 import { EyeOutlined, EyeInvisibleOutlined, UserOutlined, LockOutlined, } from '@ant-design/icons';
 import Context from '../redux/Context';
 import { TailSpin, ThreeDots } from 'react-loader-spinner';
+import { openNotificationForLogin } from '../libs/main';
+import { login } from '../api/users/users';
 
-/*const openNotificationWithIcon = (api, type, description) => {
-    api[type]({
-        message: messagesNotificationLogin[type].message,
-        description: messagesNotificationLogin[type].description || description,
-    });
-};*/
-
-export default function ModalCenter(props) {
-    const { mobile } = props;
+function ModalCenter({ show, onHide, mobile, openSession }) {
     const navigate = useNavigate();
     const { signIn } = useContext(Context);
     const [isSubmitting, setSubmitting] = useState(false)
@@ -24,6 +18,7 @@ export default function ModalCenter(props) {
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const [api, contextHolder] = notification.useNotification();
+    const openNotification = (type, description) => openNotificationForLogin(api, type, description)
     const [data, setData] = useState({
         email: '',
         password: ''
@@ -34,45 +29,47 @@ export default function ModalCenter(props) {
         setData({ ...data, [name]: value });
     }
     const handleLogin = async (e) => {
-        e.preventDefault();
-        setSubmitting(true)
-        if (!data.email.trim() || !data.password.trim()) {
-            //openNotification('warning', 'Debe rellenar los campos de correo y contraseña')
-            return;
+        try {
+            e.preventDefault();
+            setSubmitting(true)
+            if (!data.email.trim() || !data.password.trim()) {
+                console.log("🚀 ~ handleLogin ~ data.email:", data.email, data.password)
+                openNotification('warning', 'Debe rellenar los campos de correo y contraseña')
+                return;
+            }
+            if (!regexEmail.test(data.email)) {
+                console.log("🚀 ~ handleLogin ~ data.email:", data.email)
+                openNotification('warning', 'Correo electrónico no valido')
+                return;
+            }
+
+            let response = await login({ data })
+            console.log("🚀 ~ handleLogin ~ response:", response)
+            if (response?.status) {
+                openSession('OPEN_', response?.data);
+                signIn();
+            } else openNotification('error', response?.message)
+        } catch (error) {
+            console.error("🚀 ~ handleLogin ~ error:", error)
+        } finally {
+            setSubmitting(false)
         }
-        if (!regexEmail.test(data.email)) {
-            //openNotification('warning', 'Correo electrónico no valido')
-            return;
-        }
-        /*
-        
-        const { data: user_ } = await supabase.from('user').select(`*, company:company_id (*)`).eq('email', data?.email.trim()).eq('password', data?.password.trim());
-        //console.log("🚀 ~ handleLogin ~ user_:", user_)
-        
-        if (user_[0]) {
-            //openNotification('success')
-            openSession('OPEN_', user_[0])
-            setTimeout(() => {
-                signIn()
-                navigate(`/home`);
-            }, 1000);
-        } //else openNotification('error')
-         */
-        signIn()
-        setSubmitting(false)
     };
 
     return (
         <Modal
-            {...props}
+            show={show}
+            //{...props}
+            onHide={onHide}
             //size="lg"
             //aria-labelledby="contained-modal-title-vcenter"
             centered
-            
+
         >
+            {contextHolder}
             <div
-                //allowfullscreen
-                //style={{ borderRadius: 6, height: "480px", width: "100%" }}
+            //allowfullscreen
+            //style={{ borderRadius: 6, height: "480px", width: "100%" }}
             >
                 <div>
                     <div className="flex flex-col">
@@ -160,7 +157,7 @@ export default function ModalCenter(props) {
                                 </form>
                             </div>
                         </div>
-                        <h1 style={{ fontSize: 12, fontStyle: 'italic', color: 'gray', textAlign: 'center', marginBottom: 15 }}>
+                        <h1 style={{ fontSize: 12, fontStyle: 'italic', color: 'gray', textAlign: 'center', marginBottom: 25 }}>
                             ©Todos los derechos reservados. Grupo CTI Tech-IN POS 2024
                         </h1>
                     </div>
@@ -174,3 +171,14 @@ ModalCenter.propTypes = {
     show: PropTypes.bool,
     onHide: PropTypes.func,
 }
+
+const mapStateToProps = state => ({ session: state.login.session });
+
+const mapDispatchToProps = dispatch => ({
+    openSession(type, data) {
+        dispatch({ type, data });
+    }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalCenter);

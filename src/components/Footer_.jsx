@@ -41,20 +41,6 @@ export default function Footer_({ modalShow }) {
                         </Stack>
                     </Stack>
                     <div style={{ background: 'white', height: 1, width: '100%', }} />
-                    <Stack direction={direction} justifyContent={'space-between'} style={{ marginTop: 20, alignItems: mobile ? 'center' : 'initial' }}>
-                        <Stack direction={direction} gap={4} style={{ alignItems: 'center' }}>
-                            <h3 className="footer-link" style={{ textAlign: 'center' }}>
-                                <a href={'/legal'} target="_blank" className="footer-link">
-                                    Aviso Legal
-                                </a>
-                            </h3>
-                            <h3 className="footer-link" style={{ textAlign: 'center' }}>
-                                <a href={'/privacity'} target="_blank" className="footer-link">
-                                    Aviso de Privacidad
-                                </a>
-                            </h3>
-                        </Stack>
-                    </Stack>
                 </Fade>
             </section>
         </div>
